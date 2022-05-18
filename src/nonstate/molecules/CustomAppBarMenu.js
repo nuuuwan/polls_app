@@ -46,7 +46,7 @@ export default function CustomAppBarMenu() {
       >
         <Avatar
           alt="BallotLogo"
-          src="/ballot.png.modified.png"
+          src="/polls_app/ballot.png.modified.png"
           variant="square"
           sx={{ width: 24, height: 24 }}
         />
