@@ -7,6 +7,10 @@ import RadioGroup from "@mui/material/RadioGroup";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 
+import EmailIcon from "@mui/icons-material/Email";
+import FaceRetouchingOffIcon from "@mui/icons-material/FaceRetouchingOff";
+import PhoneAndroidIcon from "@mui/icons-material/PhoneAndroid";
+
 const STYLE = {
   margin: 2,
   padding: 3,
@@ -19,13 +23,16 @@ export default function PollView({ poll }) {
       <FormControl>
         <Typography variant="h6">{poll.question}</Typography>
         <RadioGroup>
-          {poll.answerList.map(function (answer, iAnswer) {
+          {Object.entries(poll.answerValueToLabel).map(function (
+            [answerValue, answerLabel],
+            iAnswer
+          ) {
             return (
               <FormControlLabel
                 key={"poll-answer-" + iAnswer}
-                value={answer}
+                value={answerValue}
                 control={<Radio />}
-                label={answer}
+                label={answerLabel}
               />
             );
           })}
@@ -38,13 +45,15 @@ export default function PollView({ poll }) {
         display="flex"
         justifyContent="flex-end"
       >
-        <Button variant="contained" disabled>
-          Vote by Phone Number
+        <Button startIcon={<PhoneAndroidIcon />} variant="contained" disabled>
+          Vote with Phone Number
         </Button>
-        <Button variant="contained" disabled>
-          Vote by Email
+        <Button startIcon={<EmailIcon />} variant="contained" disabled>
+          Vote with Email
         </Button>
-        <Button variant="contained">Vote Anonymously</Button>
+        <Button startIcon={<FaceRetouchingOffIcon />} variant="contained">
+          Vote Anonymously
+        </Button>
       </Stack>
     </Paper>
   );
