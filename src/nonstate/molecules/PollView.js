@@ -14,7 +14,11 @@ import PhoneAndroidIcon from "@mui/icons-material/PhoneAndroid";
 const STYLE = {
   margin: 2,
   padding: 3,
-  maxWidth: "50%",
+  maxWidth: 500,
+};
+
+const STYLE_BUTTON = {
+  maxWidth: 300,
 };
 
 export default function PollView({ poll }) {
@@ -39,19 +43,28 @@ export default function PollView({ poll }) {
         </RadioGroup>
       </FormControl>
 
-      <Stack
-        direction="row"
-        spacing={1}
-        display="flex"
-        justifyContent="flex-end"
-      >
-        <Button startIcon={<PhoneAndroidIcon />} variant="contained" disabled>
-          Vote with Phone Number
+      <Stack spacing={1} sx={{ margin: 2 }}>
+        <Button
+          sx={STYLE_BUTTON}
+          startIcon={<PhoneAndroidIcon />}
+          variant="contained"
+          disabled
+        >
+          Vote with Phone
         </Button>
-        <Button startIcon={<EmailIcon />} variant="contained" disabled>
+        <Button
+          sx={STYLE_BUTTON}
+          startIcon={<EmailIcon />}
+          variant="contained"
+          disabled
+        >
           Vote with Email
         </Button>
-        <Button startIcon={<FaceRetouchingOffIcon />} variant="contained">
+        <Button
+          sx={STYLE_BUTTON}
+          startIcon={<FaceRetouchingOffIcon />}
+          variant="contained"
+        >
           Vote Anonymously
         </Button>
       </Stack>
