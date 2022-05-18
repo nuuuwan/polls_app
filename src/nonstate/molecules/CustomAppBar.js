@@ -21,7 +21,7 @@ export default function CustomAppBar() {
         <CustomAppBarMenu />
 
         <Typography component="div" sx={{ flexGrow: 1 }}>
-          {"Web App by @nuuuwan"}
+          {"Polls App"}
         </Typography>
       </Toolbar>
     </AppBar>
