@@ -4,7 +4,7 @@ import * as React from "react";
 
 import Box from "@mui/material/Box";
 
-import { EXAMPLE_POLL1 } from "../../core/Poll.js";
+import { EXAMPLE_POLL_LIST } from "../../core/Poll.js";
 
 import CustomBottomNavigation from "../../nonstate/molecules/CustomBottomNavigation.js";
 import VersionWidget from "../../nonstate/atoms/VersionWidget.js";
@@ -20,19 +20,29 @@ const STYLE = {
 export default class HomePage extends Component {
   constructor(props) {
     super(props);
-    this.state = { activePoll: EXAMPLE_POLL1 };
+    this.state = { pollList: EXAMPLE_POLL_LIST, iActivePoll: 0 };
   }
   componentDidMount() {
     // ReactGA.pageview(window.location.pathname);
   }
 
-  onClickBack() {
-    window.history.back();
-    window.location.reload(true);
+  onClickPrevious() {
+    const { pollList, iActivePoll } = this.state;
+    const newIActivePoll =
+      iActivePoll === 0 ? pollList.length - 1 : iActivePoll - 1;
+    this.setState({ iActivePoll: newIActivePoll });
+  }
+
+  onClickNext() {
+    const { pollList, iActivePoll } = this.state;
+    const newIActivePoll =
+      iActivePoll === pollList.length - 1 ? 0 : iActivePoll + 1;
+    this.setState({ iActivePoll: newIActivePoll });
   }
 
   render() {
-    const { activePoll } = this.state;
+    const { pollList, iActivePoll } = this.state;
+    const activePoll = pollList[iActivePoll];
     return (
       <Box sx={STYLE}>
         <CustomAppBar />
@@ -40,7 +50,10 @@ export default class HomePage extends Component {
         <PollView poll={activePoll} />
 
         <VersionWidget />
-        <CustomBottomNavigation onClickBack={this.onClickBack.bind(this)} />
+        <CustomBottomNavigation
+          onClickPrevious={this.onClickPrevious.bind(this)}
+          onClickNext={this.onClickNext.bind(this)}
+        />
       </Box>
     );
   }
