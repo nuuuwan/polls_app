@@ -5,15 +5,25 @@ import Paper from "@mui/material/Paper";
 import Tooltip from "@mui/material/Tooltip";
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
-import UndoIcon from "@mui/icons-material/Undo";
+import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
+import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 
-export default function CustomBottomNavigation({ onClickBack }) {
+export default function CustomBottomNavigation({
+  onClickPrevious,
+  onClickNext,
+}) {
   const navigationItems = [
     {
-      name: "Back",
-      details: "Go back to previous page",
-      Icon: UndoIcon,
-      onClick: onClickBack,
+      name: "Previous Poll",
+      details: "Go to previous poll",
+      Icon: NavigateBeforeIcon,
+      onClick: onClickPrevious,
+    },
+    {
+      name: "Next Poll",
+      details: "Go to next poll",
+      Icon: NavigateNextIcon,
+      onClick: onClickNext,
     },
   ];
 
