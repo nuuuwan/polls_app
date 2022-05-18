@@ -4,10 +4,12 @@ import { DATE_LAST_UPDATE } from "../../constants/Constants.js";
 
 const STYLE_VERSION = {
   fontSize: "50%",
-  flexGrow: 1,
-  margin: 1,
-  color: "ghost",
+  color: "gray",
   textAlign: "center",
+  position: "fixed",
+  bottom: 60,
+  left: 0,
+  right: 0,
 };
 
 export default function VersionWidget() {
