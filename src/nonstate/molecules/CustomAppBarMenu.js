@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import ListItemText from "@mui/material/ListItemText";
 import ListItemIcon from "@mui/material/ListItemIcon";
+import MenuIcon from "@mui/icons-material/Menu";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import HelpIcon from "@mui/icons-material/Help";
 
@@ -44,12 +44,7 @@ export default function CustomAppBarMenu() {
         aria-label="menu"
         onClick={onClick}
       >
-        <Avatar
-          alt="BallotLogo"
-          src="/ballot.png.modified.png"
-          variant="square"
-          sx={{ width: 24, height: 24 }}
-        />
+        <MenuIcon />
       </IconButton>
       <Menu
         id="basic-menu"
