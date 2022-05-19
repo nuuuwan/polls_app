@@ -9,6 +9,11 @@ import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 
 import HowToVoteIcon from "@mui/icons-material/HowToVote";
+
+import { TimeX } from "@nuuuwan/utils-js-dev";
+
+import PollResult from "../../core/PollResult.js";
+
 const STYLE = {
   margin: 2,
   padding: 3,
@@ -23,7 +28,14 @@ export default function PollView({ poll, onClickVote }) {
   const [selectedAnswer, setSelectedAnswer] = useState(poll.defaultAnswer);
 
   const onClick = function (e) {
-    onClickVote(poll, selectedAnswer);
+    onClickVote(
+      new PollResult(
+        "anonymous",
+        poll.pollID,
+        selectedAnswer,
+        TimeX.getUnixTime()
+      )
+    );
   };
 
   const onChange = function (e) {
