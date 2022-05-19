@@ -39,7 +39,6 @@ export default class HomePage extends Component {
   }
 
   onClickVote(pollResult) {
-    console.debug(pollResult);
     PollsAppDB.addPollResult(pollResult);
   }
 
