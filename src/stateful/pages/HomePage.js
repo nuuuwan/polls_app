@@ -21,7 +21,12 @@ const STYLE = {
 export default class HomePage extends Component {
   constructor(props) {
     super(props);
-    this.state = { pollList: EXAMPLE_POLL_LIST, iActivePoll: 0 };
+    this.state = {
+      pollList: EXAMPLE_POLL_LIST,
+      iActivePoll: 0,
+      pollResults: null,
+      pollToAnswerToVotes: null,
+    };
   }
 
   onClickPrevious() {
@@ -40,18 +45,64 @@ export default class HomePage extends Component {
 
   async onClickVote(pollResult) {
     await PollsAppDB.addPollResult(pollResult);
+    await this.updatePollResults();
+  }
+
+  async componentDidMount() {
+    await this.updatePollResults();
+  }
+
+  async updatePollResults() {
     const pollResults = await PollsAppDB.getPollResults();
-    console.debug(pollResults);
+    const pollToAnswerToVotes = pollResults.reduce(function (
+      pollToAnswerToVotes,
+      pollResult
+    ) {
+      const pollID = pollResult.pollID;
+      const answer = pollResult.answer;
+      // HACK: Not unique by userID
+      if (!pollToAnswerToVotes[pollID]) {
+        pollToAnswerToVotes[pollID] = {};
+      }
+      if (!pollToAnswerToVotes[pollID][answer]) {
+        pollToAnswerToVotes[pollID][answer] = 0;
+      }
+      pollToAnswerToVotes[pollID][answer] += 1;
+      return pollToAnswerToVotes;
+    },
+    {});
+    this.setState({ pollResults, pollToAnswerToVotes });
   }
 
   render() {
-    const { pollList, iActivePoll } = this.state;
+    const { pollList, iActivePoll, pollResults, pollToAnswerToVotes } =
+      this.state;
+    if (!pollResults) {
+      return "Loading...";
+    }
+
     const activePoll = pollList[iActivePoll];
+    const answerToVotes = pollToAnswerToVotes[activePoll.pollID]
+      ? pollToAnswerToVotes[activePoll.pollID]
+      : {};
+    const totalVotes = Object.entries(answerToVotes).reduce(function (
+      totalVotes,
+      [answer, votes]
+    ) {
+      return totalVotes + votes;
+    },
+    0);
+
     return (
       <Box sx={STYLE}>
         <CustomAppBar />
 
-        <PollView poll={activePoll} onClickVote={this.onClickVote.bind(this)} />
+        <PollView
+          poll={activePoll}
+          onClickVote={this.onClickVote.bind(this)}
+          answerToVotes={answerToVotes}
+          totalVotes={totalVotes}
+        />
 
         <VersionWidget />
         <CustomBottomNavigation
