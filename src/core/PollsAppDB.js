@@ -1,35 +1,20 @@
-import * as AWS from "aws-sdk";
-import { ConfigurationOptions } from "aws-sdk";
+import AWSDynamoDBX from "../base/AWSDynamoDBX.js";
+import PollResult from "./PollResult.js";
+
+const TABLE_POLL_RESULT = "polls-app-poll-result";
 
 export default class PollsAppDB {
-  static init() {
-    const configuration: ConfigurationOptions = {
-      region: process.env.REACT_APP_AWS_REGION,
-      secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY,
-      accessKeyId: process.env.REACT_APP_ACCESS_KEY_ID,
-    };
-    AWS.config.update(configuration);
-  }
-
-  static getClient() {
-    return new AWS.DynamoDB.DocumentClient();
-  }
-
-  static addPollResult(pollResult) {
-    PollsAppDB.getClient().put(
-      {
-        TableName: "polls-app-poll-result",
-        Item: pollResult.dict,
-      },
-      function (err, data) {
-        if (err) {
-          console.error(err);
-        } else {
-          console.debug("PollsAppDB.addPollResult complete!");
-        }
-      }
+  static async addPollResult(pollResult) {
+    return await AWSDynamoDBX.put(
+      TABLE_POLL_RESULT,
+      PollResult.toDict(pollResult)
     );
   }
-}
 
-PollsAppDB.init();
+  static async getPollResults() {
+    const data = await AWSDynamoDBX.scan(TABLE_POLL_RESULT);
+    return data.Items.map(function (item) {
+      return PollResult.fromDict(item);
+    });
+  }
+}

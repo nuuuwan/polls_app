@@ -38,8 +38,10 @@ export default class HomePage extends Component {
     this.setState({ iActivePoll: newIActivePoll });
   }
 
-  onClickVote(pollResult) {
-    PollsAppDB.addPollResult(pollResult);
+  async onClickVote(pollResult) {
+    await PollsAppDB.addPollResult(pollResult);
+    const pollResults = await PollsAppDB.getPollResults();
+    console.debug(pollResults);
   }
 
   render() {
