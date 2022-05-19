@@ -19,7 +19,7 @@ import PercentageWidget from "../atoms/PercentageWidget.js";
 const STYLE = {
   margin: 2,
   padding: 3,
-  maxWidth: 500,
+  maxWidth: 400,
 };
 
 const STYLE_BUTTON = {
@@ -52,7 +52,7 @@ export default function PollView({
   return (
     <Paper key={"poll-" + poll.pollID} sx={STYLE}>
       <FormControl>
-        <Typography variant="h6">{poll.question}</Typography>
+        <Typography variant="subtitle1">{poll.question}</Typography>
         <RadioGroup value={selectedAnswer} onChange={onChange}>
           {poll.answerList.map(function (answer, iAnswer) {
             const np = answerToVotes[answer] ? answerToVotes[answer] : 0;
@@ -61,16 +61,16 @@ export default function PollView({
                 <FormControlLabel
                   value={answer}
                   control={<Radio />}
-                  label={answer}
+                  label={<Typography variant="subtitle2">{answer}</Typography>}
                 />
-                <PercentageWidget n={totalVotes} np={np} />
+                <PercentageWidget answer={answer} n={totalVotes} np={np} />
               </div>
             );
           })}
         </RadioGroup>
       </FormControl>
 
-      <Stack direction="row" justifyContent="right" spacing={1}>
+      <Stack direction="row" justifyContent="right" spacing={1} sx={{ m: 1 }}>
         <Button
           sx={STYLE_BUTTON}
           startIcon={<HowToVoteIcon />}
