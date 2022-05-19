@@ -2,7 +2,6 @@ import { Component } from "react";
 import * as React from "react";
 // import ReactGA from "react-ga";
 
-import Alert from "@mui/material/Alert";
 import Box from "@mui/material/Box";
 
 import { EXAMPLE_POLL_LIST } from "../../core/Poll.js";
@@ -49,10 +48,6 @@ export default class HomePage extends Component {
         <CustomAppBar />
 
         <PollView poll={activePoll} />
-
-        <Alert severity="info">
-          Voting with Phone and Email is still under development. Stay Tuned!
-        </Alert>
 
         <VersionWidget />
         <CustomBottomNavigation
