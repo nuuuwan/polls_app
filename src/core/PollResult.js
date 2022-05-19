@@ -10,13 +10,17 @@ export default class PollResult {
     return [this.pollID, this.userID, this.timeUpdated].join("-");
   }
 
-  get dict() {
+  static toDict(pollResult) {
     return {
-      pollResultID: this.pollResultID,
-      pollID: this.pollID,
-      userID: this.userID,
-      answer: this.answer,
-      timeUpdated: this.timeUpdated,
+      pollResultID: pollResult.pollResultID,
+      pollID: pollResult.pollID,
+      userID: pollResult.userID,
+      answer: pollResult.answer,
+      timeUpdated: pollResult.timeUpdated,
     };
+  }
+
+  static fromDict(d) {
+    return new PollResult(d.pollID, d.userID, d.answer, d.timeUpdated);
   }
 }
