@@ -7,10 +7,7 @@ import RadioGroup from "@mui/material/RadioGroup";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 
-import EmailIcon from "@mui/icons-material/Email";
-import FaceRetouchingOffIcon from "@mui/icons-material/FaceRetouchingOff";
-import PhoneAndroidIcon from "@mui/icons-material/PhoneAndroid";
-
+import HowToVoteIcon from "@mui/icons-material/HowToVote";
 const STYLE = {
   margin: 2,
   padding: 3,
@@ -18,7 +15,7 @@ const STYLE = {
 };
 
 const STYLE_BUTTON = {
-  maxWidth: 300,
+  maxWidth: 150,
 };
 
 export default function PollView({ poll }) {
@@ -43,29 +40,13 @@ export default function PollView({ poll }) {
         </RadioGroup>
       </FormControl>
 
-      <Stack spacing={1} sx={{ margin: 2 }}>
+      <Stack direction="row" justifyContent="right" spacing={1}>
         <Button
           sx={STYLE_BUTTON}
-          startIcon={<PhoneAndroidIcon />}
-          variant="contained"
-          disabled
-        >
-          Vote with Phone
-        </Button>
-        <Button
-          sx={STYLE_BUTTON}
-          startIcon={<EmailIcon />}
-          variant="contained"
-          disabled
-        >
-          Vote with Email
-        </Button>
-        <Button
-          sx={STYLE_BUTTON}
-          startIcon={<FaceRetouchingOffIcon />}
+          startIcon={<HowToVoteIcon />}
           variant="contained"
         >
-          Vote Anonymously
+          Vote
         </Button>
       </Stack>
     </Paper>
