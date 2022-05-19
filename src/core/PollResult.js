@@ -1,8 +1,8 @@
 export default class PollResult {
-  constructor(userID, pollID, value, timeUpdated) {
+  constructor(userID, pollID, answer, timeUpdated) {
     this.userID = userID;
     this.pollID = pollID;
-    this.value = value;
+    this.answer = answer;
     this.timeUpdated = timeUpdated;
   }
 
@@ -10,7 +10,7 @@ export default class PollResult {
     return {
       userID: this.userID,
       pollID: this.pollID,
-      pollResultValue: this.pollResultValue,
+      answer: this.answer,
       timeUpdated: this.timeUpdated,
     };
   }
