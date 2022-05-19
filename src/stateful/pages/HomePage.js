@@ -1,6 +1,5 @@
 import { Component } from "react";
 import * as React from "react";
-// import ReactGA from "react-ga";
 
 import Box from "@mui/material/Box";
 
@@ -10,6 +9,8 @@ import CustomBottomNavigation from "../../nonstate/molecules/CustomBottomNavigat
 import VersionWidget from "../../nonstate/atoms/VersionWidget.js";
 import CustomAppBar from "../../nonstate/molecules/CustomAppBar.js";
 import PollView from "../../nonstate/molecules/PollView.js";
+
+import PollsAppDB from "../../core/PollsAppDB.js";
 
 const STYLE = {
   margin: 4,
@@ -21,9 +22,6 @@ export default class HomePage extends Component {
   constructor(props) {
     super(props);
     this.state = { pollList: EXAMPLE_POLL_LIST, iActivePoll: 0 };
-  }
-  componentDidMount() {
-    // ReactGA.pageview(window.location.pathname);
   }
 
   onClickPrevious() {
@@ -40,8 +38,9 @@ export default class HomePage extends Component {
     this.setState({ iActivePoll: newIActivePoll });
   }
 
-  onClickVote(poll, value) {
-    console.debug(poll, value);
+  onClickVote(pollResult) {
+    console.debug(pollResult);
+    PollsAppDB.addPollResult(pollResult);
   }
 
   render() {
