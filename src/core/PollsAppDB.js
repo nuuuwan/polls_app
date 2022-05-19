@@ -1,13 +1,12 @@
 import * as AWS from "aws-sdk";
 import { ConfigurationOptions } from "aws-sdk";
-import { AWSSecretConstants } from "../constants/SecretConstants.js";
 
 export default class PollsAppDB {
   static init() {
     const configuration: ConfigurationOptions = {
-      region: AWSSecretConstants.region,
-      secretAccessKey: AWSSecretConstants.secretAccessKey,
-      accessKeyId: AWSSecretConstants.accessKeyId,
+      region: process.env.REACT_APP_AWS_REGION,
+      secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY,
+      accessKeyId: process.env.REACT_APP_ACCESS_KEY_ID,
     };
     AWS.config.update(configuration);
   }
