@@ -30,8 +30,8 @@ export default function PollView({ poll, onClickVote }) {
   const onClick = function (e) {
     onClickVote(
       new PollResult(
-        "anonymous",
         poll.pollID,
+        "anonymous",
         selectedAnswer,
         TimeX.getUnixTime()
       )
