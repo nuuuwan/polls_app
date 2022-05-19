@@ -14,6 +14,8 @@ import { TimeX } from "@nuuuwan/utils-js-dev";
 
 import PollResult from "../../core/PollResult.js";
 
+import PercentageWidget from "../atoms/PercentageWidget.js";
+
 const STYLE = {
   margin: 2,
   padding: 3,
@@ -24,7 +26,12 @@ const STYLE_BUTTON = {
   maxWidth: 150,
 };
 
-export default function PollView({ poll, onClickVote }) {
+export default function PollView({
+  poll,
+  onClickVote,
+  answerToVotes,
+  totalVotes,
+}) {
   const [selectedAnswer, setSelectedAnswer] = useState(poll.defaultAnswer);
 
   const onClick = function (e) {
@@ -43,18 +50,21 @@ export default function PollView({ poll, onClickVote }) {
   };
 
   return (
-    <Paper sx={STYLE}>
+    <Paper key={"poll-" + poll.pollID} sx={STYLE}>
       <FormControl>
         <Typography variant="h6">{poll.question}</Typography>
         <RadioGroup value={selectedAnswer} onChange={onChange}>
           {poll.answerList.map(function (answer, iAnswer) {
+            const np = answerToVotes[answer] ? answerToVotes[answer] : 0;
             return (
-              <FormControlLabel
-                key={"poll-answer-" + iAnswer}
-                value={answer}
-                control={<Radio />}
-                label={answer}
-              />
+              <div key={"poll-answer-" + iAnswer}>
+                <FormControlLabel
+                  value={answer}
+                  control={<Radio />}
+                  label={answer}
+                />
+                <PercentageWidget n={totalVotes} np={np} />
+              </div>
             );
           })}
         </RadioGroup>
