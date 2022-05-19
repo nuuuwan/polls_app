@@ -1,24 +1,30 @@
 export default class Poll {
-  constructor(question, answerValueToLabel) {
+  constructor(pollID, question, answerList, defaultAnswer) {
+    this.pollID = pollID;
     this.question = question;
-    this.answerValueToLabel = answerValueToLabel;
+    this.answerList = answerList;
+    this.defaultAnswer = defaultAnswer;
   }
 }
 
 export const EXAMPLE_POLL_LIST = [
-  new Poll("Should Sri Lanka abolish the Executive Presidency?", {
-    yes: "Yes",
-    no: "No",
-  }),
   new Poll(
-    "Should Sri Lanka abolish the 20th Amendment to the Constituition?",
-    {
-      yes: "Yes",
-      no: "No",
-    }
+    "sl-exec-pres",
+    "Should Sri Lanka abolish the Executive Presidency?",
+    ["Undecided", "Yes", "No"],
+    "Undecided"
   ),
-  new Poll("Should Sri Lanka have General Elections in the next 3 months?", {
-    yes: "Yes",
-    no: "No",
-  }),
+  new Poll(
+    "sl-20A",
+    "Should Sri Lanka abolish the 20th Amendment to the Constituition?",
+    ["Undecided", "Yes", "No"],
+    "Undecided"
+  ),
+
+  new Poll(
+    "sl-elec-2022",
+    "Should Sri Lanka have General Elections in the next 3 months?",
+    ["Undecided", "Yes", "No"],
+    "Undecided"
+  ),
 ];
