@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Button from "@mui/material/Button";
 import FormControl from "@mui/material/FormControl";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -18,22 +19,29 @@ const STYLE_BUTTON = {
   maxWidth: 150,
 };
 
-export default function PollView({ poll }) {
+export default function PollView({ poll, onClickVote }) {
+  const [selectedAnswer, setSelectedAnswer] = useState(poll.defaultAnswer);
+
+  const onClick = function (e) {
+    onClickVote(poll, selectedAnswer);
+  };
+
+  const onChange = function (e) {
+    setSelectedAnswer(e.target.value);
+  };
+
   return (
     <Paper sx={STYLE}>
       <FormControl>
         <Typography variant="h6">{poll.question}</Typography>
-        <RadioGroup>
-          {Object.entries(poll.answerValueToLabel).map(function (
-            [answerValue, answerLabel],
-            iAnswer
-          ) {
+        <RadioGroup value={selectedAnswer} onChange={onChange}>
+          {poll.answerList.map(function (answer, iAnswer) {
             return (
               <FormControlLabel
                 key={"poll-answer-" + iAnswer}
-                value={answerValue}
+                value={answer}
                 control={<Radio />}
-                label={answerLabel}
+                label={answer}
               />
             );
           })}
@@ -45,6 +53,7 @@ export default function PollView({ poll }) {
           sx={STYLE_BUTTON}
           startIcon={<HowToVoteIcon />}
           variant="contained"
+          onClick={onClick}
         >
           Vote
         </Button>
