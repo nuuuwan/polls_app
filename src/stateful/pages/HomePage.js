@@ -40,6 +40,10 @@ export default class HomePage extends Component {
     this.setState({ iActivePoll: newIActivePoll });
   }
 
+  onClickVote(poll, value) {
+    console.debug(poll, value);
+  }
+
   render() {
     const { pollList, iActivePoll } = this.state;
     const activePoll = pollList[iActivePoll];
@@ -47,7 +51,7 @@ export default class HomePage extends Component {
       <Box sx={STYLE}>
         <CustomAppBar />
 
-        <PollView poll={activePoll} />
+        <PollView poll={activePoll} onClickVote={this.onClickVote.bind(this)} />
 
         <VersionWidget />
         <CustomBottomNavigation
