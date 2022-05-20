@@ -3,8 +3,6 @@ import * as React from "react";
 
 import Box from "@mui/material/Box";
 
-import { EXAMPLE_POLL_LIST } from "../../core/Poll";
-
 import CustomBottomNavigation from "../../nonstate/molecules/CustomBottomNavigation";
 import VersionWidget from "../../nonstate/atoms/VersionWidget";
 import CustomAppBar from "../../nonstate/molecules/CustomAppBar";
@@ -22,58 +20,54 @@ export default class HomePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      pollList: EXAMPLE_POLL_LIST,
       iActivePoll: 0,
+      polls: null,
       pollResults: null,
       pollToAnswerToVotes: null,
     };
   }
 
   onClickPrevious() {
-    const { pollList, iActivePoll } = this.state;
+    const { polls, iActivePoll } = this.state;
     const newIActivePoll =
-      iActivePoll === 0 ? pollList.length - 1 : iActivePoll - 1;
+      iActivePoll === 0 ? polls.length - 1 : iActivePoll - 1;
     this.setState({ iActivePoll: newIActivePoll });
   }
 
   onClickNext() {
-    const { pollList, iActivePoll } = this.state;
+    const { polls, iActivePoll } = this.state;
     const newIActivePoll =
-      iActivePoll === pollList.length - 1 ? 0 : iActivePoll + 1;
+      iActivePoll === polls.length - 1 ? 0 : iActivePoll + 1;
     this.setState({ iActivePoll: newIActivePoll });
   }
 
   async onClickVote(pollResult) {
     await PollsAppServer.addPollResult(pollResult);
-    await this.updatePollResults();
+    await this.reloadData();
   }
 
   async componentDidMount() {
-    await this.updatePollResults();
+    await this.reloadData();
   }
 
-  async updatePollResults() {
+  async reloadData() {
+    const polls = await PollsAppServer.getPolls();
     const pollResults = await PollsAppServer.getPollResults();
     this.setState({
-      pollResults,
+      polls,
       pollToAnswerToVotes: PollsAppServer.getPollToAnswerToVotes(pollResults),
       pollToTotalVotes: PollsAppServer.getPollToTotalVotes(pollResults),
     });
   }
 
   render() {
-    const {
-      pollList,
-      iActivePoll,
-      pollResults,
-      pollToAnswerToVotes,
-      pollToTotalVotes,
-    } = this.state;
-    if (!pollResults) {
+    const { polls, iActivePoll, pollToAnswerToVotes, pollToTotalVotes } =
+      this.state;
+    if (!polls) {
       return "Loading...";
     }
 
-    const activePoll = pollList[iActivePoll];
+    const activePoll = polls[iActivePoll];
     const answerToVotes = pollToAnswerToVotes[activePoll.pollID]
       ? pollToAnswerToVotes[activePoll.pollID]
       : {};
