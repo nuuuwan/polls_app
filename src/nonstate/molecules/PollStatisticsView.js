@@ -6,7 +6,7 @@ export default function PollStatisticsView({
   totalVotes,
   answerToVotes,
 }) {
-  if (!totalVotes) {
+  if (!totalVotes || totalVotes < StatisticsXFuture.MIN_STATISTICAL_N) {
     return null;
   }
   const sortedAnswerStats = answerList
