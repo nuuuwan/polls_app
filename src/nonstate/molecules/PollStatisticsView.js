@@ -1,6 +1,6 @@
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
-import StatisticsXFuture from "../../base/StatisticsXFuture.js";
+import StatisticsXFuture from "../../base/StatisticsXFuture";
 export default function PollStatisticsView({
   answerList,
   totalVotes,
@@ -12,7 +12,10 @@ export default function PollStatisticsView({
   const sortedAnswerStats = answerList
     .map(function (answer) {
       const answerVotes = answerToVotes[answer] ? answerToVotes[answer] : 0;
-      const { p, stdev } = StatisticsXFuture.getErrorBounds(totalVotes, answerVotes);
+      const { p, stdev } = StatisticsXFuture.getErrorBounds(
+        totalVotes,
+        answerVotes
+      );
       return { answer, p, stdev };
     })
     .sort(function (answerA, answerB) {

@@ -3,14 +3,14 @@ import * as React from "react";
 
 import Box from "@mui/material/Box";
 
-import { EXAMPLE_POLL_LIST } from "../../core/Poll.js";
+import { EXAMPLE_POLL_LIST } from "../../core/Poll";
 
-import CustomBottomNavigation from "../../nonstate/molecules/CustomBottomNavigation.js";
-import VersionWidget from "../../nonstate/atoms/VersionWidget.js";
-import CustomAppBar from "../../nonstate/molecules/CustomAppBar.js";
-import PollView from "../../nonstate/molecules/PollView.js";
+import CustomBottomNavigation from "../../nonstate/molecules/CustomBottomNavigation";
+import VersionWidget from "../../nonstate/atoms/VersionWidget";
+import CustomAppBar from "../../nonstate/molecules/CustomAppBar";
+import PollView from "../../nonstate/molecules/PollView";
 
-import PollsAppServer from "../../core/PollsAppServer.js";
+import PollsAppServer from "../../core/PollsAppServer";
 
 const STYLE = {
   margin: 4,

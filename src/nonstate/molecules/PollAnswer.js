@@ -2,7 +2,7 @@ import Typography from "@mui/material/Typography";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Radio from "@mui/material/Radio";
 
-import PercentageWidget from "../atoms/PercentageWidget.js";
+import PercentageWidget from "../atoms/PercentageWidget";
 
 const STYLE = {
   marginBottom: "5%",

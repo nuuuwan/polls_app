@@ -1,6 +1,6 @@
 import React from "react";
 import Typography from "@mui/material/Typography";
-import { DATE_LAST_UPDATE } from "../../constants/Constants.js";
+import { DATE_LAST_UPDATE } from "../../constants/Constants";
 
 const STYLE_VERSION = {
   fontSize: "50%",

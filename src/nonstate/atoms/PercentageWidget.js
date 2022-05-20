@@ -1,5 +1,5 @@
 import Typography from "@mui/material/Typography";
-import StatisticsXFuture from "../../base/StatisticsXFuture.js";
+import StatisticsXFuture from "../../base/StatisticsXFuture";
 const WIDTH = "100%";
 const HEIGHT = 24;
 const STYLE = {

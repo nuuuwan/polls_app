@@ -5,7 +5,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import HelpIcon from "@mui/icons-material/Help";
 
-import CustomAppBarMenuItem from "./CustomAppBarMenuItem.js";
+import CustomAppBarMenuItem from "./CustomAppBarMenuItem";
 
 const MENU_ITEM_LIST = [
   {

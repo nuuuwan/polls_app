@@ -1,5 +1,5 @@
-import AWSDynamoDBX from "../base/AWSDynamoDBX.js";
-import PollResult from "./PollResult.js";
+import AWSDynamoDBX from "../base/AWSDynamoDBX";
+import PollResult from "./PollResult";
 
 const TABLE_POLL_RESULT = "polls-app-poll-result";
 

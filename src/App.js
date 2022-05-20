@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import HomePage from "./stateful/pages/HomePage.js";
+import HomePage from "./stateful/pages/HomePage";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 export default class App extends Component {

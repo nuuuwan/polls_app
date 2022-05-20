@@ -6,11 +6,11 @@ import Typography from "@mui/material/Typography";
 
 import { TimeX } from "@nuuuwan/utils-js-dev";
 
-import MathXFuture from "../../base/MathXFuture.js";
-import PollResult from "../../core/PollResult.js";
-import PollAnswer from "./PollAnswer.js";
-import VoteButton from "../atoms/VoteButton.js";
-import PollStatisticsView from "./PollStatisticsView.js";
+import MathXFuture from "../../base/MathXFuture";
+import PollResult from "../../core/PollResult";
+import PollAnswer from "./PollAnswer";
+import VoteButton from "../atoms/VoteButton";
+import PollStatisticsView from "./PollStatisticsView";
 
 const STYLE = {
   margin: 2,
