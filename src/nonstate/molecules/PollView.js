@@ -62,7 +62,11 @@ export default function PollView({
             );
           })}
         </RadioGroup>
-        <PollStatisticsView totalVotes={totalVotes} />
+        <PollStatisticsView
+          answerList={poll.answerList}
+          totalVotes={totalVotes}
+          answerToVotes={answerToVotes}
+        />
       </FormControl>
 
       <VoteButton onClick={onClick} />
