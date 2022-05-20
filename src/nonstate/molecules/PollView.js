@@ -19,6 +19,8 @@ const STYLE = {
   maxWidth: 400,
 };
 
+const ANSWER_NONE = "";
+
 export default function PollView({
   poll,
   onClickVote,
@@ -26,7 +28,7 @@ export default function PollView({
   totalVotes,
   shuffle,
 }) {
-  const [selectedAnswer, setSelectedAnswer] = useState(poll.defaultAnswer);
+  const [selectedAnswer, setSelectedAnswer] = useState(ANSWER_NONE);
 
   const onClick = async function (e) {
     const geoInfo = await await GeoLocationDBX.getInfo();
@@ -76,7 +78,7 @@ export default function PollView({
         />
       </FormControl>
 
-      <VoteButton onClick={onClick} />
+      <VoteButton onClick={onClick} disabled={selectedAnswer === ANSWER_NONE} />
     </Paper>
   );
 }
