@@ -1,4 +1,14 @@
-import { WWW } from "@nuuuwan/utils-js-dev";
+const JSON_HEADERS = {
+  headers: {
+    Accept: "application/json",
+  },
+};
+
+async function jsonNonCache(url) {
+  const response = await fetch(url, JSON_HEADERS);
+  const dataJson = await response.json();
+  return dataJson;
+}
 
 export default class AWSDynamoDBX {
   static getURLLambda() {
@@ -6,14 +16,19 @@ export default class AWSDynamoDBX {
   }
 
   static async multiGet(className) {
-    const url = AWSDynamoDBX.getURLLambda();
+    const urlBase = AWSDynamoDBX.getURLLambda();
     const cmd = "multiget-" + className + "s";
-    return await WWW.json(url + "?cmd=" + cmd);
+    const url = urlBase + "?cmd=" + cmd;
+    const response = await jsonNonCache(url);
+    return response;
   }
 
   static async put(className, d) {
-    const url = AWSDynamoDBX.getURLLambda();
+    const urlBase = AWSDynamoDBX.getURLLambda();
     const cmd = "put-" + className;
-    return await WWW.json(url + "?cmd=" + cmd + "&d=" + JSON.stringify(d));
+    const dJSONB64 = encodeURIComponent(btoa(JSON.stringify(d)));
+    const url = urlBase + "?cmd=" + cmd + "&d_json_b64=" + dJSONB64;
+    const response = await jsonNonCache(url);
+    return response;
   }
 }
