@@ -30,10 +30,11 @@ export default function PollView({
 
   const onClick = async function (e) {
     const geoInfo = await await GeoLocationDBX.getInfo();
+    const userID = geoInfo.infoHash;
     onClickVote(
       new PollResult(
         poll.pollID,
-        "anonymous",
+        userID,
         selectedAnswer,
         TimeX.getUnixTime(),
         geoInfo
