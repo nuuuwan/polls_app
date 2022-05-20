@@ -42,7 +42,9 @@ export default function PollView({
     setSelectedAnswer(e.target.value);
   };
 
-  const displayAnswerList = shuffle ? MathXFuture.randomShuffle(poll.answerList) : poll.answerList;
+  const displayAnswerList = shuffle
+    ? MathXFuture.randomShuffle(poll.answerList)
+    : poll.answerList;
 
   return (
     <Paper key={"poll-" + poll.pollID} sx={STYLE}>
