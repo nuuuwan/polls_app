@@ -27,4 +27,18 @@ export const EXAMPLE_POLL_LIST = [
     ["Yes", "No", "Undecided"],
     "Undecided"
   ),
+
+  new Poll(
+    "new-poll",
+    "What should you put in this new poll?",
+    ["Yes", "No", "Undecided"],
+    "Undecided"
+  ),
+
+  new Poll(
+    "one-answer-poll",
+    "What should you put in this one answer poll poll?",
+    ["Yes", "No", "Undecided"],
+    "Undecided"
+  ),
 ];
