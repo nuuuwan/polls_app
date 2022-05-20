@@ -11,10 +11,37 @@ export default class PollsAppServer {
     );
   }
 
-  static async getPollResults() {
+  static async getPollResultsWithDupes() {
     const data = await AWSDynamoDBX.scan(TABLE_POLL_RESULTS);
     return data.Items.map(function (item) {
       return PollResult.fromDict(item);
+    });
+  }
+
+  static async getPollResults() {
+    const pollResultsWithDupes = await PollsAppServer.getPollResultsWithDupes();
+    const keyToPollResults = pollResultsWithDupes.reduce(function (
+      keyToPollResults,
+      pollResult
+    ) {
+      const key = pollResult.pollID + pollResult.userID;
+
+      if (!keyToPollResults[key]) {
+        keyToPollResults[key] = [];
+      }
+      keyToPollResults[key].push(pollResult);
+      return keyToPollResults;
+    },
+    {});
+
+    return Object.values(keyToPollResults).map(function (pollResultsForKey) {
+      const sortedPollResultsForKey = pollResultsForKey.sort(function (
+        pollResultA,
+        pollResultB
+      ) {
+        return pollResultB.timeUpdated - pollResultA.timeUpdated;
+      });
+      return sortedPollResultsForKey[0];
     });
   }
 
