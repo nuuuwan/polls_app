@@ -6,6 +6,9 @@ export default function PollStatisticsView({
   totalVotes,
   answerToVotes,
 }) {
+  if (!totalVotes) {
+    return null;
+  }
   const sortedAnswerStats = answerList
     .map(function (answer) {
       const answerVotes = answerToVotes[answer] ? answerToVotes[answer] : 0;
