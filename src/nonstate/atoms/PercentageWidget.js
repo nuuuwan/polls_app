@@ -1,34 +1,43 @@
 import Typography from "@mui/material/Typography";
+import StatisticsX from "../../base/StatisticsX.js";
 const WIDTH = "100%";
 const HEIGHT = 24;
 const STYLE = {
   width: WIDTH,
   height: HEIGHT,
+  marginRight: "10%",
 };
 
 const STYLE_INNER = {
   height: HEIGHT,
   backgroundColor: "#1976D2",
   float: "left",
-  marginRight: "5%",
-  borderRadius: "10%",
-  opacity: 0.25,
 };
 
 export default function PercentageWidget({ n, np }) {
-  const p = np / n;
-  const pStr = parseInt(p * 100 + 0.5) + "%";
-  const width = parseInt(p * 80 + 0.5) + "%";
-  const styleInnerCustom = {
-    width: width,
+  const { lower, upper } = StatisticsX.getErrorBounds(n, np);
+  const [lowerStr, upperStr] = [lower, upper].map((x) =>
+    parseInt(x * 100 + 0.5)
+  );
+
+  const pStr = lowerStr + " - " + upperStr + "%";
+  const widthLower = parseInt(lower * 80 + 0.5) + "%";
+  const widthSpan = parseInt((upper - lower) * 80 + 0.5) + "%";
+  const styleInnerLower = {
+    width: widthLower,
+    opacity: 0.2,
+  };
+  const styleInnerSpan = {
+    width: widthSpan,
+    opacity: 0.3,
+    marginRight: "5%",
   };
 
   return (
     <div style={STYLE}>
-      <span style={{ ...STYLE_INNER, ...styleInnerCustom }} />
-      <Typography variant="body1" sx={{ fontWeight: "bold" }}>
-        {pStr}
-      </Typography>
+      <span style={{ ...STYLE_INNER, ...styleInnerLower }} />
+      <span style={{ ...STYLE_INNER, ...styleInnerSpan }} />
+      <Typography variant="body2">{pStr}</Typography>
     </div>
   );
 }
