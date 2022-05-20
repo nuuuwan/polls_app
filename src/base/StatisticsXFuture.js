@@ -1,4 +1,6 @@
 export default class StatisticsXFuture {
+  static MIN_STATISTICAL_N = 30;
+
   static getErrorBounds(n, np) {
     const p = np / n;
     const stdev = Math.sqrt(np * (1 - p)) / n;
