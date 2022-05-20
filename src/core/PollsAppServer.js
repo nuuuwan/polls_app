@@ -1,9 +1,22 @@
 import AWSDynamoDBX from "../base/AWSDynamoDBX";
+import Poll from "./Poll";
 import PollResult from "./PollResult";
 
+const TABLE_POLLS = "polls-app-polls";
 const TABLE_POLL_RESULTS = "polls-app-poll-results";
 
 export default class PollsAppServer {
+  static async addPoll(poll) {
+    return await AWSDynamoDBX.put(TABLE_POLLS, Poll.toDict(poll));
+  }
+
+  static async getPolls() {
+    const data = await AWSDynamoDBX.scan(TABLE_POLLS);
+    return data.Items.map(function (item) {
+      return Poll.fromDict(item);
+    });
+  }
+
   static async addPollResult(pollResult) {
     return await AWSDynamoDBX.put(
       TABLE_POLL_RESULTS,
