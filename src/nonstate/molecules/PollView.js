@@ -10,6 +10,7 @@ import MathXFuture from "../../base/MathXFuture.js";
 import PollResult from "../../core/PollResult.js";
 import PollAnswer from "./PollAnswer.js";
 import VoteButton from "../atoms/VoteButton.js";
+import PollStatisticsView from "./PollStatisticsView.js";
 
 const STYLE = {
   margin: 2,
@@ -61,6 +62,7 @@ export default function PollView({
             );
           })}
         </RadioGroup>
+        <PollStatisticsView totalVotes={totalVotes} />
       </FormControl>
 
       <VoteButton onClick={onClick} />
