@@ -1,6 +1,5 @@
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
-import Divider from "@mui/material/Divider";
 import StatisticsX from "../../base/StatisticsX.js";
 export default function PollStatisticsView({
   answerList,
@@ -20,12 +19,11 @@ export default function PollStatisticsView({
   const topAnswerStats = sortedAnswerStats[0];
   const nextAnswerStats = sortedAnswerStats[1];
 
-  let significanceStr = "too close to call";
+  let significanceStr = "Too close to call";
   let z, label;
   for ([z, label] of [
-    [3, "very significantly"],
-    [2, "significantly"],
-    [1, "slightly"],
+    [3, "significantly"],
+    [2, "slightly"],
   ]) {
     const topLower = topAnswerStats.p - topAnswerStats.stdev * z;
     const nextUpper = nextAnswerStats.p + nextAnswerStats.stdev * z;
