@@ -46,7 +46,7 @@ export default function PercentageWidget({ n, np }) {
     <div style={STYLE}>
       <span style={{ ...STYLE_INNER, ...styleInnerLower }} />
       <span style={{ ...STYLE_INNER, ...styleInnerSpan }} />
-      <Typography variant="body2">{pStr}</Typography>
+      <Typography variant="caption">{pStr}</Typography>
     </div>
   );
 }
