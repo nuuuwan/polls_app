@@ -7,6 +7,7 @@ import Typography from "@mui/material/Typography";
 import { TimeX } from "@nuuuwan/utils-js-dev";
 
 import MathXFuture from "../../base/MathXFuture";
+import GeoLocationDBX from "../../base/GeoLocationDBX";
 import PollResult from "../../core/PollResult";
 import PollAnswer from "./PollAnswer";
 import VoteButton from "../atoms/VoteButton";
@@ -27,13 +28,15 @@ export default function PollView({
 }) {
   const [selectedAnswer, setSelectedAnswer] = useState(poll.defaultAnswer);
 
-  const onClick = function (e) {
+  const onClick = async function (e) {
+    const geoInfo = await await GeoLocationDBX.getInfo();
     onClickVote(
       new PollResult(
         poll.pollID,
         "anonymous",
         selectedAnswer,
-        TimeX.getUnixTime()
+        TimeX.getUnixTime(),
+        geoInfo
       )
     );
   };
