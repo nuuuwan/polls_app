@@ -15,7 +15,7 @@ const STYLE_INNER = {
 };
 
 export default function PercentageWidget({ n, np }) {
-  if (!n) {
+  if (!n || n < StatisticsXFuture.MIN_STATISTICAL_N) {
     return null;
   }
 
