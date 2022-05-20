@@ -54,10 +54,11 @@ export default class HomePage extends Component {
 
   async updatePollResults() {
     const pollResults = await PollsAppServer.getPollResults();
-    const pollToAnswerToVotes =
-      PollsAppServer.getPollToAnswerToVotes(pollResults);
-    const pollToTotalVotes = PollsAppServer.getPollToTotalVotes(pollResults);
-    this.setState({ pollResults, pollToAnswerToVotes, pollToTotalVotes });
+    this.setState({
+      pollResults,
+      pollToAnswerToVotes: PollsAppServer.getPollToAnswerToVotes(pollResults),
+      pollToTotalVotes: PollsAppServer.getPollToTotalVotes(pollResults),
+    });
   }
 
   render() {
