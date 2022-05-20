@@ -23,6 +23,7 @@ export default function PollView({
   onClickVote,
   answerToVotes,
   totalVotes,
+  shuffle,
 }) {
   const [selectedAnswer, setSelectedAnswer] = useState(poll.defaultAnswer);
 
@@ -41,14 +42,14 @@ export default function PollView({
     setSelectedAnswer(e.target.value);
   };
 
-  const shuffledAnswerList = MathXFuture.randomShuffle(poll.answerList);
+  const displayAnswerList = shuffle ? MathXFuture.randomShuffle(poll.answerList) : poll.answerList;
 
   return (
     <Paper key={"poll-" + poll.pollID} sx={STYLE}>
       <FormControl>
         <Typography variant="subtitle1">{poll.question}</Typography>
         <RadioGroup value={selectedAnswer} onChange={onChange}>
-          {shuffledAnswerList.map(function (answer, iAnswer) {
+          {displayAnswerList.map(function (answer, iAnswer) {
             const answerVotes = answerToVotes[answer]
               ? answerToVotes[answer]
               : 0;
