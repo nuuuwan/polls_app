@@ -1,16 +1,13 @@
 import { useState } from "react";
 import FormControl from "@mui/material/FormControl";
-import FormControlLabel from "@mui/material/FormControlLabel";
 import Paper from "@mui/material/Paper";
-import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import Typography from "@mui/material/Typography";
 
 import { TimeX } from "@nuuuwan/utils-js-dev";
 
 import PollResult from "../../core/PollResult.js";
-
-import PercentageWidget from "../atoms/PercentageWidget.js";
+import PollAnswer from "./PollAnswer.js";
 import VoteButton from "../atoms/VoteButton.js";
 
 const STYLE = {
@@ -48,16 +45,16 @@ export default function PollView({
         <Typography variant="subtitle1">{poll.question}</Typography>
         <RadioGroup value={selectedAnswer} onChange={onChange}>
           {poll.answerList.map(function (answer, iAnswer) {
-            const np = answerToVotes[answer] ? answerToVotes[answer] : 0;
+            const answerVotes = answerToVotes[answer]
+              ? answerToVotes[answer]
+              : 0;
             return (
-              <div key={"poll-answer-" + iAnswer}>
-                <FormControlLabel
-                  value={answer}
-                  control={<Radio />}
-                  label={<Typography variant="subtitle2">{answer}</Typography>}
-                />
-                <PercentageWidget answer={answer} n={totalVotes} np={np} />
-              </div>
+              <PollAnswer
+                key={"poll-answer-" + iAnswer}
+                answer={answer}
+                answerVotes={answerVotes}
+                totalVotes={totalVotes}
+              />
             );
           })}
         </RadioGroup>
