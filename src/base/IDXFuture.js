@@ -1,14 +1,15 @@
 import { MathX, DataStructures } from "@nuuuwan/utils-js-dev";
 
 const BASE = 16;
-const N_SEGMENTS = 5;
-const N_DIGITS = 4;
+const N_TOTAL_DIGITS = 32;
+const N_SEGMENTS = 8;
+const N_DIGITS = N_TOTAL_DIGITS / N_SEGMENTS;
 
 export default class IDXFuture {
   static getRandomID() {
     return DataStructures.range(0, N_SEGMENTS)
       .map((i) => IDXFuture.getRandomIDSegment(N_DIGITS))
-      .join("-");
+      .join("");
   }
   static getRandomIDSegment(nDigits) {
     const minValue = Math.pow(BASE, nDigits - 1);
