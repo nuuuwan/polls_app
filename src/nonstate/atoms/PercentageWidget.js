@@ -15,12 +15,21 @@ const STYLE_INNER = {
 };
 
 export default function PercentageWidget({ n, np }) {
+  if (!n) {
+    return null;
+  }
+
   const { lower, upper } = StatisticsX.getErrorBounds(n, np);
   const [lowerStr, upperStr] = [lower, upper].map((x) =>
     parseInt(x * 100 + 0.5)
   );
 
-  const pStr = lowerStr + " - " + upperStr + "%";
+  let pStr;
+  if (lowerStr === upperStr) {
+    pStr = lowerStr + "%";
+  } else {
+    pStr = lowerStr + " - " + upperStr + "%";
+  }
   const widthLower = parseInt(lower * 80 + 0.5) + "%";
   const widthSpan = parseInt((upper - lower) * 80 + 0.5) + "%";
   const styleInnerLower = {
