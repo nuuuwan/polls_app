@@ -25,7 +25,7 @@ export default class PollResult {
       userID: pollResult.userID,
       answer: pollResult.answer,
       timeUpdated: pollResult.timeUpdated,
-      geoInfo: pollResult.geoInfo,
+      geoInfoJSON: JSON.stringify(pollResult.geoInfo),
     };
   }
 
@@ -35,7 +35,7 @@ export default class PollResult {
       d.userID,
       d.answer,
       d.timeUpdated,
-      d.geoInfo
+      JSON.parse(d.geoInfoJSON)
     );
   }
 }
