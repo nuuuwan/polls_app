@@ -1,29 +1,22 @@
 import { useState } from "react";
-import Button from "@mui/material/Button";
 import FormControl from "@mui/material/FormControl";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Paper from "@mui/material/Paper";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
-import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
-
-import HowToVoteIcon from "@mui/icons-material/HowToVote";
 
 import { TimeX } from "@nuuuwan/utils-js-dev";
 
 import PollResult from "../../core/PollResult.js";
 
 import PercentageWidget from "../atoms/PercentageWidget.js";
+import VoteButton from "../atoms/VoteButton.js";
 
 const STYLE = {
   margin: 2,
   padding: 3,
   maxWidth: 400,
-};
-
-const STYLE_BUTTON = {
-  maxWidth: 150,
 };
 
 export default function PollView({
@@ -70,16 +63,7 @@ export default function PollView({
         </RadioGroup>
       </FormControl>
 
-      <Stack direction="row" justifyContent="right" spacing={1} sx={{ m: 1 }}>
-        <Button
-          sx={STYLE_BUTTON}
-          startIcon={<HowToVoteIcon />}
-          variant="contained"
-          onClick={onClick}
-        >
-          Vote
-        </Button>
-      </Stack>
+      <VoteButton onClick={onClick} />
     </Paper>
   );
 }
