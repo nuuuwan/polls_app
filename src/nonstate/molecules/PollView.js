@@ -6,6 +6,7 @@ import Typography from "@mui/material/Typography";
 
 import { TimeX } from "@nuuuwan/utils-js-dev";
 
+import MathXFuture from "../../base/MathXFuture.js";
 import PollResult from "../../core/PollResult.js";
 import PollAnswer from "./PollAnswer.js";
 import VoteButton from "../atoms/VoteButton.js";
@@ -39,12 +40,14 @@ export default function PollView({
     setSelectedAnswer(e.target.value);
   };
 
+  const shuffledAnswerList = MathXFuture.randomShuffle(poll.answerList);
+
   return (
     <Paper key={"poll-" + poll.pollID} sx={STYLE}>
       <FormControl>
         <Typography variant="subtitle1">{poll.question}</Typography>
         <RadioGroup value={selectedAnswer} onChange={onChange}>
-          {poll.answerList.map(function (answer, iAnswer) {
+          {shuffledAnswerList.map(function (answer, iAnswer) {
             const answerVotes = answerToVotes[answer]
               ? answerToVotes[answer]
               : 0;
