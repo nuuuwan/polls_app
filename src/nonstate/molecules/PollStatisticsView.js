@@ -6,9 +6,15 @@ export default function PollStatisticsView({
   totalVotes,
   answerToVotes,
 }) {
-  if (!totalVotes || totalVotes < StatisticsXFuture.MIN_STATISTICAL_N) {
-    return null;
+  totalVotes = totalVotes ? totalVotes : 0;
+  const renderedTotalVotes = (
+    <Typography variant="body2">{totalVotes + " votes"}</Typography>
+  );
+
+  if (totalVotes < StatisticsXFuture.MIN_STATISTICAL_N) {
+    return renderedTotalVotes;
   }
+
   const sortedAnswerStats = answerList
     .map(function (answer) {
       const answerVotes = answerToVotes[answer] ? answerToVotes[answer] : 0;
@@ -45,7 +51,7 @@ export default function PollStatisticsView({
       <Typography variant="caption" sx={{ color: "gray" }}>
         {significanceStr}
       </Typography>
-      <Typography variant="body2">{totalVotes + " votes"}</Typography>
+      {renderedTotalVotes}
     </Stack>
   );
 }
