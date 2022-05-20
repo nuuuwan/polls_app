@@ -6,7 +6,7 @@ const STYLE_BUTTON = {
   maxWidth: 150,
 };
 
-export default function VoteButton({ onClick }) {
+export default function VoteButton({ onClick, disabled }) {
   return (
     <Stack direction="row" justifyContent="right" spacing={1} sx={{ m: 1 }}>
       <Button
@@ -14,6 +14,7 @@ export default function VoteButton({ onClick }) {
         startIcon={<HowToVoteIcon />}
         variant="contained"
         onClick={onClick}
+        disabled={disabled}
       >
         Vote
       </Button>
