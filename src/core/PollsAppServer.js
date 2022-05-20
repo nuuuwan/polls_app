@@ -12,8 +12,8 @@ export default class PollsAppServer {
 
   static async getPolls() {
     const data = await AWSDynamoDBX.multiGet(CLASS_NAME_POLL);
-    return data.Items.map(function (item) {
-      return Poll.fromDict(item);
+    return data.map(function (d) {
+      return Poll.fromDict(d);
     });
   }
 
@@ -26,8 +26,8 @@ export default class PollsAppServer {
 
   static async getPollResultsWithDupes() {
     const data = await AWSDynamoDBX.multiGet(CLASS_NAME_POLL_RESULT);
-    return data.Items.map(function (item) {
-      return PollResult.fromDict(item);
+    return data.map(function (d) {
+      return PollResult.fromDict(d);
     });
   }
 
