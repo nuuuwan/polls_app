@@ -17,4 +17,31 @@ export default class PollsAppServer {
       return PollResult.fromDict(item);
     });
   }
+
+  static getPollToAnswerToVotes(pollResults) {
+    return pollResults.reduce(function (pollToAnswerToVotes, pollResult) {
+      const pollID = pollResult.pollID;
+      const answer = pollResult.answer;
+      // HACK: Not unique by userID
+      if (!pollToAnswerToVotes[pollID]) {
+        pollToAnswerToVotes[pollID] = {};
+      }
+      if (!pollToAnswerToVotes[pollID][answer]) {
+        pollToAnswerToVotes[pollID][answer] = 0;
+      }
+      pollToAnswerToVotes[pollID][answer] += 1;
+      return pollToAnswerToVotes;
+    }, {});
+  }
+
+  static getPollToTotalVotes(pollResults) {
+    return pollResults.reduce(function (pollToTotalVotes, pollResult) {
+      const pollID = pollResult.pollID;
+      if (!pollToTotalVotes[pollID]) {
+        pollToTotalVotes[pollID] = 0;
+      }
+      pollToTotalVotes[pollID] += 1;
+      return pollToTotalVotes;
+    }, {});
+  }
 }
