@@ -54,29 +54,20 @@ export default class HomePage extends Component {
 
   async updatePollResults() {
     const pollResults = await PollsAppServer.getPollResults();
-    const pollToAnswerToVotes = pollResults.reduce(function (
-      pollToAnswerToVotes,
-      pollResult
-    ) {
-      const pollID = pollResult.pollID;
-      const answer = pollResult.answer;
-      // HACK: Not unique by userID
-      if (!pollToAnswerToVotes[pollID]) {
-        pollToAnswerToVotes[pollID] = {};
-      }
-      if (!pollToAnswerToVotes[pollID][answer]) {
-        pollToAnswerToVotes[pollID][answer] = 0;
-      }
-      pollToAnswerToVotes[pollID][answer] += 1;
-      return pollToAnswerToVotes;
-    },
-    {});
-    this.setState({ pollResults, pollToAnswerToVotes });
+    const pollToAnswerToVotes =
+      PollsAppServer.getPollToAnswerToVotes(pollResults);
+    const pollToTotalVotes = PollsAppServer.getPollToTotalVotes(pollResults);
+    this.setState({ pollResults, pollToAnswerToVotes, pollToTotalVotes });
   }
 
   render() {
-    const { pollList, iActivePoll, pollResults, pollToAnswerToVotes } =
-      this.state;
+    const {
+      pollList,
+      iActivePoll,
+      pollResults,
+      pollToAnswerToVotes,
+      pollToTotalVotes,
+    } = this.state;
     if (!pollResults) {
       return "Loading...";
     }
@@ -85,13 +76,7 @@ export default class HomePage extends Component {
     const answerToVotes = pollToAnswerToVotes[activePoll.pollID]
       ? pollToAnswerToVotes[activePoll.pollID]
       : {};
-    const totalVotes = Object.entries(answerToVotes).reduce(function (
-      totalVotes,
-      [answer, votes]
-    ) {
-      return totalVotes + votes;
-    },
-    0);
+    const totalVotes = pollToTotalVotes[activePoll.pollID];
 
     return (
       <Box sx={STYLE}>
