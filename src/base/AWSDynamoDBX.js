@@ -17,5 +17,3 @@ export default class AWSDynamoDBX {
     return await WWW.json(url + "?cmd=" + cmd + "&d=" + JSON.stringify(d));
   }
 }
-
-console.debug(AWSDynamoDBX.getURLLambda());
