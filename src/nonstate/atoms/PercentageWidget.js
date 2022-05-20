@@ -1,5 +1,5 @@
 import Typography from "@mui/material/Typography";
-import StatisticsX from "../../base/StatisticsX.js";
+import StatisticsXFuture from "../../base/StatisticsXFuture.js";
 const WIDTH = "100%";
 const HEIGHT = 24;
 const STYLE = {
@@ -19,7 +19,7 @@ export default function PercentageWidget({ n, np }) {
     return null;
   }
 
-  const { lower, upper } = StatisticsX.getErrorBounds(n, np);
+  const { lower, upper } = StatisticsXFuture.getErrorBounds(n, np);
   const [lowerStr, upperStr] = [lower, upper].map((x) =>
     parseInt(x * 100 + 0.5)
   );

@@ -1,4 +1,4 @@
-export default class StatisticsX {
+export default class StatisticsXFuture {
   static getErrorBounds(n, np) {
     const p = np / n;
     const stdev = Math.sqrt(np * (1 - p)) / n;
