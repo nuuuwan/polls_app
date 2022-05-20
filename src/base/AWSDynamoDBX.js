@@ -1,47 +1,21 @@
-import * as AWS from "aws-sdk";
-import { ConfigurationOptions } from "aws-sdk";
+import { WWW } from "@nuuuwan/utils-js-dev";
 
 export default class AWSDynamoDBX {
-  static init() {
-    const configuration: ConfigurationOptions = {
-      region: process.env.REACT_APP_AWS_REGION,
-      secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY,
-      accessKeyId: process.env.REACT_APP_ACCESS_KEY_ID,
-    };
-    AWS.config.update(configuration);
+  static getURLLambda() {
+    return process.env.REACT_APP_URL_LAMBDA;
   }
 
-  static getClient() {
-    return new AWS.DynamoDB.DocumentClient();
+  static async multiGet(className) {
+    const url = AWSDynamoDBX.getURLLambda();
+    const cmd = "multiget-" + className + "s";
+    return await WWW.json(url + "?cmd=" + cmd);
   }
 
-  static async generic(funcGenericGetter, params) {
-    const client = AWSDynamoDBX.getClient();
-    const funcGeneric = funcGenericGetter(client).bind(client);
-    return new Promise(function (resolve, reject) {
-      funcGeneric(params, function (err, data) {
-        if (err) {
-          console.error(err);
-          reject(err);
-        } else {
-          resolve(data);
-        }
-      });
-    });
-  }
-
-  static async put(tableName, item) {
-    return await AWSDynamoDBX.generic((client) => client.put, {
-      TableName: tableName,
-      Item: item,
-    });
-  }
-
-  static async scan(tableName) {
-    return await AWSDynamoDBX.generic((client) => client.scan, {
-      TableName: tableName,
-    });
+  static async put(className, d) {
+    const url = AWSDynamoDBX.getURLLambda();
+    const cmd = "put-" + className;
+    return await WWW.json(url + "?cmd=" + cmd + "&d=" + JSON.stringify(d));
   }
 }
 
-AWSDynamoDBX.init();
+console.debug(AWSDynamoDBX.getURLLambda());
