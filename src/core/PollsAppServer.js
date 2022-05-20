@@ -3,7 +3,7 @@ import PollResult from "./PollResult.js";
 
 const TABLE_POLL_RESULT = "polls-app-poll-result";
 
-export default class PollsAppDB {
+export default class PollsAppServer {
   static async addPollResult(pollResult) {
     return await AWSDynamoDBX.put(
       TABLE_POLL_RESULT,

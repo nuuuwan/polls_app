@@ -10,7 +10,7 @@ import VersionWidget from "../../nonstate/atoms/VersionWidget.js";
 import CustomAppBar from "../../nonstate/molecules/CustomAppBar.js";
 import PollView from "../../nonstate/molecules/PollView.js";
 
-import PollsAppDB from "../../core/PollsAppDB.js";
+import PollsAppServer from "../../core/PollsAppServer.js";
 
 const STYLE = {
   margin: 4,
@@ -44,7 +44,7 @@ export default class HomePage extends Component {
   }
 
   async onClickVote(pollResult) {
-    await PollsAppDB.addPollResult(pollResult);
+    await PollsAppServer.addPollResult(pollResult);
     await this.updatePollResults();
   }
 
@@ -53,7 +53,7 @@ export default class HomePage extends Component {
   }
 
   async updatePollResults() {
-    const pollResults = await PollsAppDB.getPollResults();
+    const pollResults = await PollsAppServer.getPollResults();
     const pollToAnswerToVotes = pollResults.reduce(function (
       pollToAnswerToVotes,
       pollResult
