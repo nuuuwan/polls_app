@@ -3,23 +3,23 @@ import Stack from "@mui/material/Stack";
 import StatisticsXFuture from "../../base/StatisticsXFuture";
 export default function PollStatisticsView({
   answerList,
-  totalVotes,
-  answerToVotes,
+  totalCount,
+  answerToCount,
 }) {
-  totalVotes = totalVotes ? totalVotes : 0;
+  totalCount = totalCount ? totalCount : 0;
   const renderedTotalVotes = (
-    <Typography variant="body2">{totalVotes + " votes"}</Typography>
+    <Typography variant="body2">{totalCount + " votes"}</Typography>
   );
 
-  if (totalVotes < StatisticsXFuture.MIN_STATISTICAL_N) {
+  if (totalCount < StatisticsXFuture.MIN_STATISTICAL_N) {
     return renderedTotalVotes;
   }
 
   const sortedAnswerStats = answerList
     .map(function (answer) {
-      const answerVotes = answerToVotes[answer] ? answerToVotes[answer] : 0;
+      const answerVotes = answerToCount[answer] ? answerToCount[answer] : 0;
       const { p, stdev } = StatisticsXFuture.getErrorBounds(
-        totalVotes,
+        totalCount,
         answerVotes
       );
       return { answer, p, stdev };
