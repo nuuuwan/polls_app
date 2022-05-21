@@ -61,7 +61,7 @@ export default class UserPage extends Component {
           title="Country"
           body={
             <>
-              {geoInfo.countryCode}
+              {geoInfo.countryName}
               <ReactCountryFlag
                 style={STYLE_COUNTRY_FLAG}
                 countryCode={geoInfo.countryCode}
