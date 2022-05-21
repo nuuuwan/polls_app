@@ -15,20 +15,28 @@ export default class AWSDynamoDBX {
     return process.env.REACT_APP_URL_LAMBDA;
   }
 
-  static async multiGet(className) {
-    const urlBase = AWSDynamoDBX.getURLLambda();
-    const cmd = "multiget-" + className + "s";
-    const url = urlBase + "?cmd=" + cmd;
+  static async generic(payload) {
+    const payloadJSON = JSON.stringify(payload);
+    const payloadJSONB64 = btoa(payloadJSON);
+    const payloadJSONB64Encoded = encodeURIComponent(payloadJSONB64);
+    const url =
+      AWSDynamoDBX.getURLLambda() +
+      "?payload_json_base64=" +
+      payloadJSONB64Encoded;
     const response = await jsonNonCache(url);
     return response;
   }
 
+  static async multiGet(className) {
+    return await AWSDynamoDBX.generic({
+      cmd: "multiget-" + className + "s",
+    });
+  }
+
   static async put(className, d) {
-    const urlBase = AWSDynamoDBX.getURLLambda();
-    const cmd = "put-" + className;
-    const dJSONB64 = encodeURIComponent(btoa(JSON.stringify(d)));
-    const url = urlBase + "?cmd=" + cmd + "&d_json_b64=" + dJSONB64;
-    const response = await jsonNonCache(url);
-    return response;
+    return await AWSDynamoDBX.generic({
+      cmd: "put-" + className,
+      d: d,
+    });
   }
 }
