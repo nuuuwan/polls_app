@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Box from "@mui/material/Box";
-import CircularProgress from '@mui/material/CircularProgress';
+import CircularProgress from "@mui/material/CircularProgress";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 import GeoLocationDBX from "./base/GeoLocationDBX";
@@ -36,7 +36,7 @@ export default class App extends Component {
   render() {
     const { Page, geoInfo } = this.state;
     if (!geoInfo) {
-      return  <CircularProgress />;
+      return <CircularProgress />;
     }
     const theme = createTheme({
       typography: {

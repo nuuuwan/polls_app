@@ -3,7 +3,7 @@ import FormControl from "@mui/material/FormControl";
 import Paper from "@mui/material/Paper";
 import RadioGroup from "@mui/material/RadioGroup";
 import Typography from "@mui/material/Typography";
-import CircularProgress from '@mui/material/CircularProgress';
+import CircularProgress from "@mui/material/CircularProgress";
 
 import { TimeX, MathX } from "@nuuuwan/utils-js-dev";
 
@@ -42,7 +42,7 @@ export default class PollView extends Component {
   renderInner() {
     const { selectedAnswer, pollExtended } = this.state;
     if (!pollExtended) {
-      return  <CircularProgress />;
+      return <CircularProgress />;
     }
 
     const { onClickVote, shuffle } = this.props;
