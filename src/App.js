@@ -4,7 +4,6 @@ import PollPage from "./stateful/pages/PollPage";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 import GeoLocationDBX from "./base/GeoLocationDBX";
-import CustomBottomNavigation from "./nonstate/molecules/CustomBottomNavigation";
 import VersionWidget from "./nonstate/atoms/VersionWidget";
 import CustomAppBar from "./nonstate/molecules/CustomAppBar";
 
@@ -32,20 +31,6 @@ export default class App extends Component {
     this.setState({ Page });
   }
 
-  onClickPrevious() {
-    const { polls, iActivePoll } = this.state;
-    const newIActivePoll =
-      iActivePoll === 0 ? polls.length - 1 : iActivePoll - 1;
-    this.setState({ iActivePoll: newIActivePoll });
-  }
-
-  onClickNext() {
-    const { polls, iActivePoll } = this.state;
-    const newIActivePoll =
-      iActivePoll === polls.length - 1 ? 0 : iActivePoll + 1;
-    this.setState({ iActivePoll: newIActivePoll });
-  }
-
   render() {
     const { Page, geoInfo } = this.state;
     if (!geoInfo) {
@@ -69,10 +54,6 @@ export default class App extends Component {
           <Page geoInfo={geoInfo} />
 
           <VersionWidget />
-          <CustomBottomNavigation
-            onClickPrevious={this.onClickPrevious.bind(this)}
-            onClickNext={this.onClickNext.bind(this)}
-          />
         </Box>
       </ThemeProvider>
     );
