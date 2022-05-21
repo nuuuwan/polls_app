@@ -4,25 +4,13 @@ import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import HelpIcon from "@mui/icons-material/Help";
+import HelpPage from "../../stateful/pages/HelpPage";
 
 import CustomAppBarMenuItem from "./CustomAppBarMenuItem";
 
-const MENU_ITEM_LIST = [
-  {
-    name: "Help",
-    url: "https://twitter.com/nuuuwan/status/1522912345256865795",
-    details: "Help, Examples and Usage",
-    Icon: HelpIcon,
-  },
-  {
-    name: "Code",
-    url: "http://github.com/nuuuwan",
-    details: "Visualization, Design and App by @nuuuwan",
-    Icon: GitHubIcon,
-  },
-];
+const URL_GITHUB = "https://github.com/nuuuwan/polls_app";
 
-export default function CustomAppBarMenu() {
+export default function CustomAppBarMenu({ onSelectPage }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
@@ -34,25 +22,26 @@ export default function CustomAppBarMenu() {
     setAnchorEl(null);
   };
 
+  const onClickCode = function () {
+    window.open(URL_GITHUB, "_blank");
+  };
+
   return (
     <div>
       <IconButton color="inherit" onClick={onClick}>
         <MenuIcon />
       </IconButton>
       <Menu anchorEl={anchorEl} open={open} onClose={onClose}>
-        {MENU_ITEM_LIST.map(function (menuItem, i) {
-          const onClick = function (e) {
-            window.open(menuItem.url, "_blank");
-            onClose();
-          };
-          return (
-            <CustomAppBarMenuItem
-              key={"app-bar-menu-item-" + i}
-              Icon={menuItem.Icon}
-              onClick={onClick}
-            />
-          );
-        })}
+        <CustomAppBarMenuItem
+          label="Code"
+          Icon={GitHubIcon}
+          onClick={onClickCode}
+        />
+        <CustomAppBarMenuItem
+          label="Help"
+          Icon={HelpIcon}
+          onClick={(e) => onSelectPage(HelpPage)}
+        />
       </Menu>
     </div>
   );
