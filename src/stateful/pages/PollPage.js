@@ -6,7 +6,6 @@ import PollsAppServer from "../../core/PollsAppServer";
 import PollView from "../../nonstate/molecules/PollView";
 import CustomBottomNavigation from "../../nonstate/molecules/CustomBottomNavigation";
 
-
 export default class PollPage extends Component {
   constructor(props) {
     super(props);
@@ -37,7 +36,6 @@ export default class PollPage extends Component {
     this.setState({ iActivePoll: newIActivePoll });
   }
 
-
   async componentDidMount() {
     await this.reloadData();
   }
@@ -67,16 +65,16 @@ export default class PollPage extends Component {
 
     return (
       <>
-      <PollView
-        poll={activePoll}
-        onClickVote={this.onClickVote.bind(this)}
-        answerToVotes={answerToVotes}
-        totalVotes={totalVotes}
-      />
-      <CustomBottomNavigation
-        onClickPrevious={this.onClickPrevious.bind(this)}
-        onClickNext={this.onClickNext.bind(this)}
-      />
+        <PollView
+          poll={activePoll}
+          onClickVote={this.onClickVote.bind(this)}
+          answerToVotes={answerToVotes}
+          totalVotes={totalVotes}
+        />
+        <CustomBottomNavigation
+          onClickPrevious={this.onClickPrevious.bind(this)}
+          onClickNext={this.onClickNext.bind(this)}
+        />
       </>
     );
   }
