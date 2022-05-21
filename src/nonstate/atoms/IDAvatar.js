@@ -44,7 +44,7 @@ export default function IDAvatar({ size, id }) {
                 n={n}
                 cx={(iCol + 0.5) * cellSize}
                 cy={(iRow + 0.5) * cellSize}
-                r={P_RADIUS * cellSize / 2}
+                r={(P_RADIUS * cellSize) / 2}
                 color={color}
               />
             );
