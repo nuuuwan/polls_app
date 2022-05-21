@@ -1,6 +1,8 @@
 import { Component } from "react";
 import * as React from "react";
 
+import CircularProgress from '@mui/material/CircularProgress';
+
 import PollsAppServer from "../../core/PollsAppServer";
 
 import PollView from "../../stateful/molecules/PollView";
@@ -48,7 +50,7 @@ export default class PollPage extends Component {
   render() {
     const { pollIDs, iActivePoll } = this.state;
     if (!pollIDs) {
-      return "Loading...";
+      return  <CircularProgress />;
     }
 
     const activePollID = pollIDs[iActivePoll];
