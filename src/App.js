@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Box from "@mui/material/Box";
-import HelpPage from "./stateful/pages/HelpPage";
-// import PollPage from "./stateful/pages/PollPage";
+import PollPage from "./stateful/pages/PollPage";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 import GeoLocationDBX from "./base/GeoLocationDBX";
@@ -15,8 +14,7 @@ const STYLE = {
   marginBottom: 10,
 };
 
-// const DEFAULT_PAGE = PollPage;
-const DEFAULT_PAGE = HelpPage;
+const DEFAULT_PAGE = PollPage;
 
 export default class App extends Component {
   constructor(props) {
