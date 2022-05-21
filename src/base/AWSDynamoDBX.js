@@ -26,24 +26,4 @@ export default class AWSDynamoDBX {
     const response = await jsonNonCache(url);
     return response;
   }
-
-  static async get(className, id) {
-    return await AWSDynamoDBX.generic({
-      cmd: "get-" + className,
-      id: id,
-    });
-  }
-
-  static async multiGet(className) {
-    return await AWSDynamoDBX.generic({
-      cmd: "multiget-" + className + "s",
-    });
-  }
-
-  static async put(className, d) {
-    return await AWSDynamoDBX.generic({
-      cmd: "put-" + className,
-      d: d,
-    });
-  }
 }
