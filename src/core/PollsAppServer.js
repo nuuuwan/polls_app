@@ -5,14 +5,6 @@ import PollResult from "./PollResult";
 
 export default class PollsAppServer {
   // Polls
-  static async addPoll(poll) {
-    const d = await AWSDynamoDBX.generic({
-      cmd: "put-poll",
-      d: Poll.toDict(poll),
-    });
-    return PollResult.fromDict(d);
-  }
-
   static async getPollIDs() {
     const data = await AWSDynamoDBX.generic({
       cmd: "multiget-ids-polls",
