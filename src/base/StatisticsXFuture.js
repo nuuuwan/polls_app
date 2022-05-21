@@ -2,7 +2,7 @@ import { DataStructures } from "@nuuuwan/utils-js-dev";
 const cdf = require("binomial-cdf");
 
 export default class StatisticsXFuture {
-  static MIN_STATISTICAL_N = 30;
+  static MIN_STATISTICAL_N = 1;
 
   static getErrorBounds(nObserved, npObserved) {
     const SIGNIFICANCE = 0.05;
