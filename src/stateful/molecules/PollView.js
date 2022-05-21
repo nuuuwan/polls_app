@@ -4,8 +4,9 @@ import Paper from "@mui/material/Paper";
 import RadioGroup from "@mui/material/RadioGroup";
 import Typography from "@mui/material/Typography";
 
-import { TimeX } from "@nuuuwan/utils-js-dev";
+import { TimeX, MathX } from "@nuuuwan/utils-js-dev";
 
+import PollsAppServer from "../../core/PollsAppServer";
 import MathXFuture from "../../base/MathXFuture";
 import GeoLocationDBX from "../../base/GeoLocationDBX";
 import PollResult from "../../core/PollResult";
@@ -23,26 +24,35 @@ const ANSWER_NONE = "";
 export default class PollView extends Component {
   constructor(props) {
     super(props);
-    this.state = { selectedAnswer: ANSWER_NONE };
+    this.state = { selectedAnswer: ANSWER_NONE, pollExtended: undefined };
   }
 
-  async componentDidMount() {}
+  async componentDidMount() {
+    const { pollID } = this.props;
+    const pollExtended = await PollsAppServer.getPollExtended(pollID);
+    this.setState({ pollExtended });
+  }
 
   setSelectedAnswer(selectedAnswer) {
     this.setState({ selectedAnswer });
   }
 
   render() {
-    const { poll, onClickVote, answerToVotes, totalVotes, shuffle } =
-      this.props;
-    const { selectedAnswer } = this.state;
+    const { selectedAnswer, pollExtended } = this.state;
+    if (!pollExtended) {
+      return "Loading...";
+    }
+
+    const { onClickVote, shuffle } = this.props;
+    const answerToCount = pollExtended.answerToCount;
+    const totalCount = MathX.sum(Object.values(answerToCount));
 
     const onClick = async function (e) {
       const geoInfo = await await GeoLocationDBX.getInfo();
       const userID = geoInfo.infoHash;
       onClickVote(
         new PollResult(
-          poll.pollID,
+          pollExtended.pollID,
           userID,
           selectedAnswer,
           TimeX.getUnixTime(),
@@ -56,32 +66,32 @@ export default class PollView extends Component {
     }.bind(this);
 
     const displayAnswerList = shuffle
-      ? MathXFuture.randomShuffle(poll.answerList)
-      : poll.answerList;
+      ? MathXFuture.randomShuffle(pollExtended.answerList)
+      : pollExtended.answerList;
 
     return (
-      <Paper key={"poll-" + poll.pollID} sx={STYLE}>
+      <Paper key={"poll-" + pollExtended.pollID} sx={STYLE}>
         <FormControl>
-          <Typography variant="subtitle1">{poll.question}</Typography>
+          <Typography variant="subtitle1">{pollExtended.question}</Typography>
           <RadioGroup value={selectedAnswer} onChange={onChange}>
             {displayAnswerList.map(function (answer, iAnswer) {
-              const answerVotes = answerToVotes[answer]
-                ? answerToVotes[answer]
+              const answerVotes = answerToCount[answer]
+                ? answerToCount[answer]
                 : 0;
               return (
                 <PollAnswer
                   key={"poll-answer-" + iAnswer}
                   answer={answer}
                   answerVotes={answerVotes}
-                  totalVotes={totalVotes}
+                  totalCount={totalCount}
                 />
               );
             })}
           </RadioGroup>
           <PollStatisticsView
-            answerList={poll.answerList}
-            totalVotes={totalVotes}
-            answerToVotes={answerToVotes}
+            answerList={pollExtended.answerList}
+            totalCount={totalCount}
+            answerToCount={answerToCount}
           />
         </FormControl>
 
