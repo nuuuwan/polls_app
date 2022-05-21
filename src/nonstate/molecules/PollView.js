@@ -15,8 +15,7 @@ import PollStatisticsView from "./PollStatisticsView";
 
 const STYLE = {
   margin: 2,
-  padding: 3,
-  maxWidth: 400,
+  padding: 2,
 };
 
 const ANSWER_NONE = "";
