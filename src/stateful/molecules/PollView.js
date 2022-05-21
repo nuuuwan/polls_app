@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Component } from "react";
 import FormControl from "@mui/material/FormControl";
 import Paper from "@mui/material/Paper";
 import RadioGroup from "@mui/material/RadioGroup";
@@ -20,64 +20,76 @@ const STYLE = {
 
 const ANSWER_NONE = "";
 
-export default function PollView({
-  poll,
-  onClickVote,
-  answerToVotes,
-  totalVotes,
-  shuffle,
-}) {
-  const [selectedAnswer, setSelectedAnswer] = useState(ANSWER_NONE);
+export default class PollView extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { selectedAnswer: ANSWER_NONE };
+  }
 
-  const onClick = async function (e) {
-    const geoInfo = await await GeoLocationDBX.getInfo();
-    const userID = geoInfo.infoHash;
-    onClickVote(
-      new PollResult(
-        poll.pollID,
-        userID,
-        selectedAnswer,
-        TimeX.getUnixTime(),
-        geoInfo
-      )
-    );
-  };
+  async componentDidMount() {}
 
-  const onChange = function (e) {
-    setSelectedAnswer(e.target.value);
-  };
+  setSelectedAnswer(selectedAnswer) {
+    this.setState({ selectedAnswer });
+  }
 
-  const displayAnswerList = shuffle
-    ? MathXFuture.randomShuffle(poll.answerList)
-    : poll.answerList;
+  render() {
+    const { poll, onClickVote, answerToVotes, totalVotes, shuffle } =
+      this.props;
+    const { selectedAnswer } = this.state;
 
-  return (
-    <Paper key={"poll-" + poll.pollID} sx={STYLE}>
-      <FormControl>
-        <Typography variant="subtitle1">{poll.question}</Typography>
-        <RadioGroup value={selectedAnswer} onChange={onChange}>
-          {displayAnswerList.map(function (answer, iAnswer) {
-            const answerVotes = answerToVotes[answer]
-              ? answerToVotes[answer]
-              : 0;
-            return (
-              <PollAnswer
-                key={"poll-answer-" + iAnswer}
-                answer={answer}
-                answerVotes={answerVotes}
-                totalVotes={totalVotes}
-              />
-            );
-          })}
-        </RadioGroup>
-        <PollStatisticsView
-          answerList={poll.answerList}
-          totalVotes={totalVotes}
-          answerToVotes={answerToVotes}
+    const onClick = async function (e) {
+      const geoInfo = await await GeoLocationDBX.getInfo();
+      const userID = geoInfo.infoHash;
+      onClickVote(
+        new PollResult(
+          poll.pollID,
+          userID,
+          selectedAnswer,
+          TimeX.getUnixTime(),
+          geoInfo
+        )
+      );
+    };
+
+    const onChange = function (e) {
+      this.setSelectedAnswer(e.target.value);
+    }.bind(this);
+
+    const displayAnswerList = shuffle
+      ? MathXFuture.randomShuffle(poll.answerList)
+      : poll.answerList;
+
+    return (
+      <Paper key={"poll-" + poll.pollID} sx={STYLE}>
+        <FormControl>
+          <Typography variant="subtitle1">{poll.question}</Typography>
+          <RadioGroup value={selectedAnswer} onChange={onChange}>
+            {displayAnswerList.map(function (answer, iAnswer) {
+              const answerVotes = answerToVotes[answer]
+                ? answerToVotes[answer]
+                : 0;
+              return (
+                <PollAnswer
+                  key={"poll-answer-" + iAnswer}
+                  answer={answer}
+                  answerVotes={answerVotes}
+                  totalVotes={totalVotes}
+                />
+              );
+            })}
+          </RadioGroup>
+          <PollStatisticsView
+            answerList={poll.answerList}
+            totalVotes={totalVotes}
+            answerToVotes={answerToVotes}
+          />
+        </FormControl>
+
+        <VoteButton
+          onClick={onClick}
+          disabled={selectedAnswer === ANSWER_NONE}
         />
-      </FormControl>
-
-      <VoteButton onClick={onClick} disabled={selectedAnswer === ANSWER_NONE} />
-    </Paper>
-  );
+      </Paper>
+    );
+  }
 }
