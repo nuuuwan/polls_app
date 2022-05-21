@@ -1,8 +1,8 @@
 import { Component } from "react";
 import * as React from "react";
 
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
+import Paper from "@mui/material/Paper";
+import Grid from "@mui/material/Grid";
 
 import ReactCountryFlag from "react-country-flag";
 
@@ -26,9 +26,10 @@ export default class UserPage extends Component {
     const locationStr = `${lat}°, ${lng}°`;
 
     return (
-      <Box>
-        <Typography variant="h4">User</Typography>
-        <IDAvatar id={geoInfo.infoHash} size={120} />
+      <Paper sx={{ m: 2, p: 3 }}>
+        <Grid container justifyContent="center">
+          <IDAvatar id={geoInfo.infoHash} size={120} />
+        </Grid>
 
         <TitledBody title="UserID" body={geoInfo.infoHash} />
         <TitledBody
@@ -51,7 +52,7 @@ export default class UserPage extends Component {
             </>
           }
         />
-      </Box>
+      </Paper>
     );
   }
 }
