@@ -10,6 +10,10 @@ import ReactCountryFlag from "react-country-flag";
 import GeoLocationDBX from "../../base/GeoLocationDBX";
 import TitledBody from "../../nonstate/molecules/TitledBody";
 import IDImage from "../../nonstate/atoms/IDImage";
+import GoogleMapsLink from "../../nonstate/atoms/GoogleMapsLink";
+import SimpleLink from "../../nonstate/atoms/SimpleLink";
+
+const URL_WHATISMYIP = "https://whatismyipaddress.com/";
 
 const STYLE_COUNTRY_FLAG = {
   fontSize: "150%",
@@ -45,8 +49,14 @@ export default class UserPage extends Component {
         </Grid>
 
         <TitledBody title="UserID" body={geoInfo.infoHash} />
-        <TitledBody title="IP" body={geoInfo.ipV4} />
-        <TitledBody title="Location" body={locationStr} />
+        <TitledBody
+          title="IP"
+          body={<SimpleLink href={URL_WHATISMYIP} label={geoInfo.ipV4} />}
+        />
+        <TitledBody
+          title="Location"
+          body={<GoogleMapsLink searchText={locationStr} />}
+        />
         <TitledBody
           title="Country"
           body={
