@@ -27,6 +27,13 @@ export default class AWSDynamoDBX {
     return response;
   }
 
+  static async get(className, id) {
+    return await AWSDynamoDBX.generic({
+      cmd: "get-" + className,
+      id: id,
+    });
+  }
+
   static async multiGet(className) {
     return await AWSDynamoDBX.generic({
       cmd: "multiget-" + className + "s",
