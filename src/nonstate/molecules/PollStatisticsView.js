@@ -18,11 +18,11 @@ export default function PollStatisticsView({
   const sortedAnswerStats = answerList
     .map(function (answer) {
       const answerVotes = answerToCount[answer] ? answerToCount[answer] : 0;
-      const { p, stdev } = StatisticsXFuture.getErrorBounds(
+      const { lower, upper, p } = StatisticsXFuture.getErrorBounds(
         totalCount,
         answerVotes
       );
-      return { answer, p, stdev };
+      return { answer, lower, upper, p };
     })
     .sort(function (answerA, answerB) {
       return answerB.p - answerA.p;
@@ -32,18 +32,11 @@ export default function PollStatisticsView({
   const nextAnswerStats = sortedAnswerStats[1];
 
   let significanceStr = "Too close to call";
-  let z, label;
-  for ([z, label] of [
-    [3, "significantly"],
-    [2, "slightly"],
-  ]) {
-    const topLower = topAnswerStats.p - topAnswerStats.stdev * z;
-    const nextUpper = nextAnswerStats.p + nextAnswerStats.stdev * z;
-    const gap = topLower - nextUpper;
-    if (gap > 0) {
-      significanceStr = `"${topAnswerStats.answer}" leads ${label}`;
-      break;
-    }
+  const topLower = topAnswerStats.lower;
+  const nextUpper = nextAnswerStats.upper;
+  const gap = topLower - nextUpper;
+  if (gap > 0) {
+    significanceStr = `"${topAnswerStats.answer}" leads`;
   }
 
   return (
