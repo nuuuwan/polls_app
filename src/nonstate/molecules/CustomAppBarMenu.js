@@ -26,6 +26,12 @@ export default function CustomAppBarMenu({ onSelectPage }) {
 
   const onClickCode = function () {
     window.open(URL_GITHUB_REPO_POLLS_APP, "_blank");
+    onClose();
+  };
+
+  const onSelectPageInner = function (Page) {
+    onSelectPage(Page);
+    onClose();
   };
 
   return (
@@ -37,12 +43,12 @@ export default function CustomAppBarMenu({ onSelectPage }) {
         <CustomAppBarMenuItem
           label="Polls"
           Icon={BallotIcon}
-          onClick={(e) => onSelectPage(PollPage)}
+          onClick={(e) => onSelectPageInner(PollPage)}
         />
         <CustomAppBarMenuItem
           label="Help & FAQs"
           Icon={HelpIcon}
-          onClick={(e) => onSelectPage(HelpPage)}
+          onClick={(e) => onSelectPageInner(HelpPage)}
         />
         <CustomAppBarMenuItem
           label="Code"
