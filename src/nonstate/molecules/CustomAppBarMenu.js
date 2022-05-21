@@ -32,14 +32,14 @@ export default function CustomAppBarMenu({ onSelectPage }) {
       </IconButton>
       <Menu anchorEl={anchorEl} open={open} onClose={onClose}>
         <CustomAppBarMenuItem
+          label="Help & FAQs"
+          Icon={HelpIcon}
+          onClick={(e) => onSelectPage(HelpPage)}
+        />
+        <CustomAppBarMenuItem
           label="Code"
           Icon={GitHubIcon}
           onClick={onClickCode}
-        />
-        <CustomAppBarMenuItem
-          label="Help/FAQs"
-          Icon={HelpIcon}
-          onClick={(e) => onSelectPage(HelpPage)}
         />
       </Menu>
     </div>
