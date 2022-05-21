@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import Box from "@mui/material/Box";
-import UserPage from "./stateful/pages/UserPage";
+import HelpPage from "./stateful/pages/HelpPage";
 // import PollPage from "./stateful/pages/PollPage";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
+import GeoLocationDBX from "./base/GeoLocationDBX";
 import CustomBottomNavigation from "./nonstate/molecules/CustomBottomNavigation";
 import VersionWidget from "./nonstate/atoms/VersionWidget";
 import CustomAppBar from "./nonstate/molecules/CustomAppBar";
@@ -15,12 +16,18 @@ const STYLE = {
 };
 
 // const DEFAULT_PAGE = PollPage;
-const DEFAULT_PAGE = UserPage;
+const DEFAULT_PAGE = HelpPage;
 
 export default class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { Page: DEFAULT_PAGE };
+    this.state = { Page: DEFAULT_PAGE, geoInfo: null };
+  }
+
+  async componentDidMount() {
+    this.setState({
+      geoInfo: await GeoLocationDBX.getInfo(),
+    });
   }
 
   onSelectPage(Page) {
@@ -42,7 +49,10 @@ export default class App extends Component {
   }
 
   render() {
-    const { Page } = this.state;
+    const { Page, geoInfo } = this.state;
+    if (!geoInfo) {
+      return "Loading...";
+    }
     const theme = createTheme({
       typography: {
         fontFamily: ["PT Sans", "sans-serif"].join(","),
@@ -53,9 +63,12 @@ export default class App extends Component {
     return (
       <ThemeProvider theme={theme}>
         <Box sx={STYLE}>
-          <CustomAppBar onSelectPage={this.onSelectPage.bind(this)} />
+          <CustomAppBar
+            onSelectPage={this.onSelectPage.bind(this)}
+            geoInfo={geoInfo}
+          />
 
-          <Page />
+          <Page geoInfo={geoInfo} />
 
           <VersionWidget />
           <CustomBottomNavigation
