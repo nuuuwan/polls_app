@@ -9,7 +9,8 @@ import VersionWidget from "./nonstate/atoms/VersionWidget";
 import CustomAppBar from "./nonstate/molecules/CustomAppBar";
 
 const STYLE = {
-  margin: "auto",
+  margin: 2,
+  padding: 1,
   marginTop: 10,
   marginBottom: 10,
   maxWidth: 400,
@@ -33,11 +34,24 @@ export default class App extends Component {
     this.setState({ Page });
   }
 
-  render() {
+  renderInner() {
     const { Page, geoInfo } = this.state;
     if (!geoInfo) {
       return <CircularProgress />;
     }
+
+    return (
+      <Box>
+        <CustomAppBar
+          onSelectPage={this.onSelectPage.bind(this)}
+          geoInfo={geoInfo}
+        />
+        <Page geoInfo={geoInfo} />
+      </Box>
+    );
+  }
+
+  render() {
     const theme = createTheme({
       typography: {
         fontFamily: ["PT Sans", "sans-serif"].join(","),
@@ -48,13 +62,7 @@ export default class App extends Component {
     return (
       <ThemeProvider theme={theme}>
         <Box sx={STYLE}>
-          <CustomAppBar
-            onSelectPage={this.onSelectPage.bind(this)}
-            geoInfo={geoInfo}
-          />
-
-          <Page geoInfo={geoInfo} />
-
+          {this.renderInner()}
           <VersionWidget />
         </Box>
       </ThemeProvider>
