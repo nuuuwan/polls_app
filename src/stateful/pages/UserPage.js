@@ -7,9 +7,8 @@ import Typography from "@mui/material/Typography";
 
 import ReactCountryFlag from "react-country-flag";
 
-import GeoLocationDBX from "../../base/GeoLocationDBX";
 import TitledBody from "../../nonstate/molecules/TitledBody";
-import IDImage from "../../nonstate/atoms/IDImage";
+import IDAvatar from "../../nonstate/atoms/IDAvatar";
 import GoogleMapsLink from "../../nonstate/atoms/GoogleMapsLink";
 import SimpleLink from "../../nonstate/atoms/SimpleLink";
 
@@ -21,22 +20,8 @@ const STYLE_COUNTRY_FLAG = {
 };
 
 export default class UserPage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { geoInfo: null };
-  }
-
-  async componentDidMount() {
-    this.setState({
-      geoInfo: await GeoLocationDBX.getInfo(),
-    });
-  }
-
   render() {
-    const { geoInfo } = this.state;
-    if (!geoInfo) {
-      return "Loading...";
-    }
+    const { geoInfo } = this.props;
 
     const [lat, lng] = geoInfo.latLng;
     const locationStr = `${lat}°N, ${lng}°E`;
@@ -45,7 +30,7 @@ export default class UserPage extends Component {
       <Box>
         <Typography variant="h4">User</Typography>
         <Grid container justifyContent="center">
-          <IDImage id={geoInfo.infoHash} />
+          <IDAvatar id={geoInfo.infoHash} size={120} />
         </Grid>
 
         <TitledBody title="UserID" body={geoInfo.infoHash} />
