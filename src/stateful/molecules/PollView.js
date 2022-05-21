@@ -8,7 +8,6 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { TimeX, MathX } from "@nuuuwan/utils-js-dev";
 
 import PollsAppServer from "../../core/PollsAppServer";
-import MathXFuture from "../../base/MathXFuture";
 import GeoLocationDBX from "../../base/GeoLocationDBX";
 import PollResult from "../../core/PollResult";
 import VoteButton from "../../nonstate/atoms/VoteButton";
@@ -29,10 +28,14 @@ export default class PollView extends Component {
     this.state = { selectedAnswer: ANSWER_NONE, pollExtended: undefined };
   }
 
-  async componentDidMount() {
+  async reloadData() {
     const { pollID } = this.props;
     const pollExtended = await PollsAppServer.getPollExtended(pollID);
     this.setState({ pollExtended });
+  }
+
+  async componentDidMount() {
+    await this.reloadData();
   }
 
   setSelectedAnswer(selectedAnswer) {
@@ -45,38 +48,33 @@ export default class PollView extends Component {
       return <CircularProgress />;
     }
 
-    const { onClickVote, shuffle } = this.props;
     const answerToCount = pollExtended.answerToCount;
     const totalCount = MathX.sum(Object.values(answerToCount));
 
-    const onClick = async function (e) {
+    const onClickVote = async function (e) {
       const geoInfo = await await GeoLocationDBX.getInfo();
       const userID = geoInfo.infoHash;
-      onClickVote(
-        new PollResult(
-          pollExtended.pollID,
-          userID,
-          selectedAnswer,
-          TimeX.getUnixTime(),
-          geoInfo
-        )
+      const pollResult = new PollResult(
+        pollExtended.pollID,
+        userID,
+        selectedAnswer,
+        TimeX.getUnixTime(),
+        geoInfo
       );
-    };
+      await PollsAppServer.addPollResult(pollResult);
+      await this.reloadData();
+    }.bind(this);
 
     const onChange = function (e) {
       this.setSelectedAnswer(e.target.value);
     }.bind(this);
 
-    const displayAnswerList = shuffle
-      ? MathXFuture.randomShuffle(pollExtended.answerList)
-      : pollExtended.answerList;
-
     return (
-      <div key={"poll-" + pollExtended.pollID}>
+      <div key={"poll-" + pollExtended.pollID + answerToCount}>
         <FormControl>
           <Typography variant="subtitle1">{pollExtended.question}</Typography>
           <RadioGroup value={selectedAnswer} onChange={onChange}>
-            {displayAnswerList.map(function (answer, iAnswer) {
+            {pollExtended.answerList.map(function (answer, iAnswer) {
               const answerVotes = answerToCount[answer]
                 ? answerToCount[answer]
                 : 0;
@@ -98,7 +96,7 @@ export default class PollView extends Component {
         </FormControl>
 
         <VoteButton
-          onClick={onClick}
+          onClick={onClickVote}
           disabled={selectedAnswer === ANSWER_NONE}
         />
       </div>
