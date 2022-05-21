@@ -9,9 +9,9 @@ import { TimeX } from "@nuuuwan/utils-js-dev";
 import MathXFuture from "../../base/MathXFuture";
 import GeoLocationDBX from "../../base/GeoLocationDBX";
 import PollResult from "../../core/PollResult";
-import PollAnswer from "./PollAnswer";
-import VoteButton from "../atoms/VoteButton";
-import PollStatisticsView from "./PollStatisticsView";
+import VoteButton from "../../nonstate/atoms/VoteButton";
+import PollAnswer from "../../nonstate/molecules/PollAnswer";
+import PollStatisticsView from "../../nonstate/molecules/PollStatisticsView";
 
 const STYLE = {
   margin: 2,

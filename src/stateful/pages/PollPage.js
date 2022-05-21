@@ -3,7 +3,7 @@ import * as React from "react";
 
 import PollsAppServer from "../../core/PollsAppServer";
 
-import PollView from "../../nonstate/molecules/PollView";
+import PollView from "../../stateful/molecules/PollView";
 import CustomBottomNavigation from "../../nonstate/molecules/CustomBottomNavigation";
 
 export default class PollPage extends Component {
