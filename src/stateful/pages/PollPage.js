@@ -16,7 +16,7 @@ const STYLE = {
   marginBottom: 10,
 };
 
-export default class HomePage extends Component {
+export default class PollPage extends Component {
   constructor(props) {
     super(props);
     this.state = {

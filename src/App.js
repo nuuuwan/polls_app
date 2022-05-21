@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import HomePage from "./stateful/pages/HomePage";
+import PollPage from "./stateful/pages/PollPage";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 export default class App extends Component {
@@ -13,7 +13,7 @@ export default class App extends Component {
 
     return (
       <ThemeProvider theme={theme}>
-        <HomePage />
+        <PollPage />
       </ThemeProvider>
     );
   }
