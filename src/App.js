@@ -11,6 +11,8 @@ const STYLE = {
   margin: 4,
   marginTop: 10,
   marginBottom: 10,
+  maxWidth: 400,
+  margin: "auto",
 };
 
 const DEFAULT_PAGE = PollPage;
