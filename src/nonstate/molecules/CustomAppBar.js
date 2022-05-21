@@ -14,11 +14,11 @@ const STYLE = {
   height: 50,
 };
 
-export default function CustomAppBar() {
+export default function CustomAppBar({ onSelectPage }) {
   return (
     <AppBar sx={STYLE}>
       <Toolbar variant="dense">
-        <CustomAppBarMenu />
+        <CustomAppBarMenu onSelectPage={onSelectPage} />
 
         <Typography component="div" sx={{ flexGrow: 1 }}>
           {"Polls App"}
