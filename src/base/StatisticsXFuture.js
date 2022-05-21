@@ -9,12 +9,12 @@ export default class StatisticsXFuture {
     const N_STDEV = 2;
     const pObserved = npObserved / nObserved;
     const Q = 100;
-    let [lower, upper] = [undefined, undefined];
+    let [lower, upper] = [0, 1];
     for (let i in DataStructures.range(0, Q + 1)) {
       const pActual = i / Q;
       const cdfForObserved = cdf(npObserved, nObserved, pActual);
-      
-      if (lower === undefined && cdfForObserved < 1 - SIGNIFICANCE / 2) {
+
+      if (lower === 0 && cdfForObserved < 1 - SIGNIFICANCE / 2) {
         lower = pActual;
       }
       if (cdfForObserved >= SIGNIFICANCE / 2) {
