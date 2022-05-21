@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Cache } from "@nuuuwan/utils-js-dev";
+import Cache from "./Cache";
 import HashX from "./HashX";
 
 const URL_GEOLOCATION_DB = "https://geolocation-db.com/json/";
