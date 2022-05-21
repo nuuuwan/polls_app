@@ -17,11 +17,6 @@ export default class PollPage extends Component {
     };
   }
 
-  async onClickVote(pollResult) {
-    await PollsAppServer.addPollResult(pollResult);
-    await this.reloadData();
-  }
-
   onClickPrevious() {
     const { pollIDs, iActivePoll } = this.state;
     const newIActivePoll =
@@ -37,10 +32,6 @@ export default class PollPage extends Component {
   }
 
   async componentDidMount() {
-    await this.reloadData();
-  }
-
-  async reloadData() {
     const pollIDs = await PollsAppServer.getPollIDs();
     this.setState({
       pollIDs,
@@ -57,10 +48,7 @@ export default class PollPage extends Component {
 
     return (
       <div key={"poll-" + activePollID}>
-        <PollView
-          pollID={activePollID}
-          onClickVote={this.onClickVote.bind(this)}
-        />
+        <PollView pollID={activePollID} />
         <CustomBottomNavigation
           onClickPrevious={this.onClickPrevious.bind(this)}
           onClickNext={this.onClickNext.bind(this)}
