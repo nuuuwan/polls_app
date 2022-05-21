@@ -23,7 +23,7 @@ export default class UserPage extends Component {
     const { geoInfo } = this.props;
 
     const [lat, lng] = geoInfo.latLng;
-    const locationStr = `${lat}°N, ${lng}°E`;
+    const locationStr = `${lat}°, ${lng}°`;
 
     return (
       <Box>
