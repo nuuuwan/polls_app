@@ -1,20 +1,9 @@
 import { Component } from "react";
 import * as React from "react";
 
-import Box from "@mui/material/Box";
-
-import CustomBottomNavigation from "../../nonstate/molecules/CustomBottomNavigation";
-import VersionWidget from "../../nonstate/atoms/VersionWidget";
-import CustomAppBar from "../../nonstate/molecules/CustomAppBar";
 import PollView from "../../nonstate/molecules/PollView";
 
 import PollsAppServer from "../../core/PollsAppServer";
-
-const STYLE = {
-  margin: 4,
-  marginTop: 10,
-  marginBottom: 10,
-};
 
 export default class PollPage extends Component {
   constructor(props) {
@@ -25,20 +14,6 @@ export default class PollPage extends Component {
       pollResults: null,
       pollToAnswerToVotes: null,
     };
-  }
-
-  onClickPrevious() {
-    const { polls, iActivePoll } = this.state;
-    const newIActivePoll =
-      iActivePoll === 0 ? polls.length - 1 : iActivePoll - 1;
-    this.setState({ iActivePoll: newIActivePoll });
-  }
-
-  onClickNext() {
-    const { polls, iActivePoll } = this.state;
-    const newIActivePoll =
-      iActivePoll === polls.length - 1 ? 0 : iActivePoll + 1;
-    this.setState({ iActivePoll: newIActivePoll });
   }
 
   async onClickVote(pollResult) {
@@ -74,22 +49,12 @@ export default class PollPage extends Component {
     const totalVotes = pollToTotalVotes[activePoll.pollID];
 
     return (
-      <Box sx={STYLE}>
-        <CustomAppBar />
-
-        <PollView
-          poll={activePoll}
-          onClickVote={this.onClickVote.bind(this)}
-          answerToVotes={answerToVotes}
-          totalVotes={totalVotes}
-        />
-
-        <VersionWidget />
-        <CustomBottomNavigation
-          onClickPrevious={this.onClickPrevious.bind(this)}
-          onClickNext={this.onClickNext.bind(this)}
-        />
-      </Box>
+      <PollView
+        poll={activePoll}
+        onClickVote={this.onClickVote.bind(this)}
+        answerToVotes={answerToVotes}
+        totalVotes={totalVotes}
+      />
     );
   }
 }
