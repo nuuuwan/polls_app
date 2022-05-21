@@ -10,7 +10,7 @@ const STYLE = {
   borderBottom: "1px solid #f0f0f0",
 };
 
-export default function PollAnswer({ answer, totalVotes, answerVotes }) {
+export default function PollAnswer({ answer, totalCount, answerVotes }) {
   return (
     <div style={STYLE}>
       <FormControlLabel
@@ -18,7 +18,7 @@ export default function PollAnswer({ answer, totalVotes, answerVotes }) {
         control={<Radio />}
         label={<Typography variant="subtitle2">{answer}</Typography>}
       />
-      <PercentageWidget n={totalVotes} np={answerVotes} />
+      <PercentageWidget n={totalCount} np={answerVotes} />
     </div>
   );
 }
