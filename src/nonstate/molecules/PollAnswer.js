@@ -7,7 +7,6 @@ import PercentageWidget from "../atoms/PercentageWidget";
 const STYLE = {
   marginBottom: "5%",
   paddingBottom: "5%",
-  borderBottom: "1px solid #f0f0f0",
 };
 
 export default function PollAnswer({ answer, totalCount, answerVotes }) {
