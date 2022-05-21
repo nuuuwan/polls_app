@@ -1,11 +1,11 @@
 import Typography from "@mui/material/Typography";
 import StatisticsXFuture from "../../base/StatisticsXFuture";
-const WIDTH = "100%";
+const WIDTH = 300;
 const HEIGHT = 24;
 const STYLE = {
   width: WIDTH,
   height: HEIGHT,
-  marginRight: "10%",
+  marginRight: "5%",
 };
 
 const STYLE_INNER = {
@@ -39,7 +39,7 @@ export default function PercentageWidget({ n, np }) {
   const styleInnerSpan = {
     width: widthSpan,
     opacity: 0.3,
-    marginRight: "5%",
+    marginRight: "2%",
   };
 
   return (
