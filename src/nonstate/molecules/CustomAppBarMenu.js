@@ -37,7 +37,7 @@ export default function CustomAppBarMenu({ onSelectPage }) {
           onClick={onClickCode}
         />
         <CustomAppBarMenuItem
-          label="Help"
+          label="Help/FAQs"
           Icon={HelpIcon}
           onClick={(e) => onSelectPage(HelpPage)}
         />
