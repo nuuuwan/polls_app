@@ -1,13 +1,27 @@
-export default class StatisticsXFuture {
-  static MIN_STATISTICAL_N = 30;
+import { DataStructures } from "@nuuuwan/utils-js-dev";
+const cdf = require("binomial-cdf");
 
-  static getErrorBounds(n, np) {
-    const p = np / n;
-    const stdev = Math.sqrt(np * (1 - p)) / n;
-    const range = stdev * 2;
-    const [lower, upper] = [p - range, p + range].map((x) =>
-      Math.min(Math.max(x, 0), 1)
-    );
-    return { lower, upper, p, stdev };
+export default class StatisticsXFuture {
+  static MIN_STATISTICAL_N = 1;
+
+  static getErrorBounds(nObserved, npObserved) {
+    const SIGNIFICANCE = 0.05;
+    const N_STDEV = 2;
+    const pObserved = npObserved / nObserved;
+    const Q = 100;
+    let [lower, upper] = [undefined, undefined];
+    for (let i in DataStructures.range(0, Q + 1)) {
+      const pActual = i / Q;
+      const cdfForObserved = cdf(npObserved, nObserved, pActual);
+      
+      if (lower === undefined && cdfForObserved < 1 - SIGNIFICANCE / 2) {
+        lower = pActual;
+      }
+      if (cdfForObserved >= SIGNIFICANCE / 2) {
+        upper = pActual;
+      }
+    }
+
+    return { lower, upper, p: pObserved, stdev: (upper - lower) / N_STDEV };
   }
 }
