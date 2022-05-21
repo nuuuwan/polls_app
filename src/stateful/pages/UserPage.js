@@ -2,7 +2,6 @@ import { Component } from "react";
 import * as React from "react";
 
 import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 
 import ReactCountryFlag from "react-country-flag";
@@ -29,9 +28,7 @@ export default class UserPage extends Component {
     return (
       <Box>
         <Typography variant="h4">User</Typography>
-        <Grid container justifyContent="center">
-          <IDAvatar id={geoInfo.infoHash} size={120} />
-        </Grid>
+        <IDAvatar id={geoInfo.infoHash} size={120} />
 
         <TitledBody title="UserID" body={geoInfo.infoHash} />
         <TitledBody
