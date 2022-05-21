@@ -20,14 +20,6 @@ export default class PollsAppServer {
     return data.map((d) => d["pollID"]);
   }
 
-  static async getPoll(pollID) {
-    const d = await AWSDynamoDBX.generic({
-      cmd: "get-poll",
-      id: pollID,
-    });
-    return PollExtended.fromDict(d);
-  }
-
   static async getPollExtended(pollID) {
     const d = await AWSDynamoDBX.generic({
       cmd: "get-poll-extended",
