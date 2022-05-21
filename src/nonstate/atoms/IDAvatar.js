@@ -5,6 +5,7 @@ import EquilateralPolygon from "../../nonstate/atoms/EquilateralPolygon";
 const N = 3;
 const BITS_PER_COLOR = 3;
 const COLOR_BLANK = "#888";
+const P_RADIUS = 0.9;
 
 export default function IDAvatar({ size, id }) {
   const cellSize = (size * 0.7) / N;
@@ -43,7 +44,7 @@ export default function IDAvatar({ size, id }) {
                 n={n}
                 cx={(iCol + 0.5) * cellSize}
                 cy={(iRow + 0.5) * cellSize}
-                r={cellSize / 2}
+                r={P_RADIUS * cellSize / 2}
                 color={color}
               />
             );
