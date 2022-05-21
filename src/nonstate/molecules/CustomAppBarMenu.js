@@ -6,9 +6,8 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import HelpIcon from "@mui/icons-material/Help";
 import HelpPage from "../../stateful/pages/HelpPage";
 
+import { URL_GITHUB_REPO_POLLS_APP } from "../../constants/Constants";
 import CustomAppBarMenuItem from "./CustomAppBarMenuItem";
-
-const URL_GITHUB = "https://github.com/nuuuwan/polls_app";
 
 export default function CustomAppBarMenu({ onSelectPage }) {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -23,7 +22,7 @@ export default function CustomAppBarMenu({ onSelectPage }) {
   };
 
   const onClickCode = function () {
-    window.open(URL_GITHUB, "_blank");
+    window.open(URL_GITHUB_REPO_POLLS_APP, "_blank");
   };
 
   return (
