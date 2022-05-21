@@ -11,9 +11,7 @@ export default class PollPage extends Component {
     super(props);
     this.state = {
       iActivePoll: 0,
-      polls: null,
-      pollResults: null,
-      pollToAnswerToVotes: null,
+      pollIDs: null,
     };
   }
 
@@ -23,16 +21,16 @@ export default class PollPage extends Component {
   }
 
   onClickPrevious() {
-    const { polls, iActivePoll } = this.state;
+    const { pollIDs, iActivePoll } = this.state;
     const newIActivePoll =
-      iActivePoll === 0 ? polls.length - 1 : iActivePoll - 1;
+      iActivePoll === 0 ? pollIDs.length - 1 : iActivePoll - 1;
     this.setState({ iActivePoll: newIActivePoll });
   }
 
   onClickNext() {
-    const { polls, iActivePoll } = this.state;
+    const { pollIDs, iActivePoll } = this.state;
     const newIActivePoll =
-      iActivePoll === polls.length - 1 ? 0 : iActivePoll + 1;
+      iActivePoll === pollIDs.length - 1 ? 0 : iActivePoll + 1;
     this.setState({ iActivePoll: newIActivePoll });
   }
 
@@ -41,41 +39,31 @@ export default class PollPage extends Component {
   }
 
   async reloadData() {
-    const polls = await PollsAppServer.getPolls();
-    const pollResults = await PollsAppServer.getPollResults();
+    const pollIDs = await PollsAppServer.getPollIDs();
     this.setState({
-      polls,
-      pollToAnswerToVotes: PollsAppServer.getPollToAnswerToVotes(pollResults),
-      pollToTotalVotes: PollsAppServer.getPollToTotalVotes(pollResults),
+      pollIDs,
     });
   }
 
   render() {
-    const { polls, iActivePoll, pollToAnswerToVotes, pollToTotalVotes } =
-      this.state;
-    if (!polls) {
+    const { pollIDs, iActivePoll } = this.state;
+    if (!pollIDs) {
       return "Loading...";
     }
 
-    const activePoll = polls[iActivePoll];
-    const answerToVotes = pollToAnswerToVotes[activePoll.pollID]
-      ? pollToAnswerToVotes[activePoll.pollID]
-      : {};
-    const totalVotes = pollToTotalVotes[activePoll.pollID];
+    const activePollID = pollIDs[iActivePoll];
 
     return (
-      <>
+      <div key={"poll-" + activePollID}>
         <PollView
-          poll={activePoll}
+          pollID={activePollID}
           onClickVote={this.onClickVote.bind(this)}
-          answerToVotes={answerToVotes}
-          totalVotes={totalVotes}
         />
         <CustomBottomNavigation
           onClickPrevious={this.onClickPrevious.bind(this)}
           onClickNext={this.onClickNext.bind(this)}
         />
-      </>
+      </div>
     );
   }
 }
