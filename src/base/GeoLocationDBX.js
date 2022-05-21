@@ -12,6 +12,7 @@ export default class GeoLocationDBX {
     const ipV4 = data.IPv4;
     const latLng = [data.latitude, data.longitude];
     const infoHash = HashX.md5({ countryCode, latLng, ipV4 });
-    return { countryCode, countryName, latLng, ipV4, infoHash };
+    const userID = infoHash;
+    return { countryCode, countryName, latLng, ipV4, infoHash, userID };
   }
 }
