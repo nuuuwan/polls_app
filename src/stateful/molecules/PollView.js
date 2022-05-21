@@ -17,6 +17,7 @@ import PollStatisticsView from "../../nonstate/molecules/PollStatisticsView";
 const STYLE = {
   margin: 2,
   padding: 2,
+  height: 300,
 };
 
 const ANSWER_NONE = "";
@@ -37,7 +38,7 @@ export default class PollView extends Component {
     this.setState({ selectedAnswer });
   }
 
-  render() {
+  renderInner() {
     const { selectedAnswer, pollExtended } = this.state;
     if (!pollExtended) {
       return "Loading...";
@@ -70,7 +71,7 @@ export default class PollView extends Component {
       : pollExtended.answerList;
 
     return (
-      <Paper key={"poll-" + pollExtended.pollID} sx={STYLE}>
+      <div key={"poll-" + pollExtended.pollID}>
         <FormControl>
           <Typography variant="subtitle1">{pollExtended.question}</Typography>
           <RadioGroup value={selectedAnswer} onChange={onChange}>
@@ -99,7 +100,11 @@ export default class PollView extends Component {
           onClick={onClick}
           disabled={selectedAnswer === ANSWER_NONE}
         />
-      </Paper>
+      </div>
     );
+  }
+
+  render() {
+    return <Paper sx={STYLE}>{this.renderInner()}</Paper>;
   }
 }
