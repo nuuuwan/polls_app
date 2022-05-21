@@ -11,8 +11,8 @@ const FAQS = [
     question: "Where can I find the code for this App?",
     answerParagraphs: [
       <>
-        You can find the code for this app at
-        <SimpleLink href={URL_GITHUB_REPO_POLLS_APP} />.
+        {"You can find the code on "}
+        <SimpleLink href={URL_GITHUB_REPO_POLLS_APP} label="GitHub" />.
       </>,
       "Feel free to fork the code, report issues, or ask questions.",
     ],
