@@ -1,5 +1,6 @@
 import AWSDynamoDBX from "../base/AWSDynamoDBX";
 import Poll from "./Poll";
+import PollExtended from "./PollExtended";
 import PollResult from "./PollResult";
 
 const CLASS_NAME_POLL = "poll";
@@ -15,6 +16,26 @@ export default class PollsAppServer {
     return data.map(function (d) {
       return Poll.fromDict(d);
     });
+  }
+
+  static async getPollIDs() {
+    const data = await AWSDynamoDBX.generic({
+      cmd: "multiget-ids-polls",
+    });
+    return data.map((d) => d["pollID"]);
+  }
+
+  static async getPoll(pollID) {
+    const d = await AWSDynamoDBX.get(CLASS_NAME_POLL, pollID);
+    return Poll.fromDict(d);
+  }
+
+  static async getPollExtended(pollID) {
+    const d = await AWSDynamoDBX.generic({
+      cmd: "get-poll-extended",
+      id: pollID,
+    });
+    return PollExtended.fromDict(d);
   }
 
   static async addPollResult(pollResult) {
