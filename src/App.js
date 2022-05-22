@@ -45,6 +45,7 @@ export default class App extends Component {
         <CustomAppBar
           onSelectPage={this.onSelectPage.bind(this)}
           geoInfo={geoInfo}
+          Page={Page}
         />
         <Page geoInfo={geoInfo} />
       </Box>

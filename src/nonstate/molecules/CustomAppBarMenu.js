@@ -18,7 +18,7 @@ import { URL_GITHUB_REPO_POLLS_APP } from "../../constants/Constants";
 import CustomAppBarMenuItem from "./CustomAppBarMenuItem";
 import VersionWidget from "../../nonstate/atoms/VersionWidget";
 
-export default function CustomAppBarMenu({ onSelectPage }) {
+export default function CustomAppBarMenu({ onSelectPage, Page }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
@@ -54,16 +54,19 @@ export default function CustomAppBarMenu({ onSelectPage }) {
           label="Polls"
           Icon={PollIcon}
           onClick={(e) => onSelectPageInner(PollPage)}
+          disabled={Page === PollPage}
         />
         <CustomAppBarMenuItem
           label="User"
           Icon={UserIcon}
           onClick={(e) => onSelectPageInner(UserPage)}
+          disabled={Page === UserPage}
         />
         <CustomAppBarMenuItem
           label="Help & FAQs"
           Icon={HelpIcon}
           onClick={(e) => onSelectPageInner(HelpPage)}
+          disabled={Page === HelpPage}
         />
         <CustomAppBarMenuItem
           label="Code"
