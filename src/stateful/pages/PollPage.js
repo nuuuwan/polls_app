@@ -106,7 +106,7 @@ export default class PollPage extends Component {
         />
         <Snackbar
           open={isSnackbarOpen}
-          autoHideDuration={2000}
+          autoHideDuration={100}
           onClose={this.onCloseSnackbar.bind(this)}
           message={messageSnackbar}
         />
