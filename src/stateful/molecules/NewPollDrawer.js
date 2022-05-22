@@ -5,14 +5,15 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Drawer from "@mui/material/Drawer";
 import TextField from "@mui/material/TextField";
-import Alert from "@mui/material/Alert";
 import CloseIcon from "@mui/icons-material/Close";
 import IconButton from "@mui/material/IconButton";
+import AddIcon from "@mui/icons-material/Add";
 
 import IDXFuture from "../../base/IDXFuture";
 import Poll from "../../core/Poll";
 import PollsAppServer from "../../core/PollsAppServer";
 import ListInput from "../../nonstate/molecules/ListInput";
+import ValidationAlert from "../../nonstate/molecules/ValidationAlert"
 
 const MIN_QUESTION_LENGTH = 10;
 const MIN_ANSWER_LIST_LENGTH = 2;
@@ -85,16 +86,18 @@ export default class NewPollDrawer extends Component {
               value={answerList}
               onChange={this.onChangeAnswerList.bind(this)}
             />
-            <Alert severity={disableAdd ? "error" : "success"}>
+            <ValidationAlert isInvalid={disableAdd}>
               The Question must be at least {MIN_QUESTION_LENGTH} characters
               long. You must specify at least {MIN_ANSWER_LIST_LENGTH} answers.
-            </Alert>
+            </ValidationAlert>
             <Box display="flex" justifyContent="flex-end">
               <Button
                 onClick={this.onClickAdd.bind(this)}
                 disabled={disableAdd}
+                variant="contained"
+                startIcon={<AddIcon />}
               >
-                Add
+                Add New Poll
               </Button>
             </Box>
           </Stack>
