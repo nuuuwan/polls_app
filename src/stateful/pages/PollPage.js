@@ -7,21 +7,38 @@ import PollsAppServer from "../../core/PollsAppServer";
 
 import PollView from "../../stateful/molecules/PollView";
 import CustomBottomNavigation from "../../nonstate/molecules/CustomBottomNavigation";
+import NewPollDrawer from "../../stateful/molecules/NewPollDrawer";
 
 export default class PollPage extends Component {
   constructor(props) {
     super(props);
-    this.state = { pollIDs: null };
+    this.state = {
+      pollIDs: null,
+      showNewPollDrawer: false,
+    };
   }
 
-  async componentDidMount() {
+  async reloadData() {
     this.setState({
       pollIDs: await PollsAppServer.getPollIDs(),
     });
   }
 
+  async componentDidMount() {
+    await this.reloadData();
+  }
+
+  onClickNewPoll() {
+    this.setState({ showNewPollDrawer: true });
+  }
+
+  async onCloseNewPollDrawer() {
+    this.setState({ showNewPollDrawer: false });
+    await this.reloadData();
+  }
+
   render() {
-    const { pollIDs } = this.state;
+    const { pollIDs, showNewPollDrawer } = this.state;
     if (!pollIDs) {
       return <CircularProgress />;
     }
@@ -31,7 +48,13 @@ export default class PollPage extends Component {
         {pollIDs.map(function (pollID) {
           return <PollView key={"poll-" + pollID} pollID={pollID} />;
         })}
-        <CustomBottomNavigation />
+        <NewPollDrawer
+          isOpen={showNewPollDrawer}
+          onClose={this.onCloseNewPollDrawer.bind(this)}
+        />
+        <CustomBottomNavigation
+          onClickNewPoll={this.onClickNewPoll.bind(this)}
+        />
       </div>
     );
   }
