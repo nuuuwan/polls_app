@@ -73,7 +73,11 @@ export default class PollView extends Component {
     const disableVoteButton = selectedAnswer === ANSWER_NONE;
 
     return (
-      <Box key={"poll-" + pollExtended.pollID + answerToCount} sx={STYLE}>
+      <Stack
+        key={"poll-" + pollExtended.pollID + answerToCount}
+        sx={STYLE}
+        spacing={2}
+      >
         <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
           <PollIcon />
           <Typography variant="subtitle1">{pollExtended.question}</Typography>
@@ -110,7 +114,7 @@ export default class PollView extends Component {
         <Box display="flex" justifyContent="flex-end">
           <VoteButton onClick={onClickVote} disabled={disableVoteButton} />
         </Box>
-      </Box>
+      </Stack>
     );
   }
 
