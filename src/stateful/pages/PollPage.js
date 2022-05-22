@@ -50,19 +50,14 @@ export default class PollPage extends Component {
     });
   }
 
-  gotoPoll(pollID) {
-    const pollI = this.state.pollIDs.indexOf(pollID);
-    if (pollI !== -1) {
-      this.setState({ activePollI: pollI });
-    }
-  }
-
   async onCloseNewPollDrawer(pollID) {
-    this.setState({ showNewPollDrawer: false });
-    await this.reloadData();
-    if (pollID) {
-      this.gotoPoll(pollID);
-    }
+    let { pollIDs } = this.state;
+    pollIDs.push(pollID);
+    this.setState({
+      activePollI: pollIDs.length - 1,
+      pollIDs: pollIDs,
+      showNewPollDrawer: false,
+    });
   }
 
   render() {
