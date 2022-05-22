@@ -33,7 +33,7 @@ export default class NewPollDrawer extends Component {
     const pollID = IDXFuture.getRandomID();
     const poll = new Poll(pollID, question, answerList);
     await PollsAppServer.addPoll(poll);
-    onClose();
+    onClose(pollID);
   }
 
   disableAdd() {
