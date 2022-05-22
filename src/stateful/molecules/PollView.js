@@ -14,6 +14,7 @@ import PollResult from "../../core/PollResult";
 import VoteButton from "../../nonstate/atoms/VoteButton";
 import PollAnswer from "../../nonstate/molecules/PollAnswer";
 import PollStatisticsView from "../../nonstate/molecules/PollStatisticsView";
+import ValidationAlert from "../../nonstate/molecules/ValidationAlert";
 
 const STYLE = {
   margin: 2,
@@ -69,11 +70,13 @@ export default class PollView extends Component {
       this.setSelectedAnswer(e.target.value);
     }.bind(this);
 
+    const disableVoteButton = selectedAnswer === ANSWER_NONE;
+
     return (
       <Box key={"poll-" + pollExtended.pollID + answerToCount} sx={STYLE}>
         <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
           <PollIcon />
-          <Typography variant="h6">{pollExtended.question}</Typography>
+          <Typography variant="subtitle1">{pollExtended.question}</Typography>
         </Stack>
 
         <Box sx={{ m: 2 }}>
@@ -100,11 +103,12 @@ export default class PollView extends Component {
           answerToCount={answerToCount}
         />
 
+        <ValidationAlert isInvalid={disableVoteButton}>
+          Select exactly one answer
+        </ValidationAlert>
+
         <Box display="flex" justifyContent="flex-end">
-          <VoteButton
-            onClick={onClickVote}
-            disabled={selectedAnswer === ANSWER_NONE}
-          />
+          <VoteButton onClick={onClickVote} disabled={disableVoteButton} />
         </Box>
       </Box>
     );
