@@ -32,13 +32,18 @@ export default function PercentageWidget({ n, np }) {
   }
   const widthLower = parseInt(lower * 80 + 0.5) + "%";
   const widthSpan = parseInt((upper - lower) * 80 + 0.5) + "%";
+  const widthRemainder = parseInt((1 - upper) * 80 + 0.5) + "%";
   const styleInnerLower = {
     width: widthLower,
     opacity: 0.2,
   };
   const styleInnerSpan = {
     width: widthSpan,
-    opacity: 0.3,
+    opacity: 0.5,
+  };
+  const styleInnerRemainder = {
+    width: widthRemainder,
+    backgroundColor: "#f0f0f0",
     marginRight: "2%",
   };
 
@@ -46,7 +51,10 @@ export default function PercentageWidget({ n, np }) {
     <div style={STYLE}>
       <span style={{ ...STYLE_INNER, ...styleInnerLower }} />
       <span style={{ ...STYLE_INNER, ...styleInnerSpan }} />
-      <Typography variant="caption">{pStr}</Typography>
+      <span style={{ ...STYLE_INNER, ...styleInnerRemainder }} />
+      <Typography variant="caption" style={{ float: "right" }}>
+        {pStr}
+      </Typography>
     </div>
   );
 }

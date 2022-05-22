@@ -78,6 +78,7 @@ export default class PollView extends Component {
             <BallotIcon />
             <Typography variant="h6">{pollExtended.question}</Typography>
           </Stack>
+
           <RadioGroup value={selectedAnswer} onChange={onChange}>
             {pollExtended.answerList.map(function (answer, iAnswer) {
               const answerVotes = answerToCount[answer]
