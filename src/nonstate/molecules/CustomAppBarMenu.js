@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
+import AutorenewIcon from "@mui/icons-material/Autorenew";
 
 import {
   PollIcon,
@@ -39,6 +40,10 @@ export default function CustomAppBarMenu({ onSelectPage }) {
     onClose();
   };
 
+  const onClickRefresh = function () {
+    window.location.reload();
+  };
+
   return (
     <div>
       <IconButton color="inherit" onClick={onClick}>
@@ -64,6 +69,11 @@ export default function CustomAppBarMenu({ onSelectPage }) {
           label="Code"
           Icon={CodeIcon}
           onClick={onClickCode}
+        />
+        <CustomAppBarMenuItem
+          label="Refresh App"
+          Icon={AutorenewIcon}
+          onClick={onClickRefresh}
         />
         <VersionWidget />
       </Menu>
