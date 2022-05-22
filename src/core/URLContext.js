@@ -6,6 +6,14 @@ const PAGES = [UserPage, PollPage, HelpPage];
 const DEFAULT_PAGE = PollPage;
 
 export default class URLContext {
+  static getURL() {
+    return window.location.href;
+  }
+
+  static setURL(url) {
+    window.history.pushState("", "", url);
+  }
+
   static contextToURL({ Page, pollID }) {
     return "#" + Page.name + "#" + pollID;
   }
@@ -33,11 +41,11 @@ export default class URLContext {
 
   static setContext(context) {
     const url = URLContext.contextToURL(context);
-    window.history.pushState("", "", url);
+    URLContext.setURL(url);
   }
 
   static getContext() {
-    const url = window.location.href;
+    const url = URLContext.getURL();
     return URLContext.urlToContext(url);
   }
 }
