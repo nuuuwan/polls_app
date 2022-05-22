@@ -3,8 +3,8 @@ import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
+import URLContext from "./core/URLContext";
 import GhostUserX from "./base/GhostUserX";
-import PollPage from "./stateful/pages/PollPage";
 import CustomAppBar from "./nonstate/molecules/CustomAppBar";
 
 const STYLE = {
@@ -15,12 +15,11 @@ const STYLE = {
   marginBottom: 10,
 };
 
-const DEFAULT_PAGE = PollPage;
-
 export default class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { Page: DEFAULT_PAGE, geoInfo: null };
+    const { Page } = URLContext.getContext();
+    this.state = { Page, geoInfo: null };
   }
 
   async componentDidMount() {
@@ -31,6 +30,7 @@ export default class App extends Component {
   }
 
   onSelectPage(Page) {
+    URLContext.setContext({ Page });
     this.setState({ Page });
   }
 
