@@ -9,5 +9,4 @@
 
 * Search for Poll
 
-
 # LOW
