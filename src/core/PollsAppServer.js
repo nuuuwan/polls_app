@@ -1,5 +1,6 @@
 import Cache from "../base/Cache";
 import AWSDynamoDBX from "../base/AWSDynamoDBX";
+import Poll from "./Poll";
 import PollExtended from "./PollExtended";
 import PollResult from "./PollResult";
 
@@ -28,6 +29,15 @@ export default class PollsAppServer {
     return await Cache.get("getPollExtended:" + pollID, async () =>
       PollsAppServer.getPollExtendedNoCache(pollID)
     );
+  }
+
+  static async addPoll(poll) {
+    const d = await AWSDynamoDBX.generic({
+      cmd: "put-poll",
+      d: Poll.toDict(poll),
+    });
+    Cache.clear("getPollIDs");
+    return Poll.fromDict(d);
   }
 
   // Poll Results
