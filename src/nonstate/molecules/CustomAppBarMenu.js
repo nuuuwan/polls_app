@@ -3,9 +3,10 @@ import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 
-import { PollIcon, HelpIcon, CodeIcon } from "../../constants/Constants.js";
+import { PollIcon, HelpIcon, CodeIcon, UserIcon } from "../../constants/Constants.js";
 import HelpPage from "../../stateful/pages/HelpPage";
 import PollPage from "../../stateful/pages/PollPage";
+import UserPage from "../../stateful/pages/UserPage";
 
 import { URL_GITHUB_REPO_POLLS_APP } from "../../constants/Constants";
 import CustomAppBarMenuItem from "./CustomAppBarMenuItem";
@@ -42,6 +43,11 @@ export default function CustomAppBarMenu({ onSelectPage }) {
           label="Polls"
           Icon={PollIcon}
           onClick={(e) => onSelectPageInner(PollPage)}
+        />
+        <CustomAppBarMenuItem
+          label="User"
+          Icon={UserIcon}
+          onClick={(e) => onSelectPageInner(UserPage)}
         />
         <CustomAppBarMenuItem
           label="Help & FAQs"
