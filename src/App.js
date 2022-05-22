@@ -9,6 +9,8 @@ import CustomAppBar from "./nonstate/molecules/CustomAppBar";
 
 const STYLE = {
   padding: 3,
+  maxWidth: 600,
+  margin: "auto",
   marginTop: 5,
   marginBottom: 10,
 };
