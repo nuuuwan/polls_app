@@ -1,6 +1,8 @@
 import { Component } from "react";
 import * as React from "react";
 
+import { MathX } from "@nuuuwan/utils-js-dev";
+
 import Snackbar from "@mui/material/Snackbar";
 import CircularProgress from "@mui/material/CircularProgress";
 
@@ -40,18 +42,10 @@ export default class PollPage extends Component {
     this.setState({ showNewPollDrawer: true });
   }
 
-  onClickNextPoll() {
-    const { activePollI, pollIDs } = this.state;
-    this.setState({
-      activePollI: activePollI === pollIDs.length - 1 ? 0 : activePollI + 1,
-    });
-  }
-
-  onClickPreviousPoll() {
-    const { activePollI, pollIDs } = this.state;
-    this.setState({
-      activePollI: activePollI === 0 ? pollIDs.length - 1 : activePollI - 1,
-    });
+  onClickRandomPoll() {
+    const { pollIDs } = this.state;
+    const activePollI = MathX.randomInt(0, pollIDs.length - 1);
+    this.setState({ activePollI });
   }
 
   onClickCopyPoll() {
@@ -109,14 +103,13 @@ export default class PollPage extends Component {
         />
         <PollBottomNavigation
           onClickNewPoll={this.onClickNewPoll.bind(this)}
-          onClickPreviousPoll={this.onClickPreviousPoll.bind(this)}
-          onClickNextPoll={this.onClickNextPoll.bind(this)}
+          onClickRandomPoll={this.onClickRandomPoll.bind(this)}
           onClickCopyPoll={this.onClickCopyPoll.bind(this)}
           onClickTweet={this.onClickTweet.bind(this)}
         />
         <Snackbar
           open={isSnackbarOpen}
-          autoHideDuration={100}
+          autoHideDuration={1000}
           onClose={this.onCloseSnackbar.bind(this)}
           message={messageSnackbar}
         />
