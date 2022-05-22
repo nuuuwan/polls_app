@@ -54,9 +54,12 @@ export default class PollPage extends Component {
   }
 
   onClickTweet() {
-    const tweetText = ["Checkout this new poll", URLContext.getURL()].join(
-      "\n"
-    );
+    const tweetText = [
+      "Checkout this new poll",
+      "",
+      "#SriLanka #PollsAppLK",
+      URLContext.getURL(),
+    ].join("\n");
     const twitterURL =
       "http://twitter.com/intent/tweet?text=" + encodeURIComponent(tweetText);
     window.open(twitterURL, "_blank");
