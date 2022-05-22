@@ -18,8 +18,6 @@ const STYLE = {
 
 const DEFAULT_PAGE = PollPage;
 
-localStorage.clear();
-
 export default class App extends Component {
   constructor(props) {
     super(props);
