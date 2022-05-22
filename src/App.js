@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-import GeoLocationDBX from "./base/GeoLocationDBX";
+import GhostUserX from "./base/GhostUserX";
 import PollPage from "./stateful/pages/PollPage";
 import VersionWidget from "./nonstate/atoms/VersionWidget";
 import CustomAppBar from "./nonstate/molecules/CustomAppBar";
@@ -28,7 +28,7 @@ export default class App extends Component {
 
   async componentDidMount() {
     this.setState({
-      geoInfo: await GeoLocationDBX.getInfo(),
+      geoInfo: await GhostUserX.getInfo(),
     });
   }
 

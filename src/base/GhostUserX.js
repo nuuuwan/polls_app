@@ -5,9 +5,9 @@ import HashX from "./HashX";
 const URL_GEOLOCATION_DB = "https://geolocation-db.com/json/";
 const USE_RANDOM_SALT = true;
 const ID_SALT = "adb034fad7a9f45ebc20249cc85eae96";
-const CACHE_KEY_INFO = "polls_app.GeoLocationDBX.info";
+const CACHE_KEY_INFO = "polls_app.GhostUserX.info";
 
-export default class GeoLocationDBX {
+export default class GhostUserX {
   static async getInfoNoCache() {
     const res = await axios.get(URL_GEOLOCATION_DB);
     const data = res.data;
@@ -22,6 +22,6 @@ export default class GeoLocationDBX {
   }
 
   static async getInfo() {
-    return await Cache.get(CACHE_KEY_INFO, GeoLocationDBX.getInfoNoCache);
+    return await Cache.get(CACHE_KEY_INFO, GhostUserX.getInfoNoCache);
   }
 }

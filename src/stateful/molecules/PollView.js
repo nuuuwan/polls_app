@@ -8,7 +8,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { TimeX, MathX } from "@nuuuwan/utils-js-dev";
 
 import PollsAppServer from "../../core/PollsAppServer";
-import GeoLocationDBX from "../../base/GeoLocationDBX";
+import GhostUserX from "../../base/GhostUserX";
 import PollResult from "../../core/PollResult";
 import VoteButton from "../../nonstate/atoms/VoteButton";
 import PollAnswer from "../../nonstate/molecules/PollAnswer";
@@ -52,7 +52,7 @@ export default class PollView extends Component {
     const totalCount = MathX.sum(Object.values(answerToCount));
 
     const onClickVote = async function (e) {
-      const geoInfo = await await GeoLocationDBX.getInfo();
+      const geoInfo = await await GhostUserX.getInfo();
       const userID = geoInfo.infoHash;
       const pollResult = new PollResult(
         pollExtended.pollID,
