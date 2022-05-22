@@ -34,6 +34,11 @@ export default class NewPollDrawer extends Component {
     const poll = new Poll(pollID, question, answerList);
     await PollsAppServer.addPoll(poll);
     onAddNewPoll(pollID);
+
+    this.setState({
+      question: "",
+      answerList: [],
+    });
   }
 
   disableAdd() {
@@ -46,7 +51,7 @@ export default class NewPollDrawer extends Component {
     const { isOpen, onClose } = this.props;
     return (
       <Drawer anchor="right" open={isOpen} onClose={onClose}>
-        <Box sx={{ m: 1, p: 3 }}>
+        <Box sx={{ m: 1, p: 3, width: 300 }}>
           <Stack spacing={2}>
             <Typography variant="h6">Add New Poll</Typography>
             <TextField
