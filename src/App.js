@@ -9,11 +9,9 @@ import VersionWidget from "./nonstate/atoms/VersionWidget";
 import CustomAppBar from "./nonstate/molecules/CustomAppBar";
 
 const STYLE = {
-  margin: 2,
-  padding: 1,
+  padding: 2,
   marginTop: 10,
   marginBottom: 10,
-  maxWidth: 400,
 };
 
 const DEFAULT_PAGE = PollPage;
