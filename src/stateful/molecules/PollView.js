@@ -1,9 +1,12 @@
 import { Component } from "react";
+import Stack from "@mui/material/Stack";
+import Box from "@mui/material/Box";
 import FormControl from "@mui/material/FormControl";
 import Paper from "@mui/material/Paper";
 import RadioGroup from "@mui/material/RadioGroup";
 import Typography from "@mui/material/Typography";
 import CircularProgress from "@mui/material/CircularProgress";
+import BallotIcon from "@mui/icons-material/Ballot";
 
 import { TimeX, MathX } from "@nuuuwan/utils-js-dev";
 
@@ -15,9 +18,8 @@ import PollAnswer from "../../nonstate/molecules/PollAnswer";
 import PollStatisticsView from "../../nonstate/molecules/PollStatisticsView";
 
 const STYLE = {
-  margin: 2,
+  margin: 3,
   padding: 2,
-  height: 300,
 };
 
 const ANSWER_NONE = "";
@@ -72,7 +74,10 @@ export default class PollView extends Component {
     return (
       <div key={"poll-" + pollExtended.pollID + answerToCount}>
         <FormControl>
-          <Typography variant="subtitle1">{pollExtended.question}</Typography>
+          <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
+            <BallotIcon />
+            <Typography variant="h6">{pollExtended.question}</Typography>
+          </Stack>
           <RadioGroup value={selectedAnswer} onChange={onChange}>
             {pollExtended.answerList.map(function (answer, iAnswer) {
               const answerVotes = answerToCount[answer]
@@ -95,10 +100,12 @@ export default class PollView extends Component {
           />
         </FormControl>
 
-        <VoteButton
-          onClick={onClickVote}
-          disabled={selectedAnswer === ANSWER_NONE}
-        />
+        <Box display="flex" justifyContent="flex-end">
+          <VoteButton
+            onClick={onClickVote}
+            disabled={selectedAnswer === ANSWER_NONE}
+          />
+        </Box>
       </div>
     );
   }
