@@ -72,7 +72,7 @@ export default class PollView extends Component {
     }.bind(this);
 
     return (
-      <div key={"poll-" + pollExtended.pollID + answerToCount}>
+      <Box key={"poll-" + pollExtended.pollID + answerToCount} sx={STYLE}>
         <FormControl>
           <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
             <BallotIcon />
@@ -106,11 +106,11 @@ export default class PollView extends Component {
             disabled={selectedAnswer === ANSWER_NONE}
           />
         </Box>
-      </div>
+      </Box>
     );
   }
 
   render() {
-    return <Paper sx={STYLE}>{this.renderInner()}</Paper>;
+    return <Paper>{this.renderInner()}</Paper>;
   }
 }
