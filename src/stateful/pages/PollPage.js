@@ -14,13 +14,17 @@ export default class PollPage extends Component {
     super(props);
     this.state = {
       pollIDs: null,
+      activePollI: 0,
       showNewPollDrawer: false,
     };
   }
 
   async reloadData() {
+    const pollIDs = await PollsAppServer.getPollIDs();
+    const activePollId = pollIDs ? pollIDs[0].pollID : null;
     this.setState({
-      pollIDs: await PollsAppServer.getPollIDs(),
+      pollIDs,
+      activePollId,
     });
   }
 
@@ -32,28 +36,53 @@ export default class PollPage extends Component {
     this.setState({ showNewPollDrawer: true });
   }
 
-  async onCloseNewPollDrawer() {
+  onClickNextPoll() {
+    const { activePollI, pollIDs } = this.state;
+    this.setState({
+      activePollI: activePollI === pollIDs.length - 1 ? 0 : activePollI + 1,
+    });
+  }
+
+  onClickPreviousPoll() {
+    const { activePollI, pollIDs } = this.state;
+    this.setState({
+      activePollI: activePollI === 0 ? pollIDs.length - 1 : activePollI - 1,
+    });
+  }
+
+  gotoPoll(pollID) {
+    const pollI = this.state.pollIDs.indexOf(pollID);
+    if (pollI !== -1) {
+      this.setState({ activePollI: pollI });
+    }
+  }
+
+  async onCloseNewPollDrawer(pollID) {
     this.setState({ showNewPollDrawer: false });
     await this.reloadData();
+    if (pollID) {
+      this.gotoPoll(pollID);
+    }
   }
 
   render() {
-    const { pollIDs, showNewPollDrawer } = this.state;
+    const { pollIDs, activePollI, showNewPollDrawer } = this.state;
     if (!pollIDs) {
       return <CircularProgress />;
     }
 
+    const pollID = pollIDs[activePollI];
     return (
       <div>
-        {pollIDs.map(function (pollID) {
-          return <PollView key={"poll-" + pollID} pollID={pollID} />;
-        })}
+        <PollView key={"poll-" + pollID} pollID={pollID} />
         <NewPollDrawer
           isOpen={showNewPollDrawer}
           onClose={this.onCloseNewPollDrawer.bind(this)}
         />
         <CustomBottomNavigation
           onClickNewPoll={this.onClickNewPoll.bind(this)}
+          onClickPreviousPoll={this.onClickPreviousPoll.bind(this)}
+          onClickNextPoll={this.onClickNextPoll.bind(this)}
         />
       </div>
     );
