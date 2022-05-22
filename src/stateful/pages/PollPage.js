@@ -8,20 +8,26 @@ import PollsAppServer from "../../core/PollsAppServer";
 import PollView from "../../stateful/molecules/PollView";
 import CustomBottomNavigation from "../../nonstate/molecules/CustomBottomNavigation";
 import NewPollDrawer from "../../stateful/molecules/NewPollDrawer";
+import URLContext from "../../core/URLContext";
 
 export default class PollPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      pollIDs: null,
-      activePollI: 0,
+      pollIDs: undefined,
+      activePollI: undefined,
       showNewPollDrawer: false,
     };
   }
 
   async reloadData() {
+    const { pollID } = URLContext.getContext();
     const pollIDs = await PollsAppServer.getPollIDs();
-    this.setState({ pollIDs });
+
+    let activePollI = pollIDs.indexOf(pollID);
+    activePollI = activePollI === -1 ? 0 : activePollI;
+
+    this.setState({ pollIDs, activePollI });
   }
 
   async componentDidMount() {
@@ -69,6 +75,8 @@ export default class PollPage extends Component {
     }
 
     const pollID = pollIDs[activePollI];
+    URLContext.setContext({ Page: PollPage, pollID });
+
     return (
       <div>
         <PollView key={"poll-" + pollID} pollID={pollID} />
