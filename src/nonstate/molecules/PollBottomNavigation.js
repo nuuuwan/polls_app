@@ -4,15 +4,13 @@ import Paper from "@mui/material/Paper";
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import AddIcon from "@mui/icons-material/Add";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import TwitterIcon from "@mui/icons-material/Twitter";
+import ShuffleIcon from "@mui/icons-material/Shuffle";
 
 export default function PollBottomNavigation({
+  onClickRandomPoll,
   onClickNewPoll,
-  onClickPreviousPoll,
-  onClickNextPoll,
   onClickCopyPoll,
   onClickTweet,
 }) {
@@ -23,17 +21,12 @@ export default function PollBottomNavigation({
     >
       <BottomNavigation showLabels>
         <BottomNavigationAction
-          label="Previous"
-          icon={<ArrowBackIosIcon />}
-          onClick={onClickPreviousPoll}
+          label="Random Poll"
+          icon={<ShuffleIcon />}
+          onClick={onClickRandomPoll}
         />
         <BottomNavigationAction
-          label="Next"
-          icon={<ArrowForwardIosIcon />}
-          onClick={onClickNextPoll}
-        />
-        <BottomNavigationAction
-          label="Add New"
+          label="Add New Poll"
           icon={<AddIcon />}
           onClick={onClickNewPoll}
         />
