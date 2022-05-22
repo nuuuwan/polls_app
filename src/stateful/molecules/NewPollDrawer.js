@@ -13,7 +13,7 @@ import IDXFuture from "../../base/IDXFuture";
 import Poll from "../../core/Poll";
 import PollsAppServer from "../../core/PollsAppServer";
 import ListInput from "../../nonstate/molecules/ListInput";
-import ValidationAlert from "../../nonstate/molecules/ValidationAlert";
+import ValidationBox from "../../nonstate/molecules/ValidationBox";
 
 const MIN_QUESTION_LENGTH = 10;
 const MIN_ANSWER_LIST_LENGTH = 2;
@@ -48,18 +48,13 @@ export default class NewPollDrawer extends Component {
     });
   }
 
-  disableAdd() {
-    const { question, answerList } = this.state;
-    return (
-      question.length < MIN_QUESTION_LENGTH ||
-      answerList.length < MIN_ANSWER_LIST_LENGTH
-    );
-  }
-
   render() {
     const { question, answerList } = this.state;
     const { isOpen, onClose } = this.props;
-    const disableAdd = this.disableAdd();
+    const isQuestionValid =
+      question.length >= MIN_QUESTION_LENGTH && question.slice(-1) === "?";
+    const isAnswerListValid = answerList.length >= MIN_ANSWER_LIST_LENGTH;
+
     return (
       <Drawer anchor="right" open={isOpen} onClose={onClose}>
         <Box sx={{ m: 1, p: 3, width: 300 }}>
@@ -71,29 +66,50 @@ export default class NewPollDrawer extends Component {
             </Box>
 
             <Typography variant="h6">Add New Poll</Typography>
-            <TextField
-              required
-              multiline
-              label="Poll Question"
-              value={question}
-              placeholder="Ask a question..."
-              onChange={this.onChangeQuestion.bind(this)}
-            />
-            <ListInput
-              required
-              label="Answer List"
-              placeholder="Add possible answers..."
-              value={answerList}
-              onChange={this.onChangeAnswerList.bind(this)}
-            />
-            <ValidationAlert isInvalid={disableAdd}>
-              The Question must be at least {MIN_QUESTION_LENGTH} characters
-              long. You must specify at least {MIN_ANSWER_LIST_LENGTH} answers.
-            </ValidationAlert>
+            <ValidationBox
+              isValid={isQuestionValid}
+              alertIfValid="Ok"
+              alertIfInvalid={
+                <>
+                  A question must be at least{" "}
+                  <strong>{MIN_QUESTION_LENGTH}</strong> characters, and should
+                  end in a question mark.
+                </>
+              }
+            >
+              <TextField
+                required
+                multiline
+                label="Poll Question"
+                value={question}
+                placeholder="Ask a question..."
+                onChange={this.onChangeQuestion.bind(this)}
+              />
+            </ValidationBox>
+
+            <ValidationBox
+              isValid={isAnswerListValid}
+              alertIfValid="Ok. You can add more answers"
+              alertIfInvalid={
+                <>
+                  You must specify at least{" "}
+                  <strong>{MIN_ANSWER_LIST_LENGTH}</strong> answers. Type each
+                  answer and then hit <strong>enter</strong>.
+                </>
+              }
+            >
+              <ListInput
+                required
+                label="Answer List"
+                placeholder="Add possible answers..."
+                value={answerList}
+                onChange={this.onChangeAnswerList.bind(this)}
+              />
+            </ValidationBox>
             <Box display="flex" justifyContent="flex-end">
               <Button
                 onClick={this.onClickAdd.bind(this)}
-                disabled={disableAdd}
+                disabled={!(isQuestionValid && isAnswerListValid)}
                 variant="contained"
                 startIcon={<AddIcon />}
               >
