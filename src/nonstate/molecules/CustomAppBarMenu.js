@@ -3,7 +3,12 @@ import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 
-import { PollIcon, HelpIcon, CodeIcon, UserIcon } from "../../constants/Constants.js";
+import {
+  PollIcon,
+  HelpIcon,
+  CodeIcon,
+  UserIcon,
+} from "../../constants/Constants.js";
 import HelpPage from "../../stateful/pages/HelpPage";
 import PollPage from "../../stateful/pages/PollPage";
 import UserPage from "../../stateful/pages/UserPage";
