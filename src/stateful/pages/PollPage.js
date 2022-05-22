@@ -21,7 +21,7 @@ export default class PollPage extends Component {
 
   async reloadData() {
     const pollIDs = await PollsAppServer.getPollIDs();
-    this.setState({pollIDs});
+    this.setState({ pollIDs });
   }
 
   async componentDidMount() {
