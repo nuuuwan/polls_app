@@ -2,7 +2,12 @@ import PollPage from "../stateful/pages/PollPage";
 import HelpPage from "../stateful/pages/HelpPage";
 import UserPage from "../stateful/pages/UserPage";
 
-const PAGES = [UserPage, PollPage, HelpPage];
+const PAGE_IDX = {
+  UserPage: UserPage,
+  PollPage: PollPage,
+  HelpPage: HelpPage,
+};
+
 const DEFAULT_PAGE = PollPage;
 
 export default class URLContext {
@@ -24,8 +29,8 @@ export default class URLContext {
     let Page = DEFAULT_PAGE;
     if (params.length >= 2) {
       const pageName = params[1];
-      for (let Page0 of PAGES) {
-        if (Page0.name === pageName) {
+      for (let [pageName0, Page0] of Object.entries(PAGE_IDX)) {
+        if (pageName0 === pageName) {
           Page = Page0;
         }
       }
