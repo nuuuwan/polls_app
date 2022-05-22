@@ -6,6 +6,8 @@ import Typography from "@mui/material/Typography";
 import Drawer from "@mui/material/Drawer";
 import TextField from "@mui/material/TextField";
 import Alert from "@mui/material/Alert";
+import CloseIcon from "@mui/icons-material/Close";
+import IconButton from "@mui/material/IconButton";
 
 import IDXFuture from "../../base/IDXFuture";
 import Poll from "../../core/Poll";
@@ -61,6 +63,12 @@ export default class NewPollDrawer extends Component {
       <Drawer anchor="right" open={isOpen} onClose={onClose}>
         <Box sx={{ m: 1, p: 3, width: 300 }}>
           <Stack spacing={2}>
+            <Box display="flex" justifyContent="flex-end">
+              <IconButton>
+                <CloseIcon onClick={onClose} />
+              </IconButton>
+            </Box>
+
             <Typography variant="h6">Add New Poll</Typography>
             <TextField
               required
