@@ -21,22 +21,22 @@ export default function PollBottomNavigation({
     >
       <BottomNavigation showLabels>
         <BottomNavigationAction
-          label="Previous Poll"
+          label="Previous"
           icon={<ArrowBackIosIcon />}
           onClick={onClickPreviousPoll}
         />
         <BottomNavigationAction
-          label="Add New Poll"
+          label="Add New"
           icon={<AddIcon />}
           onClick={onClickNewPoll}
         />
         <BottomNavigationAction
-          label="Copy Poll URL"
+          label="Copy"
           icon={<ContentCopyIcon />}
           onClick={onClickCopyPoll}
         />
         <BottomNavigationAction
-          label="Next Poll"
+          label="Next"
           icon={<ArrowForwardIosIcon />}
           onClick={onClickNextPoll}
         />
