@@ -13,7 +13,7 @@ import IDXFuture from "../../base/IDXFuture";
 import Poll from "../../core/Poll";
 import PollsAppServer from "../../core/PollsAppServer";
 import ListInput from "../../nonstate/molecules/ListInput";
-import ValidationAlert from "../../nonstate/molecules/ValidationAlert"
+import ValidationAlert from "../../nonstate/molecules/ValidationAlert";
 
 const MIN_QUESTION_LENGTH = 10;
 const MIN_ANSWER_LIST_LENGTH = 2;
