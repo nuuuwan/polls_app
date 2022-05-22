@@ -11,48 +11,27 @@ import CustomBottomNavigation from "../../nonstate/molecules/CustomBottomNavigat
 export default class PollPage extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      iActivePoll: 0,
-      pollIDs: null,
-    };
-  }
-
-  onClickPrevious() {
-    const { pollIDs, iActivePoll } = this.state;
-    const newIActivePoll =
-      iActivePoll === 0 ? pollIDs.length - 1 : iActivePoll - 1;
-    this.setState({ iActivePoll: newIActivePoll });
-  }
-
-  onClickNext() {
-    const { pollIDs, iActivePoll } = this.state;
-    const newIActivePoll =
-      iActivePoll === pollIDs.length - 1 ? 0 : iActivePoll + 1;
-    this.setState({ iActivePoll: newIActivePoll });
+    this.state = { pollIDs: null };
   }
 
   async componentDidMount() {
-    const pollIDs = await PollsAppServer.getPollIDs();
     this.setState({
-      pollIDs,
+      pollIDs: await PollsAppServer.getPollIDs(),
     });
   }
 
   render() {
-    const { pollIDs, iActivePoll } = this.state;
+    const { pollIDs } = this.state;
     if (!pollIDs) {
       return <CircularProgress />;
     }
 
-    const activePollID = pollIDs[iActivePoll];
-
     return (
-      <div key={"poll-" + activePollID}>
-        <PollView pollID={activePollID} />
-        <CustomBottomNavigation
-          onClickPrevious={this.onClickPrevious.bind(this)}
-          onClickNext={this.onClickNext.bind(this)}
-        />
+      <div>
+        {pollIDs.map(function (pollID) {
+          return <PollView key={"poll-" + pollID} pollID={pollID} />;
+        })}
+        <CustomBottomNavigation />
       </div>
     );
   }
