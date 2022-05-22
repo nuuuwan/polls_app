@@ -15,6 +15,7 @@ import UserPage from "../../stateful/pages/UserPage";
 
 import { URL_GITHUB_REPO_POLLS_APP } from "../../constants/Constants";
 import CustomAppBarMenuItem from "./CustomAppBarMenuItem";
+import VersionWidget from "../../nonstate/atoms/VersionWidget";
 
 export default function CustomAppBarMenu({ onSelectPage }) {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -64,6 +65,7 @@ export default function CustomAppBarMenu({ onSelectPage }) {
           Icon={CodeIcon}
           onClick={onClickCode}
         />
+        <VersionWidget />
       </Menu>
     </div>
   );
