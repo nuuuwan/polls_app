@@ -64,8 +64,8 @@ export default class NewPollDrawer extends Component {
         <Box sx={{ m: 1, p: 3, width: 300 }}>
           <Stack spacing={2}>
             <Box display="flex" justifyContent="flex-end">
-              <IconButton>
-                <CloseIcon onClick={onClose} />
+              <IconButton onClick={onClose}>
+                <CloseIcon />
               </IconButton>
             </Box>
 
