@@ -28,6 +28,16 @@ export default function ListInput({
     setCurrentText(e.target.value);
   };
 
+  const onDeleteChip = function (listItem) {
+    let listCopy = list;
+    const iItem = listCopy.indexOf(listItem);
+    if (iItem !== -1) {
+      listCopy.splice(iItem, 1);
+    }
+    setList(listCopy);
+    onChange(listCopy);
+  };
+
   return (
     <Stack spacing={1}>
       <TextField
@@ -40,7 +50,17 @@ export default function ListInput({
       />
       <Box>
         {list.map(function (listItem, iItem) {
-          return <Chip key={"chip-" + iItem} label={listItem} sx={{ m: 1 }} />;
+          const onDelete = function () {
+            onDeleteChip(listItem);
+          };
+          return (
+            <Chip
+              key={"chip-" + iItem}
+              label={listItem}
+              sx={{ m: 1 }}
+              onDelete={onDelete}
+            />
+          );
         })}
       </Box>
     </Stack>
