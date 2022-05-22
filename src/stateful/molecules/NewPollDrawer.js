@@ -28,12 +28,12 @@ export default class NewPollDrawer extends Component {
 
   async onClickAdd(e) {
     const { question, answerList } = this.state;
-    const { onClose } = this.props;
+    const { onAddNewPoll } = this.props;
 
     const pollID = IDXFuture.getRandomID();
     const poll = new Poll(pollID, question, answerList);
     await PollsAppServer.addPoll(poll);
-    onClose(pollID);
+    onAddNewPoll(pollID);
   }
 
   disableAdd() {
