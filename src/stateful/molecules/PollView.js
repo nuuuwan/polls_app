@@ -119,6 +119,6 @@ export default class PollView extends Component {
   }
 
   render() {
-    return <Paper sx={{ maxWidth: 600 }}>{this.renderInner()}</Paper>;
+    return <Paper>{this.renderInner()}</Paper>;
   }
 }
