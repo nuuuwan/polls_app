@@ -59,6 +59,15 @@ export default class PollPage extends Component {
     this.setState({ isSnackbarOpen: true });
   }
 
+  onClickTweet() {
+    const tweetText = ["Checkout this new poll", URLContext.getURL()].join(
+      "\n"
+    );
+    const twitterURL =
+      "http://twitter.com/intent/tweet?text=" + encodeURIComponent(tweetText);
+    window.open(twitterURL, "_blank");
+  }
+
   onCloseSnackbar() {
     this.setState({ isSnackbarOpen: false });
   }
@@ -103,6 +112,7 @@ export default class PollPage extends Component {
           onClickPreviousPoll={this.onClickPreviousPoll.bind(this)}
           onClickNextPoll={this.onClickNextPoll.bind(this)}
           onClickCopyPoll={this.onClickCopyPoll.bind(this)}
+          onClickTweet={this.onClickTweet.bind(this)}
         />
         <Snackbar
           open={isSnackbarOpen}

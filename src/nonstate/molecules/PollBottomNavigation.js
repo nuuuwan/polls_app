@@ -7,12 +7,14 @@ import AddIcon from "@mui/icons-material/Add";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+import TwitterIcon from "@mui/icons-material/Twitter";
 
 export default function PollBottomNavigation({
   onClickNewPoll,
   onClickPreviousPoll,
   onClickNextPoll,
   onClickCopyPoll,
+  onClickTweet,
 }) {
   return (
     <Paper
@@ -26,6 +28,11 @@ export default function PollBottomNavigation({
           onClick={onClickPreviousPoll}
         />
         <BottomNavigationAction
+          label="Next"
+          icon={<ArrowForwardIosIcon />}
+          onClick={onClickNextPoll}
+        />
+        <BottomNavigationAction
           label="Add New"
           icon={<AddIcon />}
           onClick={onClickNewPoll}
@@ -36,9 +43,9 @@ export default function PollBottomNavigation({
           onClick={onClickCopyPoll}
         />
         <BottomNavigationAction
-          label="Next"
-          icon={<ArrowForwardIosIcon />}
-          onClick={onClickNextPoll}
+          label="Share"
+          icon={<TwitterIcon />}
+          onClick={onClickTweet}
         />
       </BottomNavigation>
     </Paper>
