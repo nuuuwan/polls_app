@@ -87,8 +87,8 @@ export default class PollView extends Component {
           isValid={hasSelectedOption}
           alertIfValid={
             <>
-              Ok. Now click <strong>Vote</strong> to submit your vote. You can
-              vote <strong>any number</strong> of times. Your{" "}
+              Looks good. Now click <strong>Vote</strong> to submit your vote.
+              You can vote <strong>any number</strong> of times. Your{" "}
               <strong>most recent</strong> vote will be counted
             </>
           }
