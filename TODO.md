@@ -1,8 +1,7 @@
 # HIGH
 
-* Privacy Design
-* Plan for Registration
-* Create Custom Polls
+* Registration Problem (RP)
+
 
 # MEDIUM
 
