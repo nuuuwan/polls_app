@@ -4,14 +4,9 @@ import Radio from "@mui/material/Radio";
 
 import PercentageWidget from "../atoms/PercentageWidget";
 
-const STYLE = {
-  marginBottom: "5%",
-  paddingBottom: "5%",
-};
-
 export default function PollAnswer({ answer, totalCount, answerVotes }) {
   return (
-    <div style={STYLE}>
+    <div>
       <FormControlLabel
         value={answer}
         control={<Radio />}
