@@ -23,6 +23,7 @@ export default class App extends Component {
   }
 
   async componentDidMount() {
+    localStorage.clear();
     this.setState({
       geoInfo: await GhostUserX.getInfo(),
     });
