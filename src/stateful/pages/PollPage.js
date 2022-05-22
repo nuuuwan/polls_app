@@ -6,7 +6,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import PollsAppServer from "../../core/PollsAppServer";
 
 import PollView from "../../stateful/molecules/PollView";
-import CustomBottomNavigation from "../../nonstate/molecules/CustomBottomNavigation";
+import PollBottomNavigation from "../../nonstate/molecules/PollBottomNavigation";
 import NewPollDrawer from "../../stateful/molecules/NewPollDrawer";
 import URLContext from "../../core/URLContext";
 
@@ -85,7 +85,7 @@ export default class PollPage extends Component {
           onClose={this.onCloseNewPollDrawer.bind(this)}
           onAddNewPoll={this.onAddNewPoll.bind(this)}
         />
-        <CustomBottomNavigation
+        <PollBottomNavigation
           onClickNewPoll={this.onClickNewPoll.bind(this)}
           onClickPreviousPoll={this.onClickPreviousPoll.bind(this)}
           onClickNextPoll={this.onClickNextPoll.bind(this)}

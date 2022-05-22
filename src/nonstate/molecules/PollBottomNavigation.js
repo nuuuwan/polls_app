@@ -7,7 +7,7 @@ import AddIcon from "@mui/icons-material/Add";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
-export default function CustomBottomNavigation({
+export default function PollBottomNavigation({
   onClickNewPoll,
   onClickPreviousPoll,
   onClickNextPoll,
