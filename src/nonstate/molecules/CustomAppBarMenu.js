@@ -2,10 +2,8 @@ import React, { useState } from "react";
 import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
-import GitHubIcon from "@mui/icons-material/GitHub";
-import HelpIcon from "@mui/icons-material/Help";
-import BallotIcon from "@mui/icons-material/Ballot";
 
+import { PollIcon, HelpIcon, CodeIcon } from "../../constants/Constants.js";
 import HelpPage from "../../stateful/pages/HelpPage";
 import PollPage from "../../stateful/pages/PollPage";
 
@@ -42,7 +40,7 @@ export default function CustomAppBarMenu({ onSelectPage }) {
       <Menu anchorEl={anchorEl} open={open} onClose={onClose}>
         <CustomAppBarMenuItem
           label="Polls"
-          Icon={BallotIcon}
+          Icon={PollIcon}
           onClick={(e) => onSelectPageInner(PollPage)}
         />
         <CustomAppBarMenuItem
@@ -52,7 +50,7 @@ export default function CustomAppBarMenu({ onSelectPage }) {
         />
         <CustomAppBarMenuItem
           label="Code"
-          Icon={GitHubIcon}
+          Icon={CodeIcon}
           onClick={onClickCode}
         />
       </Menu>
