@@ -18,8 +18,8 @@ import PollAnswer from "../../nonstate/molecules/PollAnswer";
 import PollStatisticsView from "../../nonstate/molecules/PollStatisticsView";
 
 const STYLE = {
-  margin: 3,
-  padding: 2,
+  margin: 2,
+  padding: 1,
 };
 
 const ANSWER_NONE = "";
