@@ -11,6 +11,15 @@ const PAGE_IDX = {
 const DEFAULT_PAGE = PollPage;
 
 export default class URLContext {
+  static getPageName(Page) {
+    for (let [pageName0, Page0] of Object.entries(PAGE_IDX)) {
+      if (Page === Page0) {
+        return pageName0;
+      }
+    }
+    return undefined;
+  }
+
   static getURL() {
     return window.location.href;
   }
@@ -20,7 +29,7 @@ export default class URLContext {
   }
 
   static contextToURL({ Page, pollID }) {
-    return "#" + Page.name + "#" + pollID;
+    return "#" + URLContext.getPageName(Page) + "#" + pollID;
   }
 
   static urlToContext(url) {
