@@ -9,6 +9,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import IconButton from "@mui/material/IconButton";
 import AddIcon from "@mui/icons-material/Add";
 
+import { PollIcon } from "../../constants/Constants.js";
 import IDXFuture from "../../base/IDXFuture";
 import Poll from "../../core/Poll";
 import PollsAppServer from "../../core/PollsAppServer";
@@ -65,7 +66,11 @@ export default class NewPollDrawer extends Component {
               </IconButton>
             </Box>
 
-            <Typography variant="h6">Add New Poll</Typography>
+            <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
+              <Typography variant="h6">Add New Poll</Typography>
+              <PollIcon />
+            </Stack>
+
             <ValidationBox
               isValid={isQuestionValid}
               alertIfValid="Ok"
