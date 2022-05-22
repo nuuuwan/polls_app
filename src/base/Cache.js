@@ -7,11 +7,15 @@ export default class Cache {
 
     const coldItem = await asyncFallback();
     try {
-      localStorage.setItem(cacheKey, JSON.stringify(coldItem));
+      Cache.set(cacheKey, coldItem);
     } catch (QuotaExceededError) {
       localStorage.clear();
     }
     return coldItem;
+  }
+
+  static set(cacheKey, item) {
+    localStorage.setItem(cacheKey, JSON.stringify(item));
   }
 
   static clear(cacheKey) {
