@@ -81,7 +81,7 @@ export default class NewPollDrawer extends Component {
             <ListInput
               required
               label="Answer List"
-              placeholder="Enter the list of possible answers"
+              placeholder="Add possible answers..."
               value={answerList}
               onChange={this.onChangeAnswerList.bind(this)}
             />
