@@ -6,10 +6,6 @@ const STYLE_VERSION = {
   fontSize: "50%",
   color: "gray",
   textAlign: "center",
-  position: "fixed",
-  bottom: 60,
-  left: 0,
-  right: 0,
 };
 
 export default function VersionWidget() {
