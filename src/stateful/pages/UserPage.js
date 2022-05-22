@@ -3,6 +3,7 @@ import * as React from "react";
 
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
+import Alert from "@mui/material/Alert";
 
 import ReactCountryFlag from "react-country-flag";
 
@@ -52,6 +53,10 @@ export default class UserPage extends Component {
             </>
           }
         />
+        <Alert severity="info">
+          This is a auto-generated user account, based on your location, country
+          and IP address.
+        </Alert>
       </Paper>
     );
   }
