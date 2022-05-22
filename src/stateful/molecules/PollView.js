@@ -6,10 +6,9 @@ import Paper from "@mui/material/Paper";
 import RadioGroup from "@mui/material/RadioGroup";
 import Typography from "@mui/material/Typography";
 import CircularProgress from "@mui/material/CircularProgress";
-import BallotIcon from "@mui/icons-material/Ballot";
 
 import { TimeX, MathX } from "@nuuuwan/utils-js-dev";
-
+import { PollIcon } from "../../constants/Constants.js";
 import PollsAppServer from "../../core/PollsAppServer";
 import GhostUserX from "../../base/GhostUserX";
 import PollResult from "../../core/PollResult";
@@ -75,7 +74,7 @@ export default class PollView extends Component {
       <Box key={"poll-" + pollExtended.pollID + answerToCount} sx={STYLE}>
         <FormControl>
           <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
-            <BallotIcon />
+            <PollIcon />
             <Typography variant="h6">{pollExtended.question}</Typography>
           </Stack>
 
@@ -112,6 +111,6 @@ export default class PollView extends Component {
   }
 
   render() {
-    return <Paper sx={{maxWidth: 600}}>{this.renderInner()}</Paper>;
+    return <Paper sx={{ maxWidth: 600 }}>{this.renderInner()}</Paper>;
   }
 }
