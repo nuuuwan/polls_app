@@ -1,7 +1,6 @@
 import { Component } from "react";
 import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
-import FormControl from "@mui/material/FormControl";
 import Paper from "@mui/material/Paper";
 import RadioGroup from "@mui/material/RadioGroup";
 import Typography from "@mui/material/Typography";
@@ -72,37 +71,34 @@ export default class PollView extends Component {
 
     return (
       <Box key={"poll-" + pollExtended.pollID + answerToCount} sx={STYLE}>
-        <FormControl>
-          <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
-            <PollIcon />
-            <Typography variant="h6">{pollExtended.question}</Typography>
-          </Stack>
+        <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
+          <PollIcon />
+          <Typography variant="h6">{pollExtended.question}</Typography>
+        </Stack>
 
-          <Box sx={{m: 2}}>
-            <RadioGroup value={selectedAnswer} onChange={onChange}>
-              {pollExtended.answerList.map(function (answer, iAnswer) {
-                const answerVotes = answerToCount[answer]
-                  ? answerToCount[answer]
-                  : 0;
-                return (
-                  <PollAnswer
-                    key={"poll-answer-" + iAnswer}
-                    answer={answer}
-                    answerVotes={answerVotes}
-                    totalCount={totalCount}
-                  />
-                );
-              })}
-            </RadioGroup>
-          </Box>
+        <Box sx={{ m: 2 }}>
+          <RadioGroup value={selectedAnswer} onChange={onChange}>
+            {pollExtended.answerList.map(function (answer, iAnswer) {
+              const answerVotes = answerToCount[answer]
+                ? answerToCount[answer]
+                : 0;
+              return (
+                <PollAnswer
+                  key={"poll-answer-" + iAnswer}
+                  answer={answer}
+                  answerVotes={answerVotes}
+                  totalCount={totalCount}
+                />
+              );
+            })}
+          </RadioGroup>
+        </Box>
 
-          <PollStatisticsView
-            answerList={pollExtended.answerList}
-            totalCount={totalCount}
-            answerToCount={answerToCount}
-          />
-
-        </FormControl>
+        <PollStatisticsView
+          answerList={pollExtended.answerList}
+          totalCount={totalCount}
+          answerToCount={answerToCount}
+        />
 
         <Box display="flex" justifyContent="flex-end">
           <VoteButton
