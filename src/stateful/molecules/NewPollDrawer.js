@@ -73,7 +73,7 @@ export default class NewPollDrawer extends Component {
 
             <ValidationBox
               isValid={isQuestionValid}
-              alertIfValid="Ok"
+              alertIfValid="Looks good."
               alertIfInvalid={
                 <>
                   A question must be at least{" "}
@@ -94,7 +94,7 @@ export default class NewPollDrawer extends Component {
 
             <ValidationBox
               isValid={isAnswerListValid}
-              alertIfValid="Ok. You can add more answers"
+              alertIfValid="Looks good. You can add more answers"
               alertIfInvalid={
                 <>
                   You must specify at least{" "}
