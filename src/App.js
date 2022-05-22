@@ -5,12 +5,11 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 import GhostUserX from "./base/GhostUserX";
 import PollPage from "./stateful/pages/PollPage";
-import VersionWidget from "./nonstate/atoms/VersionWidget";
 import CustomAppBar from "./nonstate/molecules/CustomAppBar";
 
 const STYLE = {
-  padding: 2,
-  marginTop: 10,
+  padding: 3,
+  marginTop: 5,
   marginBottom: 10,
 };
 
@@ -60,10 +59,7 @@ export default class App extends Component {
 
     return (
       <ThemeProvider theme={theme}>
-        <Box sx={STYLE}>
-          {this.renderInner()}
-          <VersionWidget />
-        </Box>
+        <Box sx={STYLE}>{this.renderInner()}</Box>
       </ThemeProvider>
     );
   }
