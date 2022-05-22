@@ -32,11 +32,13 @@ export default class PollsAppServer {
   }
 
   static async addPoll(poll) {
+    let pollIDs = await PollsAppServer.getPollIDs();
     const d = await AWSDynamoDBX.generic({
       cmd: "put-poll",
       d: Poll.toDict(poll),
     });
-    Cache.clear("getPollIDs");
+    pollIDs.push(poll.pollID);
+    Cache.set("getPollIDs", pollIDs);
     return Poll.fromDict(d);
   }
 
