@@ -19,6 +19,6 @@ export default class GhostUserX {
   }
 
   static async getInfo() {
-    return await Cache.get('GhostUserX.getInfo', GhostUserX.getGeoLocationInfo);
+    return await Cache.get("GhostUserX.getInfo", GhostUserX.getGeoLocationInfo);
   }
 }
