@@ -1,7 +1,7 @@
 import { DataStructures } from "@nuuuwan/utils-js-dev";
 
 export default function EquilateralPolygon({ cx, cy, r, n, color }) {
-  if (n >= 7) {
+  if (n > 4) {
     return (
       <svg>
         <circle cx={cx} cy={cy} r={r} fill={color} stroke="none" />

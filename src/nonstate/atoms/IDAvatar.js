@@ -37,7 +37,7 @@ export default function IDAvatar({ size, id }) {
           return colorRow.map(function (idSubstring, iCol) {
             const color = idSubstring ? "#" + idSubstring : COLOR_BLANK;
             const idSubstringInt = parseInt(idSubstring, 16);
-            const n = (idSubstringInt % 6) + 3;
+            const n = (idSubstringInt % 3) + 3;
             return (
               <EquilateralPolygon
                 key={"cell-shape-" + iRow + "-" + iCol}
