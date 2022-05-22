@@ -21,11 +21,7 @@ export default class PollPage extends Component {
 
   async reloadData() {
     const pollIDs = await PollsAppServer.getPollIDs();
-    const activePollId = pollIDs ? pollIDs[0].pollID : null;
-    this.setState({
-      pollIDs,
-      activePollId,
-    });
+    this.setState({pollIDs});
   }
 
   async componentDidMount() {
@@ -50,12 +46,18 @@ export default class PollPage extends Component {
     });
   }
 
-  async onCloseNewPollDrawer(pollID) {
+  async onAddNewPoll(pollID) {
     let { pollIDs } = this.state;
     pollIDs.push(pollID);
     this.setState({
       activePollI: pollIDs.length - 1,
       pollIDs: pollIDs,
+      showNewPollDrawer: false,
+    });
+  }
+
+  async onCloseNewPollDrawer(pollID) {
+    this.setState({
       showNewPollDrawer: false,
     });
   }
@@ -73,6 +75,7 @@ export default class PollPage extends Component {
         <NewPollDrawer
           isOpen={showNewPollDrawer}
           onClose={this.onCloseNewPollDrawer.bind(this)}
+          onAddNewPoll={this.onAddNewPoll.bind(this)}
         />
         <CustomBottomNavigation
           onClickNewPoll={this.onClickNewPoll.bind(this)}
