@@ -14,7 +14,7 @@ import PollResult from "../../core/PollResult";
 import VoteButton from "../../nonstate/atoms/VoteButton";
 import PollAnswer from "../../nonstate/molecules/PollAnswer";
 import PollStatisticsView from "../../nonstate/molecules/PollStatisticsView";
-import ValidationAlert from "../../nonstate/molecules/ValidationAlert";
+import ValidationBox from "../../nonstate/molecules/ValidationBox";
 
 const STYLE = {
   margin: 2,
@@ -70,7 +70,7 @@ export default class PollView extends Component {
       this.setSelectedAnswer(e.target.value);
     }.bind(this);
 
-    const disableVoteButton = selectedAnswer === ANSWER_NONE;
+    const hasSelectedOption = selectedAnswer !== ANSWER_NONE;
 
     return (
       <Stack
@@ -83,23 +83,39 @@ export default class PollView extends Component {
           <Typography variant="subtitle1">{pollExtended.question}</Typography>
         </Stack>
 
-        <Box sx={{ m: 2 }}>
-          <RadioGroup value={selectedAnswer} onChange={onChange}>
-            {pollExtended.answerList.map(function (answer, iAnswer) {
-              const answerVotes = answerToCount[answer]
-                ? answerToCount[answer]
-                : 0;
-              return (
-                <PollAnswer
-                  key={"poll-answer-" + iAnswer}
-                  answer={answer}
-                  answerVotes={answerVotes}
-                  totalCount={totalCount}
-                />
-              );
-            })}
-          </RadioGroup>
-        </Box>
+        <ValidationBox
+          isValid={hasSelectedOption}
+          alertIfValid={
+            <>
+              Ok. Now click <strong>Vote</strong> to submit your vote. You can
+              vote <strong>any number</strong> of times. Your{" "}
+              <strong>most recent</strong> vote will be counted
+            </>
+          }
+          alertIfInvalid={
+            <>
+              Select <strong>exactly one</strong> answer.
+            </>
+          }
+        >
+          <Box sx={{ m: 2 }}>
+            <RadioGroup value={selectedAnswer} onChange={onChange}>
+              {pollExtended.answerList.map(function (answer, iAnswer) {
+                const answerVotes = answerToCount[answer]
+                  ? answerToCount[answer]
+                  : 0;
+                return (
+                  <PollAnswer
+                    key={"poll-answer-" + iAnswer}
+                    answer={answer}
+                    answerVotes={answerVotes}
+                    totalCount={totalCount}
+                  />
+                );
+              })}
+            </RadioGroup>
+          </Box>
+        </ValidationBox>
 
         <PollStatisticsView
           answerList={pollExtended.answerList}
@@ -107,12 +123,8 @@ export default class PollView extends Component {
           answerToCount={answerToCount}
         />
 
-        <ValidationAlert isInvalid={disableVoteButton}>
-          Select exactly one answer
-        </ValidationAlert>
-
         <Box display="flex" justifyContent="flex-end">
-          <VoteButton onClick={onClickVote} disabled={disableVoteButton} />
+          <VoteButton onClick={onClickVote} disabled={!hasSelectedOption} />
         </Box>
       </Stack>
     );
