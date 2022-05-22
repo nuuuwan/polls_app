@@ -78,26 +78,30 @@ export default class PollView extends Component {
             <Typography variant="h6">{pollExtended.question}</Typography>
           </Stack>
 
-          <RadioGroup value={selectedAnswer} onChange={onChange}>
-            {pollExtended.answerList.map(function (answer, iAnswer) {
-              const answerVotes = answerToCount[answer]
-                ? answerToCount[answer]
-                : 0;
-              return (
-                <PollAnswer
-                  key={"poll-answer-" + iAnswer}
-                  answer={answer}
-                  answerVotes={answerVotes}
-                  totalCount={totalCount}
-                />
-              );
-            })}
-          </RadioGroup>
+          <Box sx={{m: 2}}>
+            <RadioGroup value={selectedAnswer} onChange={onChange}>
+              {pollExtended.answerList.map(function (answer, iAnswer) {
+                const answerVotes = answerToCount[answer]
+                  ? answerToCount[answer]
+                  : 0;
+                return (
+                  <PollAnswer
+                    key={"poll-answer-" + iAnswer}
+                    answer={answer}
+                    answerVotes={answerVotes}
+                    totalCount={totalCount}
+                  />
+                );
+              })}
+            </RadioGroup>
+          </Box>
+
           <PollStatisticsView
             answerList={pollExtended.answerList}
             totalCount={totalCount}
             answerToCount={answerToCount}
           />
+
         </FormControl>
 
         <Box display="flex" justifyContent="flex-end">
