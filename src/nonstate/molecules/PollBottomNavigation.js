@@ -6,11 +6,13 @@ import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import AddIcon from "@mui/icons-material/Add";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 
 export default function PollBottomNavigation({
   onClickNewPoll,
   onClickPreviousPoll,
   onClickNextPoll,
+  onClickCopyPoll,
 }) {
   return (
     <Paper
@@ -27,6 +29,11 @@ export default function PollBottomNavigation({
           label="Add New Poll"
           icon={<AddIcon />}
           onClick={onClickNewPoll}
+        />
+        <BottomNavigationAction
+          label="Copy Poll URL"
+          icon={<ContentCopyIcon />}
+          onClick={onClickCopyPoll}
         />
         <BottomNavigationAction
           label="Next Poll"

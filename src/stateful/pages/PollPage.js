@@ -1,6 +1,7 @@
 import { Component } from "react";
 import * as React from "react";
 
+import Snackbar from "@mui/material/Snackbar";
 import CircularProgress from "@mui/material/CircularProgress";
 
 import PollsAppServer from "../../core/PollsAppServer";
@@ -17,6 +18,7 @@ export default class PollPage extends Component {
       pollIDs: undefined,
       activePollI: undefined,
       showNewPollDrawer: false,
+      isSnackbarOpen: false,
     };
   }
 
@@ -52,6 +54,15 @@ export default class PollPage extends Component {
     });
   }
 
+  onClickCopyPoll() {
+    navigator.clipboard.writeText(URLContext.getURL());
+    this.setState({ isSnackbarOpen: true });
+  }
+
+  onCloseSnackbar() {
+    this.setState({ isSnackbarOpen: false });
+  }
+
   async onAddNewPoll(pollID) {
     let { pollIDs } = this.state;
     pollIDs.push(pollID);
@@ -69,13 +80,15 @@ export default class PollPage extends Component {
   }
 
   render() {
-    const { pollIDs, activePollI, showNewPollDrawer } = this.state;
+    const { pollIDs, activePollI, showNewPollDrawer, isSnackbarOpen } =
+      this.state;
     if (!pollIDs) {
       return <CircularProgress />;
     }
 
     const pollID = pollIDs[activePollI];
     URLContext.setContext({ Page: PollPage, pollID });
+    const messageSnackbar = <div>Copied Poll URL to Clipboard.</div>;
 
     return (
       <div>
@@ -89,6 +102,13 @@ export default class PollPage extends Component {
           onClickNewPoll={this.onClickNewPoll.bind(this)}
           onClickPreviousPoll={this.onClickPreviousPoll.bind(this)}
           onClickNextPoll={this.onClickNextPoll.bind(this)}
+          onClickCopyPoll={this.onClickCopyPoll.bind(this)}
+        />
+        <Snackbar
+          open={isSnackbarOpen}
+          autoHideDuration={2000}
+          onClose={this.onCloseSnackbar.bind(this)}
+          message={messageSnackbar}
         />
       </div>
     );
