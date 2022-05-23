@@ -16,6 +16,7 @@
 * Clear only data. Not user info. To avoid multiple logins.
 
 * Search for Poll
+* Design better experience on Vote Poll - as of now, nothing really happens
 
 # LOW
 
