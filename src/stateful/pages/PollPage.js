@@ -44,7 +44,7 @@ export default class PollPage extends Component {
 
   onClickRandomPoll() {
     const { pollIDs } = this.state;
-    const activePollI = MathX.randomInt(0, pollIDs.length - 1);
+    const activePollI = MathX.randomInt(0, pollIDs.length);
     this.setState({ activePollI });
   }
 
