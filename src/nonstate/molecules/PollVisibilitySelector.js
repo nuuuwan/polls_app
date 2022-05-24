@@ -26,7 +26,7 @@ export default function PollVisibilitySelector({ visibility, onChange }) {
       chossen <strong>"unlisted"</strong>,
       which means that this poll <strong>will not</strong> appear
       when users search for polls
-      and on "Random Public Polls".
+      and on "Random Poll".
 
       The only way to share this poll is with a link.
       Anyone with a link to this poll can see it.

@@ -31,12 +31,12 @@ export default function PollBottomNavigation({
           onClick={onClickTweet}
         />
         <BottomNavigationAction
-          label="Add New Poll"
+          label="Add New"
           icon={<AddIcon />}
           onClick={onClickNewPoll}
         />
         <BottomNavigationAction
-          label="Random Public Poll"
+          label="Random"
           icon={<ShuffleIcon />}
           onClick={onClickRandomPoll}
         />
