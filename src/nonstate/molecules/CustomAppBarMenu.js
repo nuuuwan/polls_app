@@ -9,7 +9,7 @@ import {
   HelpIcon,
   CodeIcon,
   UserIcon,
-} from "../../constants/Constants.js";
+} from "../../constants/CommonIcons.js";
 import HelpPage from "../../stateful/pages/HelpPage";
 import PollPage from "../../stateful/pages/PollPage";
 import UserPage from "../../stateful/pages/UserPage";

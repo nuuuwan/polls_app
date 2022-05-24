@@ -8,7 +8,7 @@ import Typography from "@mui/material/Typography";
 import CircularProgress from "@mui/material/CircularProgress";
 
 import { TimeX, MathX } from "@nuuuwan/utils-js-dev";
-import { PollIcon } from "../../constants/Constants.js";
+import { PollIcon } from "../../constants/CommonIcons.js";
 import PollsAppServer from "../../core/PollsAppServer";
 import AudioX from "../../core/AudioX";
 import GhostUserX from "../../base/GhostUserX";

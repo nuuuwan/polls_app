@@ -5,7 +5,7 @@ import Typography from "@mui/material/Typography";
 import { URL_GITHUB_REPO_POLLS_APP } from "../../constants/Constants";
 import SimpleLink from "../../nonstate/atoms/SimpleLink";
 import FAQ from "../../nonstate/molecules/FAQ";
-import { HelpIcon } from "../../constants/Constants.js";
+import { HelpIcon } from "../../constants/CommonIcons.js";
 import AlignCenter from "../../nonstate/atoms/AlignCenter";
 
 const FAQS = [
