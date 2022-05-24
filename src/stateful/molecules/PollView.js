@@ -2,6 +2,7 @@ import { Component } from "react";
 import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
+import FormControl from "@mui/material/FormControl";
 import RadioGroup from "@mui/material/RadioGroup";
 import Typography from "@mui/material/Typography";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -128,23 +129,25 @@ export default class PollView extends Component {
           }
         >
           <Box sx={{ m: 2 }}>
-            <RadioGroup value={selectedAnswer} onChange={onChange}>
-              {pollExtended.answerList.map(function (answer, iAnswer) {
-                const answerVotes = answerToCount[answer]
-                  ? answerToCount[answer]
-                  : 0;
-                return (
-                  <PollAnswer
-                    key={"poll-answer-" + iAnswer}
-                    answer={answer}
-                    answerVotes={answerVotes}
-                    totalCount={totalCount}
-                    showStatistics={showStatistics}
-                    userAnswer={userAnswer}
-                  />
-                );
-              })}
-            </RadioGroup>
+            <FormControl>
+              <RadioGroup value={selectedAnswer} onChange={onChange}>
+                {pollExtended.answerList.map(function (answer, iAnswer) {
+                  const answerVotes = answerToCount[answer]
+                    ? answerToCount[answer]
+                    : 0;
+                  return (
+                    <PollAnswer
+                      key={"poll-answer-" + iAnswer}
+                      answer={answer}
+                      answerVotes={answerVotes}
+                      totalCount={totalCount}
+                      showStatistics={showStatistics}
+                      userAnswer={userAnswer}
+                    />
+                  );
+                })}
+              </RadioGroup>
+            </FormControl>
           </Box>
         </ValidationBox>
 
