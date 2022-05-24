@@ -6,8 +6,8 @@ import PollResult from "./PollResult";
 
 export default class PollsAppServer {
   // General
-  static async getCacheKey(words) {
-    return words.join(":");
+  static getCacheKey(words) {
+    return "cacheKey:" + words.join(":");
   }
 
   // Polls
