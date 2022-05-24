@@ -25,6 +25,7 @@ export default class StatisticsXFuture {
       }
     }
     lower = Math.min(upper, lower);
-    return { lower, upper, p: pObserved };
+    const stdev = Math.min(pObserved - lower, upper - pObserved) / 2;
+    return { lower, upper, p: pObserved, stdev };
   }
 }
