@@ -6,6 +6,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import URLContext from "./core/URLContext";
 import GhostUserX from "./base/GhostUserX";
 import CustomAppBar from "./nonstate/molecules/CustomAppBar";
+import AudioX from "./core/AudioX";
 
 const STYLE = {
   padding: 3,
@@ -20,10 +21,12 @@ export default class App extends Component {
     super(props);
     const { Page } = URLContext.getContext();
     this.state = { Page, geoInfo: null };
+    this.audio = new AudioX();
   }
 
   async componentDidMount() {
     localStorage.clear();
+    this.audio.playVote();
     this.setState({
       geoInfo: await GhostUserX.getInfo(),
     });
