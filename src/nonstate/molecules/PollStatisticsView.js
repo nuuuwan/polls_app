@@ -13,28 +13,31 @@ export default function PollStatisticsView({
     <Typography variant="body2">{totalCount + " votes"}</Typography>
   );
 
-  const sortedAnswerStats = answerList
-    .map(function (answer) {
-      const answerVotes = answerToCount[answer] ? answerToCount[answer] : 0;
-      const { lower, upper, p } = StatisticsXFuture.getErrorBounds(
-        totalCount,
-        answerVotes
-      );
-      return { answer, lower, upper, p };
-    })
-    .sort(function (answerA, answerB) {
-      return answerB.p - answerA.p;
-    });
+  let significanceStr = "";
+  if (totalCount > StatisticsXFuture.MIN_STATISTICAL_N) {
+    const sortedAnswerStats = answerList
+      .map(function (answer) {
+        const answerVotes = answerToCount[answer] ? answerToCount[answer] : 0;
+        const { lower, upper, p } = StatisticsXFuture.getErrorBounds(
+          totalCount,
+          answerVotes
+        );
+        return { answer, lower, upper, p };
+      })
+      .sort(function (answerA, answerB) {
+        return answerB.p - answerA.p;
+      });
 
-  const topAnswerStats = sortedAnswerStats[0];
-  const nextAnswerStats = sortedAnswerStats[1];
+    const topAnswerStats = sortedAnswerStats[0];
+    const nextAnswerStats = sortedAnswerStats[1];
 
-  let significanceStr = "Too close to call";
-  const topLower = topAnswerStats.lower;
-  const nextUpper = nextAnswerStats.upper;
-  const gap = topLower - nextUpper;
-  if (gap > 0) {
-    significanceStr = `"${topAnswerStats.answer}" leads`;
+    significanceStr = "Too close to call";
+    const topLower = topAnswerStats.lower;
+    const nextUpper = nextAnswerStats.upper;
+    const gap = topLower - nextUpper;
+    if (gap > 0) {
+      significanceStr = `"${topAnswerStats.answer}" leads`;
+    }
   }
 
   return (
