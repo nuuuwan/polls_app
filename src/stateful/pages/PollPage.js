@@ -13,6 +13,7 @@ import PollBottomNavigation from "../../nonstate/molecules/PollBottomNavigation"
 import NewPollDrawer from "../../stateful/molecules/NewPollDrawer";
 import URLContext from "../../core/URLContext";
 import AudioX from "../../core/AudioX";
+import PollDirectory from "../../stateful/molecules/PollDirectory";
 
 export default class PollPage extends Component {
   constructor(props) {
@@ -118,6 +119,7 @@ export default class PollPage extends Component {
           onClose={this.onCloseSnackbar.bind(this)}
           message={messageSnackbar}
         />
+        <PollDirectory pollIDs={pollIDs} />
       </div>
     );
   }
