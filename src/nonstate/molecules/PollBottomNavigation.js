@@ -21,16 +21,6 @@ export default function PollBottomNavigation({
     >
       <BottomNavigation showLabels>
         <BottomNavigationAction
-          label="Random Public Poll"
-          icon={<ShuffleIcon />}
-          onClick={onClickRandomPoll}
-        />
-        <BottomNavigationAction
-          label="Add New Poll"
-          icon={<AddIcon />}
-          onClick={onClickNewPoll}
-        />
-        <BottomNavigationAction
           label="Copy"
           icon={<ContentCopyIcon />}
           onClick={onClickCopyPoll}
@@ -40,6 +30,17 @@ export default function PollBottomNavigation({
           icon={<TwitterIcon />}
           onClick={onClickTweet}
         />
+        <BottomNavigationAction
+          label="Add New Poll"
+          icon={<AddIcon />}
+          onClick={onClickNewPoll}
+        />        
+        <BottomNavigationAction
+          label="Random Public Poll"
+          icon={<ShuffleIcon />}
+          onClick={onClickRandomPoll}
+        />
+
       </BottomNavigation>
     </Paper>
   );
