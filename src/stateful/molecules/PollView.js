@@ -117,7 +117,6 @@ export default class PollView extends Component {
           alertIfInvalid={
             isSelectionUserAnswer ? (
               <>
-                You have voted <strong>"{selectedAnswer}"</strong> in this poll.
                 You can change your vote by selecting a different option. Polls
                 App will count your <strong>most recent</strong> vote.
               </>
