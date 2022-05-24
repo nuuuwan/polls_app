@@ -10,7 +10,9 @@ export default class PollsAppServer {
   static init() {
     const ghostUser = localStorage.getItem(CACHE_KEY_GHOST_USER);
     localStorage.clear();
-    localStorage.setItem(CACHE_KEY_GHOST_USER, ghostUser);
+    if (ghostUser) {
+      localStorage.setItem(CACHE_KEY_GHOST_USER, ghostUser);
+    }
   }
 
   static getCacheKey(words) {
