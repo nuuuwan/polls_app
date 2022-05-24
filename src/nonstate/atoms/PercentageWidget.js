@@ -1,6 +1,5 @@
 import Typography from "@mui/material/Typography";
 import StatisticsXFuture from "../../base/StatisticsXFuture";
-import { useTheme } from "@mui/material/styles";
 
 const SLIDER_WIDTH_P = 67;
 const HEIGHT = 18;
@@ -17,10 +16,6 @@ export default function PercentageWidget({ n, np, color }) {
   };
 
   const { lower, upper, p } = StatisticsXFuture.getErrorBounds(n, np);
-  const [lowerStr, upperStr] = [lower, upper].map((x) =>
-    parseInt(x * 100 + 0.5)
-  );
-
   const nStr = np + " votes";
 
   const widthLower = parseInt(lower * SLIDER_WIDTH_P + 0.5) + "%";
