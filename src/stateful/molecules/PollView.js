@@ -18,6 +18,7 @@ import PollAnswer from "../../nonstate/molecules/PollAnswer";
 import PollStatisticsView from "../../nonstate/molecules/PollStatisticsView";
 import ValidationBox from "../../nonstate/molecules/ValidationBox";
 import AlignCenter from "../../nonstate/atoms/AlignCenter";
+import { PublicIcon, UnlistedIcon } from "../../constants/CommonIcons";
 
 const STYLE = {
   margin: 2,
@@ -94,6 +95,8 @@ export default class PollView extends Component {
     const isVoteButtonDisabled = !hasSelectedOption || isSelectionUserAnswer;
 
     const showStatistics = hasUserVote;
+    const VisibilityIcon =
+      pollExtended.visibility === "public" ? PublicIcon : UnlistedIcon;
 
     return (
       <Stack
@@ -101,6 +104,13 @@ export default class PollView extends Component {
         sx={STYLE}
         spacing={2}
       >
+        <AlignCenter>
+          <VisibilityIcon sx={{ fontSize: "small", color: "gray" }} />
+          <Typography sx={{ fontSize: "small", color: "gray" }}>
+            {pollExtended.visibility}
+          </Typography>
+        </AlignCenter>
+
         <AlignCenter>
           <PollIcon />
           <Typography variant="subtitle1">{pollExtended.question}</Typography>
