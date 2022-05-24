@@ -19,7 +19,7 @@ export default class PollPage extends Component {
     super(props);
     this.state = {
       pollIDs: undefined,
-      activePollI: undefined,
+      pollID: undefined,
       showNewPollDrawer: false,
       isSnackbarOpen: false,
     };
@@ -27,13 +27,14 @@ export default class PollPage extends Component {
   }
 
   async reloadData() {
-    const { pollID } = URLContext.getContext();
+    let { pollID } = URLContext.getContext();
     const pollIDs = await PollsAppServer.getPollIDs();
 
-    let activePollI = pollIDs.indexOf(pollID);
-    activePollI = activePollI === -1 ? 0 : activePollI;
+    if (!pollID) {
+      pollID = pollIDs[0];
+    }
 
-    this.setState({ pollIDs, activePollI });
+    this.setState({ pollIDs, pollID, showNewPollDrawer: false });
   }
 
   async componentDidMount() {
@@ -46,12 +47,12 @@ export default class PollPage extends Component {
   }
 
   onClickRandomPoll() {
-    const { pollIDs, activePollI } = this.state;
-    let newActivePollI = activePollI;
-    while (newActivePollI === activePollI) {
-      newActivePollI = MathX.randomInt(0, pollIDs.length);
+    const { pollIDs, pollID } = this.state;
+    let newPollID = pollID;
+    while (newPollID === pollID) {
+      newPollID = pollIDs[MathX.randomInt(0, pollIDs.length)];
     }
-    this.setState({ activePollI: newActivePollI });
+    this.setState({ pollID: newPollID });
     this.audio.playClick();
   }
 
@@ -79,13 +80,8 @@ export default class PollPage extends Component {
   }
 
   async onAddNewPoll(pollID) {
-    let { pollIDs } = this.state;
-    pollIDs.push(pollID);
-    this.setState({
-      activePollI: pollIDs.length - 1,
-      pollIDs: pollIDs,
-      showNewPollDrawer: false,
-    });
+    URLContext.setContext({ Page: PollPage, pollID });
+    await this.reloadData();
   }
 
   async onCloseNewPollDrawer(pollID) {
@@ -95,13 +91,11 @@ export default class PollPage extends Component {
   }
 
   render() {
-    const { pollIDs, activePollI, showNewPollDrawer, isSnackbarOpen } =
-      this.state;
+    const { pollIDs, pollID, showNewPollDrawer, isSnackbarOpen } = this.state;
     if (!pollIDs) {
       return <CircularProgress />;
     }
 
-    const pollID = pollIDs[activePollI];
     URLContext.setContext({ Page: PollPage, pollID });
     const messageSnackbar = <div>Copied Poll URL to Clipboard.</div>;
 
