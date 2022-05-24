@@ -14,11 +14,19 @@ export default class AudioX {
     };
   }
 
+  pauseAll() {
+    Object.values(this.tracks).forEach(function (track) {
+      track.pause();
+    });
+  }
+
   playVote() {
+    this.pauseAll();
     this.tracks.vote.play();
   }
 
   playClick() {
+    this.pauseAll();
     this.tracks.click.play();
   }
 }
