@@ -23,7 +23,6 @@ export default class PollPage extends Component {
       showNewPollDrawer: false,
       isSnackbarOpen: false,
     };
-    this.audio = new AudioX();
   }
 
   async reloadData() {
@@ -43,7 +42,7 @@ export default class PollPage extends Component {
 
   onClickNewPoll() {
     this.setState({ showNewPollDrawer: true });
-    this.audio.playClick();
+    AudioX.playClick();
   }
 
   onClickRandomPoll() {
@@ -53,13 +52,13 @@ export default class PollPage extends Component {
       newPollID = pollIDs[MathX.randomInt(0, pollIDs.length)];
     }
     this.setState({ pollID: newPollID });
-    this.audio.playClick();
+    AudioX.playClick();
   }
 
   onClickCopyPoll() {
     navigator.clipboard.writeText(URLContext.getURL());
     this.setState({ isSnackbarOpen: true });
-    this.audio.playClick();
+    AudioX.playClick();
   }
 
   onClickTweet() {
@@ -72,7 +71,7 @@ export default class PollPage extends Component {
     const twitterURL =
       "http://twitter.com/intent/tweet?text=" + encodeURIComponent(tweetText);
     window.open(twitterURL, "_blank");
-    this.audio.playClick();
+    AudioX.playClick();
   }
 
   onCloseSnackbar() {

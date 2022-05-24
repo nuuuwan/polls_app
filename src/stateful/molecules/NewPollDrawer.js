@@ -35,7 +35,6 @@ export default class NewPollDrawer extends Component {
       answerList: DEFAULT_ANSWER_LIST,
       visibility: DEFAULT_VISIBILITY,
     };
-    this.audio = new AudioX();
   }
 
   onChangeQuestion(e) {
@@ -58,7 +57,7 @@ export default class NewPollDrawer extends Component {
     const pollID = IDXFuture.getRandomID();
     const poll = new Poll(pollID, question.trim(), answerList, visibility);
     await PollsAppServer.addPoll(poll);
-    this.audio.playVote();
+    AudioX.playVote();
     onAddNewPoll(pollID);
 
     this.setState({

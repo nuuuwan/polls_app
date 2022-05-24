@@ -22,8 +22,6 @@ import VersionWidget from "../../nonstate/atoms/VersionWidget";
 export default function CustomAppBarMenu({ onSelectPage, Page }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
-  const audio = new AudioX();
-
   const onClick = function (e) {
     setAnchorEl(e.currentTarget);
   };
@@ -35,13 +33,13 @@ export default function CustomAppBarMenu({ onSelectPage, Page }) {
   const onClickCode = function () {
     window.open(URL_GITHUB_REPO_POLLS_APP, "_blank");
     onClose();
-    audio.playVote();
+    AudioX.playVote();
   };
 
   const onSelectPageInner = function (Page) {
     onSelectPage(Page);
     onClose();
-    audio.playClick();
+    AudioX.playClick();
   };
 
   const onClickRefresh = function () {

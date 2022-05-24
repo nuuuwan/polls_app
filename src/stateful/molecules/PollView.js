@@ -34,7 +34,6 @@ export default class PollView extends Component {
       pollExtended: undefined,
       hasSubmittedVote: false,
     };
-    this.audio = new AudioX();
   }
 
   async reloadData(hasSubmittedVote) {
@@ -55,7 +54,7 @@ export default class PollView extends Component {
   }
 
   setSelectedAnswer(selectedAnswer) {
-    this.audio.playClick();
+    AudioX.playClick();
     this.setState({ selectedAnswer, hasSubmittedVote: false });
   }
 
@@ -79,7 +78,7 @@ export default class PollView extends Component {
         geoInfo
       );
       await PollsAppServer.addPollResult(pollResult);
-      this.audio.playVote();
+      AudioX.playVote();
       await this.reloadData(true);
     }.bind(this);
 
