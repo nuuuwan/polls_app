@@ -12,6 +12,7 @@ import PollView from "../../stateful/molecules/PollView";
 import PollBottomNavigation from "../../nonstate/molecules/PollBottomNavigation";
 import NewPollDrawer from "../../stateful/molecules/NewPollDrawer";
 import URLContext from "../../core/URLContext";
+import AudioX from "../../core/AudioX"
 
 export default class PollPage extends Component {
   constructor(props) {
@@ -22,6 +23,7 @@ export default class PollPage extends Component {
       showNewPollDrawer: false,
       isSnackbarOpen: false,
     };
+    this.audio = new AudioX();
   }
 
   async reloadData() {
@@ -54,6 +56,7 @@ export default class PollPage extends Component {
 
   onClickCopyPoll() {
     navigator.clipboard.writeText(URLContext.getURL());
+    this.audio.playClick();
     this.setState({ isSnackbarOpen: true });
   }
 
