@@ -85,14 +85,11 @@ export default class NewPollDrawer extends Component {
     return (
       <Drawer anchor="right" open={isOpen} onClose={onClose}>
         <Box sx={style}>
-          <Stack spacing={2}>
-            <Box display="flex" justifyContent="flex-end">
+          <Stack spacing={3}>
+            <AlignCenter>
               <IconButton onClick={onClose}>
                 <CloseIcon />
               </IconButton>
-            </Box>
-
-            <AlignCenter>
               <Typography variant="h6">Add New Poll</Typography>
               <PollIcon />
             </AlignCenter>
