@@ -33,8 +33,8 @@ export default class PollsAppServer {
     return PollExtended.fromDict(d);
   }
 
-  static async getPollExtendedCacheKey(pollID, userID) {
-    return ["getPollExtended", pollID, userID];
+  static getPollExtendedCacheKey(pollID, userID) {
+    return PollsAppServer.getCacheKey(["getPollExtended", pollID, userID]);
   }
 
   static async getPollExtended(pollID, userID) {
