@@ -8,6 +8,7 @@ import TextField from "@mui/material/TextField";
 import CloseIcon from "@mui/icons-material/Close";
 import IconButton from "@mui/material/IconButton";
 import AddIcon from "@mui/icons-material/Add";
+import FormLabel from '@mui/material/FormLabel';
 
 import { PollIcon } from "../../constants/Constants";
 import IDXFuture from "../../base/IDXFuture";
@@ -77,7 +78,7 @@ export default class NewPollDrawer extends Component {
 
     return (
       <Drawer anchor="right" open={isOpen} onClose={onClose}>
-        <Box sx={{ m: 1, p: 3, width: 300 }}>
+        <Box sx={{ m: 1, p: 1, width: 300 }}>
           <Stack spacing={2}>
             <Box display="flex" justifyContent="flex-end">
               <IconButton onClick={onClose}>
@@ -101,10 +102,10 @@ export default class NewPollDrawer extends Component {
                 </>
               }
             >
+              <FormLabel>{"Question"}</FormLabel>
               <TextField
                 required
                 multiline
-                label="Poll Question"
                 value={question}
                 placeholder="Ask a question..."
                 onChange={this.onChangeQuestion.bind(this)}
