@@ -41,8 +41,8 @@ export default class PollPage extends Component {
   }
 
   onClickNewPoll() {
-    this.audio.playClick();
     this.setState({ showNewPollDrawer: true });
+    this.audio.playClick();
   }
 
   onClickRandomPoll() {
@@ -52,25 +52,26 @@ export default class PollPage extends Component {
       newActivePollI = MathX.randomInt(0, pollIDs.length);
     }
     this.setState({ activePollI: newActivePollI });
+    this.audio.playClick();
   }
 
   onClickCopyPoll() {
     navigator.clipboard.writeText(URLContext.getURL());
-    this.audio.playClick();
     this.setState({ isSnackbarOpen: true });
+    this.audio.playClick();
   }
 
   onClickTweet() {
-    this.audio.playClick();
     const tweetText = [
-      "Checkout this new poll",
+      "🗳 Checkout this #PollsAppLK poll",
       "",
-      "#SriLanka #PollsAppLK",
+      "#SriLanka",
       URLContext.getURL(),
     ].join("\n");
     const twitterURL =
       "http://twitter.com/intent/tweet?text=" + encodeURIComponent(tweetText);
     window.open(twitterURL, "_blank");
+    this.audio.playClick();
   }
 
   onCloseSnackbar() {
