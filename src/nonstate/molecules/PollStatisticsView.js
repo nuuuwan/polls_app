@@ -1,6 +1,8 @@
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import StatisticsXFuture from "../../base/StatisticsXFuture";
+import AlignCenter from "../../nonstate/atoms/AlignCenter"
+
 export default function PollStatisticsView({
   answerList,
   totalCount,
@@ -10,10 +12,6 @@ export default function PollStatisticsView({
   const renderedTotalVotes = (
     <Typography variant="body2">{totalCount + " votes"}</Typography>
   );
-
-  if (totalCount < StatisticsXFuture.MIN_STATISTICAL_N) {
-    return <Stack direction="column">{renderedTotalVotes}</Stack>;
-  }
 
   const sortedAnswerStats = answerList
     .map(function (answer) {
@@ -41,10 +39,12 @@ export default function PollStatisticsView({
 
   return (
     <Stack direction="column">
+      <AlignCenter>
+      {renderedTotalVotes}
       <Typography variant="caption" sx={{ color: "gray" }}>
         {significanceStr}
       </Typography>
-      {renderedTotalVotes}
+      </AlignCenter>
     </Stack>
   );
 }
