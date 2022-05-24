@@ -22,17 +22,25 @@ export default class PollsAppServer {
     return await Cache.get("getPollIDs", PollsAppServer.getPollIDsNoCache);
   }
 
-  static async getPollExtendedNoCache(pollID) {
+  static async getPollExtendedNoCache(pollID, userID) {
     const d = await AWSDynamoDBX.generic({
       cmd: "get-poll-extended",
-      id: pollID,
+      d: {
+        pollID,
+        userID,
+      },
     });
     return PollExtended.fromDict(d);
   }
 
-  static async getPollExtended(pollID) {
-    return await Cache.get("getPollExtended:" + pollID, async () =>
-      PollsAppServer.getPollExtendedNoCache(pollID)
+  static async getPollExtendedCacheKey(pollID, userID) {
+    return ["getPollExtended", pollID, userID];
+  }
+
+  static async getPollExtended(pollID, userID) {
+    return await Cache.get(
+      PollsAppServer.getPollExtendedCacheKey(pollID, userID),
+      async () => PollsAppServer.getPollExtendedNoCache(pollID, userID)
     );
   }
 
@@ -53,7 +61,12 @@ export default class PollsAppServer {
       cmd: "put-poll-result",
       d: PollResult.toDict(pollResult),
     });
-    Cache.clear("getPollExtended:" + pollResult.pollID);
+    Cache.clear(
+      PollsAppServer.getPollExtendedCacheKey(
+        pollResult.pollID,
+        pollResult.userID
+      )
+    );
     return PollResult.fromDict(d);
   }
 }
