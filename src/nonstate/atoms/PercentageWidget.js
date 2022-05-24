@@ -16,7 +16,7 @@ export default function PercentageWidget({ n, np, color }) {
   };
 
   const { lower, upper, p } = StatisticsXFuture.getErrorBounds(n, np);
-  const nStr = np + " votes";
+  const numberOfVotesLabel = np + " votes";
 
   const widthLower = parseInt(lower * SLIDER_WIDTH_P + 0.5) + "%";
   const widthSpanLower = parseInt((p - lower) * SLIDER_WIDTH_P + 0.5) + "%";
@@ -55,7 +55,7 @@ export default function PercentageWidget({ n, np, color }) {
       <span style={{ ...styleInner, ...styleInnerSpanLower }} />
       <span style={{ ...styleInner, ...styleInnerSpanUpper }} />
       <span style={{ ...styleInner, ...styleInnerRemainder }} />
-      <Typography style={styleLabel}>{nStr}</Typography>
+      <Typography style={styleLabel}>{numberOfVotesLabel}</Typography>
     </div>
   );
 }
