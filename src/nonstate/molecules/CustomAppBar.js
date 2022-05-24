@@ -8,6 +8,7 @@ import IconButton from "@mui/material/IconButton";
 import IDAvatar from "../atoms/IDAvatar";
 
 import UserPage from "../../stateful/pages/UserPage";
+import AudioX from "../../core/AudioX"
 
 const STYLE = {
   backgroundColor: "lightgray",
@@ -21,6 +22,7 @@ const STYLE = {
 export default function CustomAppBar({ onSelectPage, geoInfo, Page }) {
   const onClickUser = function () {
     onSelectPage(UserPage);
+    AudioX.playClick();
   };
   return (
     <AppBar sx={STYLE}>
