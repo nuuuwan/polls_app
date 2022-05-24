@@ -4,7 +4,6 @@ import { useTheme } from "@mui/material/styles";
 
 import Box from "@mui/material/Box";
 import Radio from "@mui/material/Radio";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import AlignCenter from "../../nonstate/atoms/AlignCenter";
 import Condition from "../atoms/Condition";
 import PercentageWidget from "../atoms/PercentageWidget";
@@ -30,12 +29,6 @@ export default function PollAnswer({
         label={
           <AlignCenter>
             <Typography variant="subtitle2">{answer}</Typography>
-            <Condition condition={isUserAnswer}>
-              <CheckCircleIcon sx={{ color: color }} />
-              <Typography style={{ fontSize: "small", color: color }}>
-                Your vote
-              </Typography>
-            </Condition>
           </AlignCenter>
         }
       />
