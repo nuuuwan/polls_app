@@ -25,6 +25,9 @@ export default function PollAnswer({
             <Typography variant="subtitle2">{answer}</Typography>
             <Condition condition={isUserAnswer}>
               <CheckCircleIcon sx={{ color: "#1976D2" }} />
+                <Typography style={{fontSize: "small", color: "#1976D2"}}>
+                  Your current vote
+                </Typography>
             </Condition>
           </Stack>
         }
