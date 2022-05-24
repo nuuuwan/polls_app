@@ -3,9 +3,9 @@ import HelpPage from "../stateful/pages/HelpPage";
 import UserPage from "../stateful/pages/UserPage";
 
 const PAGE_IDX = {
-  UserPage: UserPage,
-  PollPage: PollPage,
-  HelpPage: HelpPage,
+  user: UserPage,
+  poll: PollPage,
+  help: HelpPage,
 };
 
 const DEFAULT_PAGE = PollPage;
@@ -29,25 +29,37 @@ export default class URLContext {
   }
 
   static contextToURL({ Page, pollID }) {
-    return "#" + URLContext.getPageName(Page) + "#" + pollID;
+    const origin = window.location.origin;
+    let url = origin + "/polls-app";
+    if (Page) {
+      url += "#" + URLContext.getPageName(Page);
+    }
+    if (pollID) {
+      url += "-" + pollID;
+    }
+    return url;
   }
 
   static urlToContext(url) {
-    const params = url.split("#");
-
     let Page = DEFAULT_PAGE;
-    if (params.length >= 2) {
-      const pageName = params[1];
-      for (let [pageName0, Page0] of Object.entries(PAGE_IDX)) {
-        if (pageName0 === pageName) {
-          Page = Page0;
+    let pollID = undefined;
+
+    const urlTokens = url.split("#");
+    if (urlTokens.length === 2) {
+      const params = urlTokens[1].split("-");
+
+      if (params.length >= 1) {
+        const pageName = params[0];
+        for (let [pageName0, Page0] of Object.entries(PAGE_IDX)) {
+          if (pageName0 === pageName) {
+            Page = Page0;
+          }
         }
       }
-    }
 
-    let pollID = undefined;
-    if (params.length >= 3) {
-      pollID = params[2];
+      if (params.length >= 2) {
+        pollID = params[1];
+      }
     }
 
     return { Page, pollID };
