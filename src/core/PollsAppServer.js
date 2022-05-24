@@ -50,8 +50,10 @@ export default class PollsAppServer {
       cmd: "put-poll",
       d: Poll.toDict(poll),
     });
-    pollIDs.push(poll.pollID);
-    Cache.set("getPollIDs", pollIDs);
+    if (poll.visibility === "public") {
+      pollIDs.push(poll.pollID);
+      Cache.set("getPollIDs", pollIDs);
+    }
     return Poll.fromDict(d);
   }
 
