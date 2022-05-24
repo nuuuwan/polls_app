@@ -88,9 +88,12 @@ export default class PollView extends Component {
     }.bind(this);
 
     const userAnswer = pollExtended.userAnswer;
-    const hasSelectedOption = selectedAnswer !== ANSWER_NONE;
-    const isSelectionUserAnswer = selectedAnswer === userAnswer;
+    const hasUserVote = userAnswer && (userAnswer !== ANSWER_NONE);
+    const hasSelectedOption = selectedAnswer && (selectedAnswer !== ANSWER_NONE);
+    const isSelectionUserAnswer = hasSelectedOption && (selectedAnswer === userAnswer);
     const isVoteButtonDisabled = !hasSelectedOption || isSelectionUserAnswer;
+
+    const showStatistics = hasUserVote;
 
     return (
       <Stack
@@ -136,7 +139,7 @@ export default class PollView extends Component {
                     answer={answer}
                     answerVotes={answerVotes}
                     totalCount={totalCount}
-                    showStatistics={true}
+                    showStatistics={showStatistics}
                     userAnswer={userAnswer}
                   />
                 );
