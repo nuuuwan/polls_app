@@ -31,7 +31,9 @@ export default class PollView extends Component {
 
   async reloadData() {
     const { pollID } = this.props;
-    const pollExtended = await PollsAppServer.getPollExtended(pollID);
+    const geoInfo = await await GhostUserX.getInfo();
+    const userID = geoInfo.infoHash;
+    const pollExtended = await PollsAppServer.getPollExtended(pollID, userID);
     this.setState({ pollExtended });
   }
 
