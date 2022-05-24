@@ -4,11 +4,9 @@ import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import FormControl from "@mui/material/FormControl";
 import RadioGroup from "@mui/material/RadioGroup";
-import Typography from "@mui/material/Typography";
 import CircularProgress from "@mui/material/CircularProgress";
 
 import { TimeX, MathX } from "@nuuuwan/utils-js-dev";
-import { PollIcon } from "../../constants/CommonIcons.js";
 import PollsAppServer from "../../core/PollsAppServer";
 import AudioX from "../../core/AudioX";
 import GhostUserX from "../../base/GhostUserX";
@@ -17,8 +15,7 @@ import VoteButton from "../../nonstate/atoms/VoteButton";
 import PollAnswer from "../../nonstate/molecules/PollAnswer";
 import PollStatisticsView from "../../nonstate/molecules/PollStatisticsView";
 import ValidationBox from "../../nonstate/molecules/ValidationBox";
-import AlignCenter from "../../nonstate/atoms/AlignCenter";
-import { PublicIcon, UnlistedIcon } from "../../constants/CommonIcons";
+import PollTitle from "../../nonstate/atoms/PollTitle";
 
 const STYLE = {
   margin: 3,
@@ -95,26 +92,16 @@ export default class PollView extends Component {
     const isVoteButtonDisabled = !hasSelectedOption || isSelectionUserAnswer;
 
     const showStatistics = hasUserVote;
-    const VisibilityIcon =
-      pollExtended.visibility === "public" ? PublicIcon : UnlistedIcon;
-
     return (
       <Stack
         key={"poll-" + pollExtended.pollID + answerToCount}
         sx={STYLE}
         spacing={2}
       >
-        <AlignCenter>
-          <VisibilityIcon sx={{ fontSize: "small", color: "gray" }} />
-          <Typography sx={{ fontSize: "small", color: "gray" }}>
-            {pollExtended.visibility}
-          </Typography>
-        </AlignCenter>
-
-        <AlignCenter>
-          <PollIcon />
-          <Typography variant="subtitle1">{pollExtended.question}</Typography>
-        </AlignCenter>
+        <PollTitle
+          question={pollExtended.question}
+          visibility={pollExtended.visibility}
+        />
 
         <ValidationBox
           isValid={hasSelectedOption && !isSelectionUserAnswer}
