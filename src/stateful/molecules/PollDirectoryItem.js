@@ -27,8 +27,7 @@ export default class PollDirectoryItem extends Component {
 
     return (
       <PollTitle
-        question={pollExtended.question}
-        visibility={pollExtended.visibility}
+        pollExtended={pollExtended}
       />
     );
   }
