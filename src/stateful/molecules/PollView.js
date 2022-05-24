@@ -15,6 +15,7 @@ import VoteButton from "../../nonstate/atoms/VoteButton";
 import PollAnswer from "../../nonstate/molecules/PollAnswer";
 import PollStatisticsView from "../../nonstate/molecules/PollStatisticsView";
 import ValidationBox from "../../nonstate/molecules/ValidationBox";
+import AlignCenter from "../../nonstate/atoms/AlignCenter";
 
 const STYLE = {
   margin: 2,
@@ -23,8 +24,10 @@ const STYLE = {
 
 const ANSWER_NONE = "";
 
-const URL_AUDIO_BASE = "https://raw.githubusercontent.com"
-  + "/nuuuwan/polls_app/main/public";
+const URL_AUDIO_BASE = [
+  "https://raw.githubusercontent.com",
+  "nuuuwan/polls_app/main/public",
+].join("/");
 const AUDIO_CLICK = URL_AUDIO_BASE + "/tabla-click.mp3";
 const AUDIO_VOTE = URL_AUDIO_BASE + "/tabla-vote.mp3";
 
@@ -40,7 +43,7 @@ export default class PollView extends Component {
     this.audio = {
       click: new Audio(AUDIO_CLICK),
       vote: new Audio(AUDIO_VOTE),
-    }
+    };
   }
 
   async reloadData(hasSubmittedVote) {
@@ -104,10 +107,10 @@ export default class PollView extends Component {
         sx={STYLE}
         spacing={2}
       >
-        <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
+        <AlignCenter>
           <PollIcon />
           <Typography variant="subtitle1">{pollExtended.question}</Typography>
-        </Stack>
+        </AlignCenter>
 
         <ValidationBox
           isValid={hasSelectedOption && !isSelectionUserAnswer}

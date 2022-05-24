@@ -1,5 +1,4 @@
 import { Component } from "react";
-import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
@@ -7,6 +6,7 @@ import { URL_GITHUB_REPO_POLLS_APP } from "../../constants/Constants";
 import SimpleLink from "../../nonstate/atoms/SimpleLink";
 import FAQ from "../../nonstate/molecules/FAQ";
 import { HelpIcon } from "../../constants/Constants.js";
+import AlignCenter from "../../nonstate/atoms/AlignCenter";
 
 const FAQS = [
   {
@@ -32,10 +32,10 @@ export default class HelpPage extends Component {
   render() {
     return (
       <Box>
-        <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
+        <AlignCenter>
           <HelpIcon />
           <Typography variant="h4">FAQs</Typography>
-        </Stack>
+        </AlignCenter>
         {FAQS.map(function (faq, iFaq) {
           return <FAQ key={"faq-" + iFaq} faq={faq} iFaq={iFaq} />;
         })}

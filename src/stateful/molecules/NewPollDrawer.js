@@ -14,6 +14,7 @@ import IDXFuture from "../../base/IDXFuture";
 import Poll from "../../core/Poll";
 import PollsAppServer from "../../core/PollsAppServer";
 import ListInput from "../../nonstate/molecules/ListInput";
+import AlignCenter from "../../nonstate/atoms/AlignCenter";
 import ValidationBox from "../../nonstate/molecules/ValidationBox";
 
 const MIN_QUESTION_LENGTH = 10;
@@ -67,10 +68,10 @@ export default class NewPollDrawer extends Component {
               </IconButton>
             </Box>
 
-            <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
+            <AlignCenter>
               <Typography variant="h6">Add New Poll</Typography>
               <PollIcon />
-            </Stack>
+            </AlignCenter>
 
             <ValidationBox
               isValid={isQuestionValid}
