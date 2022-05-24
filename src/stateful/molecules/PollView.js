@@ -78,7 +78,6 @@ export default class PollView extends Component {
     const totalCount = MathX.sum(Object.values(answerToCount));
 
     const onClickVote = async function (e) {
-      this.audio.vote.play();
       const geoInfo = await await GhostUserX.getInfo();
       const userID = geoInfo.infoHash;
       const pollResult = new PollResult(
@@ -89,6 +88,7 @@ export default class PollView extends Component {
         geoInfo
       );
       await PollsAppServer.addPollResult(pollResult);
+      this.audio.vote.play();      
       await this.reloadData(true);
     }.bind(this);
 
