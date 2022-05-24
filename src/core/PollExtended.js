@@ -1,9 +1,10 @@
 import Poll from "./Poll";
 
 export default class PollExtended extends Poll {
-  constructor(pollID, question, answerList, answerToCount) {
+  constructor(pollID, question, answerList, answerToCount, userAnswer) {
     super(pollID, question, answerList);
     this.answerToCount = answerToCount;
+    this.userAnswer = userAnswer;
   }
 
   static toDict(pollExtended) {
@@ -12,6 +13,7 @@ export default class PollExtended extends Poll {
       question: pollExtended.question,
       answerListJSON: JSON.stringify(pollExtended.answerList),
       answerToCount: pollExtended.answerToCount,
+      userAnswer: pollExtended.userAnswer,
     };
   }
 
@@ -20,7 +22,8 @@ export default class PollExtended extends Poll {
       d.pollID,
       d.question,
       JSON.parse(d.answerListJSON),
-      d.answerToCount
+      d.answerToCount,
+      d.userAnswer
     );
   }
 }
