@@ -7,12 +7,12 @@ export default function ValidationBox({
   alertIfValid,
   alertIfInvalid,
 }) {
-  const severity = isValid ? "success" : "error";
+  const severity = isValid ? "success" : "info";
   const alertBody = isValid ? alertIfValid : alertIfInvalid;
   return (
     <Stack spacing={1}>
       {children}
-      <Alert severity={severity}>{alertBody}</Alert>
+      {alertBody ? <Alert severity={severity}>{alertBody}</Alert> : null}
     </Stack>
   );
 }
