@@ -12,7 +12,7 @@ import PollView from "../../stateful/molecules/PollView";
 import PollBottomNavigation from "../../nonstate/molecules/PollBottomNavigation";
 import NewPollDrawer from "../../stateful/molecules/NewPollDrawer";
 import URLContext from "../../core/URLContext";
-import AudioX from "../../core/AudioX"
+import AudioX from "../../core/AudioX";
 
 export default class PollPage extends Component {
   constructor(props) {
@@ -34,7 +34,6 @@ export default class PollPage extends Component {
     activePollI = activePollI === -1 ? 0 : activePollI;
 
     this.setState({ pollIDs, activePollI });
-
   }
 
   async componentDidMount() {
@@ -52,7 +51,7 @@ export default class PollPage extends Component {
     while (newActivePollI === activePollI) {
       newActivePollI = MathX.randomInt(0, pollIDs.length);
     }
-    this.setState({ activePollI: newActivePollI });    
+    this.setState({ activePollI: newActivePollI });
   }
 
   onClickCopyPoll() {
