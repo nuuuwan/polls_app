@@ -21,7 +21,7 @@ export default function PollBottomNavigation({
     >
       <BottomNavigation showLabels>
         <BottomNavigationAction
-          label="Random Poll"
+          label="Random Public Poll"
           icon={<ShuffleIcon />}
           onClick={onClickRandomPoll}
         />
