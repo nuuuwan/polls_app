@@ -9,6 +9,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { TimeX, MathX } from "@nuuuwan/utils-js-dev";
 import { PollIcon } from "../../constants/Constants.js";
 import PollsAppServer from "../../core/PollsAppServer";
+import AudioX from "../../core/AudioX";
 import GhostUserX from "../../base/GhostUserX";
 import PollResult from "../../core/PollResult";
 import VoteButton from "../../nonstate/atoms/VoteButton";
@@ -24,13 +25,6 @@ const STYLE = {
 
 const ANSWER_NONE = "";
 
-const URL_AUDIO_BASE = [
-  "https://raw.githubusercontent.com",
-  "nuuuwan/polls_app/main/public",
-].join("/");
-const AUDIO_CLICK = URL_AUDIO_BASE + "/tabla-click.mp3";
-const AUDIO_VOTE = URL_AUDIO_BASE + "/tabla-vote.mp3";
-
 export default class PollView extends Component {
   constructor(props) {
     super(props);
@@ -39,11 +33,7 @@ export default class PollView extends Component {
       pollExtended: undefined,
       hasSubmittedVote: false,
     };
-
-    this.audio = {
-      click: new Audio(AUDIO_CLICK),
-      vote: new Audio(AUDIO_VOTE),
-    };
+    this.audio = new AudioX();
   }
 
   async reloadData(hasSubmittedVote) {
@@ -64,7 +54,7 @@ export default class PollView extends Component {
   }
 
   setSelectedAnswer(selectedAnswer) {
-    this.audio.click.play();
+    this.audio.playClick();
     this.setState({ selectedAnswer, hasSubmittedVote: false });
   }
 
@@ -88,7 +78,7 @@ export default class PollView extends Component {
         geoInfo
       );
       await PollsAppServer.addPollResult(pollResult);
-      this.audio.vote.play();      
+      this.audio.playVote();
       await this.reloadData(true);
     }.bind(this);
 
