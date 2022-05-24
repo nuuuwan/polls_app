@@ -34,13 +34,12 @@ export default function PollBottomNavigation({
           label="Add New Poll"
           icon={<AddIcon />}
           onClick={onClickNewPoll}
-        />        
+        />
         <BottomNavigationAction
           label="Random Public Poll"
           icon={<ShuffleIcon />}
           onClick={onClickRandomPoll}
         />
-
       </BottomNavigation>
     </Paper>
   );
