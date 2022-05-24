@@ -85,13 +85,7 @@ export default class PollView extends Component {
 
         <ValidationBox
           isValid={hasSelectedOption}
-          alertIfValid={
-            <>
-              Looks good. Now click <strong>Vote</strong> to submit your vote.
-              You can vote <strong>any number</strong> of times. Your{" "}
-              <strong>most recent</strong> vote will be counted
-            </>
-          }
+          alertIfValid={<>Looks good.</>}
           alertIfInvalid={
             <>
               Select <strong>exactly one</strong> answer.
@@ -123,9 +117,21 @@ export default class PollView extends Component {
           answerToCount={answerToCount}
         />
 
-        <Box display="flex" justifyContent="flex-end">
-          <VoteButton onClick={onClickVote} disabled={!hasSelectedOption} />
-        </Box>
+        <ValidationBox
+          isValid={!hasSelectedOption}
+          alertIfValid={""}
+          alertIfInvalid={
+            <>
+              Click <strong>Vote</strong> to submit your vote. You can vote{" "}
+              <strong>any number</strong> of times. Polls App will count your
+              <strong>most recent</strong> vote.
+            </>
+          }
+        >
+          <Box display="flex" justifyContent="flex-end">
+            <VoteButton onClick={onClickVote} disabled={!hasSelectedOption} />
+          </Box>
+        </ValidationBox>
       </Stack>
     );
   }
