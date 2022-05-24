@@ -1,7 +1,7 @@
 import Typography from "@mui/material/Typography";
-import Stack from "@mui/material/Stack";
 import StatisticsXFuture from "../../base/StatisticsXFuture";
-import AlignCenter from "../../nonstate/atoms/AlignCenter"
+import Divider from "@mui/material/Divider";
+import Condition from "../../nonstate/atoms/Condition"
 
 export default function PollStatisticsView({
   answerList,
@@ -41,13 +41,14 @@ export default function PollStatisticsView({
   }
 
   return (
-    <Stack direction="column">
-      <AlignCenter>
+    <>
       {renderedTotalVotes}
-      <Typography variant="caption" sx={{ color: "gray" }}>
-        {significanceStr}
-      </Typography>
-      </AlignCenter>
-    </Stack>
+      <Condition condition={significanceStr}>
+        <Divider orientation="vertical" variant="middle" flexItem />
+        <Typography variant="caption" sx={{ color: "gray" }}>
+          {significanceStr}
+        </Typography>
+      </Condition>
+    </>
   );
 }
