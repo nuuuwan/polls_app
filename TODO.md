@@ -17,7 +17,6 @@
 Elements should"
 * Basic App render unittests
 
-
 # LOW
 
 * Auto Emojis
