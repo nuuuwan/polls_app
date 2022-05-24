@@ -25,11 +25,7 @@ export default class PollDirectoryItem extends Component {
       return null;
     }
 
-    return (
-      <PollTitle
-        pollExtended={pollExtended}
-      />
-    );
+    return <PollTitle pollExtended={pollExtended} />;
   }
 }
 
