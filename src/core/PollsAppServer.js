@@ -5,6 +5,11 @@ import PollExtended from "./PollExtended";
 import PollResult from "./PollResult";
 
 export default class PollsAppServer {
+  // General
+  static async getCacheKey(words) {
+    return words.join(":");
+  }
+
   // Polls
   static async getPollIDsNoCache() {
     const data = await AWSDynamoDBX.generic({
