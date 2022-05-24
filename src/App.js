@@ -6,6 +6,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import URLContext from "./core/URLContext";
 import GhostUserX from "./base/GhostUserX";
 import CustomAppBar from "./nonstate/molecules/CustomAppBar";
+import PollsAppServer from "./core/PollsAppServer";
 
 const STYLE = {
   padding: 3,
@@ -23,7 +24,7 @@ export default class App extends Component {
   }
 
   async componentDidMount() {
-    localStorage.clear();
+    PollsAppServer.init();
     this.setState({
       geoInfo: await GhostUserX.getInfo(),
     });
