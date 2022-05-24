@@ -1,8 +1,15 @@
 import Poll from "./Poll";
 
 export default class PollExtended extends Poll {
-  constructor(pollID, question, answerList, answerToCount, userAnswer) {
-    super(pollID, question, answerList);
+  constructor(
+    pollID,
+    question,
+    answerList,
+    visibility,
+    answerToCount,
+    userAnswer
+  ) {
+    super(pollID, question, answerList, visibility);
     this.answerToCount = answerToCount;
     this.userAnswer = userAnswer;
   }
@@ -12,6 +19,7 @@ export default class PollExtended extends Poll {
       pollID: pollExtended.pollID,
       question: pollExtended.question,
       answerListJSON: JSON.stringify(pollExtended.answerList),
+      visibility: pollExtended.visibility,
       answerToCount: pollExtended.answerToCount,
       userAnswer: pollExtended.userAnswer,
     };
@@ -22,6 +30,7 @@ export default class PollExtended extends Poll {
       d.pollID,
       d.question,
       JSON.parse(d.answerListJSON),
+      d.visibility,
       d.answerToCount,
       d.userAnswer
     );
