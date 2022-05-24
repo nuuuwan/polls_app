@@ -30,7 +30,7 @@ export default class URLContext {
 
   static contextToURL({ Page, pollID }) {
     const origin = window.location.origin;
-    let url = origin + "/polls-app";
+    let url = origin + "/polls_app";
     if (Page) {
       url += "#" + URLContext.getPageName(Page);
     }
