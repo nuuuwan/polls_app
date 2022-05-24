@@ -21,7 +21,7 @@ import AlignCenter from "../../nonstate/atoms/AlignCenter";
 import { PublicIcon, UnlistedIcon } from "../../constants/CommonIcons";
 
 const STYLE = {
-  margin: 2,
+  margin: 3,
   padding: 1,
 };
 
