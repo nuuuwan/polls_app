@@ -13,7 +13,6 @@ import GhostUserX from "../../base/GhostUserX";
 import PollResult from "../../core/PollResult";
 import VoteButton from "../../nonstate/atoms/VoteButton";
 import PollAnswer from "../../nonstate/molecules/PollAnswer";
-import PollStatisticsView from "../../nonstate/molecules/PollStatisticsView";
 import ValidationBox from "../../nonstate/molecules/ValidationBox";
 import PollTitle from "../../nonstate/atoms/PollTitle";
 
@@ -63,7 +62,6 @@ export default class PollView extends Component {
     }
 
     const answerToCount = pollExtended.answerToCount;
-    const totalCount = MathX.sum(Object.values(answerToCount));
 
     const onClickVote = async function (e) {
       const geoInfo = await await GhostUserX.getInfo();
@@ -92,6 +90,8 @@ export default class PollView extends Component {
     const isVoteButtonDisabled = !hasSelectedOption || isSelectionUserAnswer;
 
     const showStatistics = hasUserVote;
+    const totalCount = MathX.sum(Object.values(pollExtended.answerToCount));
+
     return (
       <Stack
         key={"poll-" + pollExtended.pollID + answerToCount}
@@ -99,8 +99,7 @@ export default class PollView extends Component {
         spacing={2}
       >
         <PollTitle
-          question={pollExtended.question}
-          visibility={pollExtended.visibility}
+          pollExtended={pollExtended}
         />
 
         <ValidationBox
@@ -145,12 +144,6 @@ export default class PollView extends Component {
             </FormControl>
           </Box>
         </ValidationBox>
-
-        <PollStatisticsView
-          answerList={pollExtended.answerList}
-          totalCount={totalCount}
-          answerToCount={answerToCount}
-        />
 
         <ValidationBox
           isValid={hasSubmittedVote}
