@@ -8,7 +8,7 @@ import IconButton from "@mui/material/IconButton";
 import IDAvatar from "../atoms/IDAvatar";
 
 import UserPage from "../../stateful/pages/UserPage";
-import AudioX from "../../core/AudioX"
+import AudioX from "../../core/AudioX";
 
 const STYLE = {
   backgroundColor: "lightgray",
