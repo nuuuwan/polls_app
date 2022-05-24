@@ -8,7 +8,7 @@ import TextField from "@mui/material/TextField";
 import CloseIcon from "@mui/icons-material/Close";
 import IconButton from "@mui/material/IconButton";
 import AddIcon from "@mui/icons-material/Add";
-import FormLabel from '@mui/material/FormLabel';
+import FormLabel from "@mui/material/FormLabel";
 
 import { PollIcon } from "../../constants/Constants";
 import IDXFuture from "../../base/IDXFuture";
