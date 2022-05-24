@@ -98,9 +98,7 @@ export default class PollView extends Component {
         sx={STYLE}
         spacing={2}
       >
-        <PollTitle
-          pollExtended={pollExtended}
-        />
+        <PollTitle pollExtended={pollExtended} />
 
         <ValidationBox
           isValid={hasSelectedOption && !isSelectionUserAnswer}
