@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Chip from "@mui/material/Chip";
 import TextField from "@mui/material/TextField";
+import FormLabel from '@mui/material/FormLabel';
 
 export default function ListInput({
   label,
@@ -40,9 +41,9 @@ export default function ListInput({
 
   return (
     <Stack spacing={1}>
+      <FormLabel>{label}</FormLabel>
       <TextField
         required
-        label={label}
         value={currentText}
         placeholder={placeholder}
         onKeyUp={onKeyUp}
