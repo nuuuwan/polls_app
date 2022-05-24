@@ -9,13 +9,14 @@ import CloseIcon from "@mui/icons-material/Close";
 import IconButton from "@mui/material/IconButton";
 import AddIcon from "@mui/icons-material/Add";
 
-import { PollIcon } from "../../constants/Constants.js";
+import { PollIcon } from "../../constants/Constants";
 import IDXFuture from "../../base/IDXFuture";
 import Poll from "../../core/Poll";
 import PollsAppServer from "../../core/PollsAppServer";
 import ListInput from "../../nonstate/molecules/ListInput";
 import AlignCenter from "../../nonstate/atoms/AlignCenter";
 import ValidationBox from "../../nonstate/molecules/ValidationBox";
+import AudioX from "../../core/AudioX";
 
 const MIN_QUESTION_LENGTH = 10;
 const MIN_ANSWER_LIST_LENGTH = 2;
@@ -24,6 +25,7 @@ export default class NewPollDrawer extends Component {
   constructor(props) {
     super(props);
     this.state = { question: "", answerList: [] };
+    this.audio = new AudioX();
   }
 
   onChangeQuestion(e) {
@@ -42,6 +44,7 @@ export default class NewPollDrawer extends Component {
     const pollID = IDXFuture.getRandomID();
     const poll = new Poll(pollID, question.trim(), answerList);
     await PollsAppServer.addPoll(poll);
+    this.audio.playVote();
     onAddNewPoll(pollID);
 
     this.setState({
