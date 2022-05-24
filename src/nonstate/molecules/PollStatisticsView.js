@@ -12,11 +12,7 @@ export default function PollStatisticsView({
   );
 
   if (totalCount < StatisticsXFuture.MIN_STATISTICAL_N) {
-    return (
-      <Stack direction="column">
-        {renderedTotalVotes}
-      </Stack>
-    )
+    return <Stack direction="column">{renderedTotalVotes}</Stack>;
   }
 
   const sortedAnswerStats = answerList
