@@ -76,9 +76,15 @@ export default class NewPollDrawer extends Component {
       question.trim().slice(-1) === "?";
     const isAnswerListValid = answerList.length >= MIN_ANSWER_LIST_LENGTH;
 
+    const style = {
+      m: 1,
+      p: 1,
+      width: Math.min(450, window.innerWidth * 0.85),
+    };
+
     return (
       <Drawer anchor="right" open={isOpen} onClose={onClose}>
-        <Box sx={{ m: 1, p: 1, width: 300 }}>
+        <Box sx={style}>
           <Stack spacing={2}>
             <Box display="flex" justifyContent="flex-end">
               <IconButton onClick={onClose}>
