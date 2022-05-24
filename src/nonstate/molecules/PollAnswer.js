@@ -1,5 +1,7 @@
 import Typography from "@mui/material/Typography";
 import FormControlLabel from "@mui/material/FormControlLabel";
+import { useTheme } from "@mui/material/styles";
+
 import Radio from "@mui/material/Radio";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import AlignCenter from "../../nonstate/atoms/AlignCenter";
@@ -14,6 +16,8 @@ export default function PollAnswer({
   userAnswer,
 }) {
   const isUserAnswer = userAnswer === answer;
+  const color = useTheme().palette.primary.main;
+
   return (
     <>
       <FormControlLabel
@@ -23,8 +27,8 @@ export default function PollAnswer({
           <AlignCenter>
             <Typography variant="subtitle2">{answer}</Typography>
             <Condition condition={isUserAnswer}>
-              <CheckCircleIcon sx={{ color: "#1976D2" }} />
-              <Typography style={{ fontSize: "small", color: "#1976D2" }}>
+              <CheckCircleIcon sx={{ color: color }} />
+              <Typography style={{ fontSize: "small", color: color }}>
                 Your current vote
               </Typography>
             </Condition>

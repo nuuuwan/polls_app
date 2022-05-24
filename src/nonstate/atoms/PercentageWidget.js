@@ -1,19 +1,22 @@
 import Typography from "@mui/material/Typography";
 import StatisticsXFuture from "../../base/StatisticsXFuture";
+import { useTheme } from "@mui/material/styles";
 
 const SLIDER_WIDTH_P = 67;
 const HEIGHT = 18;
 
-const STYLE_INNER = {
-  height: HEIGHT,
-  backgroundColor: "#1976D2",
-  float: "left",
-};
-
 export default function PercentageWidget({ n, np }) {
+  const color = useTheme().palette.primary.main;
+
   if (!n || n < StatisticsXFuture.MIN_STATISTICAL_N) {
     return null;
   }
+
+  const styleInner = {
+    height: HEIGHT,
+    backgroundColor: color,
+    float: "left",
+  };
 
   const { lower, upper } = StatisticsXFuture.getErrorBounds(n, np);
   const [lowerStr, upperStr] = [lower, upper].map((x) =>
@@ -54,9 +57,9 @@ export default function PercentageWidget({ n, np }) {
 
   return (
     <div>
-      <span style={{ ...STYLE_INNER, ...styleInnerLower }} />
-      <span style={{ ...STYLE_INNER, ...styleInnerSpan }} />
-      <span style={{ ...STYLE_INNER, ...styleInnerRemainder }} />
+      <span style={{ ...styleInner, ...styleInnerLower }} />
+      <span style={{ ...styleInner, ...styleInnerSpan }} />
+      <span style={{ ...styleInner, ...styleInnerRemainder }} />
       <Typography style={styleLabel}>{pStr}</Typography>
     </div>
   );
