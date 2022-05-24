@@ -17,14 +17,23 @@ import ListInput from "../../nonstate/molecules/ListInput";
 import AlignCenter from "../../nonstate/atoms/AlignCenter";
 import ValidationBox from "../../nonstate/molecules/ValidationBox";
 import AudioX from "../../core/AudioX";
+import PollVisibilitySelector from "../../nonstate/molecules/PollVisibilitySelector";
 
 const MIN_QUESTION_LENGTH = 10;
 const MIN_ANSWER_LIST_LENGTH = 2;
 
+const DEFAULT_QUESTION = "";
+const DEFAULT_ANSWER_LIST = [];
+const DEFAULT_VISIBILITY = "unlisted";
+
 export default class NewPollDrawer extends Component {
   constructor(props) {
     super(props);
-    this.state = { question: "", answerList: [] };
+    this.state = {
+      question: DEFAULT_QUESTION,
+      answerList: DEFAULT_ANSWER_LIST,
+      visibility: DEFAULT_VISIBILITY,
+    };
     this.audio = new AudioX();
   }
 
@@ -37,24 +46,29 @@ export default class NewPollDrawer extends Component {
     this.setState({ answerList: newAnswerList });
   }
 
+  onChangeVisibility(visibility) {
+    this.setState({ visibility });
+  }
+
   async onClickAdd(e) {
-    const { question, answerList } = this.state;
+    const { question, answerList, visibility } = this.state;
     const { onAddNewPoll } = this.props;
 
     const pollID = IDXFuture.getRandomID();
-    const poll = new Poll(pollID, question.trim(), answerList);
+    const poll = new Poll(pollID, question.trim(), answerList, visibility);
     await PollsAppServer.addPoll(poll);
     this.audio.playVote();
     onAddNewPoll(pollID);
 
     this.setState({
-      question: "",
-      answerList: [],
+      question: DEFAULT_QUESTION,
+      answerList: DEFAULT_ANSWER_LIST,
+      visibility: DEFAULT_VISIBILITY,
     });
   }
 
   render() {
-    const { question, answerList } = this.state;
+    const { question, answerList, visibility } = this.state;
     const { isOpen, onClose } = this.props;
     const isQuestionValid =
       question.length >= MIN_QUESTION_LENGTH &&
@@ -116,6 +130,12 @@ export default class NewPollDrawer extends Component {
                 onChange={this.onChangeAnswerList.bind(this)}
               />
             </ValidationBox>
+
+            <PollVisibilitySelector
+              visibility={visibility}
+              onChange={this.onChangeVisibility.bind(this)}
+            />
+
             <Box display="flex" justifyContent="flex-end">
               <Button
                 onClick={this.onClickAdd.bind(this)}
