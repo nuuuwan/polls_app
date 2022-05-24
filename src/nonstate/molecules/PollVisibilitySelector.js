@@ -4,6 +4,10 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import Alert from "@mui/material/Alert";
+import AlignCenter from "../../nonstate/atoms/AlignCenter";
+import Typography from "@mui/material/Typography";
+
+import { PublicIcon, UnlistedIcon } from "../../constants/CommonIcons";
 
 export default function PollVisibilitySelector({ visibility, onChange }) {
   const onChangeInner = function (e) {
@@ -35,12 +39,22 @@ export default function PollVisibilitySelector({ visibility, onChange }) {
         <FormControlLabel
           value="public"
           control={<Radio />}
-          label="Public Poll"
+          label={
+            <AlignCenter>
+              <PublicIcon />
+              <Typography>Public Poll</Typography>
+            </AlignCenter>
+          }
         />
         <FormControlLabel
           value="unlisted"
           control={<Radio />}
-          label="Unlisted Poll"
+          label={
+            <AlignCenter>
+              <UnlistedIcon />
+              <Typography>Unlisted Poll</Typography>
+            </AlignCenter>
+          }
         />
       </RadioGroup>
       <Alert severity="info">{alertMessage}</Alert>
