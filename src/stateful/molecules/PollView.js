@@ -42,7 +42,6 @@ export default class PollView extends Component {
     const userID = geoInfo.infoHash;
     const pollExtended = await PollsAppServer.getPollExtended(pollID, userID);
     const userAnswer = pollExtended.userAnswer;
-    this.audio.playClick();
     this.setState({
       pollExtended,
       selectedAnswer: userAnswer,

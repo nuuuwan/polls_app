@@ -34,6 +34,7 @@ export default class PollPage extends Component {
     activePollI = activePollI === -1 ? 0 : activePollI;
 
     this.setState({ pollIDs, activePollI });
+
   }
 
   async componentDidMount() {
@@ -41,6 +42,7 @@ export default class PollPage extends Component {
   }
 
   onClickNewPoll() {
+    this.audio.playClick();
     this.setState({ showNewPollDrawer: true });
   }
 
@@ -50,8 +52,7 @@ export default class PollPage extends Component {
     while (newActivePollI === activePollI) {
       newActivePollI = MathX.randomInt(0, pollIDs.length);
     }
-
-    this.setState({ activePollI: newActivePollI });
+    this.setState({ activePollI: newActivePollI });    
   }
 
   onClickCopyPoll() {
@@ -61,6 +62,7 @@ export default class PollPage extends Component {
   }
 
   onClickTweet() {
+    this.audio.playClick();
     const tweetText = [
       "Checkout this new poll",
       "",

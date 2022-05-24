@@ -26,7 +26,6 @@ export default class App extends Component {
 
   async componentDidMount() {
     localStorage.clear();
-    this.audio.playVote();
     this.setState({
       geoInfo: await GhostUserX.getInfo(),
     });
