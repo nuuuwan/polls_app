@@ -10,12 +10,12 @@ import AlignCenter from "../../nonstate/atoms/AlignCenter";
 import Condition from "../../nonstate/atoms/Condition";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
-
 export default function PollTitle({ pollExtended }) {
   const VisibilityIcon =
     pollExtended.visibility === "public" ? PublicIcon : UnlistedIcon;
 
-  const isUserAnswer = pollExtended.userAnswer && pollExtended.userAnswer !== "";
+  const isUserAnswer =
+    pollExtended.userAnswer && pollExtended.userAnswer !== "";
 
   const theme = useTheme();
   const color = isUserAnswer
@@ -26,7 +26,9 @@ export default function PollTitle({ pollExtended }) {
 
   return (
     <Stack>
-      <Typography variant="h6" color={color}>{pollExtended.question}</Typography>
+      <Typography variant="h6" color={color}>
+        {pollExtended.question}
+      </Typography>
 
       <AlignCenter>
         <PollStatisticsView
