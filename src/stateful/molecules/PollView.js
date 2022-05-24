@@ -104,6 +104,7 @@ export default class PollView extends Component {
                     answer={answer}
                     answerVotes={answerVotes}
                     totalCount={totalCount}
+                    showStatistics={true}
                   />
                 );
               })}
