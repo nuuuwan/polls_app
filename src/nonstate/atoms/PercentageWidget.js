@@ -1,12 +1,9 @@
+import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import StatisticsXFuture from "../../base/StatisticsXFuture";
-const WIDTH = 300;
-const HEIGHT = 24;
-const STYLE = {
-  width: WIDTH,
-  height: HEIGHT,
-  marginRight: "5%",
-};
+
+const SLIDER_WIDTH_P = 67;
+const HEIGHT = 18;
 
 const STYLE_INNER = {
   height: HEIGHT,
@@ -30,9 +27,11 @@ export default function PercentageWidget({ n, np }) {
   } else {
     pStr = lowerStr + " - " + upperStr + "%";
   }
-  const widthLower = parseInt(lower * 80 + 0.5) + "%";
-  const widthSpan = parseInt((upper - lower) * 80 + 0.5) + "%";
-  const widthRemainder = parseInt((1 - upper) * 80 + 0.5) + "%";
+
+  const widthLower = parseInt(lower * SLIDER_WIDTH_P + 0.5) + "%";
+  const widthSpan = parseInt((upper - lower) * SLIDER_WIDTH_P + 0.5) + "%";
+  const widthRemainder = parseInt((1 - upper) * SLIDER_WIDTH_P + 0.5) + "%";
+
   const styleInnerLower = {
     width: widthLower,
     opacity: 0.2,
@@ -47,14 +46,19 @@ export default function PercentageWidget({ n, np }) {
     marginRight: "2%",
   };
 
+  const styleLabel = {
+    fontSize: "small",
+    float: "right",
+    margin: 0,
+    padding: 0,
+  };
+
   return (
-    <div style={STYLE}>
+    <div>
       <span style={{ ...STYLE_INNER, ...styleInnerLower }} />
       <span style={{ ...STYLE_INNER, ...styleInnerSpan }} />
       <span style={{ ...STYLE_INNER, ...styleInnerRemainder }} />
-      <Typography variant="caption" style={{ float: "right" }}>
-        {pStr}
-      </Typography>
+      <Typography style={styleLabel}>{pStr}</Typography>
     </div>
   );
 }
