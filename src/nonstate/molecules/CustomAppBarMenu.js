@@ -13,6 +13,7 @@ import {
 import HelpPage from "../../stateful/pages/HelpPage";
 import PollPage from "../../stateful/pages/PollPage";
 import UserPage from "../../stateful/pages/UserPage";
+import AudioX from "../../core/AudioX";
 
 import { URL_GITHUB_REPO_POLLS_APP } from "../../constants/Constants";
 import CustomAppBarMenuItem from "./CustomAppBarMenuItem";
@@ -21,6 +22,7 @@ import VersionWidget from "../../nonstate/atoms/VersionWidget";
 export default function CustomAppBarMenu({ onSelectPage, Page }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
+  const audio = new AudioX();
 
   const onClick = function (e) {
     setAnchorEl(e.currentTarget);
@@ -33,11 +35,13 @@ export default function CustomAppBarMenu({ onSelectPage, Page }) {
   const onClickCode = function () {
     window.open(URL_GITHUB_REPO_POLLS_APP, "_blank");
     onClose();
+    audio.playVote();
   };
 
   const onSelectPageInner = function (Page) {
     onSelectPage(Page);
     onClose();
+    audio.playClick();
   };
 
   const onClickRefresh = function () {
