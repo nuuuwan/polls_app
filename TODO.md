@@ -13,9 +13,10 @@
 * FAQ - How do I create a poll?
 * FAQ - What types of questions and answers should a poll have?
 * FAQ - What is a poll's visibility?
-* Search for Poll
 * Read and fix "MUI: A component is changing the uncontrolled value state of RadioGroup to be controlled.
 Elements should"
+* Basic App render unittests
+
 
 # LOW
 
