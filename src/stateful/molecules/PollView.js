@@ -23,30 +23,50 @@ const STYLE = {
 
 const ANSWER_NONE = "";
 
+const URL_AUDIO_BASE = "https://raw.githubusercontent.com"
+  + "/nuuuwan/polls_app/main/public";
+const AUDIO_CLICK = URL_AUDIO_BASE + "/tabla-click.mp3";
+const AUDIO_VOTE = URL_AUDIO_BASE + "/tabla-vote.mp3";
+
 export default class PollView extends Component {
   constructor(props) {
     super(props);
-    this.state = { selectedAnswer: ANSWER_NONE, pollExtended: undefined };
+    this.state = {
+      selectedAnswer: ANSWER_NONE,
+      pollExtended: undefined,
+      hasSubmittedVote: false,
+    };
+
+    this.audio = {
+      click: new Audio(AUDIO_CLICK),
+      vote: new Audio(AUDIO_VOTE),
+    }
   }
 
-  async reloadData() {
+  async reloadData(hasSubmittedVote) {
     const { pollID } = this.props;
     const geoInfo = await await GhostUserX.getInfo();
     const userID = geoInfo.infoHash;
     const pollExtended = await PollsAppServer.getPollExtended(pollID, userID);
-    this.setState({ pollExtended });
+    const userAnswer = pollExtended.userAnswer;
+    this.setState({
+      pollExtended,
+      selectedAnswer: userAnswer,
+      hasSubmittedVote,
+    });
   }
 
   async componentDidMount() {
-    await this.reloadData();
+    await this.reloadData(false);
   }
 
   setSelectedAnswer(selectedAnswer) {
-    this.setState({ selectedAnswer });
+    this.audio.click.play();
+    this.setState({ selectedAnswer, hasSubmittedVote: false });
   }
 
   renderInner() {
-    const { selectedAnswer, pollExtended } = this.state;
+    const { selectedAnswer, pollExtended, hasSubmittedVote } = this.state;
     if (!pollExtended) {
       return <CircularProgress />;
     }
@@ -55,6 +75,7 @@ export default class PollView extends Component {
     const totalCount = MathX.sum(Object.values(answerToCount));
 
     const onClickVote = async function (e) {
+      this.audio.vote.play();
       const geoInfo = await await GhostUserX.getInfo();
       const userID = geoInfo.infoHash;
       const pollResult = new PollResult(
@@ -65,14 +86,17 @@ export default class PollView extends Component {
         geoInfo
       );
       await PollsAppServer.addPollResult(pollResult);
-      await this.reloadData();
+      await this.reloadData(true);
     }.bind(this);
 
     const onChange = function (e) {
       this.setSelectedAnswer(e.target.value);
     }.bind(this);
 
+    const userAnswer = pollExtended.userAnswer;
     const hasSelectedOption = selectedAnswer !== ANSWER_NONE;
+    const isSelectionUserAnswer = selectedAnswer === userAnswer;
+    const isVoteButtonDisabled = !hasSelectedOption || isSelectionUserAnswer;
 
     return (
       <Stack
@@ -86,12 +110,24 @@ export default class PollView extends Component {
         </Stack>
 
         <ValidationBox
-          isValid={hasSelectedOption}
-          alertIfValid={<>Looks good.</>}
-          alertIfInvalid={
+          isValid={hasSelectedOption && !isSelectionUserAnswer}
+          alertIfValid={
             <>
-              Select <strong>exactly one</strong> answer.
+              Looks good. Now, click <strong>Vote</strong> to submit your vote.
             </>
+          }
+          alertIfInvalid={
+            isSelectionUserAnswer ? (
+              <>
+                You have voted <strong>"{selectedAnswer}"</strong> in this poll.
+                You can change your vote by selecting a different option. Polls
+                App will count your <strong>most recent</strong> vote.
+              </>
+            ) : (
+              <>
+                Select <strong>one</strong> answer.
+              </>
+            )
           }
         >
           <Box sx={{ m: 2 }}>
@@ -107,6 +143,7 @@ export default class PollView extends Component {
                     answerVotes={answerVotes}
                     totalCount={totalCount}
                     showStatistics={true}
+                    userAnswer={userAnswer}
                   />
                 );
               })}
@@ -121,18 +158,12 @@ export default class PollView extends Component {
         />
 
         <ValidationBox
-          isValid={!hasSelectedOption}
-          alertIfValid={""}
-          alertIfInvalid={
-            <>
-              Click <strong>Vote</strong> to submit your vote. You can vote{" "}
-              <strong>any number</strong> of times. Polls App will count your
-              <strong>most recent</strong> vote.
-            </>
-          }
+          isValid={hasSubmittedVote}
+          alertIfValid={"Thanks for voting!"}
+          alertIfInvalid={""}
         >
           <Box display="flex" justifyContent="flex-end">
-            <VoteButton onClick={onClickVote} disabled={!hasSelectedOption} />
+            <VoteButton onClick={onClickVote} disabled={isVoteButtonDisabled} />
           </Box>
         </ValidationBox>
       </Stack>
