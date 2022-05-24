@@ -79,9 +79,11 @@ export default class PollPage extends Component {
     this.setState({ isSnackbarOpen: false });
   }
 
-  async onAddNewPoll(pollID) {
+  async onSelectPoll(pollID) {
     URLContext.setContext({ Page: PollPage, pollID });
     await this.reloadData();
+    AudioX.playClick();
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
   async onCloseNewPollDrawer(pollID) {
@@ -105,7 +107,7 @@ export default class PollPage extends Component {
         <NewPollDrawer
           isOpen={showNewPollDrawer}
           onClose={this.onCloseNewPollDrawer.bind(this)}
-          onAddNewPoll={this.onAddNewPoll.bind(this)}
+          onAddNewPoll={this.onSelectPoll.bind(this)}
         />
         <PollBottomNavigation
           onClickNewPoll={this.onClickNewPoll.bind(this)}
@@ -119,7 +121,10 @@ export default class PollPage extends Component {
           onClose={this.onCloseSnackbar.bind(this)}
           message={messageSnackbar}
         />
-        <PollDirectory pollIDs={pollIDs} />
+        <PollDirectory
+          pollIDs={pollIDs}
+          onSelectPoll={this.onSelectPoll.bind(this)}
+        />
       </div>
     );
   }
