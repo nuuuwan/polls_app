@@ -4,6 +4,7 @@ import HashX from "./HashX";
 
 const URL_GEOLOCATION_DB = "https://geolocation-db.com/json/";
 const INFO_HASH_SALT = "adb034fad7a9f45ebc20249cc85eae96";
+export const CACHE_KEY_GHOST_USER = "cacheKey:GhostUserX";
 
 export default class GhostUserX {
   static async getGeoLocationInfo() {
@@ -19,6 +20,6 @@ export default class GhostUserX {
   }
 
   static async getInfo() {
-    return await Cache.get("GhostUserX.getInfo", GhostUserX.getGeoLocationInfo);
+    return await Cache.get(CACHE_KEY_GHOST_USER, GhostUserX.getGeoLocationInfo);
   }
 }
