@@ -3,9 +3,16 @@ import AWSDynamoDBX from "../base/AWSDynamoDBX";
 import Poll from "./Poll";
 import PollExtended from "./PollExtended";
 import PollResult from "./PollResult";
+import { CACHE_KEY_GHOST_USER } from "../base/GhostUserX";
 
 export default class PollsAppServer {
   // General
+  static init() {
+    const ghostUser = localStorage.getItem(CACHE_KEY_GHOST_USER);
+    localStorage.clear();
+    localStorage.setItem(CACHE_KEY_GHOST_USER, ghostUser);
+  }
+
   static getCacheKey(words) {
     return "cacheKey:" + words.join(":");
   }
