@@ -3,6 +3,7 @@ import * as React from "react";
 
 import { MathX } from "@nuuuwan/utils-js-dev";
 
+import Box from "@mui/material/Box";
 import Snackbar from "@mui/material/Snackbar";
 import CircularProgress from "@mui/material/CircularProgress";
 
@@ -103,7 +104,14 @@ export default class PollPage extends Component {
 
     return (
       <div>
-        <PollView key={"poll-" + pollID} pollID={pollID} />
+        <Box sx={{ marginBotton: 1 }}>
+          <PollView key={"poll-" + pollID} pollID={pollID} />
+          <PollDirectory
+            pollIDs={pollIDs}
+            onSelectPoll={this.onSelectPoll.bind(this)}
+          />
+        </Box>
+
         <NewPollDrawer
           isOpen={showNewPollDrawer}
           onClose={this.onCloseNewPollDrawer.bind(this)}
@@ -120,10 +128,6 @@ export default class PollPage extends Component {
           autoHideDuration={1000}
           onClose={this.onCloseSnackbar.bind(this)}
           message={messageSnackbar}
-        />
-        <PollDirectory
-          pollIDs={pollIDs}
-          onSelectPoll={this.onSelectPoll.bind(this)}
         />
       </div>
     );
