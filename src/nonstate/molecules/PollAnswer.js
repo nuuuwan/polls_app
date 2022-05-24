@@ -12,7 +12,7 @@ export default function PollAnswer({
   showStatistics,
 }) {
   return (
-    <div>
+    <>
       <FormControlLabel
         value={answer}
         control={<Radio />}
@@ -21,6 +21,6 @@ export default function PollAnswer({
       <Condition condition={showStatistics}>
         <PercentageWidget n={totalCount} np={answerVotes} />
       </Condition>
-    </div>
+    </>
   );
 }
