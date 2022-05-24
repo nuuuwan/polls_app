@@ -1,5 +1,4 @@
 import { Component } from "react";
-import Paper from "@mui/material/Paper";
 
 import GhostUserX from "../../base/GhostUserX";
 import PollsAppServer from "../../core/PollsAppServer";
@@ -27,12 +26,10 @@ export default class PollDirectoryItem extends Component {
     }
 
     return (
-      <Paper sx={{ p: 2, width: "100%" }}>
-        <PollTitle
-          question={pollExtended.question}
-          visibility={pollExtended.visibility}
-        />
-      </Paper>
+      <PollTitle
+        question={pollExtended.question}
+        visibility={pollExtended.visibility}
+      />
     );
   }
 }
