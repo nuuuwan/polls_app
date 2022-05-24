@@ -104,7 +104,7 @@ export default class PollPage extends Component {
 
     return (
       <div>
-        <Box sx={{ marginBotton: 1 }}>
+        <Box sx={{ marginBotton: 1, maxWidth: "100%" }}>
           <PollView key={"poll-" + pollID} pollID={pollID} />
           <PollDirectory
             pollIDs={pollIDs}
