@@ -43,9 +43,13 @@ export default class PollPage extends Component {
   }
 
   onClickRandomPoll() {
-    const { pollIDs } = this.state;
-    const activePollI = MathX.randomInt(0, pollIDs.length);
-    this.setState({ activePollI });
+    const { pollIDs, activePollI } = this.state;
+    let newActivePollI = activePollI;
+    while (newActivePollI === activePollI) {
+      newActivePollI = MathX.randomInt(0, pollIDs.length);
+    }
+
+    this.setState({ activePollI: newActivePollI });
   }
 
   onClickCopyPoll() {
