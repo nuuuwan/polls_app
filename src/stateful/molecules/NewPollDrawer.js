@@ -39,7 +39,7 @@ export default class NewPollDrawer extends Component {
     const { onAddNewPoll } = this.props;
 
     const pollID = IDXFuture.getRandomID();
-    const poll = new Poll(pollID, question, answerList);
+    const poll = new Poll(pollID, question.trim(), answerList);
     await PollsAppServer.addPoll(poll);
     onAddNewPoll(pollID);
 
@@ -53,7 +53,8 @@ export default class NewPollDrawer extends Component {
     const { question, answerList } = this.state;
     const { isOpen, onClose } = this.props;
     const isQuestionValid =
-      question.length >= MIN_QUESTION_LENGTH && question.slice(-1) === "?";
+      question.length >= MIN_QUESTION_LENGTH &&
+      question.trim().slice(-1) === "?";
     const isAnswerListValid = answerList.length >= MIN_ANSWER_LIST_LENGTH;
 
     return (
