@@ -1,20 +1,31 @@
 import { Component } from "react";
+import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
 import PollDirectoryItem from "../../stateful/molecules/PollDirectoryItem";
 
 export default class PollDirectory extends Component {
   render() {
-    const { pollIDs } = this.props;
+    const { pollIDs, onSelectPoll } = this.props;
     return (
       <Stack spacing={1}>
-        {pollIDs.map(function (pollID) {
-          return (
-            <PollDirectoryItem
-              key={"poll-directory-item" + pollID}
-              pollID={pollID}
-            />
-          );
-        })}
+        <Typography variant="h6">More Public Polls...</Typography>
+        <List>
+          {pollIDs.map(function (pollID) {
+            const onClick = function (e) {
+              onSelectPoll(pollID);
+            };
+            return (
+              <ListItem key={"poll-directory-item" + pollID}>
+                <ListItemButton onClick={onClick}>
+                  <PollDirectoryItem pollID={pollID} />
+                </ListItemButton>
+              </ListItem>
+            );
+          })}
+        </List>
       </Stack>
     );
   }
