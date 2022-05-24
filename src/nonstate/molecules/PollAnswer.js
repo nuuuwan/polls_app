@@ -4,7 +4,7 @@ import Radio from "@mui/material/Radio";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import Stack from "@mui/material/Stack";
 
-import Condition from "./Condition";
+import Condition from "../atoms/Condition";
 import PercentageWidget from "../atoms/PercentageWidget";
 
 export default function PollAnswer({
