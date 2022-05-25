@@ -13,7 +13,7 @@ import PollResult from "../../core/PollResult";
 import VoteButton from "../../nonstate/atoms/VoteButton";
 import PollAnswer from "../../nonstate/molecules/PollAnswer";
 import ValidationBox from "../../nonstate/molecules/ValidationBox";
-import PollTitle from "../../nonstate/atoms/PollTitle";
+import PollTitle from "../../nonstate/molecules/PollTitle";
 
 const STYLE = {
   margin: 0,

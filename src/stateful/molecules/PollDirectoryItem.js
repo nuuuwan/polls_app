@@ -3,7 +3,7 @@ import { Component } from "react";
 import GhostUserX from "../../base/GhostUserX";
 import PollsAppServer from "../../core/PollsAppServer";
 
-import PollTitle from "../../nonstate/atoms/PollTitle";
+import PollTitle from "../../nonstate/molecules/PollTitle";
 
 export default class PollDirectoryItem extends Component {
   constructor(props) {
