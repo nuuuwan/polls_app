@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import App from "./App";
 
-const TIMEOUT = 20_000;
+const TIMEOUT = 60_000;
 const PARAMS = { timeout: TIMEOUT };
 
 test("Polls Page", async () => {
