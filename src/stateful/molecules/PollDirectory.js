@@ -11,7 +11,6 @@ export default class PollDirectory extends Component {
     const { pollIDs, onSelectPoll } = this.props;
     return (
       <Stack spacing={1}>
-        <Typography variant="h6">More Public Polls...</Typography>
         <List>
           {pollIDs.map(function (pollID) {
             const onClick = function (e) {

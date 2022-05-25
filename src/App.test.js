@@ -11,12 +11,10 @@ test("Polls Page", async () => {
 
   expect(screen.getByText("Polls App")).toBeInTheDocument();
 
-  // PollPage
-  await waitFor(() => screen.findByText("More Public Polls..."), {
+  // PollPage - BottomNavigation
+  await waitFor(() => screen.findByText("Copy"), {
     timeout: 60_000,
   });
-
-  expect(screen.getByText("More Public Polls...")).toBeInTheDocument();
 
   expect(screen.getByText("Copy")).toBeInTheDocument();
   expect(screen.getByText("Share")).toBeInTheDocument();
