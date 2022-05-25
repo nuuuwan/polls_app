@@ -12,7 +12,7 @@ def update_version():
     )
     filex.write(
         VERSION_FILE_NAME,
-        f'export const DATE_LAST_UPDATE = "{last_update}";',
+        f'export const VERSION = "{last_update}";',
     )
     print(f'Wrote {VERSION_FILE_NAME}')
     return last_update
