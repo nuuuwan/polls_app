@@ -5,8 +5,8 @@ import FAQParagraph from "./FAQParagraph";
 
 export default function FAQ({ faq, iFaq }) {
   return (
-    <Paper elevation={0} sx={{ margin: 2, padding: 2 }}>
-      <Typography variant="h5" sx={{ marginBottom: 2 }}>
+    <Paper elevation={0} sx={{ padding: 1 }}>
+      <Typography variant="h5" sx={{ marginBottom: 1 }}>
         {faq.question}
       </Typography>
 
