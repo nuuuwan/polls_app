@@ -57,7 +57,7 @@ export default class NewPollDrawer extends Component {
     const pollID = IDXFuture.getRandomID();
     const poll = new Poll(pollID, question.trim(), answerList, visibility);
     await PollsAppServer.addPoll(poll);
-    AudioX.playVote();
+    await AudioX.playVote();
     onAddNewPoll(pollID);
 
     this.setState({

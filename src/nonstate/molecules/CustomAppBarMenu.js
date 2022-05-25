@@ -30,16 +30,16 @@ export default function CustomAppBarMenu({ onSelectPage, Page }) {
     setAnchorEl(null);
   };
 
-  const onClickCode = function () {
+  const onClickCode = async function () {
     window.open(URL_GITHUB_REPO_POLLS_APP, "_blank");
     onClose();
-    AudioX.playVote();
+    await AudioX.playVote();
   };
 
-  const onSelectPageInner = function (Page) {
+  const onSelectPageInner = async function (Page) {
     onSelectPage(Page);
     onClose();
-    AudioX.playClick();
+    await AudioX.playClick();
   };
 
   const onClickRefresh = function () {

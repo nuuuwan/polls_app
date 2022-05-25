@@ -49,8 +49,8 @@ export default class PollView extends Component {
     await this.reloadData(false);
   }
 
-  setSelectedAnswer(selectedAnswer) {
-    AudioX.playClick();
+  async setSelectedAnswer(selectedAnswer) {
+    await AudioX.playClick();
     this.setState({ selectedAnswer, hasSubmittedVote: false });
   }
 
@@ -73,7 +73,7 @@ export default class PollView extends Component {
         geoInfo
       );
       await PollsAppServer.addPollResult(pollResult);
-      AudioX.playVote();
+      await AudioX.playVote();
       await this.reloadData(true);
 
       this.props.setLastUpdated();

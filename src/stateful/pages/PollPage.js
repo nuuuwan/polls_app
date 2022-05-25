@@ -49,28 +49,28 @@ export default class PollPage extends Component {
     this.setState({ lastUpdated });
   }
 
-  onClickNewPoll() {
+  async onClickNewPoll() {
     this.setState({ showNewPollDrawer: true });
-    AudioX.playClick();
+    await AudioX.playClick();
   }
 
-  onClickRandomPoll() {
+  async onClickRandomPoll() {
     const { pollIDs, pollID } = this.state;
     let newPollID = pollID;
     while (newPollID === pollID) {
       newPollID = pollIDs[MathX.randomInt(0, pollIDs.length)];
     }
     this.setState({ pollID: newPollID });
-    AudioX.playClick();
+    await AudioX.playClick();
   }
 
-  onClickCopyPoll() {
+  async onClickCopyPoll() {
     navigator.clipboard.writeText(URLContext.getURL());
     this.setState({ isSnackbarOpen: true });
-    AudioX.playClick();
+    await AudioX.playClick();
   }
 
-  onClickTweet() {
+  async onClickTweet() {
     const tweetText = [
       "🗳 Checkout this #PollsAppLK poll",
       "",
@@ -80,7 +80,7 @@ export default class PollPage extends Component {
     const twitterURL =
       "http://twitter.com/intent/tweet?text=" + encodeURIComponent(tweetText);
     window.open(twitterURL, "_blank");
-    AudioX.playClick();
+    await AudioX.playClick();
   }
 
   onCloseSnackbar() {
@@ -90,7 +90,7 @@ export default class PollPage extends Component {
   async onSelectPoll(pollID) {
     URLContext.setContext({ Page: PollPage, pollID });
     await this.reloadData();
-    AudioX.playClick();
+    await AudioX.playClick();
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 

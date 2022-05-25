@@ -20,9 +20,9 @@ const STYLE = {
 };
 
 export default function CustomAppBar({ onSelectPage, geoInfo, Page }) {
-  const onClickUser = function () {
+  const onClickUser = async function () {
     onSelectPage(UserPage);
-    AudioX.playClick();
+    await AudioX.playClick();
   };
   return (
     <AppBar sx={STYLE}>

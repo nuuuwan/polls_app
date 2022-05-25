@@ -12,11 +12,17 @@ export default class AudioX {
     vote: new Audio(URL_VOTE),
   };
 
-  static playVote() {
-    this.tracks.vote.play();
+  static async playIfNotNull(track) {
+    if (track && track.play) {
+      await track.play();
+    }
   }
 
-  static playClick() {
-    this.tracks.click.play();
+  static async playVote() {
+    await this.playIfNotNull(this.tracks.vote);
+  }
+
+  static async playClick() {
+    await this.playIfNotNull(this.tracks.click);
   }
 }
