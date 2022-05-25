@@ -1,18 +1,18 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import App from "./App";
 
-jest.setTimeout(30_000);
+jest.setTimeout(120_000);
 
 test("Polls Page", async () => {
   render(<App />);
 
-  await waitFor(() => screen.findByText("Polls App"), { timeout: 10_000 });
+  await waitFor(() => screen.findByText("Polls App"), { timeout: 60_000 });
 
   const appBarTitle = screen.getByText("Polls App");
   expect(appBarTitle).toBeInTheDocument();
 
   await waitFor(() => screen.findByText("More Public Polls..."), {
-    timeout: 10_000,
+    timeout: 60_000,
   });
 
   const morePublicPollsLabel = screen.getByText("More Public Polls...");
