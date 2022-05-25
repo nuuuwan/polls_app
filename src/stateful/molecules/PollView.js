@@ -17,8 +17,8 @@ import ValidationBox from "../../nonstate/molecules/ValidationBox";
 import PollTitle from "../../nonstate/atoms/PollTitle";
 
 const STYLE = {
-  margin: 3,
-  padding: 1,
+  margin: 0,
+  padding: 2,
 };
 
 const ANSWER_NONE = "";
@@ -109,10 +109,7 @@ export default class PollView extends Component {
           }
           alertIfInvalid={
             isSelectionUserAnswer ? (
-              <>
-                You can change your vote by selecting a different option. Polls
-                App will count your <strong>most recent</strong> vote.
-              </>
+              ""
             ) : (
               <>
                 Select <strong>one</strong> answer.
@@ -120,32 +117,36 @@ export default class PollView extends Component {
             )
           }
         >
-          <Box sx={{ m: 2 }}>
-            <FormControl>
-              <RadioGroup value={selectedAnswer} onChange={onChange}>
-                {pollExtended.answerList.map(function (answer, iAnswer) {
-                  const answerVotes = answerToCount[answer]
-                    ? answerToCount[answer]
-                    : 0;
-                  return (
-                    <PollAnswer
-                      key={"poll-answer-" + iAnswer}
-                      answer={answer}
-                      answerVotes={answerVotes}
-                      totalCount={totalCount}
-                      showStatistics={showStatistics}
-                      userAnswer={userAnswer}
-                    />
-                  );
-                })}
-              </RadioGroup>
-            </FormControl>
+          <Box sx={{ m: 0, marginLeft: 1 }}>
+            <RadioGroup value={selectedAnswer} onChange={onChange}>
+              {pollExtended.answerList.map(function (answer, iAnswer) {
+                const answerVotes = answerToCount[answer]
+                  ? answerToCount[answer]
+                  : 0;
+                return (
+                  <PollAnswer
+                    key={"poll-answer-" + iAnswer}
+                    answer={answer}
+                    answerVotes={answerVotes}
+                    totalCount={totalCount}
+                    showStatistics={showStatistics}
+                    userAnswer={userAnswer}
+                  />
+                );
+              })}
+            </RadioGroup>
           </Box>
         </ValidationBox>
 
         <ValidationBox
           isValid={hasSubmittedVote}
-          alertIfValid={"Thanks for voting!"}
+          alertIfValid={
+            <>
+              Thanks for voting! You can change your vote by selecting a
+              different option. Polls App will count your{" "}
+              <strong>most recent</strong> vote.
+            </>
+          }
           alertIfInvalid={""}
         >
           <Box display="flex" justifyContent="flex-end">
