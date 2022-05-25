@@ -1,5 +1,6 @@
-import Typography from "@mui/material/Typography";
-import Link from "@mui/material/Link";
+import Box from "@mui/material/Box";
+
+import FAQParagraphItem from "./FAQParagraphItem";
 
 const REGEX_MD_LINK = /\[.*\]\(.*\)/gm;
 const REGEX_MD_LINK_LABEL = /\[.*\]/gm;
@@ -51,26 +52,10 @@ function parseParagraph(paragraph) {
 export default function FAQParagraph({ paragraph }) {
   const paragraphInfoList = parseParagraph(paragraph);
   return (
-    <>
+    <Box sx={{ m: 1 }}>
       {paragraphInfoList.map(function (info, iInfo) {
-        const key = "paragraph-info-" + iInfo;
-        switch (info.infoType) {
-          case "link":
-            return (
-              <Link key={key} href={info.href} sx={{ textDecoration: "none" }}>
-                <Typography variant="body2" component="span">
-                  {info.label}
-                </Typography>
-              </Link>
-            );
-          default:
-            return (
-              <Typography key={key} variant="body2" component="span">
-                {info.text}
-              </Typography>
-            );
-        }
+        return <FAQParagraphItem key={"paragraph-info-" + iInfo} info={info} />;
       })}
-    </>
+    </Box>
   );
 }
