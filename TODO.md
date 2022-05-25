@@ -14,10 +14,6 @@
 
 # MEDIUM
 
-* Basic App render unittests
-
-
-* Why doesn't getPollIDs work?
 * Read and fix "MUI: A component is changing the uncontrolled value state of RadioGroup to be controlled.
 Elements should"
 * Fix "--detectOpenHandles" errors

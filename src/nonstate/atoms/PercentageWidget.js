@@ -22,7 +22,7 @@ export default function PercentageWidget({ n, np, color }) {
     backgroundColor: color,
     float: "left",
   };
-  
+
   const styleInnerLower = {
     width: widthLower,
     opacity: 0.3,
