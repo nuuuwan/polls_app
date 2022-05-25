@@ -22,7 +22,12 @@ def get_faq_list():
         elif line[:2] == '# ':
             continue
         elif line[:3] == '---':
-            continue
+            if current_faq:
+                faq_list.append(current_faq)
+            current_faq = {
+                'question': "divider",
+                'answer_paragraphs': [],
+            }
         elif not line:
             continue
         else:
