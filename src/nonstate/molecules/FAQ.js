@@ -1,14 +1,12 @@
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
-import Divider from '@mui/material/Divider';
+import Divider from "@mui/material/Divider";
 
 import FAQParagraph from "./FAQParagraph";
 
 export default function FAQ({ faq, iFaq }) {
   if (faq.question === "divider") {
-    return (
-      <Divider />
-    );
+    return <Divider />;
   }
 
   return (
