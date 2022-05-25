@@ -9,12 +9,6 @@ export default function PercentageWidget({ n, np, color }) {
     return null;
   }
 
-  const styleInner = {
-    height: HEIGHT,
-    backgroundColor: color,
-    float: "left",
-  };
-
   const { lower, upper, p } = StatisticsXFuture.getErrorBounds(n, np);
   const numberOfVotesLabel = np + " votes";
 
@@ -23,6 +17,12 @@ export default function PercentageWidget({ n, np, color }) {
   const widthSpanUpper = parseInt((upper - p) * SLIDER_WIDTH_P + 0.5) + "%";
   const widthRemainder = parseInt((1 - upper) * SLIDER_WIDTH_P + 0.5) + "%";
 
+  const styleInner = {
+    height: HEIGHT,
+    backgroundColor: color,
+    float: "left",
+  };
+  
   const styleInnerLower = {
     width: widthLower,
     opacity: 0.3,
