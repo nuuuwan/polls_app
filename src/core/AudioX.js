@@ -12,19 +12,11 @@ export default class AudioX {
     vote: new Audio(URL_VOTE),
   };
 
-  static pauseAll() {
-    Object.values(AudioX.tracks).forEach(function (track) {
-      track.pause();
-    });
-  }
-
   static playVote() {
-    AudioX.pauseAll();
     this.tracks.vote.play();
   }
 
   static playClick() {
-    AudioX.pauseAll();
     this.tracks.click.play();
   }
 }
