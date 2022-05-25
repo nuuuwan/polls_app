@@ -22,6 +22,8 @@ jobs:
 
     - name: Test
       run: npm test
+      env:
+        REACT_APP_URL_LAMBDA: ${{ secrets.REACT_APP_URL_LAMBDA }}
 
     - name: Build project
       run: npm run build
