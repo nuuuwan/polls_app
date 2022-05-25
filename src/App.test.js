@@ -1,9 +1,11 @@
 import { render, screen } from "@testing-library/react";
 import App from "./App";
 
-const PARAMS = { timeout: 20_000 };
+const TIMEOUT = 20_000;
+const PARAMS = { timeout: TIMEOUT };
 
 test("Polls Page", async () => {
+  jest.setTimeout(TIMEOUT);
   render(<App />);
 
   const appBarTitle = await screen.findByText("Polls App", undefined, PARAMS);
