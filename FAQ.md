@@ -16,7 +16,7 @@ You can vote any number of times. Your most recent vote will be counted.
 
 ## How do I create a poll?
 
-Click on "Add New" in the Bottom Menu. Select your poll question, answer list, and whether the poll is public or unlisted. Finally, click "Add New Poll".
+Click on "Add New" in the Bottom Menu. Select your question, answer list, and whether the poll is public or unlisted. Finally, click "Add New Poll".
 
 ## What is the difference between a public poll and an unlisted poll?
 
