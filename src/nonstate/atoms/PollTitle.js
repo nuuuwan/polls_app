@@ -9,6 +9,7 @@ import { PublicIcon, UnlistedIcon } from "../../constants/CommonIcons";
 import AlignCenter from "../../nonstate/atoms/AlignCenter";
 import Condition from "../../nonstate/atoms/Condition";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import Emoji from "../../nonstate/atoms/Emoji";
 
 export default function PollTitle({ pollExtended }) {
   const VisibilityIcon =
@@ -49,7 +50,7 @@ export default function PollTitle({ pollExtended }) {
         <AlignCenter>
           <CheckCircleIcon sx={{ fontSize: "small", color: color }} />
           <Typography style={{ fontSize: "small", color: color }}>
-            You voted "{pollExtended.userAnswer}"
+            You voted "<Emoji text={pollExtended.userAnswer} />"
           </Typography>
         </AlignCenter>
       </Condition>

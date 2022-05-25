@@ -8,6 +8,8 @@ import AlignCenter from "../../nonstate/atoms/AlignCenter";
 import Condition from "../atoms/Condition";
 import PercentageWidget from "../atoms/PercentageWidget";
 
+import Emoji from "../../nonstate/atoms/Emoji";
+
 export default function PollAnswer({
   answer,
   totalCount,
@@ -28,7 +30,9 @@ export default function PollAnswer({
         control={<Radio style={{ color: color }} />}
         label={
           <AlignCenter>
-            <Typography variant="subtitle2">{answer}</Typography>
+            <Typography variant="subtitle2">
+              <Emoji text={answer} />
+            </Typography>
           </AlignCenter>
         }
       />
