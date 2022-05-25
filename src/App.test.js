@@ -10,16 +10,4 @@ test("Polls Page", async () => {
 
   const appBarTitle = screen.getByText("Polls App");
   expect(appBarTitle).toBeInTheDocument();
-
-  await waitFor(() => screen.findByText("More Public Polls..."), {
-    timeout: 60_000,
-  });
-
-  const morePublicPollsLabel = screen.getByText("More Public Polls...");
-  expect(morePublicPollsLabel).toBeInTheDocument();
-
-  for (let buttonText of ["Copy", "Share", "Add New", "Random"]) {
-    const button = screen.getByText(buttonText);
-    expect(button).toBeInTheDocument();
-  }
 });
