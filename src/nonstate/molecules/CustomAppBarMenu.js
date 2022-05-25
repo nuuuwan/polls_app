@@ -48,7 +48,11 @@ export default function CustomAppBarMenu({ onSelectPage, Page }) {
 
   return (
     <div>
-      <IconButton color="inherit" onClick={onClick}>
+      <IconButton
+        color="inherit"
+        onClick={onClick}
+        aria-label="CustomAppBarMenu.button"
+      >
         <MenuIcon />
       </IconButton>
       <Menu anchorEl={anchorEl} open={open} onClose={onClose}>
