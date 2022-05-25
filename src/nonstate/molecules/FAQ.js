@@ -8,15 +8,14 @@ export default function FAQ({ faq, iFaq }) {
         {faq.question}
       </Typography>
 
-      {faq.answerParagraphs.map(function (answer, iAnswer) {
-        const fontWeight = iAnswer === 0 ? "bold" : "normal";
+      {faq.answerParagraphs.map(function (paragraph, iParagraph) {
         return (
           <Typography
-            key={"answer-paragraph-" + iFaq + "-" + iAnswer}
+            key={"answer-paragraph-" + iFaq + "-" + iParagraph}
             variant="body1"
-            sx={{ marginBottom: 1, fontWeight }}
+            sx={{ marginBottom: 1}}
           >
-            {answer}
+            {paragraph}
           </Typography>
         );
       })}
