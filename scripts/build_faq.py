@@ -1,8 +1,10 @@
 import os
+
 from utils import filex, hashx
 
 FAQ_MD_FILE = 'FAQ.md'
 FAQ_JS_FILE = 'src/constants/FAQ.js'
+
 
 def get_faq_list():
     faq_list = []
@@ -42,18 +44,18 @@ def build_js_file(faq_list):
 
     for faq in faq_list:
         question = faq['question']
-        question = question.replace('"','\\"')
+        question = question.replace('"', '\\"')
 
         lines.append('  {')
         lines.append(f'    question: "{question}",')
 
         answer_paragraphs = faq['answer_paragraphs']
-        lines.append(f'    answerParagraphs: [')
+        lines.append('    answerParagraphs: [')
         for answer_paragraph in answer_paragraphs:
-            answer_paragraph = answer_paragraph.replace('"','\\"')
+            answer_paragraph = answer_paragraph.replace('"', '\\"')
             lines.append(f'      "{answer_paragraph}",')
 
-        lines.append(f'    ],')
+        lines.append('    ],')
         lines.append('  },')
 
     lines.append('];')
@@ -64,6 +66,7 @@ def build_js_file(faq_list):
         content,
     )
     print(f'Wrote FAQ to {FAQ_JS_FILE}')
+
 
 def lint():
     for cmd_prefix in [
