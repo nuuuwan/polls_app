@@ -20,6 +20,22 @@ test("Polls Page", async () => {
   expect(screen.getByText("Random")).toBeInTheDocument();
 });
 
+test("Add New Poll", async () => {
+  // Wait for Page to Load
+  render(<App />);
+  await waitFor(() => screen.findByText("Polls App"), PARAMS_TIMEOUT);
+  await waitFor(() => screen.findByText("Add New"), PARAMS_TIMEOUT);
+
+  // Click on Menu
+  const button = screen.getByText("Add New");
+  console.debug(button);
+  fireEvent(button, new MouseEvent("click", { bubbles: true }));
+
+  // Validate Add New Poll Drawer
+  await waitFor(() => screen.findByText("Question"), PARAMS_TIMEOUT);
+  expect(screen.getByText("Question")).toBeInTheDocument();
+});
+
 test("Help Page", async () => {
   // Wait for Page to Load
   render(<App />);
