@@ -2,7 +2,7 @@ import { render, screen, waitFor, fireEvent } from "@testing-library/react";
 import App from "./App";
 
 jest.setTimeout(120_000);
-const PARAMS_TIMEOUT = { timeout: 10_000 };
+const PARAMS_TIMEOUT = { timeout: 20_000 };
 
 test("Polls Page", async () => {
   // Wait for Page to Load
@@ -23,7 +23,7 @@ test("Polls Page", async () => {
 test("Help Page", async () => {
   // Wait for Page to Load
   render(<App />);
-  await waitFor(() => screen.findByText("Copy"), PARAMS_TIMEOUT);
+  await waitFor(() => screen.findByText("Polls App"), PARAMS_TIMEOUT);
 
   // Click on Menu
   const button = screen.getByRole("button", {
@@ -34,9 +34,30 @@ test("Help Page", async () => {
   // Click on Help
   await waitFor(() => screen.findByText("Help & FAQs"), PARAMS_TIMEOUT);
   const buttonHelp = screen.getByText("Help & FAQs");
-  fireEvent(buttonHelp, new MouseEvent("click"));
+  fireEvent(buttonHelp, new MouseEvent("click", { bubbles: true }));
 
   // Validate HelpPage
   await waitFor(() => screen.findByText("FAQs"), PARAMS_TIMEOUT);
   expect(screen.getByText("FAQs")).toBeInTheDocument();
+});
+
+test("User Page", async () => {
+  // Wait for Page to Load
+  render(<App />);
+  await waitFor(() => screen.findByText("Polls App"), PARAMS_TIMEOUT);
+
+  // Click on Menu
+  const button = screen.getByRole("button", {
+    name: "CustomAppBarMenu.button",
+  });
+  fireEvent(button, new MouseEvent("click", { bubbles: true }));
+
+  // Click on User
+  await waitFor(() => screen.findByText("User"), PARAMS_TIMEOUT);
+  const buttonHelp = screen.getByText("User");
+  fireEvent(buttonHelp, new MouseEvent("click", { bubbles: true }));
+
+  // Validate UserPage
+  await waitFor(() => screen.findByText("UserID"), PARAMS_TIMEOUT);
+  expect(screen.getByText("UserID")).toBeInTheDocument();
 });
