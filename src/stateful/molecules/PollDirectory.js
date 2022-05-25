@@ -1,5 +1,4 @@
 import { Component } from "react";
-import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
