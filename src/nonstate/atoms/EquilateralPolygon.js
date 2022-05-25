@@ -1,16 +1,9 @@
 import { DataStructures } from "@nuuuwan/utils-js-dev";
 
-export default function EquilateralPolygon({ cx, cy, r, n, color }) {
-  if (n > 4) {
-    return (
-      <svg>
-        <circle cx={cx} cy={cy} r={r} fill={color} stroke="none" />
-      </svg>
-    );
-  }
+import Circle from "./Circle";
 
-  const d =
-    DataStructures.range(0, n)
+function getD(cx, cy, r, n) {
+  return DataStructures.range(0, n)
       .map(function (i) {
         const theta0 = -Math.PI / 2;
         const theta = theta0 + (Math.PI * 2 * i) / n;
@@ -20,6 +13,14 @@ export default function EquilateralPolygon({ cx, cy, r, n, color }) {
         return label + x + "," + y;
       })
       .join("") + "Z";
+}
+
+export default function EquilateralPolygon({ cx, cy, r, n, color }) {
+  if (n > 4) {
+    return <Circle cx={cx} cy={cy} r={r} color={color} />;
+  }
+
+  const d = getD(cx, cy, r, n);
   return (
     <svg>
       <path d={d} fill={color} stroke="none" />
