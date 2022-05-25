@@ -1,11 +1,7 @@
 export default class Cache {
   static async get(cacheKey, asyncFallback) {
     const hotItem = localStorage.getItem(cacheKey);
-    if (hotItem
-      && hotItem !== ""
-      && hotItem !== null
-      && hotItem !== "null"
-    ) {
+    if (hotItem && hotItem !== "" && hotItem !== null && hotItem !== "null") {
       return JSON.parse(hotItem);
     }
 
