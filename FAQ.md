@@ -8,15 +8,17 @@ PollsApp is an app for creating and participating in simple (but potentially imp
 
 ## How do I vote in a poll?
 
-By default, PollsApp opens with a random poll. You can also select from a list of public polls to vote in.
+By default, PollsApp opens with a [random poll](https://nuuuwan.github.io/polls_app/).
+
+You can also select from a list of public polls to vote in.
 
 ## How many times can I vote in a single poll?
 
-You can vote any number of times. Your most recent vote will be counted.
+You can vote any number of times. PollsApp will count your most recent vote.
 
 ## How do I create a poll?
 
-Click on "Add New" in the Bottom Menu. Select your question, answer list, and whether the poll is public or unlisted. Finally, click "Add New Poll".
+Click on "Add New" in the Bottom Menu. Then, select your question, answer list, and whether the poll is public or unlisted. Finally, click "Add New Poll".
 
 ## What is the difference between a public poll and an unlisted poll?
 
@@ -52,12 +54,16 @@ The line represents the percentage of votes the answer received. The darker shad
 
 For now, no. Polls All recognizes you by your IP Address, location and country and automatically creates a user account for you.
 
+You can see your automatic user account on the [User Page](https://nuuuwan.github.io/polls_app#user).
+
 ## How does PollsApp know that I have voted in a poll before?
 
-PollsApp uses the above mentioned automatic user account to identify you.
+PollsApp uses the above mentioned [automatic user account](https://nuuuwan.github.io/polls_app#user) to identify you.
 
 ---
 
 ## Where can I find the code for PollsApp?
 
-You can find the code for PollsApp on [GitHub](https://github.com/nuuuwan/polls_app). Feel free to fork the code, report issues, or ask questions.
+You can find the code for PollsApp on [GitHub](https://github.com/nuuuwan/polls_app).
+
+Feel free to fork the code, report issues, or ask questions.
