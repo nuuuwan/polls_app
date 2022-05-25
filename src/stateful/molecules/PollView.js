@@ -2,7 +2,6 @@ import { Component } from "react";
 import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
-import FormControl from "@mui/material/FormControl";
 import RadioGroup from "@mui/material/RadioGroup";
 import CircularProgress from "@mui/material/CircularProgress";
 
@@ -76,6 +75,8 @@ export default class PollView extends Component {
       await PollsAppServer.addPollResult(pollResult);
       AudioX.playVote();
       await this.reloadData(true);
+
+      this.props.setLastUpdated();
     }.bind(this);
 
     const onChange = function (e) {

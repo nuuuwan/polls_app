@@ -1,7 +1,7 @@
 import { Component } from "react";
 import * as React from "react";
 
-import { MathX } from "@nuuuwan/utils-js-dev";
+import { MathX, TimeX } from "@nuuuwan/utils-js-dev";
 
 import Box from "@mui/material/Box";
 import Snackbar from "@mui/material/Snackbar";
@@ -24,22 +24,29 @@ export default class PollPage extends Component {
       pollID: undefined,
       showNewPollDrawer: false,
       isSnackbarOpen: false,
+      lastUpdated: TimeX.getUnixTime(),
     };
   }
 
   async reloadData() {
     let { pollID } = URLContext.getContext();
     const pollIDs = await PollsAppServer.getPollIDs();
+    const lastUpdated = TimeX.getUnixTime();
 
     if (!pollID) {
       pollID = pollIDs[0];
     }
 
-    this.setState({ pollIDs, pollID, showNewPollDrawer: false });
+    this.setState({ pollIDs, pollID, showNewPollDrawer: false, lastUpdated });
   }
 
   async componentDidMount() {
     await this.reloadData();
+  }
+
+  setLastUpdated() {
+    const lastUpdated = TimeX.getUnixTime();
+    this.setState({ lastUpdated });
   }
 
   onClickNewPoll() {
@@ -94,7 +101,8 @@ export default class PollPage extends Component {
   }
 
   render() {
-    const { pollIDs, pollID, showNewPollDrawer, isSnackbarOpen } = this.state;
+    const { pollIDs, pollID, showNewPollDrawer, isSnackbarOpen, lastUpdated } =
+      this.state;
     if (!pollIDs) {
       return <CircularProgress />;
     }
@@ -103,9 +111,13 @@ export default class PollPage extends Component {
     const messageSnackbar = <div>Copied Poll URL to Clipboard.</div>;
 
     return (
-      <div>
+      <div key={"poll-page-" + lastUpdated}>
         <Box sx={{ marginBotton: 1, maxWidth: "100%" }}>
-          <PollView key={"poll-" + pollID} pollID={pollID} />
+          <PollView
+            key={"poll-" + pollID}
+            pollID={pollID}
+            setLastUpdated={this.setLastUpdated.bind(this)}
+          />
           <PollDirectory
             pollIDs={pollIDs}
             onSelectPoll={this.onSelectPoll.bind(this)}
