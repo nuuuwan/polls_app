@@ -14,11 +14,12 @@
 
 # MEDIUM
 
+* Basic App render unittests
+
 * Read and fix "MUI: A component is changing the uncontrolled value state of RadioGroup to be controlled.
 Elements should"
-* Basic App render unittests
+
 
 # LOW
 
-* Auto Emojis
 * My polls
