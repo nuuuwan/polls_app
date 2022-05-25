@@ -6,7 +6,7 @@ export default function FAQParagraphItem({ info }) {
     case "link":
       return (
         <Link href={info.href} sx={{ textDecoration: "none" }}>
-          <Typography variant="body2" component="span">
+          <Typography variant="body1" component="span">
             {info.label}
           </Typography>
         </Link>
@@ -14,7 +14,7 @@ export default function FAQParagraphItem({ info }) {
 
     default:
       return (
-        <Typography variant="body2" component="span">
+        <Typography variant="body1" component="span">
           {info.text}
         </Typography>
       );
