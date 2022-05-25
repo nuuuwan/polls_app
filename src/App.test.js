@@ -1,25 +1,25 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import App from "./App";
 
-const TIMEOUT = 60_000;
-const PARAMS = { timeout: TIMEOUT };
+jest.setTimeout(30_000);
 
 test("Polls Page", async () => {
-  jest.setTimeout(TIMEOUT);
   render(<App />);
 
-  const appBarTitle = await screen.findByText("Polls App", undefined, PARAMS);
+  await waitFor(() => screen.findByText("Polls App"), { timeout: 10_000 });
+
+  const appBarTitle = screen.getByText("Polls App");
   expect(appBarTitle).toBeInTheDocument();
 
-  const morePublicPollsLabel = await screen.findByText(
-    "More Public Polls...",
-    undefined,
-    PARAMS
-  );
+  await waitFor(() => screen.findByText("More Public Polls..."), {
+    timeout: 10_000,
+  });
+
+  const morePublicPollsLabel = screen.getByText("More Public Polls...");
   expect(morePublicPollsLabel).toBeInTheDocument();
 
   for (let buttonText of ["Copy", "Share", "Add New", "Random"]) {
-    const button = await screen.findByText(buttonText, undefined, PARAMS);
+    const button = screen.getByText(buttonText);
     expect(button).toBeInTheDocument();
   }
 });
