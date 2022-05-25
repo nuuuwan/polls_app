@@ -1,4 +1,9 @@
-# BEYOND
+# PHILOSOPHICAL QUESTIONS
+
+* What constitutes nonstate, stateful, atom and molecule?
+* I18N
+* Users - Do we have normal username/passworded accounts?
+* Unittests Strategy
 
 * Registration Problem (RP)
 * What is the longer term rollout plan?
@@ -6,13 +11,9 @@
 
 # HIGH
 
-* I18N
 
 # MEDIUM
 
-* FAQ - How do I create a poll?
-* FAQ - What types of questions and answers should a poll have?
-* FAQ - What is a poll's visibility?
 * Read and fix "MUI: A component is changing the uncontrolled value state of RadioGroup to be controlled.
 Elements should"
 * Basic App render unittests
@@ -20,5 +21,4 @@ Elements should"
 # LOW
 
 * Auto Emojis
-* Clear Add New Poll items on Add new
 * My polls
