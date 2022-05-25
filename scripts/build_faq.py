@@ -1,3 +1,4 @@
+import os
 from utils import filex, hashx
 
 FAQ_MD_FILE = 'FAQ.md'
@@ -64,7 +65,15 @@ def build_js_file(faq_list):
     )
     print(f'Wrote FAQ to {FAQ_JS_FILE}')
 
+def lint():
+    for cmd_prefix in [
+        'npx prettier --write --loglevel warn',
+        'eslint --fix --ext',
+    ]:
+        os.system(f'{cmd_prefix} {FAQ_JS_FILE}')
+
 
 if __name__ == '__main__':
     faq_list = get_faq_list()
     build_js_file(faq_list)
+    lint()
