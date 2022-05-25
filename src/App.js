@@ -25,9 +25,8 @@ export default class App extends Component {
 
   async componentDidMount() {
     PollsAppServer.init();
-    this.setState({
-      geoInfo: await GhostUserX.getInfo(),
-    });
+    const geoInfo = await GhostUserX.getInfo();
+    this.setState({geoInfo});
   }
 
   onSelectPage(Page) {
