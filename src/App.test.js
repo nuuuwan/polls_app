@@ -4,6 +4,10 @@ import App from "./App";
 jest.setTimeout(120_000);
 const PARAMS_TIMEOUT = { timeout: 20_000 };
 
+jest
+  .spyOn(window.HTMLMediaElement.prototype, 'play')
+  .mockImplementation(() => {})
+
 test("Polls Page", async () => {
   // Wait for Page to Load
   render(<App />);
