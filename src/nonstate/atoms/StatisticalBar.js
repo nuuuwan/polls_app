@@ -1,4 +1,3 @@
-import Typography from "@mui/material/Typography";
 import StatisticsXFuture from "../../base/StatisticsXFuture";
 
 const SLIDER_WIDTH_P = 67;
@@ -8,54 +7,34 @@ export default function StatisticalBar({ n, np, color }) {
   if (!n || n < StatisticsXFuture.MIN_STATISTICAL_N) {
     return null;
   }
-
   const { lower, upper, p } = StatisticsXFuture.getErrorBounds(n, np);
-  const numberOfVotesLabel = np + " votes";
-
-  const widthLower = parseInt(lower * SLIDER_WIDTH_P + 0.5) + "%";
-  const widthSpanLower = parseInt((p - lower) * SLIDER_WIDTH_P + 0.5) + "%";
-  const widthSpanUpper = parseInt((upper - p) * SLIDER_WIDTH_P + 0.5) + "%";
-  const widthRemainder = parseInt((1 - upper) * SLIDER_WIDTH_P + 0.5) + "%";
-
-  const styleInner = {
+  const styleCommon = {
     height: HEIGHT,
     backgroundColor: color,
     float: "left",
   };
 
-  const styleInnerLower = {
-    width: widthLower,
-    opacity: 0.3,
-  };
-  const styleInnerSpanLower = {
-    width: widthSpanLower,
-    opacity: 0.4,
-    borderRight: "1px black solid",
-  };
-  const styleInnerSpanUpper = {
-    width: widthSpanUpper,
-    opacity: 0.4,
-  };
-  const styleInnerRemainder = {
-    width: widthRemainder,
-    backgroundColor: "#f0f0f0",
-    marginRight: "2%",
-  };
-
-  const styleLabel = {
-    fontSize: "small",
-    float: "right",
-    margin: 0,
-    padding: 0,
-  };
+  const bars = [
+    { pSpan: lower, opacity: 0.1 },
+    { pSpan: p - lower, opacity: 0.5, line: true },
+    { pSpan: upper - p, opacity: 0.5 },
+    { pSpan: 1 - upper, opacity: 0.01 },
+  ];
 
   return (
     <div>
-      <span style={{ ...styleInner, ...styleInnerLower }} />
-      <span style={{ ...styleInner, ...styleInnerSpanLower }} />
-      <span style={{ ...styleInner, ...styleInnerSpanUpper }} />
-      <span style={{ ...styleInner, ...styleInnerRemainder }} />
-      <Typography style={styleLabel}>{numberOfVotesLabel}</Typography>
+      {bars.map(function (bar, iBar) {
+        const style = {
+          ...styleCommon,
+          ...{
+            width: parseInt(bar.pSpan * SLIDER_WIDTH_P + 0.5) + "%",
+            opacity: bar.opacity,
+            borderRight: bar.line ? "1px solid black" : "",
+          },
+        };
+
+        return <span style={style} />;
+      })}
     </div>
   );
 }
