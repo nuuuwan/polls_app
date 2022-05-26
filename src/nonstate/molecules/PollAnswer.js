@@ -6,7 +6,7 @@ import Box from "@mui/material/Box";
 import Radio from "@mui/material/Radio";
 import AlignCenter from "../../nonstate/atoms/AlignCenter";
 import Condition from "../atoms/Condition";
-import PercentageWidget from "../atoms/PercentageWidget";
+import StatisticalBar from "../atoms/StatisticalBar";
 
 import Emoji from "../../nonstate/atoms/Emoji";
 
@@ -37,7 +37,7 @@ export default function PollAnswer({
         }
       />
       <Condition condition={showStatistics}>
-        <PercentageWidget n={totalCount} np={answerVotes} color={color} />
+        <StatisticalBar n={totalCount} np={answerVotes} color={color} />
       </Condition>
     </Box>
   );

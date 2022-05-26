@@ -4,7 +4,7 @@ import StatisticsXFuture from "../../base/StatisticsXFuture";
 const SLIDER_WIDTH_P = 67;
 const HEIGHT = 18;
 
-export default function PercentageWidget({ n, np, color }) {
+export default function StatisticalBar({ n, np, color }) {
   if (!n || n < StatisticsXFuture.MIN_STATISTICAL_N) {
     return null;
   }
