@@ -29,4 +29,4 @@ export default class PollDirectoryItem extends Component {
   }
 }
 
-// import PollDirectoryItem from "../../stateful/molecules/PollDirectoryItem";
+// import PollDirectoryItem from "../../stateful/organisms/PollDirectoryItem";
