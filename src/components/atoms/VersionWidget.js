@@ -1,6 +1,6 @@
 import React from "react";
 import Typography from "@mui/material/Typography";
-import { VERSION } from "../../constants/Version";
+import { VERSION } from "../../api/constants/Version";
 
 export default function VersionWidget() {
   return (

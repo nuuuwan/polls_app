@@ -7,13 +7,13 @@ import Box from "@mui/material/Box";
 import Snackbar from "@mui/material/Snackbar";
 import CircularProgress from "@mui/material/CircularProgress";
 
-import PollsAppServer from "../../core/PollsAppServer";
+import PollsAppServer from "../../api/core/PollsAppServer";
 
 import PollView from "../../components/organisms/PollView";
 import PollBottomNavigation from "../../components/molecules/PollBottomNavigation";
 import NewPollDrawer from "../../components/organisms/NewPollDrawer";
-import URLContext from "../../core/URLContext";
-import AudioX from "../../core/AudioX";
+import URLContext from "../../api/core/URLContext";
+import AudioX from "../../api/core/AudioX";
 import PollDirectory from "../../components/organisms/PollDirectory";
 
 export default class PollPage extends Component {

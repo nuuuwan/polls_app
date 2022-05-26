@@ -1,5 +1,5 @@
 import Typography from "@mui/material/Typography";
-import StatisticsXFuture from "../../base/StatisticsXFuture";
+import StatisticsXFuture from "../../api/base/StatisticsXFuture";
 import Divider from "@mui/material/Divider";
 import Condition from "../../components/atoms/Condition";
 

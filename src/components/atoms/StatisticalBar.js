@@ -1,4 +1,4 @@
-import StatisticsXFuture from "../../base/StatisticsXFuture";
+import StatisticsXFuture from "../../api/base/StatisticsXFuture";
 
 const SLIDER_WIDTH_P = 67;
 const HEIGHT = 18;

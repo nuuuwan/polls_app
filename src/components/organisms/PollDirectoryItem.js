@@ -1,7 +1,7 @@
 import { Component } from "react";
 
-import GhostUserX from "../../base/GhostUserX";
-import PollsAppServer from "../../core/PollsAppServer";
+import GhostUserX from "../../api/base/GhostUserX";
+import PollsAppServer from "../../api/core/PollsAppServer";
 
 import PollTitle from "../../components/molecules/PollTitle";
 

@@ -3,10 +3,10 @@ import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-import URLContext from "./core/URLContext";
-import GhostUserX from "./base/GhostUserX";
+import URLContext from "./api/core/URLContext";
+import GhostUserX from "./api/base/GhostUserX";
 import CustomAppBar from "./components/molecules/CustomAppBar";
-import PollsAppServer from "./core/PollsAppServer";
+import PollsAppServer from "./api/core/PollsAppServer";
 
 const STYLE = {
   padding: 3,

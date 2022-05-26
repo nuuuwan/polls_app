@@ -9,13 +9,13 @@ import {
   HelpIcon,
   CodeIcon,
   UserIcon,
-} from "../../constants/CommonIcons.js";
+} from "../../api/constants/CommonIcons.js";
 import HelpPage from "../../components/pages/HelpPage";
 import PollPage from "../../components/pages/PollPage";
 import UserPage from "../../components/pages/UserPage";
-import AudioX from "../../core/AudioX";
+import AudioX from "../../api/core/AudioX";
 
-import { URL_GITHUB_REPO_POLLS_APP } from "../../constants/Constants";
+import { URL_GITHUB_REPO_POLLS_APP } from "../../api/constants/Constants";
 import CustomAppBarMenuItem from "./CustomAppBarMenuItem";
 import VersionWidget from "../../components/atoms/VersionWidget";
 
