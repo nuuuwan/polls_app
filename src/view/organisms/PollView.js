@@ -27,11 +27,10 @@ export default class PollView extends Component {
     this.setState({ pollExtended, selectedAnswer: pollExtended.userAnswer });
   }
 
-  async onClickVote(pollExtended) {
-    const { selectedAnswer } = this.state;
-    const { reloadData } = this.props;
+  async onClickVote() {
+    const { pollExtended, selectedAnswer } = this.state;
 
-    const geoInfo = await await GhostUser.getInfo();
+    const geoInfo = await GhostUser.getInfo();
     const userID = geoInfo.infoHash;
 
     const pollResult = new PollResult(
@@ -43,7 +42,6 @@ export default class PollView extends Component {
     );
     await PollsAppServer.addPollResult(pollResult);
     await AudioX.playVote();
-    await reloadData();
   }
 
   async setSelectedAnswer(selectedAnswer) {

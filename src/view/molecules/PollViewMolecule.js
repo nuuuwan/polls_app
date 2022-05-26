@@ -21,7 +21,7 @@ export default function PollViewMolecule({
   onClickVote,
 }) {
   const onClickVoteInner = async function (e) {
-    onClickVote(pollExtended);
+    onClickVote();
   };
 
   const onChange = function (e) {
