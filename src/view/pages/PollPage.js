@@ -23,47 +23,25 @@ export default class PollPage extends Component {
     };
   }
 
-  async reloadData(pollID) {
-    const pollIDs = await PollsAppServer.getPollIDs();
-    const geoInfo = await GhostUser.getInfo();
-
+  async componentDidMount() {
+    let { pollID } = URLContext.getContext();
     if (!pollID) {
+      const pollIDs = await PollsAppServer.getPollIDs();
       pollID = pollIDs[0];
     }
 
-    const userID = geoInfo.userID;
-    const pollExtendedList = await Promise.all(
-      pollIDs.map(async function (pollID) {
-        return await PollsAppServer.getPollExtended(pollID, userID);
-      })
-    );
-
-    const pollExtendedIdx = pollExtendedList.reduce(function (
-      pollExtendedIdx,
-      pollExtended
-    ) {
-      pollExtendedIdx[pollExtended.pollID] = pollExtended;
-      return pollExtendedIdx;
-    },
-    {});
-
     this.setState({
-      pollIDs,
       pollID,
-      pollExtendedIdx,
     });
-  }
-
-  async componentDidMount() {
-    let { pollID } = URLContext.getContext();
-    await this.reloadData(pollID);
   }
 
   async onSelectPoll(pollID) {
     URLContext.setContext({ Page: PollPage, pollID });
-    await this.reloadData(pollID);
     await AudioX.playClick();
     window.scrollTo({ top: 0, behavior: "smooth" });
+    this.setState({
+      pollID,
+    });
   }
 
   render() {
@@ -81,7 +59,6 @@ export default class PollPage extends Component {
           <PollView
             key={"poll-view-" + pollID}
             pollID={pollID}
-            reloadData={this.reloadData.bind(this)}
           />
           <PollDirectory
             key={"poll-directory-" + dataHash}
