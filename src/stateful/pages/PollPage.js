@@ -10,7 +10,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import PollsAppServer from "../../core/PollsAppServer";
 
 import PollView from "../../stateful/molecules/PollView";
-import PollBottomNavigation from "../../nonstate/molecules/PollBottomNavigation";
+import PollBottomNavigation from "../../components/molecules/PollBottomNavigation";
 import NewPollDrawer from "../../stateful/molecules/NewPollDrawer";
 import URLContext from "../../core/URLContext";
 import AudioX from "../../core/AudioX";

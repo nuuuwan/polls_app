@@ -10,10 +10,10 @@ import PollsAppServer from "../../core/PollsAppServer";
 import AudioX from "../../core/AudioX";
 import GhostUserX from "../../base/GhostUserX";
 import PollResult from "../../core/PollResult";
-import VoteButton from "../../nonstate/atoms/VoteButton";
-import PollAnswer from "../../nonstate/molecules/PollAnswer";
-import ValidationBox from "../../nonstate/molecules/ValidationBox";
-import PollTitle from "../../nonstate/molecules/PollTitle";
+import VoteButton from "../../components/atoms/VoteButton";
+import PollAnswer from "../../components/molecules/PollAnswer";
+import ValidationBox from "../../components/molecules/ValidationBox";
+import PollTitle from "../../components/molecules/PollTitle";
 
 const STYLE = {
   margin: 0,

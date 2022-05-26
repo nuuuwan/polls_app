@@ -4,11 +4,11 @@ import { useTheme } from "@mui/material/styles";
 
 import Box from "@mui/material/Box";
 import Radio from "@mui/material/Radio";
-import AlignCenter from "../../nonstate/atoms/AlignCenter";
+import AlignCenter from "../../components/atoms/AlignCenter";
 import Condition from "../atoms/Condition";
 import StatisticalBar from "../atoms/StatisticalBar";
 
-import Emoji from "../../nonstate/atoms/Emoji";
+import Emoji from "../../components/atoms/Emoji";
 
 export default function PollAnswer({
   answer,

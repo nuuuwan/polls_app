@@ -3,13 +3,13 @@ import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import Divider from "@mui/material/Divider";
 
-import PollStatisticsView from "../../nonstate/molecules/PollStatisticsView";
+import PollStatisticsView from "../../components/molecules/PollStatisticsView";
 import { MathX } from "@nuuuwan/utils-js-dev";
 import { PublicIcon, UnlistedIcon } from "../../constants/CommonIcons";
-import AlignCenter from "../../nonstate/atoms/AlignCenter";
-import Condition from "../../nonstate/atoms/Condition";
+import AlignCenter from "../../components/atoms/AlignCenter";
+import Condition from "../../components/atoms/Condition";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import Emoji from "../../nonstate/atoms/Emoji";
+import Emoji from "../../components/atoms/Emoji";
 
 export default function PollTitle({ pollExtended }) {
   const VisibilityIcon =

@@ -3,9 +3,9 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
 import { FAQList } from "../../constants/FAQ";
-import FAQ from "../../nonstate/molecules/FAQ";
+import FAQ from "../../components/molecules/FAQ";
 import { HelpIcon } from "../../constants/CommonIcons.js";
-import AlignCenter from "../../nonstate/atoms/AlignCenter";
+import AlignCenter from "../../components/atoms/AlignCenter";
 
 export default class HelpPage extends Component {
   render() {

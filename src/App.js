@@ -5,7 +5,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 import URLContext from "./core/URLContext";
 import GhostUserX from "./base/GhostUserX";
-import CustomAppBar from "./nonstate/molecules/CustomAppBar";
+import CustomAppBar from "./components/molecules/CustomAppBar";
 import PollsAppServer from "./core/PollsAppServer";
 
 const STYLE = {

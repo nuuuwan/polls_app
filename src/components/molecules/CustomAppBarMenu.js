@@ -17,7 +17,7 @@ import AudioX from "../../core/AudioX";
 
 import { URL_GITHUB_REPO_POLLS_APP } from "../../constants/Constants";
 import CustomAppBarMenuItem from "./CustomAppBarMenuItem";
-import VersionWidget from "../../nonstate/atoms/VersionWidget";
+import VersionWidget from "../../components/atoms/VersionWidget";
 
 export default function CustomAppBarMenu({ onSelectPage, Page }) {
   const [anchorEl, setAnchorEl] = useState(null);

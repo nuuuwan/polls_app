@@ -4,7 +4,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import Alert from "@mui/material/Alert";
-import AlignCenter from "../../nonstate/atoms/AlignCenter";
+import AlignCenter from "../../components/atoms/AlignCenter";
 import Typography from "@mui/material/Typography";
 
 import { PublicIcon, UnlistedIcon } from "../../constants/CommonIcons";

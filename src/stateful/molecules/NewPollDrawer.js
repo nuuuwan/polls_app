@@ -14,11 +14,11 @@ import { PollIcon } from "../../constants/CommonIcons";
 import IDXFuture from "../../base/IDXFuture";
 import Poll from "../../core/Poll";
 import PollsAppServer from "../../core/PollsAppServer";
-import ListInput from "../../nonstate/molecules/ListInput";
-import AlignCenter from "../../nonstate/atoms/AlignCenter";
-import ValidationBox from "../../nonstate/molecules/ValidationBox";
+import ListInput from "../../components/molecules/ListInput";
+import AlignCenter from "../../components/atoms/AlignCenter";
+import ValidationBox from "../../components/molecules/ValidationBox";
 import AudioX from "../../core/AudioX";
-import PollVisibilitySelector from "../../nonstate/molecules/PollVisibilitySelector";
+import PollVisibilitySelector from "../../components/molecules/PollVisibilitySelector";
 
 const MIN_QUESTION_LENGTH = 10;
 const MIN_ANSWER_LIST_LENGTH = 2;
