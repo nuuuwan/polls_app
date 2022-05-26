@@ -1,7 +1,7 @@
 import Typography from "@mui/material/Typography";
-import StatisticsXFuture from "../../api/base/StatisticsXFuture";
+import StatisticsXFuture from "../../nonview/base/StatisticsXFuture";
 import Divider from "@mui/material/Divider";
-import Condition from "../../components/atoms/Condition";
+import Condition from "../../view/atoms/Condition";
 
 export default function PollStatisticsView({
   answerList,

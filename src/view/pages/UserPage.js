@@ -7,10 +7,10 @@ import Alert from "@mui/material/Alert";
 
 import ReactCountryFlag from "react-country-flag";
 
-import TitledBody from "../../components/molecules/TitledBody";
-import IDAvatar from "../../components/molecules/IDAvatar";
-import GoogleMapsLink from "../../components/atoms/GoogleMapsLink";
-import SimpleLink from "../../components/atoms/SimpleLink";
+import TitledBody from "../../view/molecules/TitledBody";
+import IDAvatar from "../../view/molecules/IDAvatar";
+import GoogleMapsLink from "../../view/atoms/GoogleMapsLink";
+import SimpleLink from "../../view/atoms/SimpleLink";
 
 const URL_WHATISMYIP = "https://whatismyipaddress.com/";
 

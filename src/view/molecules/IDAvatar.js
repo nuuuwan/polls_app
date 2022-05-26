@@ -1,6 +1,6 @@
 import Avatar from "@mui/material/Avatar";
 import { DataStructures } from "@nuuuwan/utils-js-dev";
-import EquilateralPolygon from "../../components/atoms/EquilateralPolygon";
+import EquilateralPolygon from "../../view/atoms/EquilateralPolygon";
 
 const N = 3;
 const BITS_PER_COLOR = 3;

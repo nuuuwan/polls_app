@@ -2,10 +2,10 @@ import { Component } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
-import { FAQList } from "../../api/constants/FAQ";
-import FAQ from "../../components/molecules/FAQ";
-import { HelpIcon } from "../../api/constants/CommonIcons.js";
-import AlignCenter from "../../components/atoms/AlignCenter";
+import { FAQList } from "../../nonview/constants/FAQ";
+import FAQ from "../../view/molecules/FAQ";
+import { HelpIcon } from "../../nonview/constants/CommonIcons.js";
+import AlignCenter from "../../view/atoms/AlignCenter";
 
 export default class HelpPage extends Component {
   render() {

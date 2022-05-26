@@ -3,7 +3,7 @@ import Stack from "@mui/material/Stack";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
-import PollDirectoryItem from "../../components/organisms/PollDirectoryItem";
+import PollDirectoryItem from "../../view/organisms/PollDirectoryItem";
 
 export default class PollDirectory extends Component {
   render() {

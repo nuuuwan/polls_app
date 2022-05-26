@@ -6,14 +6,14 @@ import RadioGroup from "@mui/material/RadioGroup";
 import CircularProgress from "@mui/material/CircularProgress";
 
 import { TimeX, MathX } from "@nuuuwan/utils-js-dev";
-import PollsAppServer from "../../api/core/PollsAppServer";
-import AudioX from "../../api/core/AudioX";
-import GhostUserX from "../../api/base/GhostUserX";
-import PollResult from "../../api/core/PollResult";
-import VoteButton from "../../components/atoms/VoteButton";
-import PollAnswer from "../../components/molecules/PollAnswer";
-import ValidationBox from "../../components/molecules/ValidationBox";
-import PollTitle from "../../components/molecules/PollTitle";
+import PollsAppServer from "../../nonview/core/PollsAppServer";
+import AudioX from "../../nonview/core/AudioX";
+import GhostUserX from "../../nonview/base/GhostUserX";
+import PollResult from "../../nonview/core/PollResult";
+import VoteButton from "../../view/atoms/VoteButton";
+import PollAnswer from "../../view/molecules/PollAnswer";
+import ValidationBox from "../../view/molecules/ValidationBox";
+import PollTitle from "../../view/molecules/PollTitle";
 
 const STYLE = {
   margin: 0,

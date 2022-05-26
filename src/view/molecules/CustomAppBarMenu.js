@@ -9,15 +9,15 @@ import {
   HelpIcon,
   CodeIcon,
   UserIcon,
-} from "../../api/constants/CommonIcons.js";
-import HelpPage from "../../components/pages/HelpPage";
-import PollPage from "../../components/pages/PollPage";
-import UserPage from "../../components/pages/UserPage";
-import AudioX from "../../api/core/AudioX";
+} from "../../nonview/constants/CommonIcons.js";
+import HelpPage from "../../view/pages/HelpPage";
+import PollPage from "../../view/pages/PollPage";
+import UserPage from "../../view/pages/UserPage";
+import AudioX from "../../nonview/core/AudioX";
 
-import { URL_GITHUB_REPO_POLLS_APP } from "../../api/constants/Constants";
+import { URL_GITHUB_REPO_POLLS_APP } from "../../nonview/constants/Constants";
 import CustomAppBarMenuItem from "./CustomAppBarMenuItem";
-import VersionWidget from "../../components/atoms/VersionWidget";
+import VersionWidget from "../../view/atoms/VersionWidget";
 
 export default function CustomAppBarMenu({ onSelectPage, Page }) {
   const [anchorEl, setAnchorEl] = useState(null);

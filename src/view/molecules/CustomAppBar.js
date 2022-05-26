@@ -7,8 +7,8 @@ import CustomAppBarMenu from "./CustomAppBarMenu";
 import IconButton from "@mui/material/IconButton";
 import IDAvatar from "../molecules/IDAvatar";
 
-import UserPage from "../../components/pages/UserPage";
-import AudioX from "../../api/core/AudioX";
+import UserPage from "../../view/pages/UserPage";
+import AudioX from "../../nonview/core/AudioX";
 
 const STYLE = {
   backgroundColor: "lightgray",

@@ -1,6 +1,6 @@
-import PollPage from "../../components/pages/PollPage";
-import HelpPage from "../../components/pages/HelpPage";
-import UserPage from "../../components/pages/UserPage";
+import PollPage from "../../view/pages/PollPage";
+import HelpPage from "../../view/pages/HelpPage";
+import UserPage from "../../view/pages/UserPage";
 
 const PAGE_IDX = {
   user: UserPage,

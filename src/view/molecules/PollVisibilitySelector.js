@@ -4,10 +4,10 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import Alert from "@mui/material/Alert";
-import AlignCenter from "../../components/atoms/AlignCenter";
+import AlignCenter from "../../view/atoms/AlignCenter";
 import Typography from "@mui/material/Typography";
 
-import { PublicIcon, UnlistedIcon } from "../../api/constants/CommonIcons";
+import { PublicIcon, UnlistedIcon } from "../../nonview/constants/CommonIcons";
 
 export default function PollVisibilitySelector({ visibility, onChange }) {
   const onChangeInner = function (e) {

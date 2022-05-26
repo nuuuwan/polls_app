@@ -1,9 +1,9 @@
 import { Component } from "react";
 
-import GhostUserX from "../../api/base/GhostUserX";
-import PollsAppServer from "../../api/core/PollsAppServer";
+import GhostUserX from "../../nonview/base/GhostUserX";
+import PollsAppServer from "../../nonview/core/PollsAppServer";
 
-import PollTitle from "../../components/molecules/PollTitle";
+import PollTitle from "../../view/molecules/PollTitle";
 
 export default class PollDirectoryItem extends Component {
   constructor(props) {
@@ -29,4 +29,4 @@ export default class PollDirectoryItem extends Component {
   }
 }
 
-// import PollDirectoryItem from "../../components/organisms/PollDirectoryItem";
+// import PollDirectoryItem from "../../view/organisms/PollDirectoryItem";

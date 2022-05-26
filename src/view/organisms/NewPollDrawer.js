@@ -10,15 +10,15 @@ import IconButton from "@mui/material/IconButton";
 import AddIcon from "@mui/icons-material/Add";
 import FormLabel from "@mui/material/FormLabel";
 
-import { PollIcon } from "../../api/constants/CommonIcons";
-import IDXFuture from "../../api/base/IDXFuture";
-import Poll from "../../api/core/Poll";
-import PollsAppServer from "../../api/core/PollsAppServer";
-import ListInput from "../../components/molecules/ListInput";
-import AlignCenter from "../../components/atoms/AlignCenter";
-import ValidationBox from "../../components/molecules/ValidationBox";
-import AudioX from "../../api/core/AudioX";
-import PollVisibilitySelector from "../../components/molecules/PollVisibilitySelector";
+import { PollIcon } from "../../nonview/constants/CommonIcons";
+import IDXFuture from "../../nonview/base/IDXFuture";
+import Poll from "../../nonview/core/Poll";
+import PollsAppServer from "../../nonview/core/PollsAppServer";
+import ListInput from "../../view/molecules/ListInput";
+import AlignCenter from "../../view/atoms/AlignCenter";
+import ValidationBox from "../../view/molecules/ValidationBox";
+import AudioX from "../../nonview/core/AudioX";
+import PollVisibilitySelector from "../../view/molecules/PollVisibilitySelector";
 
 const MIN_QUESTION_LENGTH = 10;
 const MIN_ANSWER_LIST_LENGTH = 2;
