@@ -4,8 +4,8 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
 
+import Hash from "../../nonview/base/Hash"
 import PollsAppServer from "../../nonview/core/PollsAppServer";
-
 import GhostUser from "../../nonview/base/GhostUser";
 import PollView from "../../view/organisms/PollView";
 import PollBottomNavigation from "../../view/organisms/PollBottomNavigation";
@@ -74,6 +74,7 @@ export default class PollPage extends Component {
     const pollExtended = pollExtendedIdx[pollID];
 
     URLContext.setContext({ Page: PollPage, pollID });
+    const dataHash = Hash.md5(pollExtendedIdx);
 
     return (
       <div>
@@ -84,6 +85,7 @@ export default class PollPage extends Component {
           />
 
           <PollDirectory
+            key={"poll-directory-" + dataHash}
             pollExtendedIdx={pollExtendedIdx}
             onSelectPoll={this.onSelectPoll.bind(this)}
           />
