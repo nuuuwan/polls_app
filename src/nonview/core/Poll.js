@@ -5,6 +5,8 @@ export const DEFAULT_QUESTION = "";
 export const DEFAULT_ANSWER_LIST = [];
 export const DEFAULT_VISIBILITY = "unlisted";
 
+export const ANSWER_NONE = "";
+
 export default class Poll {
   constructor(pollID, question, answerList, visibility) {
     this.pollID = pollID;
