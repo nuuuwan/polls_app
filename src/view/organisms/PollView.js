@@ -1,5 +1,6 @@
 import { Component } from "react";
 
+import CircularProgress from "@mui/material/CircularProgress";
 import { TimeX } from "@nuuuwan/utils-js-dev";
 
 import PollResult from "../../nonview/core/PollResult";
@@ -13,9 +14,17 @@ export default class PollView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedAnswer: this.props.pollExtended.userAnswer,
+      selectedAnswer: undefined,
       hasSubmittedVote: false,
     };
+  }
+
+  async componentDidMount() {
+    const { pollID } = this.props;
+    const geoInfo = await GhostUser.getInfo();
+    const userID = geoInfo.userID;
+    const pollExtended = await PollsAppServer.getPollExtended(pollID, userID);
+    this.setState({ pollExtended, selectedAnswer: pollExtended.userAnswer });
   }
 
   async onClickVote(pollExtended) {
@@ -42,11 +51,11 @@ export default class PollView extends Component {
     this.setState({ selectedAnswer, hasSubmittedVote: false });
   }
 
-  async componentDidMount() {}
-
   render() {
-    const { pollExtended } = this.props;
-    const { selectedAnswer, hasSubmittedVote } = this.state;
+    const { pollExtended, selectedAnswer, hasSubmittedVote } = this.state;
+    if (!pollExtended) {
+      return <CircularProgress />;
+    }
     return (
       <PollViewMolecule
         pollExtended={pollExtended}

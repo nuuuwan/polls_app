@@ -4,7 +4,7 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
 
-import Hash from "../../nonview/base/Hash"
+import Hash from "../../nonview/base/Hash";
 import PollsAppServer from "../../nonview/core/PollsAppServer";
 import GhostUser from "../../nonview/base/GhostUser";
 import PollView from "../../view/organisms/PollView";
@@ -23,8 +23,7 @@ export default class PollPage extends Component {
     };
   }
 
-  async reloadData() {
-    let { pollID } = URLContext.getContext();
+  async reloadData(pollID) {
     const pollIDs = await PollsAppServer.getPollIDs();
     const geoInfo = await GhostUser.getInfo();
 
@@ -56,22 +55,22 @@ export default class PollPage extends Component {
   }
 
   async componentDidMount() {
-    await this.reloadData();
+    let { pollID } = URLContext.getContext();
+    await this.reloadData(pollID);
   }
 
   async onSelectPoll(pollID) {
     URLContext.setContext({ Page: PollPage, pollID });
-    await this.reloadData();
+    await this.reloadData(pollID);
     await AudioX.playClick();
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
   render() {
-    const { pollIDs, pollID, pollExtendedIdx } = this.state;
-    if (!pollIDs) {
+    const { pollID, pollExtendedIdx } = this.state;
+    if (!pollID) {
       return <CircularProgress />;
     }
-    const pollExtended = pollExtendedIdx[pollID];
 
     URLContext.setContext({ Page: PollPage, pollID });
     const dataHash = Hash.md5(pollExtendedIdx);
@@ -80,19 +79,19 @@ export default class PollPage extends Component {
       <div>
         <Box sx={{ marginBotton: 1, maxWidth: "100%" }}>
           <PollView
-            pollExtended={pollExtended}
+            key={"poll-view-" + pollID}
+            pollID={pollID}
             reloadData={this.reloadData.bind(this)}
           />
 
           <PollDirectory
             key={"poll-directory-" + dataHash}
-            pollExtendedIdx={pollExtendedIdx}
             onSelectPoll={this.onSelectPoll.bind(this)}
           />
         </Box>
 
         <PollBottomNavigation
-          pollExtended={pollExtended}
+          pollID={pollID}
           onSelectPoll={this.onSelectPoll.bind(this)}
         />
       </div>
