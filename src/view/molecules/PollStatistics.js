@@ -3,7 +3,7 @@ import Statistics from "../../nonview/base/Statistics";
 import Divider from "@mui/material/Divider";
 import Condition from "../../view/atoms/Condition";
 
-export default function PollStatisticsView({
+export default function PollStatistics({
   answerList,
   totalCount,
   answerToCount,

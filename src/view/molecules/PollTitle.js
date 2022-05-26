@@ -3,7 +3,7 @@ import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import Divider from "@mui/material/Divider";
 
-import PollStatisticsView from "../../view/molecules/PollStatisticsView";
+import PollStatistics from "../../view/molecules/PollStatistics";
 import { MathX } from "@nuuuwan/utils-js-dev";
 import { PublicIcon, UnlistedIcon } from "../../view/_constants/CommonIcons";
 import AlignCenter from "../../view/atoms/AlignCenter";
@@ -32,7 +32,7 @@ export default function PollTitle({ pollExtended }) {
       </Typography>
 
       <AlignCenter>
-        <PollStatisticsView
+        <PollStatistics
           answerList={pollExtended.answerList}
           totalCount={totalCount}
           answerToCount={pollExtended.answerToCount}
