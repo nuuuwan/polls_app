@@ -72,6 +72,7 @@ export default class PollPage extends Component {
       return <CircularProgress />;
     }
 
+
     URLContext.setContext({ Page: PollPage, pollID });
     const dataHash = Hash.md5(pollExtendedIdx);
 
