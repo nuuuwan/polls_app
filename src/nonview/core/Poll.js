@@ -1,3 +1,10 @@
+export const MIN_QUESTION_LENGTH = 10;
+export const MIN_ANSWER_LIST_LENGTH = 2;
+
+export const DEFAULT_QUESTION = "";
+export const DEFAULT_ANSWER_LIST = [];
+export const DEFAULT_VISIBILITY = "unlisted";
+
 export default class Poll {
   constructor(pollID, question, answerList, visibility) {
     this.pollID = pollID;
@@ -21,6 +28,13 @@ export default class Poll {
       d.question,
       JSON.parse(d.answerListJSON),
       d.visibility
+    );
+  }
+
+  static isQuestionValid(question) {
+    return (
+      question.length >= MIN_QUESTION_LENGTH &&
+      question.trim().slice(-1) === "?"
     );
   }
 }
