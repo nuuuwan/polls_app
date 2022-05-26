@@ -191,18 +191,19 @@ export default class PollPage extends Component {
           onClose={this.onCloseNewPollDrawer.bind(this)}
           onAddNewPoll={this.onSelectPoll.bind(this)}
         />
-        <PollBottomNavigation
-          onClickNewPoll={this.onClickNewPoll.bind(this)}
-          onClickRandomPoll={this.onClickRandomPoll.bind(this)}
-          onClickCopyPoll={this.onClickCopyPoll.bind(this)}
-          onClickTweet={this.onClickTweet.bind(this)}
-        />
         <Snackbar
           open={isSnackbarOpen}
           autoHideDuration={1000}
           onClose={this.onCloseSnackbar.bind(this)}
           message={messageSnackbar}
         />
+        <PollBottomNavigation
+          onClickNewPoll={this.onClickNewPoll.bind(this)}
+          onClickRandomPoll={this.onClickRandomPoll.bind(this)}
+          onClickCopyPoll={this.onClickCopyPoll.bind(this)}
+          onClickTweet={this.onClickTweet.bind(this)}
+        />
+        
       </div>
     );
   }
