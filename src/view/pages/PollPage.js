@@ -112,7 +112,7 @@ export default class PollPage extends Component {
   }
 
   async onClickVote(pollExtended) {
-    const {selectedAnswer} = this.state;
+    const { selectedAnswer } = this.state;
     const geoInfo = await await GhostUser.getInfo();
     const userID = geoInfo.infoHash;
 
@@ -127,7 +127,6 @@ export default class PollPage extends Component {
     await AudioX.playVote();
     await this.reloadData();
   }
-
 
   onCloseSnackbar() {
     this.setState({ isSnackbarOpen: false });
