@@ -10,12 +10,7 @@ export default class PollResult {
   }
 
   get pollResultID() {
-    return Hash.md5([
-      this.pollID,
-      this.userID,
-      this.timeUpdated,
-      this.geoInfo,
-    ]);
+    return Hash.md5([this.pollID, this.userID, this.timeUpdated, this.geoInfo]);
   }
 
   static toDict(pollResult) {
