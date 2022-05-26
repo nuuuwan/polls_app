@@ -37,4 +37,8 @@ export default class Poll {
       question.trim().slice(-1) === "?"
     );
   }
+
+  static isAnswerListValid(answerList) {
+    return answerList.length >= MIN_ANSWER_LIST_LENGTH;
+  }
 }
