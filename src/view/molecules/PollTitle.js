@@ -5,7 +5,7 @@ import Divider from "@mui/material/Divider";
 
 import PollStatisticsView from "../../view/molecules/PollStatisticsView";
 import { MathX } from "@nuuuwan/utils-js-dev";
-import { PublicIcon, UnlistedIcon } from "../../nonview/constants/CommonIcons";
+import { PublicIcon, UnlistedIcon } from "../../view/_constants/CommonIcons";
 import AlignCenter from "../../view/atoms/AlignCenter";
 import Condition from "../../view/atoms/Condition";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";

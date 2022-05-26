@@ -10,7 +10,7 @@ import IconButton from "@mui/material/IconButton";
 import AddIcon from "@mui/icons-material/Add";
 import FormLabel from "@mui/material/FormLabel";
 
-import { PollIcon } from "../../nonview/constants/CommonIcons";
+import { PollIcon } from "../../view/_constants/CommonIcons";
 import IDXFuture from "../../nonview/base/IDXFuture";
 import Poll from "../../nonview/core/Poll";
 import PollsAppServer from "../../nonview/core/PollsAppServer";

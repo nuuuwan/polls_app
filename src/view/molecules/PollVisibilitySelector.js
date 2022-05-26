@@ -7,7 +7,7 @@ import Alert from "@mui/material/Alert";
 import AlignCenter from "../../view/atoms/AlignCenter";
 import Typography from "@mui/material/Typography";
 
-import { PublicIcon, UnlistedIcon } from "../../nonview/constants/CommonIcons";
+import { PublicIcon, UnlistedIcon } from "../../view/_constants/CommonIcons";
 
 export default function PollVisibilitySelector({ visibility, onChange }) {
   const onChangeInner = function (e) {

@@ -4,7 +4,7 @@ import Typography from "@mui/material/Typography";
 
 import { FAQList } from "../../nonview/constants/FAQ";
 import FAQ from "../../view/molecules/FAQ";
-import { HelpIcon } from "../../nonview/constants/CommonIcons.js";
+import { HelpIcon } from "../../view/_constants/CommonIcons.js";
 import AlignCenter from "../../view/atoms/AlignCenter";
 
 export default class HelpPage extends Component {
