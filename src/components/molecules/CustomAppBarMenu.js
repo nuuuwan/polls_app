@@ -10,9 +10,9 @@ import {
   CodeIcon,
   UserIcon,
 } from "../../constants/CommonIcons.js";
-import HelpPage from "../../stateful/pages/HelpPage";
-import PollPage from "../../stateful/pages/PollPage";
-import UserPage from "../../stateful/pages/UserPage";
+import HelpPage from "../../components/pages/HelpPage";
+import PollPage from "../../components/pages/PollPage";
+import UserPage from "../../components/pages/UserPage";
 import AudioX from "../../core/AudioX";
 
 import { URL_GITHUB_REPO_POLLS_APP } from "../../constants/Constants";

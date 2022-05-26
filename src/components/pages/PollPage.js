@@ -9,12 +9,12 @@ import CircularProgress from "@mui/material/CircularProgress";
 
 import PollsAppServer from "../../core/PollsAppServer";
 
-import PollView from "../../stateful/organisms/PollView";
+import PollView from "../../components/organisms/PollView";
 import PollBottomNavigation from "../../components/molecules/PollBottomNavigation";
-import NewPollDrawer from "../../stateful/organisms/NewPollDrawer";
+import NewPollDrawer from "../../components/organisms/NewPollDrawer";
 import URLContext from "../../core/URLContext";
 import AudioX from "../../core/AudioX";
-import PollDirectory from "../../stateful/organisms/PollDirectory";
+import PollDirectory from "../../components/organisms/PollDirectory";
 
 export default class PollPage extends Component {
   constructor(props) {

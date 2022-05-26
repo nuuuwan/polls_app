@@ -7,7 +7,7 @@ import CustomAppBarMenu from "./CustomAppBarMenu";
 import IconButton from "@mui/material/IconButton";
 import IDAvatar from "../molecules/IDAvatar";
 
-import UserPage from "../../stateful/pages/UserPage";
+import UserPage from "../../components/pages/UserPage";
 import AudioX from "../../core/AudioX";
 
 const STYLE = {
