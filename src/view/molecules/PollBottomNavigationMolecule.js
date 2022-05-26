@@ -8,7 +8,7 @@ import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import ShuffleIcon from "@mui/icons-material/Shuffle";
 
-export default function PollBottomNavigation({
+export default function PollBottomNavigationMolecule({
   onClickRandomPoll,
   onClickNewPoll,
   onClickCopyPoll,

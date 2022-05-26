@@ -1,18 +1,16 @@
 import { Component } from "react";
 import * as React from "react";
 
-import { MathX, TimeX } from "@nuuuwan/utils-js-dev";
+import { TimeX } from "@nuuuwan/utils-js-dev";
 
 import Box from "@mui/material/Box";
-import Snackbar from "@mui/material/Snackbar";
 import CircularProgress from "@mui/material/CircularProgress";
 
 import PollsAppServer from "../../nonview/core/PollsAppServer";
 
 import GhostUser from "../../nonview/base/GhostUser";
 import PollView from "../../view/molecules/PollView";
-import PollBottomNavigation from "../../view/molecules/PollBottomNavigation";
-import NewPollDrawer from "../../view/organisms/AddNewPollDrawer";
+import PollBottomNavigation from "../../view/organisms/PollBottomNavigation";
 import URLContext from "../../nonview/core/URLContext";
 import AudioX from "../../nonview/core/AudioX";
 import PollDirectory from "../../view/molecules/PollDirectory";
@@ -77,40 +75,6 @@ export default class PollPage extends Component {
     this.setState({ lastUpdated });
   }
 
-  async onClickNewPoll() {
-    this.setState({ showNewPollDrawer: true });
-    await AudioX.playClick();
-  }
-
-  async onClickRandomPoll() {
-    const { pollIDs, pollID } = this.state;
-    let newPollID = pollID;
-    while (newPollID === pollID) {
-      newPollID = pollIDs[MathX.randomInt(0, pollIDs.length)];
-    }
-    this.setState({ pollID: newPollID });
-    await AudioX.playClick();
-  }
-
-  async onClickCopyPoll() {
-    navigator.clipboard.writeText(URLContext.getURL());
-    this.setState({ isSnackbarOpen: true });
-    await AudioX.playClick();
-  }
-
-  async onClickTweet() {
-    const tweetText = [
-      "🗳 Checkout this #PollsAppLK poll",
-      "",
-      "#SriLanka",
-      URLContext.getURL(),
-    ].join("\n");
-    const twitterURL =
-      "http://twitter.com/intent/tweet?text=" + encodeURIComponent(tweetText);
-    window.open(twitterURL, "_blank");
-    await AudioX.playClick();
-  }
-
   async onClickVote(pollExtended) {
     const { selectedAnswer } = this.state;
     const geoInfo = await await GhostUser.getInfo();
@@ -128,21 +92,11 @@ export default class PollPage extends Component {
     await this.reloadData();
   }
 
-  onCloseSnackbar() {
-    this.setState({ isSnackbarOpen: false });
-  }
-
   async onSelectPoll(pollID) {
     URLContext.setContext({ Page: PollPage, pollID });
     await this.reloadData();
     await AudioX.playClick();
     window.scrollTo({ top: 0, behavior: "smooth" });
-  }
-
-  async onCloseNewPollDrawer(pollID) {
-    this.setState({
-      showNewPollDrawer: false,
-    });
   }
 
   async setSelectedAnswer(selectedAnswer) {
@@ -155,8 +109,6 @@ export default class PollPage extends Component {
       pollIDs,
       pollID,
       pollExtendedIdx,
-      showNewPollDrawer,
-      isSnackbarOpen,
       lastUpdated,
       selectedAnswer,
       hasSubmittedVote,
@@ -167,7 +119,6 @@ export default class PollPage extends Component {
     const pollExtended = pollExtendedIdx[pollID];
 
     URLContext.setContext({ Page: PollPage, pollID });
-    const messageSnackbar = <div>Copied Poll URL to Clipboard.</div>;
 
     return (
       <div key={"poll-page-" + lastUpdated}>
@@ -186,24 +137,10 @@ export default class PollPage extends Component {
           />
         </Box>
 
-        <NewPollDrawer
-          isOpen={showNewPollDrawer}
-          onClose={this.onCloseNewPollDrawer.bind(this)}
-          onAddNewPoll={this.onSelectPoll.bind(this)}
-        />
-        <Snackbar
-          open={isSnackbarOpen}
-          autoHideDuration={1000}
-          onClose={this.onCloseSnackbar.bind(this)}
-          message={messageSnackbar}
-        />
         <PollBottomNavigation
-          onClickNewPoll={this.onClickNewPoll.bind(this)}
-          onClickRandomPoll={this.onClickRandomPoll.bind(this)}
-          onClickCopyPoll={this.onClickCopyPoll.bind(this)}
-          onClickTweet={this.onClickTweet.bind(this)}
+          pollExtended={pollExtended}
+          onSelectPoll={this.onSelectPoll.bind(this)}
         />
-        
       </div>
     );
   }
