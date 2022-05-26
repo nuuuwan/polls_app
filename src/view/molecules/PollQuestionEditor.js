@@ -1,13 +1,18 @@
 import FormLabel from "@mui/material/FormLabel";
 import TextField from "@mui/material/TextField";
 
-import Poll, { MIN_QUESTION_LENGTH } from "../../nonview/core/Poll";
+import { MIN_QUESTION_LENGTH } from "../../nonview/core/Poll";
 import ValidationBox from "../../view/molecules/ValidationBox";
 
-export default function PollQuestionEditor({ question, onChangeQuestion }) {
+export default function PollQuestionEditor({ poll, onChangePoll }) {
+  const onChangeQuestion = function (e) {
+    const newQuestion = e.target.value;
+    poll.question = newQuestion;
+    onChangePoll(poll);
+  };
   return (
     <ValidationBox
-      isValid={Poll.isQuestionValid(question)}
+      isValid={poll.isQuestionValid}
       alertIfValid="Looks good."
       alertIfInvalid={
         <>
@@ -20,7 +25,7 @@ export default function PollQuestionEditor({ question, onChangeQuestion }) {
       <TextField
         required
         multiline
-        value={question}
+        value={poll.question}
         placeholder="Ask a question..."
         onChange={onChangeQuestion}
       />

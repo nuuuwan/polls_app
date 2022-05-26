@@ -1,14 +1,16 @@
-import Poll, { MIN_ANSWER_LIST_LENGTH } from "../../nonview/core/Poll";
+import { MIN_ANSWER_LIST_LENGTH } from "../../nonview/core/Poll";
 import ValidationBox from "../../view/molecules/ValidationBox";
 import ListInput from "../../view/molecules/ListInput";
 
-export default function PollAnswerListEditor({
-  answerList,
-  onChangeAnswerList,
-}) {
+export default function PollAnswerListEditor({ poll, onChangePoll }) {
+  const onChangeAnswerList = function (newAnswerList) {
+    poll.answerList = newAnswerList;
+    onChangePoll(poll);
+  };
+
   return (
     <ValidationBox
-      isValid={Poll.isAnswerListValid(answerList)}
+      isValid={poll.isAnswerListValid}
       alertIfValid="Looks good. You can add more answers"
       alertIfInvalid={
         <>
@@ -21,7 +23,7 @@ export default function PollAnswerListEditor({
         required
         label="Answer List"
         placeholder="Add possible answers..."
-        value={answerList}
+        value={poll.answerList}
         onChange={onChangeAnswerList}
       />
     </ValidationBox>

@@ -7,7 +7,6 @@ import CloseIcon from "@mui/icons-material/Close";
 import IconButton from "@mui/material/IconButton";
 import AddIcon from "@mui/icons-material/Add";
 
-import Poll from "../../nonview/core/Poll";
 import { PollIcon } from "../../view/_constants/CommonIcons";
 import AlignCenter from "../../view/atoms/AlignCenter";
 import PollVisibilitySelector from "../../view/molecules/PollVisibilitySelector";
@@ -15,14 +14,10 @@ import PollQuestionEditor from "../../view/molecules/PollQuestionEditor";
 import PollAnswerListEditor from "../../view/molecules/PollAnswerListEditor";
 
 export default function AddNewPollDrawerMolecule({
-  question,
-  answerList,
-  visibility,
+  poll,
   isOpen,
   onClose,
-  onChangeQuestion,
-  onChangeAnswerList,
-  onChangeVisibility,
+  onChangePoll,
   onClickAdd,
 }) {
   const style = {
@@ -42,30 +37,14 @@ export default function AddNewPollDrawerMolecule({
             <PollIcon />
           </AlignCenter>
 
-          <PollQuestionEditor
-            question={question}
-            onChangeQuestion={onChangeQuestion}
-          />
-
-          <PollAnswerListEditor
-            answerList={answerList}
-            onChangeAnswerList={onChangeAnswerList}
-          />
-
-          <PollVisibilitySelector
-            visibility={visibility}
-            onChange={onChangeVisibility}
-          />
+          <PollQuestionEditor poll={poll} onChangePoll={onChangePoll} />
+          <PollAnswerListEditor poll={poll} onChangePoll={onChangePoll} />
+          <PollVisibilitySelector poll={poll} onChangePoll={onChangePoll} />
 
           <Box display="flex" justifyContent="flex-end">
             <Button
               onClick={onClickAdd}
-              disabled={
-                !(
-                  Poll.isQuestionValid(question) &&
-                  Poll.isAnswerListValid(answerList)
-                )
-              }
+              disabled={!(poll.isQuestionValid && poll.isAnswerListValid)}
               variant="contained"
               startIcon={<AddIcon />}
             >

@@ -9,13 +9,15 @@ import Typography from "@mui/material/Typography";
 
 import { PublicIcon, UnlistedIcon } from "../../view/_constants/CommonIcons";
 
-export default function PollVisibilitySelector({ visibility, onChange }) {
-  const onChangeInner = function (e) {
-    onChange(e.target.value);
+export default function PollVisibilitySelector({ poll, onChangePoll }) {
+  const onChangeVisibility = function (e) {
+    const newVisibility = e.target.value;
+    poll.visibility = newVisibility;
+    onChangePoll(poll);
   };
 
   const alertMessage =
-    visibility === "public" ? (
+    poll.visibility === "public" ? (
       <>
         You have chossen <strong>"public"</strong>, which means that this poll{" "}
         <strong>will</strong> appear when users search for polls and on "Random
@@ -35,7 +37,7 @@ export default function PollVisibilitySelector({ visibility, onChange }) {
   return (
     <FormControl>
       <FormLabel>Visibility</FormLabel>
-      <RadioGroup value={visibility} onChange={onChangeInner}>
+      <RadioGroup value={poll.visibility} onChange={onChangeVisibility}>
         <FormControlLabel
           value="public"
           control={<Radio />}
