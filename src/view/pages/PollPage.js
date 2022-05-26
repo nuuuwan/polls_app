@@ -23,8 +23,6 @@ export default class PollPage extends Component {
       pollIDs: undefined,
       pollID: undefined,
       pollExtendedList: undefined,
-      showNewPollDrawer: false,
-      isSnackbarOpen: false,
       lastUpdated: TimeX.getUnixTime(),
       selectedAnswer: undefined,
       hasSubmittedVote: false,
@@ -61,7 +59,6 @@ export default class PollPage extends Component {
       pollIDs,
       pollID,
       pollExtendedIdx,
-      showNewPollDrawer: false,
       lastUpdated,
     });
   }
