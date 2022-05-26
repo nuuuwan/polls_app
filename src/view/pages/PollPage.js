@@ -10,12 +10,13 @@ import CircularProgress from "@mui/material/CircularProgress";
 import PollsAppServer from "../../nonview/core/PollsAppServer";
 
 import GhostUser from "../../nonview/base/GhostUser";
-import PollView from "../../view/organisms/PollView";
+import PollView from "../../view/molecules/PollView";
 import PollBottomNavigation from "../../view/molecules/PollBottomNavigation";
 import NewPollDrawer from "../../view/organisms/AddNewPollDrawer";
 import URLContext from "../../nonview/core/URLContext";
 import AudioX from "../../nonview/core/AudioX";
 import PollDirectory from "../../view/organisms/PollDirectory";
+import PollResult from "../../nonview/core/PollResult";
 
 export default class PollPage extends Component {
   constructor(props) {
@@ -27,6 +28,8 @@ export default class PollPage extends Component {
       showNewPollDrawer: false,
       isSnackbarOpen: false,
       lastUpdated: TimeX.getUnixTime(),
+      selectedAnswer: undefined,
+      hasSubmittedVote: false,
     };
   }
 
@@ -42,17 +45,24 @@ export default class PollPage extends Component {
 
     const userID = geoInfo.userID;
     const pollExtendedList = await Promise.all(
-      pollIDs.map(
-        async function(pollID) {
-          return await PollsAppServer.getPollExtended(pollID, userID);
-        },
-      )
+      pollIDs.map(async function (pollID) {
+        return await PollsAppServer.getPollExtended(pollID, userID);
+      })
     );
+
+    const pollExtendedIdx = pollExtendedList.reduce(function (
+      pollExtendedIdx,
+      pollExtended
+    ) {
+      pollExtendedIdx[pollExtended.pollID] = pollExtended;
+      return pollExtendedIdx;
+    },
+    {});
 
     this.setState({
       pollIDs,
       pollID,
-      pollExtendedList,
+      pollExtendedIdx,
       showNewPollDrawer: false,
       lastUpdated,
     });
@@ -101,6 +111,24 @@ export default class PollPage extends Component {
     await AudioX.playClick();
   }
 
+  async onClickVote(pollExtended) {
+    const {selectedAnswer} = this.state;
+    const geoInfo = await await GhostUser.getInfo();
+    const userID = geoInfo.infoHash;
+
+    const pollResult = new PollResult(
+      pollExtended.pollID,
+      userID,
+      selectedAnswer,
+      TimeX.getUnixTime(),
+      geoInfo
+    );
+    await PollsAppServer.addPollResult(pollResult);
+    await AudioX.playVote();
+    await this.reloadData();
+  }
+
+
   onCloseSnackbar() {
     this.setState({ isSnackbarOpen: false });
   }
@@ -118,12 +146,26 @@ export default class PollPage extends Component {
     });
   }
 
+  async setSelectedAnswer(selectedAnswer) {
+    await AudioX.playClick();
+    this.setState({ selectedAnswer, hasSubmittedVote: false });
+  }
+
   render() {
-    const { pollIDs, pollID, showNewPollDrawer, isSnackbarOpen, lastUpdated } =
-      this.state;
+    const {
+      pollIDs,
+      pollID,
+      pollExtendedIdx,
+      showNewPollDrawer,
+      isSnackbarOpen,
+      lastUpdated,
+      selectedAnswer,
+      hasSubmittedVote,
+    } = this.state;
     if (!pollIDs) {
       return <CircularProgress />;
     }
+    const pollExtended = pollExtendedIdx[pollID];
 
     URLContext.setContext({ Page: PollPage, pollID });
     const messageSnackbar = <div>Copied Poll URL to Clipboard.</div>;
@@ -133,8 +175,11 @@ export default class PollPage extends Component {
         <Box sx={{ marginBotton: 1, maxWidth: "100%" }}>
           <PollView
             key={"poll-" + pollID}
-            pollID={pollID}
-            setLastUpdated={this.setLastUpdated.bind(this)}
+            pollExtended={pollExtended}
+            selectedAnswer={selectedAnswer}
+            setSelectedAnswer={this.setSelectedAnswer.bind(this)}
+            hasSubmittedVote={hasSubmittedVote}
+            onClickVote={this.onClickVote.bind(this)}
           />
           <PollDirectory
             pollIDs={pollIDs}
