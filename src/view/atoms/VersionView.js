@@ -2,7 +2,7 @@ import React from "react";
 import Typography from "@mui/material/Typography";
 import { VERSION } from "../../nonview/constants/Version";
 
-export default function VersionWidget() {
+export default function VersionView() {
   return (
     <Typography
       sx={{

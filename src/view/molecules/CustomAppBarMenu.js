@@ -17,7 +17,7 @@ import AudioX from "../../nonview/core/AudioX";
 
 import { URL_GITHUB_REPO_POLLS_APP } from "../../nonview/constants/Constants";
 import CustomAppBarMenuItem from "./CustomAppBarMenuItem";
-import VersionWidget from "../../view/atoms/VersionWidget";
+import VersionView from "../../view/atoms/VersionView";
 
 export default function CustomAppBarMenu({ onSelectPage, Page }) {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -84,7 +84,7 @@ export default function CustomAppBarMenu({ onSelectPage, Page }) {
           Icon={AutorenewIcon}
           onClick={onClickRefresh}
         />
-        <VersionWidget />
+        <VersionView />
       </Menu>
     </div>
   );
