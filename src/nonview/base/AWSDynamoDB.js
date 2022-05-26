@@ -16,7 +16,6 @@ export default class AWSDynamoDB {
   }
 
   static async generic(payload) {
-    console.debug("AWSDynamoDB:generic", payload.cmd);
     const payloadJSON = JSON.stringify(payload);
     const payloadJSONB64 = btoa(payloadJSON);
     const payloadJSONB64Encoded = encodeURIComponent(payloadJSONB64);

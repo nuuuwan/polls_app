@@ -28,7 +28,6 @@ test("Add New Poll", async () => {
 
   // Click on Menu
   const button = screen.getByText("Add New");
-  console.debug(button);
   fireEvent(button, new MouseEvent("click", { bubbles: true }));
 
   // Validate Add New Poll Drawer
