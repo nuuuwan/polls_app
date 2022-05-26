@@ -1,10 +1,9 @@
-# PHILOSOPHICAL QUESTIONS
+# BIG PICTURE
 
-* What constitutes nonstate, stateful, atom and molecule?
+* Unittests
 
 * I18N
 * Users - Do we have normal username/passworded accounts?
-* Unittests Strategy
 * Registration Problem (RP)
 * What is the longer term rollout plan?
 * The Roll of Users?
