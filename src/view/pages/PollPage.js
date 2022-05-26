@@ -11,7 +11,7 @@ import PollView from "../../view/organisms/PollView";
 import PollBottomNavigation from "../../view/organisms/PollBottomNavigation";
 import URLContext from "../../nonview/core/URLContext";
 import AudioX from "../../nonview/core/AudioX";
-import PollDirectory from "../../view/molecules/PollDirectory";
+import PollDirectory from "../../view/organisms/PollDirectory";
 
 export default class PollPage extends Component {
   constructor(props) {

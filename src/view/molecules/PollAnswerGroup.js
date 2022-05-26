@@ -39,7 +39,6 @@ export default function PollAnswerGroup({
         )
       }
     >
-
       <RadioGroup value={selectedAnswer} onChange={onChange}>
         {pollExtended.answerList.map(function (answer, iAnswer) {
           const answerVotes = pollExtended.answerToCount[answer]
@@ -57,7 +56,6 @@ export default function PollAnswerGroup({
           );
         })}
       </RadioGroup>
-
     </ValidationBox>
   );
 }
