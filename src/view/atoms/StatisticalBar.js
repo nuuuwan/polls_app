@@ -33,7 +33,7 @@ export default function StatisticalBar({ n, np, color }) {
           },
         };
 
-        return <span style={style} />;
+        return <span key={"statistics-bar-" + iBar} style={style} />;
       })}
     </div>
   );
