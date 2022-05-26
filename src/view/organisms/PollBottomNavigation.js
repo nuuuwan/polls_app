@@ -1,9 +1,8 @@
 import { Component } from "react";
 
 import Snackbar from "@mui/material/Snackbar";
-
+import { MathX } from "@nuuuwan/utils-js-dev";
 import AudioX from "../../nonview/core/AudioX";
-import MathX from "../../nonview/base/MathX";
 import URLContext from "../../nonview/core/URLContext";
 import PollBottomNavigationMolecule from "../../view/molecules/PollBottomNavigationMolecule";
 import AddNewPollDrawer from "./AddNewPollDrawer";
@@ -23,12 +22,12 @@ export default class PollBottomNavigation extends Component {
   }
 
   async onClickRandomPoll() {
-    const { pollIDs, pollID } = this.state;
+    const { pollIDs, pollID, onSelectPoll } = this.props;
     let newPollID = pollID;
     while (newPollID === pollID) {
       newPollID = pollIDs[MathX.randomInt(0, pollIDs.length)];
     }
-    this.setState({ pollID: newPollID });
+    onSelectPoll(newPollID);
     await AudioX.playClick();
   }
 

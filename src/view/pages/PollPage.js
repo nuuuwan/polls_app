@@ -67,7 +67,7 @@ export default class PollPage extends Component {
   }
 
   render() {
-    const { pollID, pollExtendedIdx } = this.state;
+    const { pollID, pollIDs, pollExtendedIdx } = this.state;
     if (!pollID) {
       return <CircularProgress />;
     }
@@ -92,6 +92,7 @@ export default class PollPage extends Component {
 
         <PollBottomNavigation
           pollID={pollID}
+          pollIDs={pollIDs}
           onSelectPoll={this.onSelectPoll.bind(this)}
         />
       </div>
