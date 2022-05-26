@@ -15,7 +15,7 @@ import PollBottomNavigation from "../../view/molecules/PollBottomNavigation";
 import NewPollDrawer from "../../view/organisms/AddNewPollDrawer";
 import URLContext from "../../nonview/core/URLContext";
 import AudioX from "../../nonview/core/AudioX";
-import PollDirectory from "../../view/organisms/PollDirectory";
+import PollDirectory from "../../view/molecules/PollDirectory";
 import PollResult from "../../nonview/core/PollResult";
 
 export default class PollPage extends Component {
@@ -182,7 +182,7 @@ export default class PollPage extends Component {
             onClickVote={this.onClickVote.bind(this)}
           />
           <PollDirectory
-            pollIDs={pollIDs}
+            pollExtendedIdx={pollExtendedIdx}
             onSelectPoll={this.onSelectPoll.bind(this)}
           />
         </Box>
