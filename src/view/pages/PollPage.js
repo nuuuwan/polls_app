@@ -22,14 +22,12 @@ export default class PollPage extends Component {
       pollIDs: undefined,
       pollID: undefined,
       pollExtendedList: undefined,
-      lastUpdated: TimeX.getUnixTime(),
     };
   }
 
   async reloadData() {
     let { pollID } = URLContext.getContext();
     const pollIDs = await PollsAppServer.getPollIDs();
-    const lastUpdated = TimeX.getUnixTime();
     const geoInfo = await GhostUser.getInfo();
 
     if (!pollID) {
@@ -56,17 +54,11 @@ export default class PollPage extends Component {
       pollIDs,
       pollID,
       pollExtendedIdx,
-      lastUpdated,
     });
   }
 
   async componentDidMount() {
     await this.reloadData();
-  }
-
-  setLastUpdated() {
-    const lastUpdated = TimeX.getUnixTime();
-    this.setState({ lastUpdated });
   }
 
   async onSelectPoll(pollID) {
@@ -77,7 +69,7 @@ export default class PollPage extends Component {
   }
 
   render() {
-    const { pollIDs, pollID, pollExtendedIdx, lastUpdated } = this.state;
+    const { pollIDs, pollID, pollExtendedIdx } = this.state;
     if (!pollIDs) {
       return <CircularProgress />;
     }
@@ -86,7 +78,7 @@ export default class PollPage extends Component {
     URLContext.setContext({ Page: PollPage, pollID });
 
     return (
-      <div key={"poll-page-" + lastUpdated}>
+      <div>
         <Box sx={{ marginBotton: 1, maxWidth: "100%" }}>
           <PollView
             pollExtended={pollExtended}
