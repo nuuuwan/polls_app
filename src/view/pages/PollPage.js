@@ -9,6 +9,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 
 import PollsAppServer from "../../nonview/core/PollsAppServer";
 
+import GhostUser from "../../nonview/base/GhostUser";
 import PollView from "../../view/organisms/PollView";
 import PollBottomNavigation from "../../view/molecules/PollBottomNavigation";
 import NewPollDrawer from "../../view/organisms/AddNewPollDrawer";
@@ -22,6 +23,7 @@ export default class PollPage extends Component {
     this.state = {
       pollIDs: undefined,
       pollID: undefined,
+      pollExtendedList: undefined,
       showNewPollDrawer: false,
       isSnackbarOpen: false,
       lastUpdated: TimeX.getUnixTime(),
@@ -32,12 +34,28 @@ export default class PollPage extends Component {
     let { pollID } = URLContext.getContext();
     const pollIDs = await PollsAppServer.getPollIDs();
     const lastUpdated = TimeX.getUnixTime();
+    const geoInfo = await GhostUser.getInfo();
 
     if (!pollID) {
       pollID = pollIDs[0];
     }
 
-    this.setState({ pollIDs, pollID, showNewPollDrawer: false, lastUpdated });
+    const userID = geoInfo.userID;
+    const pollExtendedList = await Promise.all(
+      pollIDs.map(
+        async function(pollID) {
+          return await PollsAppServer.getPollExtended(pollID, userID);
+        },
+      )
+    );
+
+    this.setState({
+      pollIDs,
+      pollID,
+      pollExtendedList,
+      showNewPollDrawer: false,
+      lastUpdated,
+    });
   }
 
   async componentDidMount() {
