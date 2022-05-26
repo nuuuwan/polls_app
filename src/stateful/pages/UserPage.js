@@ -8,7 +8,7 @@ import Alert from "@mui/material/Alert";
 import ReactCountryFlag from "react-country-flag";
 
 import TitledBody from "../../nonstate/molecules/TitledBody";
-import IDAvatar from "../../nonstate/atoms/IDAvatar";
+import IDAvatar from "../../nonstate/molecules/IDAvatar";
 import GoogleMapsLink from "../../nonstate/atoms/GoogleMapsLink";
 import SimpleLink from "../../nonstate/atoms/SimpleLink";
 

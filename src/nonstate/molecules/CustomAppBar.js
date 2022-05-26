@@ -5,7 +5,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import CustomAppBarMenu from "./CustomAppBarMenu";
 import IconButton from "@mui/material/IconButton";
-import IDAvatar from "../atoms/IDAvatar";
+import IDAvatar from "../molecules/IDAvatar";
 
 import UserPage from "../../stateful/pages/UserPage";
 import AudioX from "../../core/AudioX";
