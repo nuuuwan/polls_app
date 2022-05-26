@@ -1,4 +1,3 @@
-import Box from "@mui/material/Box";
 import RadioGroup from "@mui/material/RadioGroup";
 
 import { MathX } from "@nuuuwan/utils-js-dev";
@@ -40,25 +39,25 @@ export default function PollAnswerGroup({
         )
       }
     >
-      <Box sx={{ m: 0, marginLeft: 1 }}>
-        <RadioGroup value={selectedAnswer} onChange={onChange}>
-          {pollExtended.answerList.map(function (answer, iAnswer) {
-            const answerVotes = pollExtended.answerToCount[answer]
-              ? pollExtended.answerToCount[answer]
-              : 0;
-            return (
-              <PollAnswer
-                key={"poll-answer-" + iAnswer}
-                answer={answer}
-                answerVotes={answerVotes}
-                totalCount={totalCount}
-                showStatistics={showStatistics}
-                userAnswer={userAnswer}
-              />
-            );
-          })}
-        </RadioGroup>
-      </Box>
+
+      <RadioGroup value={selectedAnswer} onChange={onChange}>
+        {pollExtended.answerList.map(function (answer, iAnswer) {
+          const answerVotes = pollExtended.answerToCount[answer]
+            ? pollExtended.answerToCount[answer]
+            : 0;
+          return (
+            <PollAnswer
+              key={"poll-answer-" + iAnswer}
+              answer={answer}
+              answerVotes={answerVotes}
+              totalCount={totalCount}
+              showStatistics={showStatistics}
+              userAnswer={userAnswer}
+            />
+          );
+        })}
+      </RadioGroup>
+
     </ValidationBox>
   );
 }
