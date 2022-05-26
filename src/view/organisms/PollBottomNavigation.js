@@ -2,6 +2,8 @@ import { Component } from "react";
 
 import Snackbar from "@mui/material/Snackbar";
 import { MathX } from "@nuuuwan/utils-js-dev";
+
+import PollsAppServer from "../../nonview/core/PollsAppServer";
 import AudioX from "../../nonview/core/AudioX";
 import URLContext from "../../nonview/core/URLContext";
 import PollBottomNavigationMolecule from "../../view/molecules/PollBottomNavigationMolecule";
@@ -22,7 +24,9 @@ export default class PollBottomNavigation extends Component {
   }
 
   async onClickRandomPoll() {
-    const { pollIDs, pollID, onSelectPoll } = this.props;
+    const { pollID, onSelectPoll } = this.props;
+    const pollIDs = await PollsAppServer.getPollIDs();
+
     let newPollID = pollID;
     while (newPollID === pollID) {
       newPollID = pollIDs[MathX.randomInt(0, pollIDs.length)];

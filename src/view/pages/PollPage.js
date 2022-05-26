@@ -67,7 +67,7 @@ export default class PollPage extends Component {
   }
 
   render() {
-    const { pollID, pollIDs, pollExtendedIdx } = this.state;
+    const { pollID, pollExtendedIdx } = this.state;
     if (!pollID) {
       return <CircularProgress />;
     }
@@ -83,7 +83,6 @@ export default class PollPage extends Component {
             pollID={pollID}
             reloadData={this.reloadData.bind(this)}
           />
-
           <PollDirectory
             key={"poll-directory-" + dataHash}
             onSelectPoll={this.onSelectPoll.bind(this)}
@@ -92,7 +91,6 @@ export default class PollPage extends Component {
 
         <PollBottomNavigation
           pollID={pollID}
-          pollIDs={pollIDs}
           onSelectPoll={this.onSelectPoll.bind(this)}
         />
       </div>
