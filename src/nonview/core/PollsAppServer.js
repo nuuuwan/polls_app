@@ -1,9 +1,9 @@
 import Cache from "../base/Cache";
-import AWSDynamoDBX from "../base/AWSDynamoDBX";
+import AWSDynamoDB from "../base/AWSDynamoDB";
 import Poll from "./Poll";
 import PollExtended from "./PollExtended";
 import PollResult from "./PollResult";
-import { CACHE_KEY_GHOST_USER } from "../base/GhostUserX";
+import { CACHE_KEY_GHOST_USER } from "../base/GhostUser";
 
 export default class PollsAppServer {
   // General
@@ -21,7 +21,7 @@ export default class PollsAppServer {
 
   // Polls
   static async getPollIDsNoCache() {
-    const data = await AWSDynamoDBX.generic({
+    const data = await AWSDynamoDB.generic({
       cmd: "multiget-ids-polls",
     });
     return data.map((d) => d["pollID"]);
@@ -32,7 +32,7 @@ export default class PollsAppServer {
   }
 
   static async getPollExtendedNoCache(pollID, userID) {
-    const d = await AWSDynamoDBX.generic({
+    const d = await AWSDynamoDB.generic({
       cmd: "get-poll-extended",
       d: {
         pollID,
@@ -55,7 +55,7 @@ export default class PollsAppServer {
 
   static async addPoll(poll) {
     let pollIDs = await PollsAppServer.getPollIDs();
-    const d = await AWSDynamoDBX.generic({
+    const d = await AWSDynamoDB.generic({
       cmd: "put-poll",
       d: Poll.toDict(poll),
     });
@@ -68,7 +68,7 @@ export default class PollsAppServer {
 
   // Poll Results
   static async addPollResult(pollResult) {
-    const d = await AWSDynamoDBX.generic({
+    const d = await AWSDynamoDB.generic({
       cmd: "put-poll-result",
       d: PollResult.toDict(pollResult),
     });

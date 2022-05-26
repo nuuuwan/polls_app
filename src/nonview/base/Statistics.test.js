@@ -1,7 +1,7 @@
-import StatisticsXFuture from "./StatisticsXFuture";
+import Statistics from "./Statistics";
 
 test("getErrorBounds", () => {
-  const bounds = StatisticsXFuture.getErrorBounds(10, 5);
+  const bounds = Statistics.getErrorBounds(10, 5);
 
   expect(bounds.lower).toBeCloseTo(0.21, 6);
   expect(bounds.upper).toBeCloseTo(0.79, 6);

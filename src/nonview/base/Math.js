@@ -1,4 +1,4 @@
-export default class MathXFuture {
+export default class MathX {
   static randomShuffle(arr) {
     let curI = arr.length;
     while (curI !== 0) {

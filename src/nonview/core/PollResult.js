@@ -1,4 +1,4 @@
-import HashX from "../base/HashX";
+import Hash from "../base/Hash";
 
 export default class PollResult {
   constructor(pollID, userID, answer, timeUpdated, geoInfo) {
@@ -10,7 +10,7 @@ export default class PollResult {
   }
 
   get pollResultID() {
-    return HashX.md5([
+    return Hash.md5([
       this.pollID,
       this.userID,
       this.timeUpdated,

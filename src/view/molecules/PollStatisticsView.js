@@ -1,5 +1,5 @@
 import Typography from "@mui/material/Typography";
-import StatisticsXFuture from "../../nonview/base/StatisticsXFuture";
+import Statistics from "../../nonview/base/Statistics";
 import Divider from "@mui/material/Divider";
 import Condition from "../../view/atoms/Condition";
 
@@ -14,11 +14,11 @@ export default function PollStatisticsView({
   );
 
   let significanceStr = "";
-  if (totalCount > StatisticsXFuture.MIN_STATISTICAL_N) {
+  if (totalCount > Statistics.MIN_STATISTICAL_N) {
     const sortedAnswerStats = answerList
       .map(function (answer) {
         const answerVotes = answerToCount[answer] ? answerToCount[answer] : 0;
-        const { lower, upper, p } = StatisticsXFuture.getErrorBounds(
+        const { lower, upper, p } = Statistics.getErrorBounds(
           totalCount,
           answerVotes
         );

@@ -1,13 +1,13 @@
-import StatisticsXFuture from "../../nonview/base/StatisticsXFuture";
+import Statistics from "../../nonview/base/Statistics";
 
 const SLIDER_WIDTH_P = 67;
 const HEIGHT = 18;
 
 export default function StatisticalBar({ n, np, color }) {
-  if (!n || n < StatisticsXFuture.MIN_STATISTICAL_N) {
+  if (!n || n < Statistics.MIN_STATISTICAL_N) {
     return null;
   }
-  const { lower, upper, p } = StatisticsXFuture.getErrorBounds(n, np);
+  const { lower, upper, p } = Statistics.getErrorBounds(n, np);
   const styleCommon = {
     height: HEIGHT,
     backgroundColor: color,

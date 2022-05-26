@@ -5,10 +5,10 @@ const N_TOTAL_DIGITS = 32;
 const N_SEGMENTS = 8;
 const N_DIGITS = N_TOTAL_DIGITS / N_SEGMENTS;
 
-export default class IDXFuture {
+export default class ID {
   static getRandomID() {
     return DataStructures.range(0, N_SEGMENTS)
-      .map((i) => IDXFuture.getRandomIDSegment(N_DIGITS))
+      .map((i) => ID.getRandomIDSegment(N_DIGITS))
       .join("");
   }
   static getRandomIDSegment(nDigits) {

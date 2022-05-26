@@ -1,6 +1,6 @@
 import { Component } from "react";
 
-import GhostUserX from "../../nonview/base/GhostUserX";
+import GhostUser from "../../nonview/base/GhostUser";
 import PollsAppServer from "../../nonview/core/PollsAppServer";
 
 import PollTitle from "../../view/molecules/PollTitle";
@@ -13,7 +13,7 @@ export default class PollDirectoryItem extends Component {
 
   async componentDidMount() {
     const { pollID } = this.props;
-    const geoInfo = await await GhostUserX.getInfo();
+    const geoInfo = await await GhostUser.getInfo();
     const userID = geoInfo.infoHash;
     const pollExtended = await PollsAppServer.getPollExtended(pollID, userID);
     this.setState({ pollExtended });

@@ -11,7 +11,7 @@ import AddIcon from "@mui/icons-material/Add";
 import FormLabel from "@mui/material/FormLabel";
 
 import { PollIcon } from "../../view/_constants/CommonIcons";
-import IDXFuture from "../../nonview/base/IDXFuture";
+import ID from "../../nonview/base/ID";
 import Poll from "../../nonview/core/Poll";
 import PollsAppServer from "../../nonview/core/PollsAppServer";
 import ListInput from "../../view/molecules/ListInput";
@@ -54,7 +54,7 @@ export default class NewPollDrawer extends Component {
     const { question, answerList, visibility } = this.state;
     const { onAddNewPoll } = this.props;
 
-    const pollID = IDXFuture.getRandomID();
+    const pollID = ID.getRandomID();
     const poll = new Poll(pollID, question.trim(), answerList, visibility);
     await PollsAppServer.addPoll(poll);
     await AudioX.playVote();

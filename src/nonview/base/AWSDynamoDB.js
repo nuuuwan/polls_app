@@ -10,18 +10,18 @@ async function jsonNonCache(url) {
   return dataJson;
 }
 
-export default class AWSDynamoDBX {
+export default class AWSDynamoDB {
   static getURLLambda() {
     return process.env.REACT_APP_URL_LAMBDA;
   }
 
   static async generic(payload) {
-    console.debug("AWSDynamoDBX:generic", payload.cmd);
+    console.debug("AWSDynamoDB:generic", payload.cmd);
     const payloadJSON = JSON.stringify(payload);
     const payloadJSONB64 = btoa(payloadJSON);
     const payloadJSONB64Encoded = encodeURIComponent(payloadJSONB64);
     const url =
-      AWSDynamoDBX.getURLLambda() +
+      AWSDynamoDB.getURLLambda() +
       "?payload_json_base64=" +
       payloadJSONB64Encoded;
     const response = await jsonNonCache(url);

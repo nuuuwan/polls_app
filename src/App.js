@@ -4,7 +4,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 import URLContext from "./nonview/core/URLContext";
-import GhostUserX from "./nonview/base/GhostUserX";
+import GhostUser from "./nonview/base/GhostUser";
 import CustomAppBar from "./view/molecules/CustomAppBar";
 import PollsAppServer from "./nonview/core/PollsAppServer";
 
@@ -25,7 +25,7 @@ export default class App extends Component {
 
   async componentDidMount() {
     PollsAppServer.init();
-    const geoInfo = await GhostUserX.getInfo();
+    const geoInfo = await GhostUser.getInfo();
     this.setState({ geoInfo });
   }
 
