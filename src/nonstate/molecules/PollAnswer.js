@@ -38,6 +38,9 @@ export default function PollAnswer({
       />
       <Condition condition={showStatistics}>
         <StatisticalBar n={totalCount} np={answerVotes} color={color} />
+        <Typography sx={{ fontSize: "small", float: "right", color: color }}>
+          {`${answerVotes} votes`}
+        </Typography>
       </Condition>
     </Box>
   );
