@@ -29,7 +29,6 @@ const DEFAULT_STATE = {
 };
 
 export default class AddNewPollDrawer extends Component {
-
   constructor(props) {
     super(props);
     this.state = DEFAULT_STATE;
