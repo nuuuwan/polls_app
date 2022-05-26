@@ -4,28 +4,25 @@ import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Drawer from "@mui/material/Drawer";
-import TextField from "@mui/material/TextField";
 import CloseIcon from "@mui/icons-material/Close";
 import IconButton from "@mui/material/IconButton";
 import AddIcon from "@mui/icons-material/Add";
-import FormLabel from "@mui/material/FormLabel";
 
 import { PollIcon } from "../../view/_constants/CommonIcons";
 import ID from "../../nonview/base/ID";
-import Poll from "../../nonview/core/Poll";
+import Poll, {
+  MIN_ANSWER_LIST_LENGTH,
+  DEFAULT_QUESTION,
+  DEFAULT_ANSWER_LIST,
+  DEFAULT_VISIBILITY,
+} from "../../nonview/core/Poll";
 import PollsAppServer from "../../nonview/core/PollsAppServer";
 import ListInput from "../../view/molecules/ListInput";
 import AlignCenter from "../../view/atoms/AlignCenter";
 import ValidationBox from "../../view/molecules/ValidationBox";
 import AudioX from "../../nonview/core/AudioX";
 import PollVisibilitySelector from "../../view/molecules/PollVisibilitySelector";
-
-const MIN_QUESTION_LENGTH = 10;
-const MIN_ANSWER_LIST_LENGTH = 2;
-
-const DEFAULT_QUESTION = "";
-const DEFAULT_ANSWER_LIST = [];
-const DEFAULT_VISIBILITY = "unlisted";
+import PollQuestionEditor from "../../view/molecules/PollQuestionEditor";
 
 export default class AddNewPollDrawer extends Component {
   constructor(props) {
@@ -70,9 +67,6 @@ export default class AddNewPollDrawer extends Component {
   render() {
     const { question, answerList, visibility } = this.state;
     const { isOpen, onClose } = this.props;
-    const isQuestionValid =
-      question.length >= MIN_QUESTION_LENGTH &&
-      question.trim().slice(-1) === "?";
     const isAnswerListValid = answerList.length >= MIN_ANSWER_LIST_LENGTH;
 
     const style = {
@@ -93,26 +87,10 @@ export default class AddNewPollDrawer extends Component {
               <PollIcon />
             </AlignCenter>
 
-            <ValidationBox
-              isValid={isQuestionValid}
-              alertIfValid="Looks good."
-              alertIfInvalid={
-                <>
-                  A question must be at least{" "}
-                  <strong>{MIN_QUESTION_LENGTH}</strong> characters, and should
-                  end in a question mark.
-                </>
-              }
-            >
-              <FormLabel>{"Question"}</FormLabel>
-              <TextField
-                required
-                multiline
-                value={question}
-                placeholder="Ask a question..."
-                onChange={this.onChangeQuestion.bind(this)}
-              />
-            </ValidationBox>
+            <PollQuestionEditor
+              question={question}
+              onChangeQuestion={this.onChangeQuestion.bind(this)}
+            />
 
             <ValidationBox
               isValid={isAnswerListValid}
@@ -142,7 +120,9 @@ export default class AddNewPollDrawer extends Component {
             <Box display="flex" justifyContent="flex-end">
               <Button
                 onClick={this.onClickAdd.bind(this)}
-                disabled={!(isQuestionValid && isAnswerListValid)}
+                disabled={
+                  !(Poll.isQuestionValid(question) && isAnswerListValid)
+                }
                 variant="contained"
                 startIcon={<AddIcon />}
               >
