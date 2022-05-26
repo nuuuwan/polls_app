@@ -1,3 +1,4 @@
+import ID from "../../nonview/base/ID";
 export const MIN_QUESTION_LENGTH = 10;
 export const MIN_ANSWER_LIST_LENGTH = 2;
 
@@ -13,6 +14,14 @@ export default class Poll {
     this.question = question;
     this.answerList = answerList;
     this.visibility = visibility;
+  }
+
+  get isQuestionValid() {
+    return Poll.isQuestionValid(this);
+  }
+
+  get isAnswerListValid() {
+    return Poll.isAnswerListValid(this);
   }
 
   static toDict(poll) {
@@ -42,5 +51,14 @@ export default class Poll {
 
   static isAnswerListValid(answerList) {
     return answerList.length >= MIN_ANSWER_LIST_LENGTH;
+  }
+
+  static constructEmptyPoll() {
+    return new Poll(
+      ID.getRandomID(),
+      DEFAULT_QUESTION,
+      DEFAULT_ANSWER_LIST,
+      DEFAULT_VISIBILITY
+    );
   }
 }
