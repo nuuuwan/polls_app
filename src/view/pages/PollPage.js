@@ -19,20 +19,41 @@ export default class PollPage extends Component {
     this.state = {
       pollIDs: undefined,
       pollID: undefined,
-      pollExtendedList: undefined,
     };
+  }
+
+  async reloadData(pollID) {
+    const pollIDs = await PollsAppServer.getPollIDs();
+    if (!pollID) {
+      pollID = pollIDs[0];
+    }
+
+    const geoInfo = await GhostUser.getInfo();
+    const userID = geoInfo.userID;
+    const pollExtendedList = await Promise.all(
+      pollIDs.map(async function (pollID) {
+        return await PollsAppServer.getPollExtended(pollID, userID);
+      })
+    );
+
+    const pollExtendedIdx = pollExtendedList.reduce(function (
+      pollExtendedIdx,
+      pollExtended
+    ) {
+      pollExtendedIdx[pollExtended.pollID] = pollExtended;
+      return pollExtendedIdx;
+    },
+    {});
+
+    this.setState({
+      pollID,
+      pollExtendedIdx,
+    });
   }
 
   async componentDidMount() {
     let { pollID } = URLContext.getContext();
-    if (!pollID) {
-      const pollIDs = await PollsAppServer.getPollIDs();
-      pollID = pollIDs[0];
-    }
-
-    this.setState({
-      pollID,
-    });
+    await this.reloadData(pollID);
   }
 
   async onSelectPoll(pollID) {
@@ -42,6 +63,7 @@ export default class PollPage extends Component {
     this.setState({
       pollID,
     });
+    await this.reloadData(pollID);
   }
 
   render() {
@@ -52,13 +74,15 @@ export default class PollPage extends Component {
 
     URLContext.setContext({ Page: PollPage, pollID });
     const dataHash = Hash.md5(pollExtendedIdx);
+    const pollExtended = pollExtendedIdx[pollID];
 
     return (
       <div>
         <Box sx={{ marginBotton: 1, maxWidth: "100%" }}>
           <PollView
-            key={"poll-view-" + pollID}
+            key={"poll-view-" + pollID + "-" + pollExtended.userAnswer}
             pollID={pollID}
+            onSelectPoll={this.onSelectPoll.bind(this)}
           />
           <PollDirectory
             key={"poll-directory-" + dataHash}

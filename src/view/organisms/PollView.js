@@ -28,6 +28,7 @@ export default class PollView extends Component {
   }
 
   async onClickVote() {
+    const { onSelectPoll } = this.props;
     const { pollExtended, selectedAnswer } = this.state;
 
     const geoInfo = await GhostUser.getInfo();
@@ -42,6 +43,7 @@ export default class PollView extends Component {
     );
     await PollsAppServer.addPollResult(pollResult);
     await AudioX.playVote();
+    onSelectPoll(pollExtended.pollID);
   }
 
   async setSelectedAnswer(selectedAnswer) {
