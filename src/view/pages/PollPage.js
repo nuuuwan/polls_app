@@ -11,7 +11,7 @@ import PollsAppServer from "../../nonview/core/PollsAppServer";
 
 import PollView from "../../view/organisms/PollView";
 import PollBottomNavigation from "../../view/molecules/PollBottomNavigation";
-import NewPollDrawer from "../../view/organisms/NewPollDrawer";
+import NewPollDrawer from "../../view/organisms/AddNewPollDrawer";
 import URLContext from "../../nonview/core/URLContext";
 import AudioX from "../../nonview/core/AudioX";
 import PollDirectory from "../../view/organisms/PollDirectory";

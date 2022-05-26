@@ -27,7 +27,7 @@ const DEFAULT_QUESTION = "";
 const DEFAULT_ANSWER_LIST = [];
 const DEFAULT_VISIBILITY = "unlisted";
 
-export default class NewPollDrawer extends Component {
+export default class AddNewPollDrawer extends Component {
   constructor(props) {
     super(props);
     this.state = {
