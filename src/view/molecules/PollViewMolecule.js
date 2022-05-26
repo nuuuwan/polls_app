@@ -15,7 +15,7 @@ const STYLE = {
 
 const ANSWER_NONE = "";
 
-export default function PollView({
+export default function PollViewMolecule({
   pollExtended,
   selectedAnswer,
   hasSubmittedVote,

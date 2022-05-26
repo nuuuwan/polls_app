@@ -9,12 +9,11 @@ import CircularProgress from "@mui/material/CircularProgress";
 import PollsAppServer from "../../nonview/core/PollsAppServer";
 
 import GhostUser from "../../nonview/base/GhostUser";
-import PollView from "../../view/molecules/PollView";
+import PollView from "../../view/organisms/PollView";
 import PollBottomNavigation from "../../view/organisms/PollBottomNavigation";
 import URLContext from "../../nonview/core/URLContext";
 import AudioX from "../../nonview/core/AudioX";
 import PollDirectory from "../../view/molecules/PollDirectory";
-import PollResult from "../../nonview/core/PollResult";
 
 export default class PollPage extends Component {
   constructor(props) {
@@ -24,8 +23,6 @@ export default class PollPage extends Component {
       pollID: undefined,
       pollExtendedList: undefined,
       lastUpdated: TimeX.getUnixTime(),
-      selectedAnswer: undefined,
-      hasSubmittedVote: false,
     };
   }
 
@@ -72,23 +69,6 @@ export default class PollPage extends Component {
     this.setState({ lastUpdated });
   }
 
-  async onClickVote(pollExtended) {
-    const { selectedAnswer } = this.state;
-    const geoInfo = await await GhostUser.getInfo();
-    const userID = geoInfo.infoHash;
-
-    const pollResult = new PollResult(
-      pollExtended.pollID,
-      userID,
-      selectedAnswer,
-      TimeX.getUnixTime(),
-      geoInfo
-    );
-    await PollsAppServer.addPollResult(pollResult);
-    await AudioX.playVote();
-    await this.reloadData();
-  }
-
   async onSelectPoll(pollID) {
     URLContext.setContext({ Page: PollPage, pollID });
     await this.reloadData();
@@ -96,20 +76,8 @@ export default class PollPage extends Component {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
-  async setSelectedAnswer(selectedAnswer) {
-    await AudioX.playClick();
-    this.setState({ selectedAnswer, hasSubmittedVote: false });
-  }
-
   render() {
-    const {
-      pollIDs,
-      pollID,
-      pollExtendedIdx,
-      lastUpdated,
-      selectedAnswer,
-      hasSubmittedVote,
-    } = this.state;
+    const { pollIDs, pollID, pollExtendedIdx, lastUpdated } = this.state;
     if (!pollIDs) {
       return <CircularProgress />;
     }
@@ -121,13 +89,10 @@ export default class PollPage extends Component {
       <div key={"poll-page-" + lastUpdated}>
         <Box sx={{ marginBotton: 1, maxWidth: "100%" }}>
           <PollView
-            key={"poll-" + pollID}
             pollExtended={pollExtended}
-            selectedAnswer={selectedAnswer}
-            setSelectedAnswer={this.setSelectedAnswer.bind(this)}
-            hasSubmittedVote={hasSubmittedVote}
-            onClickVote={this.onClickVote.bind(this)}
+            reloadData={this.reloadData.bind(this)}
           />
+
           <PollDirectory
             pollExtendedIdx={pollExtendedIdx}
             onSelectPoll={this.onSelectPoll.bind(this)}
