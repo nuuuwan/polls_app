@@ -1,14 +1,5 @@
 import { Component } from "react";
-import Box from "@mui/material/Box";
-import Stack from "@mui/material/Stack";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import Drawer from "@mui/material/Drawer";
-import CloseIcon from "@mui/icons-material/Close";
-import IconButton from "@mui/material/IconButton";
-import AddIcon from "@mui/icons-material/Add";
 
-import { PollIcon } from "../../view/_constants/CommonIcons";
 import ID from "../../nonview/base/ID";
 import Poll, {
   DEFAULT_QUESTION,
@@ -16,11 +7,8 @@ import Poll, {
   DEFAULT_VISIBILITY,
 } from "../../nonview/core/Poll";
 import PollsAppServer from "../../nonview/core/PollsAppServer";
-import AlignCenter from "../../view/atoms/AlignCenter";
 import AudioX from "../../nonview/core/AudioX";
-import PollVisibilitySelector from "../../view/molecules/PollVisibilitySelector";
-import PollQuestionEditor from "../../view/molecules/PollQuestionEditor";
-import PollAnswerListEditor from "../../view/molecules/PollAnswerListEditor";
+import AddNewPollDrawerMolecule from "../../view/molecules/AddNewPollDrawerMolecule";
 
 const DEFAULT_STATE = {
   question: DEFAULT_QUESTION,
@@ -63,57 +51,18 @@ export default class AddNewPollDrawer extends Component {
     const { question, answerList, visibility } = this.state;
     const { isOpen, onClose } = this.props;
 
-    const style = {
-      m: 1,
-      p: 1,
-      width: Math.min(450, window.innerWidth * 0.85),
-    };
-
     return (
-      <Drawer anchor="right" open={isOpen} onClose={onClose}>
-        <Box sx={style}>
-          <Stack spacing={3}>
-            <AlignCenter>
-              <IconButton onClick={onClose}>
-                <CloseIcon />
-              </IconButton>
-              <Typography variant="h6">Add New Poll</Typography>
-              <PollIcon />
-            </AlignCenter>
-
-            <PollQuestionEditor
-              question={question}
-              onChangeQuestion={this.onChangeQuestion.bind(this)}
-            />
-
-            <PollAnswerListEditor
-              answerList={answerList}
-              onChangeAnswerList={this.onChangeAnswerList.bind(this)}
-            />
-
-            <PollVisibilitySelector
-              visibility={visibility}
-              onChange={this.onChangeVisibility.bind(this)}
-            />
-
-            <Box display="flex" justifyContent="flex-end">
-              <Button
-                onClick={this.onClickAdd.bind(this)}
-                disabled={
-                  !(
-                    Poll.isQuestionValid(question) &&
-                    Poll.isAnswerListValid(answerList)
-                  )
-                }
-                variant="contained"
-                startIcon={<AddIcon />}
-              >
-                Add New Poll
-              </Button>
-            </Box>
-          </Stack>
-        </Box>
-      </Drawer>
+      <AddNewPollDrawerMolecule
+        question={question}
+        answerList={answerList}
+        visibility={visibility}
+        isOpen={isOpen}
+        onClose={onClose}
+        onChangeQuestion={this.onChangeQuestion.bind(this)}
+        onChangeAnswerList={this.onChangeAnswerList.bind(this)}
+        onChangeVisibility={this.onChangeVisibility.bind(this)}
+        onClickAdd={this.onClickAdd.bind(this)}
+      />
     );
   }
 }
