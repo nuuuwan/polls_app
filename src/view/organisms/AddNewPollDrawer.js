@@ -22,14 +22,17 @@ import PollVisibilitySelector from "../../view/molecules/PollVisibilitySelector"
 import PollQuestionEditor from "../../view/molecules/PollQuestionEditor";
 import PollAnswerListEditor from "../../view/molecules/PollAnswerListEditor";
 
+const DEFAULT_STATE = {
+  question: DEFAULT_QUESTION,
+  answerList: DEFAULT_ANSWER_LIST,
+  visibility: DEFAULT_VISIBILITY,
+};
+
 export default class AddNewPollDrawer extends Component {
+
   constructor(props) {
     super(props);
-    this.state = {
-      question: DEFAULT_QUESTION,
-      answerList: DEFAULT_ANSWER_LIST,
-      visibility: DEFAULT_VISIBILITY,
-    };
+    this.state = DEFAULT_STATE;
   }
 
   onChangeQuestion(e) {
@@ -54,12 +57,7 @@ export default class AddNewPollDrawer extends Component {
     await PollsAppServer.addPoll(poll);
     await AudioX.playVote();
     onAddNewPoll(pollID);
-
-    this.setState({
-      question: DEFAULT_QUESTION,
-      answerList: DEFAULT_ANSWER_LIST,
-      visibility: DEFAULT_VISIBILITY,
-    });
+    this.setState(DEFAULT_STATE);
   }
 
   render() {
