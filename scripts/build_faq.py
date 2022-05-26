@@ -3,7 +3,7 @@ import os
 from utils import filex, hashx
 
 FAQ_MD_FILE = 'FAQ.md'
-FAQ_JS_FILE = 'src/constants/FAQ.js'
+FAQ_JS_FILE = 'src/nonview/constants/FAQ.js'
 
 
 def get_faq_list():
