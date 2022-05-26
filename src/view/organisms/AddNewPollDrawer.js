@@ -11,18 +11,16 @@ import AddIcon from "@mui/icons-material/Add";
 import { PollIcon } from "../../view/_constants/CommonIcons";
 import ID from "../../nonview/base/ID";
 import Poll, {
-  MIN_ANSWER_LIST_LENGTH,
   DEFAULT_QUESTION,
   DEFAULT_ANSWER_LIST,
   DEFAULT_VISIBILITY,
 } from "../../nonview/core/Poll";
 import PollsAppServer from "../../nonview/core/PollsAppServer";
-import ListInput from "../../view/molecules/ListInput";
 import AlignCenter from "../../view/atoms/AlignCenter";
-import ValidationBox from "../../view/molecules/ValidationBox";
 import AudioX from "../../nonview/core/AudioX";
 import PollVisibilitySelector from "../../view/molecules/PollVisibilitySelector";
 import PollQuestionEditor from "../../view/molecules/PollQuestionEditor";
+import PollAnswerListEditor from "../../view/molecules/PollAnswerListEditor";
 
 export default class AddNewPollDrawer extends Component {
   constructor(props) {
@@ -67,7 +65,6 @@ export default class AddNewPollDrawer extends Component {
   render() {
     const { question, answerList, visibility } = this.state;
     const { isOpen, onClose } = this.props;
-    const isAnswerListValid = answerList.length >= MIN_ANSWER_LIST_LENGTH;
 
     const style = {
       m: 1,
@@ -92,25 +89,10 @@ export default class AddNewPollDrawer extends Component {
               onChangeQuestion={this.onChangeQuestion.bind(this)}
             />
 
-            <ValidationBox
-              isValid={isAnswerListValid}
-              alertIfValid="Looks good. You can add more answers"
-              alertIfInvalid={
-                <>
-                  You must specify at least{" "}
-                  <strong>{MIN_ANSWER_LIST_LENGTH}</strong> answers. Type each
-                  answer and then hit <strong>enter</strong>.
-                </>
-              }
-            >
-              <ListInput
-                required
-                label="Answer List"
-                placeholder="Add possible answers..."
-                value={answerList}
-                onChange={this.onChangeAnswerList.bind(this)}
-              />
-            </ValidationBox>
+            <PollAnswerListEditor
+              answerList={answerList}
+              onChangeAnswerList={this.onChangeAnswerList.bind(this)}
+            />
 
             <PollVisibilitySelector
               visibility={visibility}
@@ -121,7 +103,10 @@ export default class AddNewPollDrawer extends Component {
               <Button
                 onClick={this.onClickAdd.bind(this)}
                 disabled={
-                  !(Poll.isQuestionValid(question) && isAnswerListValid)
+                  !(
+                    Poll.isQuestionValid(question) &&
+                    Poll.isAnswerListValid(answerList)
+                  )
                 }
                 variant="contained"
                 startIcon={<AddIcon />}
