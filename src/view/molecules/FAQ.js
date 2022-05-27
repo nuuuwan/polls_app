@@ -1,4 +1,3 @@
-import Divider from "@mui/material/Divider";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 
@@ -6,7 +5,7 @@ import FAQParagraph from "./FAQParagraph";
 
 export default function FAQ({ faq, iFaq }) {
   if (faq.question === "divider") {
-    return <Divider />;
+    return null;
   }
 
   return (
@@ -24,13 +23,18 @@ export default function FAQ({ faq, iFaq }) {
         );
       })}
 
-      <Typography variant="h5" sx={{ marginBottom: 1 }}>
+      {faq.image ? (
         <img
           alt={faq.question}
           src={"/polls_app/faq/" + faq.image}
-          style={{ maxWidth: "90%", opacity: 0.5 }}
+          style={{
+            maxWidth: "67%",
+            marginLeft: 30,
+            marginBottom: 30,
+            border: "1px solid lightgray",
+          }}
         />
-      </Typography>
+      ) : null}
     </Paper>
   );
 }
