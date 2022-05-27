@@ -4,6 +4,8 @@
 
 PollsApp is an app for creating and participating in simple (but potentially important) polls.
 
+![polls-app](image-polls-app.png)
+
 ---
 
 ## How do I vote in a poll?
