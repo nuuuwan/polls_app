@@ -19,10 +19,13 @@ jest
   .mockImplementation(() => {});
 
 export async function screenFindByText(text) {
-  return await waitFor(() => screen.findByText(text), PARAMS_TIMEOUT);
+  const element = await waitFor(() => screen.findByText(text), PARAMS_TIMEOUT);
+  expect(element).toBeInTheDocument();
+  return element;
 }
 
 export function click(element) {
+  expect(element).toBeInDocument();
   act(() => {
     fireEvent(element, new MouseEvent("click", PARAMS_EVENT));
   });
@@ -33,7 +36,7 @@ export async function defaultAppLoad() {
     render(<App />);
   });
   await screenFindByText("Polls App");
-  screenFindByText(testPollExtended.question);
+  await screenFindByText(testPollExtended.question);
 }
 
 export async function clickOnMenu(buttonLabel) {
