@@ -1,4 +1,5 @@
 import PollExtended from "../../nonview/core/PollExtended";
+
 export const testGeoLocationInfo = {
   countryCode: "LK",
   countryName: "Sri Lanka",

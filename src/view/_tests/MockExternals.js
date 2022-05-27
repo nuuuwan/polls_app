@@ -1,3 +1,4 @@
+import PollExtended from "../../nonview/core/PollExtended";
 import AWSDynamoDB from "../../nonview/base/AWSDynamoDB";
 import Cache from "../../nonview/base/Cache";
 import GhostUser from "../../nonview/base/GhostUser";
@@ -31,7 +32,7 @@ export function mock() {
       }
 
       if (payload.cmd === "get-poll-extended") {
-        return testPollExtended;
+        return PollExtended.toDict(testPollExtended);
       }
 
       if (payload.cmd === "put-poll") {

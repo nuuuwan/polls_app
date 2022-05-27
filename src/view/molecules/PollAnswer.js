@@ -28,9 +28,7 @@ export default function PollAnswer({
         control={<Radio style={{ color: color }} />}
         label={
           <AlignCenter>
-            <Typography variant="subtitle2">
-              {answer}
-            </Typography>
+            <Typography variant="subtitle2">{answer}</Typography>
           </AlignCenter>
         }
       />

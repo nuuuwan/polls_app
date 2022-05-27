@@ -6,8 +6,6 @@ import {
   act,
 } from "@testing-library/react";
 
-import { testPollExtended } from "../../nonview/tests/TestData";
-
 import App from "../../App";
 
 const PARAMS_TIMEOUT = { timeout: 3_000 };
@@ -25,7 +23,7 @@ export async function screenFindByText(text) {
 }
 
 export function click(element) {
-  expect(element).toBeInDocument();
+  expect(element).toBeInTheDocument();
   act(() => {
     fireEvent(element, new MouseEvent("click", PARAMS_EVENT));
   });
@@ -36,7 +34,6 @@ export async function defaultAppLoad() {
     render(<App />);
   });
   await screenFindByText("Polls App");
-  await screenFindByText(testPollExtended.question);
 }
 
 export async function clickOnMenu(buttonLabel) {
