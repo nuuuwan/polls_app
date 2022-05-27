@@ -66,6 +66,27 @@ export default class PollsAppServer {
     return Poll.fromDict(d);
   }
 
+  // TODO: Should be in server?
+
+  static async getPollExtendedListForUser(userID) {
+    const pollIDs = await PollsAppServer.getPollIDs();
+    return await Promise.all(
+      pollIDs.map(async function (pollID) {
+        return await PollsAppServer.getPollExtended(pollID, userID);
+      })
+    );
+  }
+
+  static async getPollExtendedIdxForUser(userID) {
+    const pollExtendedList = await PollsAppServer.getPollExtendedListForUser(
+      userID
+    );
+    return pollExtendedList.reduce(function (pollExtendedIdx, pollExtended) {
+      pollExtendedIdx[pollExtended.pollID] = pollExtended;
+      return pollExtendedIdx;
+    }, {});
+  }
+
   // Poll Results
   static async addPollResult(pollResult) {
     const d = await AWSDynamoDB.generic({
