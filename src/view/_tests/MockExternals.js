@@ -49,3 +49,8 @@ export function mock() {
 export function unmock() {
   jest.restoreAllMocks();
 }
+
+export function init() {
+  beforeEach(mock);
+  afterAll(unmock);
+}

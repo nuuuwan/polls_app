@@ -1,4 +1,7 @@
-import { screenFindByText, click, defaultAppLoad } from "./view/tests/Tests";
+import { init } from "./view/_tests/MockExternals";
+import { screenFindByText, click, defaultAppLoad } from "./view/_tests/Tests";
+
+init();
 
 test("Add New Poll", async () => {
   await defaultAppLoad();

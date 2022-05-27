@@ -1,5 +1,7 @@
 import { render, screen, waitFor, fireEvent } from "@testing-library/react";
+
 import { testPollExtended } from "../../nonview/tests/TestData";
+
 import App from "../../App";
 
 const PARAMS_TIMEOUT = { timeout: 5_000 };

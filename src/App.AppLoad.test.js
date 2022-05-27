@@ -1,8 +1,7 @@
-import { mock, unmock } from "./view/_tests/MockExternals";
+import { init } from "./view/_tests/MockExternals";
 import { defaultAppLoad } from "./view/_tests/Tests";
 
-beforeEach(mock);
-afterAll(unmock);
+init();
 
 test("Polls Page", async () => {
   await defaultAppLoad();
