@@ -14,6 +14,15 @@ export default class PollExtended extends Poll {
     this.userAnswer = userAnswer;
   }
 
+  get totalCount() {
+    return Object.values(this.answerToCount).reduce(
+      function(totalCount, count ) {
+        return totalCount + count;
+      },
+      0,
+    );
+  }
+
   static toDict(pollExtended) {
     return {
       pollID: pollExtended.pollID,
