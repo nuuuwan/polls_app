@@ -4,13 +4,13 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
 
-import Hash from "../../nonview/base/Hash";
+import { TimeX } from '@nuuuwan/utils-js-dev';
+
+import AudioX from "../../nonview/core/AudioX";
 import PollsAppServer from "../../nonview/core/PollsAppServer";
-import GhostUser from "../../nonview/base/GhostUser";
+import URLContext from "../../nonview/core/URLContext";
 import PollView from "../../view/organisms/PollView";
 import PollBottomNavigation from "../../view/organisms/PollBottomNavigation";
-import URLContext from "../../nonview/core/URLContext";
-import AudioX from "../../nonview/core/AudioX";
 import PollDirectory from "../../view/organisms/PollDirectory";
 
 export default class PollPage extends Component {
@@ -19,67 +19,55 @@ export default class PollPage extends Component {
     this.state = {
       pollIDs: undefined,
       pollID: undefined,
+      timeLastUpdated: 0,
     };
-  }
-
-  async reloadData(pollID) {
-    const pollIDs = await PollsAppServer.getPollIDs();
-    if (!pollID) {
-      pollID = pollIDs[0];
-    }
-
-    const geoInfo = await GhostUser.getInfo();
-    const userID = geoInfo.userID;
-
-    const pollExtendedIdx = await PollsAppServer.getPollExtendedIdxForUser(
-      userID
-    );
-    this.setState({
-      pollID,
-      pollExtendedIdx,
-    });
   }
 
   async componentDidMount() {
     let { pollID } = URLContext.getContext();
-    await this.reloadData(pollID);
+    if (!pollID) {
+      const pollIDs = await PollsAppServer.getPollIDs();
+      pollID = pollIDs[0];
+    }
+    this.refresh(pollID);
+  }
+
+  refresh(pollID) {
+    this.setState({
+      pollID,
+      timeLastUpdated: TimeX.getUnixTime(),
+    });
   }
 
   async onSelectPoll(pollID) {
-    URLContext.setContext({ Page: PollPage, pollID });
     await AudioX.playClick();
     window.scrollTo({ top: 0, behavior: "smooth" });
-    this.setState({
-      pollID,
-    });
-    await this.reloadData(pollID);
+    this.refresh(pollID);
   }
 
   render() {
-    const { pollID, pollExtendedIdx } = this.state;
+    const { pollID, timeLastUpdated } = this.state;
     if (!pollID) {
       return <CircularProgress />;
     }
-
     URLContext.setContext({ Page: PollPage, pollID });
-    const dataHash = Hash.md5(pollExtendedIdx);
-    const pollExtended = pollExtendedIdx[pollID];
 
     return (
       <div>
         <Box sx={{ marginBotton: 1, maxWidth: "100%" }}>
           <PollView
-            key={"poll-view-" + pollID + "-" + pollExtended.userAnswer}
+            key={"poll-view-" + pollID + "-" + timeLastUpdated}
             pollID={pollID}
             onSelectPoll={this.onSelectPoll.bind(this)}
           />
           <PollDirectory
-            key={"poll-directory-" + dataHash}
+            key={"poll-directory-" + timeLastUpdated}
             onSelectPoll={this.onSelectPoll.bind(this)}
           />
         </Box>
 
         <PollBottomNavigation
+          key={"poll-bottom-navigation-" + timeLastUpdated}
           pollID={pollID}
           onSelectPoll={this.onSelectPoll.bind(this)}
         />
