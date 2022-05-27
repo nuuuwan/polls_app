@@ -3,7 +3,7 @@ import re
 
 from utils import filex, hashx
 
-FAQ_MD_FILE = 'FAQ.md'
+FAQ_MD_FILE = 'public/faq/FAQ.md'
 FAQ_JS_FILE = 'src/nonview/constants/FAQ.js'
 REGEX_IMAGE = r'!\[(?P<alt>.*)\]\((?P<src>.*)\)'
 
