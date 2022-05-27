@@ -7,11 +7,13 @@ export default class PollExtended extends Poll {
     answerList,
     visibility,
     answerToCount,
-    userAnswer
+    userAnswer,
+    timeLatestResult,
   ) {
     super(pollID, question, answerList, visibility);
     this.answerToCount = answerToCount;
     this.userAnswer = userAnswer;
+    this.timeLatestResult = timeLatestResult;
   }
 
   get totalCount() {
@@ -32,6 +34,7 @@ export default class PollExtended extends Poll {
       visibility: pollExtended.visibility,
       answerToCount: pollExtended.answerToCount,
       userAnswer: pollExtended.userAnswer,
+      timeLatestResult: pollExtended.timeLatestResult,
     };
   }
 
@@ -42,7 +45,8 @@ export default class PollExtended extends Poll {
       JSON.parse(d.answerListJSON),
       d.visibility,
       d.answerToCount,
-      d.userAnswer
+      d.userAnswer,
+      parseInt(d.timeLatestResult),
     );
   }
 }
