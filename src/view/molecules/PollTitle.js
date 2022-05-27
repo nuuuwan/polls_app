@@ -4,8 +4,6 @@ import Typography from "@mui/material/Typography";
 import { useTheme } from "@mui/material/styles";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
-import { MathX } from "@nuuuwan/utils-js-dev";
-
 import { PublicIcon, UnlistedIcon } from "../../view/_constants/CommonIcons";
 import AlignCenter from "../../view/atoms/AlignCenter";
 import Condition from "../../view/atoms/Condition";
