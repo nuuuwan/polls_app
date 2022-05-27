@@ -23,6 +23,14 @@ export default function FAQ({ faq, iFaq }) {
           />
         );
       })}
+
+      <Typography variant="h5" sx={{ marginBottom: 1 }}>
+        <img
+          alt={faq.question}
+          src={"/polls_app/faq/" + faq.image}
+          style={{ maxWidth: "90%", opacity: 0.5 }}
+        />
+      </Typography>
     </Paper>
   );
 }
