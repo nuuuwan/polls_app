@@ -34,7 +34,11 @@ export default function CustomAppBar({ onSelectPage, geoInfo, Page }) {
           {"Polls App"}
         </Typography>
 
-        <IconButton sx={{ p: 0 }} onClick={onClickUser}>
+        <IconButton
+          sx={{ p: 0 }}
+          onClick={onClickUser}
+          aria-label="CustomAppBar.avatar.button"
+        >
           <IDAvatar id={geoInfo.userID} size={40} />
         </IconButton>
       </Toolbar>
