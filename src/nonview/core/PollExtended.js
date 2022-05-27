@@ -8,7 +8,7 @@ export default class PollExtended extends Poll {
     visibility,
     answerToCount,
     userAnswer,
-    timeLatestResult,
+    timeLatestResult
   ) {
     super(pollID, question, answerList, visibility);
     this.answerToCount = answerToCount;
@@ -46,7 +46,7 @@ export default class PollExtended extends Poll {
       d.visibility,
       d.answerToCount,
       d.userAnswer,
-      parseInt(d.timeLatestResult),
+      parseInt(d.timeLatestResult)
     );
   }
 }
