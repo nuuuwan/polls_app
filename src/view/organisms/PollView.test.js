@@ -18,11 +18,12 @@ test("PollView", async () => {
   );
 
   await screenFindByText(testPollExtended.question);
-  await screenFindByText(testPollExtended.visibility);
-  await screenFindByText('"Yes" leads');
   await screenFindByText(testPollExtended.totalCount + " votes");
+  await screenFindByText(testPollExtended.visibility);
   await screenFindByText('You voted "' + testPollExtended.userAnswer + '"');
 
+  await screenFindByText('"Yes" leads');
+  
   for (let answer of testPollExtended.answerList) {
     await screenFindByText(answer);
   }
