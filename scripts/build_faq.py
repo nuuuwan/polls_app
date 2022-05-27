@@ -1,9 +1,11 @@
 import os
+import re
 
 from utils import filex, hashx
 
 FAQ_MD_FILE = 'faq/FAQ.md'
 FAQ_JS_FILE = 'src/nonview/constants/FAQ.js'
+REGEX_IMAGE = r'!\[(?P<alt>.*)\]\((?P<src>.*)\)'
 
 
 def get_faq_list():
@@ -21,6 +23,9 @@ def get_faq_list():
             }
         elif line[:2] == '# ':
             continue
+        elif line[:2] == '![':
+            d = re.match(REGEX_IMAGE, line).groupdict()
+            current_faq['image'] = d['src']
         elif line[:3] == '---':
             if current_faq:
                 faq_list.append(current_faq)
@@ -59,8 +64,12 @@ def build_js_file(faq_list):
         for answer_paragraph in answer_paragraphs:
             answer_paragraph = answer_paragraph.replace('"', '\\"')
             lines.append(f'      "{answer_paragraph}",')
-
         lines.append('    ],')
+
+        if 'image' in faq:
+            image = faq['image']
+            lines.append(f'    image: "{image}",')
+
         lines.append('  },')
 
     lines.append('];')
