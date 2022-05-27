@@ -5,7 +5,11 @@ import PollPage from "../../view/pages/PollPage";
 import UserPage from "../../view/pages/UserPage";
 
 test("getPageName", () => {
-  expect(URLContext.getPageName(PollPage)).toBe("poll");
-  expect(URLContext.getPageName(HelpPage)).toBe("help");
-  expect(URLContext.getPageName(UserPage)).toBe("user");
+  for (let [Page, expectedPageName] of [
+    [PollPage, "poll"],
+    [HelpPage, "help"],
+    [UserPage, "user"],
+  ]) {
+    expect(URLContext.getPageName(Page)).toBe(expectedPageName);
+  }
 });
