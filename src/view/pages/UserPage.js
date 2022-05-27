@@ -1,5 +1,4 @@
 import { Component } from "react";
-import * as React from "react";
 import ReactCountryFlag from "react-country-flag";
 
 import Alert from "@mui/material/Alert";
