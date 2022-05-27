@@ -9,47 +9,39 @@ jest
   .spyOn(window.HTMLMediaElement.prototype, "play")
   .mockImplementation(() => {});
 
-test("Polls Page", async () => {
-  // Wait for Page to Load
+async function defaultPageLoad() {
   render(<App />);
   await waitFor(() => screen.findByText("Polls App"), PARAMS_TIMEOUT);
   expect(screen.getByText("Polls App")).toBeInTheDocument();
-  await waitFor(() => screen.findByText("Copy"), {
-    timeout: 10_000,
-  });
+}
 
-  // Validate Bottom Navigation
-  expect(screen.getByText("Copy")).toBeInTheDocument();
-  expect(screen.getByText("Share")).toBeInTheDocument();
-  expect(screen.getByText("Add New")).toBeInTheDocument();
-  expect(screen.getByText("Random")).toBeInTheDocument();
+async function clickOnMenu() {
+  const button = screen.getByRole("button", {
+    name: "CustomAppBarMenu.button",
+  });
+  fireEvent(button, new MouseEvent("click", { bubbles: true }));
+}
+
+test("Polls Page", async () => {
+  await defaultPageLoad();
 });
 
 test("Add New Poll", async () => {
-  // Wait for Page to Load
-  render(<App />);
-  await waitFor(() => screen.findByText("Polls App"), PARAMS_TIMEOUT);
-  await waitFor(() => screen.findByText("Add New"), PARAMS_TIMEOUT);
+  await defaultPageLoad();
 
-  // Click on Menu
+  await waitFor(() => screen.findByText("Add New"), PARAMS_TIMEOUT);
   const button = screen.getByText("Add New");
   fireEvent(button, new MouseEvent("click", { bubbles: true }));
 
   // Validate Add New Poll Drawer
+  expect(screen.getByText("Question")).toBeInTheDocument();
   await waitFor(() => screen.findByText("Question"), PARAMS_TIMEOUT);
   expect(screen.getByText("Question")).toBeInTheDocument();
 });
 
 test("Help Page", async () => {
-  // Wait for Page to Load
-  render(<App />);
-  await waitFor(() => screen.findByText("Polls App"), PARAMS_TIMEOUT);
-
-  // Click on Menu
-  const button = screen.getByRole("button", {
-    name: "CustomAppBarMenu.button",
-  });
-  fireEvent(button, new MouseEvent("click", { bubbles: true }));
+  await defaultPageLoad();
+  await clickOnMenu();
 
   // Click on Help
   await waitFor(() => screen.findByText("Help & FAQs"), PARAMS_TIMEOUT);
@@ -62,15 +54,8 @@ test("Help Page", async () => {
 });
 
 test("User Page", async () => {
-  // Wait for Page to Load
-  render(<App />);
-  await waitFor(() => screen.findByText("Polls App"), PARAMS_TIMEOUT);
-
-  // Click on Menu
-  const button = screen.getByRole("button", {
-    name: "CustomAppBarMenu.button",
-  });
-  fireEvent(button, new MouseEvent("click", { bubbles: true }));
+  await defaultPageLoad();
+  await clickOnMenu();
 
   // Click on User
   await waitFor(() => screen.findByText("User"), PARAMS_TIMEOUT);
