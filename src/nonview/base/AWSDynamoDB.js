@@ -24,6 +24,9 @@ export default class AWSDynamoDB {
       "?payload_json_base64=" +
       payloadJSONB64Encoded;
     const response = await jsonNonCache(url);
+    if (response['exception']) {
+      console.error(response);
+    }
     return response;
   }
 }
