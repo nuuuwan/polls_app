@@ -1,7 +1,5 @@
 # BIG PICTURE
 
-* Unittests - Test All Flows, Test Widgets separately 
-
 * I18N
 * Users - Do we have normal username/passworded accounts?
 * Registration Problem (RP)
@@ -15,15 +13,10 @@
 
 * How does update on PollPage work - prevent multiple loads
 * Images in FAQ 
-* Test - AddNewPoll
-* Test - PollDirectory 
-* Test - PollView
 
 * Read and fix "MUI: A component is changing the uncontrolled value state of RadioGroup to be controlled.
 Elements should"
 * Fix "--detectOpenHandles" errors
-
-
 
 # LOW
 
