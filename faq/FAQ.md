@@ -48,7 +48,7 @@ You can also click the "Tweet" button to share a link to the poll on Twitter.
 
 When a poll has a minimum of 30 votes, PollsApp shows how many votes each answer received.
 
-![polls-app](image-copy-share.png)
+![polls-app](image-poll.png)
 
 ## Why does PollsApp say "Too close to call" when a particular answer has more votes?
 
