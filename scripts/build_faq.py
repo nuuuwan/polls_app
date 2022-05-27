@@ -2,7 +2,7 @@ import os
 
 from utils import filex, hashx
 
-FAQ_MD_FILE = 'FAQ.md'
+FAQ_MD_FILE = 'faq/FAQ.md'
 FAQ_JS_FILE = 'src/nonview/constants/FAQ.js'
 
 
