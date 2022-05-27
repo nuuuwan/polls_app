@@ -9,7 +9,6 @@ import { MathX } from "@nuuuwan/utils-js-dev";
 import { PublicIcon, UnlistedIcon } from "../../view/_constants/CommonIcons";
 import AlignCenter from "../../view/atoms/AlignCenter";
 import Condition from "../../view/atoms/Condition";
-import Emoji from "../../view/atoms/Emoji";
 import PollStatistics from "../../view/molecules/PollStatistics";
 
 export default function PollTitle({ pollExtended }) {
@@ -51,7 +50,7 @@ export default function PollTitle({ pollExtended }) {
         <AlignCenter>
           <CheckCircleIcon sx={{ fontSize: "small", color: color }} />
           <Typography style={{ fontSize: "small", color: color }}>
-            You voted "<Emoji text={pollExtended.userAnswer} />"
+            You voted "{pollExtended.userAnswer}"
           </Typography>
         </AlignCenter>
       </Condition>

@@ -6,7 +6,6 @@ import { useTheme } from "@mui/material/styles";
 
 import AlignCenter from "../../view/atoms/AlignCenter";
 import Condition from "../atoms/Condition";
-import Emoji from "../../view/atoms/Emoji";
 import StatisticalBar from "../atoms/StatisticalBar";
 
 export default function PollAnswer({
@@ -30,7 +29,7 @@ export default function PollAnswer({
         label={
           <AlignCenter>
             <Typography variant="subtitle2">
-              <Emoji text={answer} />
+              {answer}
             </Typography>
           </AlignCenter>
         }
