@@ -8,7 +8,7 @@ import { screenFindByText } from "../../view/_tests/Tests";
 
 init();
 
-test("PollView", async () => {
+test("PollDirectory", async () => {
   render(<PollDirectory />);
 
   await screenFindByText(testPollExtended.question);
