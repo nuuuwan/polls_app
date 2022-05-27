@@ -23,7 +23,7 @@ export default function PollTitle({ pollExtended }) {
     ? theme.palette.secondary.main
     : theme.palette.primary.main;
 
-  const totalCount = MathX.sum(Object.values(pollExtended.answerToCount));
+  const totalCount = pollExtended.totalCount;
 
   return (
     <Stack>
