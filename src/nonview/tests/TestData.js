@@ -14,6 +14,6 @@ export const testPollExtended = PollExtended.fromDict({
   question: "Does this test question have an answer?",
   answerListJSON: JSON.stringify(["Yes", "No"]),
   visibility: "public",
-  answerToCount: { yes: 123, no: 54 },
+  answerToCount: { Yes: 123, No: 54 },
   userAnswer: "Yes",
 });
