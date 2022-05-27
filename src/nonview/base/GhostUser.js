@@ -22,4 +22,9 @@ export default class GhostUser {
   static async getInfo() {
     return await Cache.get(CACHE_KEY_GHOST_USER, GhostUser.getGeoLocationInfo);
   }
+
+  static async getUserID() {
+    const info = await GhostUser.getInfo();
+    return info.userID;
+  }
 }
