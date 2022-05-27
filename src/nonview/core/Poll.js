@@ -1,4 +1,5 @@
 import ID from "../../nonview/base/ID";
+
 export const MIN_QUESTION_LENGTH = 10;
 export const MIN_ANSWER_LIST_LENGTH = 2;
 

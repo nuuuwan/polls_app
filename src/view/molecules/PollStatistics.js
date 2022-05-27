@@ -1,6 +1,8 @@
-import Typography from "@mui/material/Typography";
-import Statistics from "../../nonview/base/Statistics";
 import Divider from "@mui/material/Divider";
+import Typography from "@mui/material/Typography";
+
+import Statistics from "../../nonview/base/Statistics";
+
 import Condition from "../../view/atoms/Condition";
 
 export default function PollStatistics({

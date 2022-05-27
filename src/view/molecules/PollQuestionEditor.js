@@ -2,6 +2,7 @@ import FormLabel from "@mui/material/FormLabel";
 import TextField from "@mui/material/TextField";
 
 import { MIN_QUESTION_LENGTH } from "../../nonview/core/Poll";
+
 import ValidationBox from "../../view/molecules/ValidationBox";
 
 export default function PollQuestionEditor({ poll, onChangePoll }) {

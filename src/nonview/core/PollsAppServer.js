@@ -1,9 +1,9 @@
-import Cache from "../base/Cache";
 import AWSDynamoDB from "../base/AWSDynamoDB";
+import Cache from "../base/Cache";
+import { CACHE_KEY_GHOST_USER } from "../base/GhostUser";
 import Poll from "./Poll";
 import PollExtended from "./PollExtended";
 import PollResult from "./PollResult";
-import { CACHE_KEY_GHOST_USER } from "../base/GhostUser";
 
 export default class PollsAppServer {
   // General

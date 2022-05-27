@@ -1,6 +1,6 @@
+import Divider from "@mui/material/Divider";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
-import Divider from "@mui/material/Divider";
 
 import FAQParagraph from "./FAQParagraph";
 

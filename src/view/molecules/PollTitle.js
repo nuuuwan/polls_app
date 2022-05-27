@@ -1,15 +1,16 @@
-import { useTheme } from "@mui/material/styles";
-import Typography from "@mui/material/Typography";
-import Stack from "@mui/material/Stack";
 import Divider from "@mui/material/Divider";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
+import { useTheme } from "@mui/material/styles";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
-import PollStatistics from "../../view/molecules/PollStatistics";
 import { MathX } from "@nuuuwan/utils-js-dev";
+
 import { PublicIcon, UnlistedIcon } from "../../view/_constants/CommonIcons";
 import AlignCenter from "../../view/atoms/AlignCenter";
 import Condition from "../../view/atoms/Condition";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import Emoji from "../../view/atoms/Emoji";
+import PollStatistics from "../../view/molecules/PollStatistics";
 
 export default function PollTitle({ pollExtended }) {
   const VisibilityIcon =

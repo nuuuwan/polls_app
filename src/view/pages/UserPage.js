@@ -1,16 +1,15 @@
 import { Component } from "react";
 import * as React from "react";
-
-import Paper from "@mui/material/Paper";
-import Grid from "@mui/material/Grid";
-import Alert from "@mui/material/Alert";
-
 import ReactCountryFlag from "react-country-flag";
 
-import TitledBody from "../../view/molecules/TitledBody";
-import IDAvatar from "../../view/molecules/IDAvatar";
+import Alert from "@mui/material/Alert";
+import Grid from "@mui/material/Grid";
+import Paper from "@mui/material/Paper";
+
 import GoogleMapsLink from "../../view/atoms/GoogleMapsLink";
 import SimpleLink from "../../view/atoms/SimpleLink";
+import IDAvatar from "../../view/molecules/IDAvatar";
+import TitledBody from "../../view/molecules/TitledBody";
 
 const URL_WHATISMYIP = "https://whatismyipaddress.com/";
 

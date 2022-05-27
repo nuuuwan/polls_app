@@ -1,14 +1,15 @@
 import React from "react";
 
 import AppBar from "@mui/material/AppBar";
+import IconButton from "@mui/material/IconButton";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import CustomAppBarMenu from "./CustomAppBarMenu";
-import IconButton from "@mui/material/IconButton";
-import IDAvatar from "../molecules/IDAvatar";
 
-import UserPage from "../../view/pages/UserPage";
 import AudioX from "../../nonview/core/AudioX";
+
+import CustomAppBarMenu from "./CustomAppBarMenu";
+import IDAvatar from "../molecules/IDAvatar";
+import UserPage from "../../view/pages/UserPage";
 
 const STYLE = {
   backgroundColor: "lightgray",

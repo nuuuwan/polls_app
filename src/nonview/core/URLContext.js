@@ -1,5 +1,5 @@
-import PollPage from "../../view/pages/PollPage";
 import HelpPage from "../../view/pages/HelpPage";
+import PollPage from "../../view/pages/PollPage";
 import UserPage from "../../view/pages/UserPage";
 
 const PAGE_IDX = {

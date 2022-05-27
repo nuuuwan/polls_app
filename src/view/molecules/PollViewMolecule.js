@@ -1,10 +1,10 @@
-import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
+import Stack from "@mui/material/Stack";
 
 import VoteButton from "../../view/atoms/VoteButton";
-import ValidationBox from "../../view/molecules/ValidationBox";
-import PollTitle from "../../view/molecules/PollTitle";
 import PollAnswerGroup from "../../view/molecules/PollAnswerGroup";
+import PollTitle from "../../view/molecules/PollTitle";
+import ValidationBox from "../../view/molecules/ValidationBox";
 
 const STYLE = {
   margin: 0,

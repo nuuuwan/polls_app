@@ -1,4 +1,5 @@
 import SimpleLink from "./SimpleLink";
+
 const URL_BASE = "https://www.google.com/maps/search/";
 
 export default function GoogleMapsLink({ searchText }) {

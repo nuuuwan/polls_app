@@ -1,12 +1,14 @@
 import React, { Component } from "react";
+
 import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-import URLContext from "./nonview/core/URLContext";
 import GhostUser from "./nonview/base/GhostUser";
-import CustomAppBar from "./view/molecules/CustomAppBar";
 import PollsAppServer from "./nonview/core/PollsAppServer";
+import URLContext from "./nonview/core/URLContext";
+
+import CustomAppBar from "./view/molecules/CustomAppBar";
 
 const STYLE = {
   padding: 3,

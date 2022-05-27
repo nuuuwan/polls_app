@@ -1,6 +1,7 @@
 import { MIN_ANSWER_LIST_LENGTH } from "../../nonview/core/Poll";
-import ValidationBox from "../../view/molecules/ValidationBox";
+
 import ListInput from "../../view/molecules/ListInput";
+import ValidationBox from "../../view/molecules/ValidationBox";
 
 export default function PollAnswerListEditor({ poll, onChangePoll }) {
   const onChangeAnswerList = function (newAnswerList) {

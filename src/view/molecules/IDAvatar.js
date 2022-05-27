@@ -1,5 +1,7 @@
 import Avatar from "@mui/material/Avatar";
+
 import { DataStructures } from "@nuuuwan/utils-js-dev";
+
 import EquilateralPolygon from "../../view/atoms/EquilateralPolygon";
 
 const N = 3;

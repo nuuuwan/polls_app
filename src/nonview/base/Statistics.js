@@ -1,4 +1,5 @@
 import { DataStructures } from "@nuuuwan/utils-js-dev";
+
 const cdf = require("binomial-cdf");
 
 export default class Statistics {

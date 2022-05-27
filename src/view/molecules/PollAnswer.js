@@ -1,14 +1,13 @@
-import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
 import FormControlLabel from "@mui/material/FormControlLabel";
+import Radio from "@mui/material/Radio";
+import Typography from "@mui/material/Typography";
 import { useTheme } from "@mui/material/styles";
 
-import Box from "@mui/material/Box";
-import Radio from "@mui/material/Radio";
 import AlignCenter from "../../view/atoms/AlignCenter";
 import Condition from "../atoms/Condition";
-import StatisticalBar from "../atoms/StatisticalBar";
-
 import Emoji from "../../view/atoms/Emoji";
+import StatisticalBar from "../atoms/StatisticalBar";
 
 export default function PollAnswer({
   answer,
