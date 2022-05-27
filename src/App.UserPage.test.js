@@ -7,22 +7,6 @@ import {
   clickOnMenu,
 } from "./view/tests/Tests";
 
-test("Polls Page", async () => {
-  await defaultAppLoad();
-});
-
-test("Add New Poll", async () => {
-  await defaultAppLoad();
-  const button = await screenFindByText("Add New");
-  click(button);
-  await screenFindByText("Question");
-});
-
-test("Help Page", async () => {
-  await clickOnMenu("Help & FAQs");
-  await screenFindByText("FAQs");
-});
-
 test("User Page", async () => {
   await clickOnMenu("User");
   await screenFindByText("UserID");
