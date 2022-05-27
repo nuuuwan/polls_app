@@ -1,3 +1,4 @@
+import PollExtended from "../../nonview/core/PollExtended";
 export const testGeoLocationInfo = {
   countryCode: "LK",
   countryName: "Sri Lanka",
@@ -7,11 +8,11 @@ export const testGeoLocationInfo = {
   userID: "11111111111111111111111111111111",
 };
 
-export const testPollExtended = {
+export const testPollExtended = PollExtended.fromDict({
   pollID: "test-poll-id-0",
   question: "Does this test question have an answer?",
-  answerListJSON: JSON.stringify(["yes", "no"]),
+  answerListJSON: JSON.stringify(["Yes", "No"]),
   visibility: "public",
   answerToCount: { yes: 123, no: 54 },
-  userAnswer: "yes",
-};
+  userAnswer: "Yes",
+});
