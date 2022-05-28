@@ -35,7 +35,6 @@ export async function defaultAppLoad() {
   await act(async () => {
     render(<App />);
   });
-  await screenFindByText("Polls App");
 }
 
 export async function clickOnMenu(buttonLabel) {
