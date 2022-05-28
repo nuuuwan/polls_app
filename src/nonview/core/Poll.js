@@ -18,11 +18,11 @@ export default class Poll {
   }
 
   get isQuestionValid() {
-    return Poll.isQuestionValid(this);
+    return Poll.isQuestionValid(this.question);
   }
 
   get isAnswerListValid() {
-    return Poll.isAnswerListValid(this);
+    return Poll.isAnswerListValid(this.answerList);
   }
 
   static toDict(poll) {
