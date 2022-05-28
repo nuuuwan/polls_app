@@ -13,12 +13,12 @@ export default function PollDirectoryMolecule({
     <Stack spacing={1}>
       <List>
         {Object.entries(pollExtendedIdx).map(function ([pollID, pollExtended]) {
-          const onClick = function (e) {
+          const onSelectPollInner = function (e) {
             onSelectPoll(pollID);
           };
           return (
             <ListItem key={"poll-directory-item-" + pollID}>
-              <ListItemButton onClick={onClick}>
+              <ListItemButton onClick={onSelectPollInner}>
                 <PollTitle pollExtended={pollExtended} />
               </ListItemButton>
             </ListItem>
