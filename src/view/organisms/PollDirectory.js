@@ -16,23 +16,11 @@ export default class PollDirectory extends Component {
   }
 
   async componentDidMount() {
-    const pollIDs = await PollsAppServer.getPollIDs();
-    const geoInfo = await GhostUser.getInfo();
-    const userID = geoInfo.userID;
-    const pollExtendedList = await Promise.all(
-      pollIDs.map(async function (pollID) {
-        return await PollsAppServer.getPollExtended(pollID, userID);
-      })
+    const userID = await GhostUser.getUserID();
+    const pollExtendedIdx = await PollsAppServer.getPollExtendedIdxForUser(
+      userID
     );
 
-    const pollExtendedIdx = pollExtendedList.reduce(function (
-      pollExtendedIdx,
-      pollExtended
-    ) {
-      pollExtendedIdx[pollExtended.pollID] = pollExtended;
-      return pollExtendedIdx;
-    },
-    {});
 
     this.setState({
       pollExtendedIdx,
