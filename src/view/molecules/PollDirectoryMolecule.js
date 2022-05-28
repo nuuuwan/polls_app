@@ -5,7 +5,10 @@ import Stack from "@mui/material/Stack";
 
 import PollTitle from "../../view/molecules/PollTitle";
 
-export default function PollDirectory({ pollExtendedIdx, onSelectPoll }) {
+export default function PollDirectoryMolecule({
+  pollExtendedIdx,
+  onSelectPoll,
+}) {
   return (
     <Stack spacing={1}>
       <List>
