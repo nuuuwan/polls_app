@@ -16,6 +16,8 @@ jest
   .spyOn(window.HTMLMediaElement.prototype, "play")
   .mockImplementation(() => {});
 
+jest.spyOn(window, "scrollTo").mockImplementation(() => {});
+
 export async function screenFindByText(text) {
   const element = await waitFor(() => screen.findByText(text), PARAMS_TIMEOUT);
   expect(element).toBeInTheDocument();
