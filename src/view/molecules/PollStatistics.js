@@ -9,10 +9,12 @@ export default function PollStatistics({
   answerList,
   totalCount,
   answerToCount,
+  small,
 }) {
+  const fontSize = small ? "x-small" : "small";
   totalCount = totalCount ? totalCount : 0;
   const renderedTotalVotes = (
-    <Typography variant="body2">{totalCount + " votes"}</Typography>
+    <Typography style={{ fontSize }}>{totalCount + " votes"}</Typography>
   );
 
   let significanceStr = "";
@@ -47,7 +49,7 @@ export default function PollStatistics({
       {renderedTotalVotes}
       <Condition condition={significanceStr}>
         <Divider orientation="vertical" variant="middle" flexItem />
-        <Typography variant="caption" sx={{ color: "gray" }}>
+        <Typography sx={{ fontSize: fontSize, color: "gray" }}>
           {significanceStr}
         </Typography>
       </Condition>
