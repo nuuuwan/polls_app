@@ -4,8 +4,6 @@ import Box from "@mui/material/Box";
 
 import { TimeX } from "@nuuuwan/utils-js-dev";
 
-import AudioX from "../../nonview/core/AudioX";
-
 import PollBottomNavigation from "../../view/organisms/PollBottomNavigation";
 import PollDirectory from "../../view/organisms/PollDirectory";
 import PollView from "../../view/organisms/PollView";
@@ -26,7 +24,6 @@ export default class PollPage extends Component {
     this.setState({
       timeLastUpdated: TimeX.getUnixTime(),
     });
-    await AudioX.playClick();
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
