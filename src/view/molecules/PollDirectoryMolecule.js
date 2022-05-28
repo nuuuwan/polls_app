@@ -10,21 +10,21 @@ export default function PollDirectoryMolecule({
   onSelectPoll,
 }) {
   return (
-    <Stack spacing={1}>
-      <List>
+    <List>
+      <Stack spacing={3}>
         {Object.entries(pollExtendedIdx).map(function ([pollID, pollExtended]) {
           const onSelectPollInner = function (e) {
             onSelectPoll(pollID);
           };
           return (
-            <ListItem key={"poll-directory-item-" + pollID}>
-              <ListItemButton onClick={onSelectPollInner}>
-                <PollTitle pollExtended={pollExtended} />
+            <ListItem key={"poll-directory-item-" + pollID} sx={{ p: 0 }}>
+              <ListItemButton onClick={onSelectPollInner} sx={{ p: 0 }}>
+                <PollTitle pollExtended={pollExtended} small />
               </ListItemButton>
             </ListItem>
           );
         })}
-      </List>
-    </Stack>
+      </Stack>
+    </List>
   );
 }
