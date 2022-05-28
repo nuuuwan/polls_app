@@ -4,8 +4,10 @@ import CircularProgress from "@mui/material/CircularProgress";
 
 import GhostUser from "../../nonview/base/GhostUser";
 import PollsAppServer from "../../nonview/core/PollsAppServer";
+import URLContext from "../../nonview/core/URLContext";
 
 import PollDirectoryMolecule from "../../view/molecules/PollDirectoryMolecule";
+import PollPage from "../../view/pages/PollPage";
 
 export default class PollDirectory extends Component {
   constructor(props) {
@@ -21,10 +23,14 @@ export default class PollDirectory extends Component {
       userID
     );
 
-
     this.setState({
       pollExtendedIdx,
     });
+  }
+
+  async onSelectPoll(pollID) {
+    URLContext.setContext({ Page: PollPage, pollID });
+    await this.props.refresh();
   }
 
   render() {
@@ -32,13 +38,10 @@ export default class PollDirectory extends Component {
     if (!pollExtendedIdx) {
       return <CircularProgress />;
     }
-
-    const { onSelectPoll } = this.props;
-
     return (
       <PollDirectoryMolecule
         pollExtendedIdx={pollExtendedIdx}
-        onSelectPoll={onSelectPoll}
+        onSelectPoll={this.onSelectPoll.bind(this)}
       />
     );
   }
