@@ -69,7 +69,7 @@ export default class PollBottomNavigation extends Component {
 
   render() {
     const { showNewPollDrawer, isSnackbarOpen } = this.state;
-    const { onSelectPoll } = this.props;
+    const { refresh } = this.props;
     const messageSnackbar = <div>Copied Poll URL to Clipboard.</div>;
 
     return (
@@ -77,7 +77,7 @@ export default class PollBottomNavigation extends Component {
         <AddNewPollDrawer
           isOpen={showNewPollDrawer}
           onClose={this.onCloseNewPollDrawer.bind(this)}
-          onAddNewPoll={onSelectPoll}
+          refresh={refresh}
         />
         <Snackbar
           open={isSnackbarOpen}
