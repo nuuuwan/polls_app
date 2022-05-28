@@ -72,8 +72,8 @@ export default class App extends Component {
         },
       },
       typography: {
-        fontFamily: ["PT Sans", "sans-serif"].join(","),
-        fontSize: 14,
+        fontFamily: ["Nunito Sans", "sans-serif"].join(","),
+        fontSize: 15,
       },
     });
 
