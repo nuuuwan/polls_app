@@ -6,7 +6,6 @@ import Statistics from "../../nonview/base/Statistics";
 import Condition from "../../view/atoms/Condition";
 
 export default function PollStatistics({ pollExtended, small }) {
-  console.debug(pollExtended, pollExtended.totalCount);
   const fontSize = small ? "x-small" : "small";
   const renderedTotalVotes = (
     <Typography style={{ fontSize }}>
