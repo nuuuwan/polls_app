@@ -8,6 +8,7 @@ import GhostUser from "./nonview/base/GhostUser";
 import PollsAppServer from "./nonview/core/PollsAppServer";
 import URLContext from "./nonview/core/URLContext";
 
+import SriLankaColors from "./view/_constants/SriLankaColors";
 import CustomAppBar from "./view/molecules/CustomAppBar";
 
 const STYLE = {
@@ -56,6 +57,20 @@ export default class App extends Component {
 
   render() {
     const theme = createTheme({
+      palette: {
+        primary: {
+          main: SriLankaColors.Sinhala,
+        },
+        secondary: {
+          main: SriLankaColors.Tamil,
+        },
+        success: {
+          main: SriLankaColors.Muslim,
+        },
+        info: {
+          main: SriLankaColors.Buddhist,
+        },
+      },
       typography: {
         fontFamily: ["PT Sans", "sans-serif"].join(","),
         fontSize: 14,
