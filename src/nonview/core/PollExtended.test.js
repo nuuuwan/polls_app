@@ -1,5 +1,5 @@
 import { testPollExtended } from "../../nonview/tests/TestData";
 
-test("", () => {
+test("PollExtended.totalCount", () => {
   expect(testPollExtended.totalCount).toBe(177);
 });
