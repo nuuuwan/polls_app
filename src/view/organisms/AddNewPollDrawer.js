@@ -3,8 +3,10 @@ import { Component } from "react";
 import AudioX from "../../nonview/core/AudioX";
 import Poll from "../../nonview/core/Poll";
 import PollsAppServer from "../../nonview/core/PollsAppServer";
+import URLContext from "../../nonview/core/URLContext";
 
 import AddNewPollDrawerMolecule from "../../view/molecules/AddNewPollDrawerMolecule";
+import PollPage from "../../view/pages/PollPage";
 
 export default class AddNewPollDrawer extends Component {
   constructor(props) {
@@ -19,22 +21,19 @@ export default class AddNewPollDrawer extends Component {
 
   async onClickAdd(e) {
     const { poll } = this.state;
-    const { onAddNewPoll } = this.props;
     await PollsAppServer.addPoll(poll);
-    await AudioX.playVote();
-    onAddNewPoll(poll.pollID);
     this.setState({ poll: Poll.constructEmptyPoll() });
+    URLContext.setContext({ Page: PollPage, pollID: poll.pollID });
+    await this.props.refresh();
+    await this.props.onClose();
+    await AudioX.playVote();
   }
 
   render() {
-    const { poll } = this.state;
-    const { isOpen, onClose } = this.props;
-
     return (
       <AddNewPollDrawerMolecule
-        poll={poll}
-        isOpen={isOpen}
-        onClose={onClose}
+        poll={this.state.poll}
+        isOpen={this.props.isOpen}
         onChangePoll={this.onChangePoll.bind(this)}
         onClickAdd={this.onClickAdd.bind(this)}
       />
