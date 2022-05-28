@@ -9,7 +9,7 @@ import AlignCenter from "../../view/atoms/AlignCenter";
 import Condition from "../../view/atoms/Condition";
 import PollStatistics from "../../view/molecules/PollStatistics";
 
-export default function PollTitle({ pollExtended }) {
+export default function PollTitle({ pollExtended, small }) {
   const VisibilityIcon =
     pollExtended.visibility === "public" ? PublicIcon : UnlistedIcon;
 
@@ -22,10 +22,12 @@ export default function PollTitle({ pollExtended }) {
     : theme.palette.primary.main;
 
   const totalCount = pollExtended.totalCount;
+  const fontSize = small ? "small" : "normal";
+  const fontSizeSmall = small ? "x-small" : "small";
 
   return (
     <Stack>
-      <Typography variant="h6" color={color}>
+      <Typography style={{ fontSize: fontSize, color: color }}>
         {pollExtended.question}
       </Typography>
 
@@ -34,20 +36,21 @@ export default function PollTitle({ pollExtended }) {
           answerList={pollExtended.answerList}
           totalCount={totalCount}
           answerToCount={pollExtended.answerToCount}
+          small={small}
         />
 
         <Divider orientation="vertical" variant="middle" flexItem />
 
-        <VisibilityIcon sx={{ fontSize: "small", color: "gray" }} />
-        <Typography sx={{ fontSize: "small", color: "gray" }}>
+        <VisibilityIcon sx={{ fontSize: fontSizeSmall, color: "gray" }} />
+        <Typography sx={{ fontSize: fontSizeSmall, color: "gray" }}>
           {pollExtended.visibility}
         </Typography>
       </AlignCenter>
 
       <Condition condition={isUserAnswer}>
         <AlignCenter>
-          <CheckCircleIcon sx={{ fontSize: "small", color: color }} />
-          <Typography style={{ fontSize: "small", color: color }}>
+          <CheckCircleIcon sx={{ fontSize: fontSizeSmall, color: color }} />
+          <Typography style={{ fontSize: fontSizeSmall, color: color }}>
             You voted "{pollExtended.userAnswer}"
           </Typography>
         </AlignCenter>
