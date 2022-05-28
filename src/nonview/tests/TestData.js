@@ -12,7 +12,7 @@ export const testGeoLocationInfo = {
 export const testPollExtended = PollExtended.fromDict({
   pollID: "test-poll-id-0",
   question: "Does this test question have an answer?",
-  answerListJSON: JSON.stringify(["Yes", "No"]),
+  answerListJSON: JSON.stringify(["Yes", "No", "Undecided"]),
   visibility: "public",
   answerToCount: { Yes: 123, No: 54 },
   userAnswer: "Yes",
