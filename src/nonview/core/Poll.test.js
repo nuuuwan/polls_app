@@ -1,4 +1,3 @@
-import Poll from "./Poll";
 import { testPollExtended } from "../../nonview/tests/TestData";
 
 test("Poll", () => {
