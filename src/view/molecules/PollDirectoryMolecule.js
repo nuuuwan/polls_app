@@ -10,7 +10,7 @@ export default function PollDirectoryMolecule({
   onSelectPoll,
 }) {
   return (
-    <List>
+    <List style={{ marginTop: "10%" }}>
       <Stack spacing={3}>
         {Object.entries(pollExtendedIdx).map(function ([pollID, pollExtended]) {
           const onSelectPollInner = function (e) {
