@@ -3,6 +3,7 @@ import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import AutorenewIcon from "@mui/icons-material/Autorenew";
 import SettingsIcon from "@mui/icons-material/Settings";
+import { useTheme } from "@mui/material/styles";
 
 import {
   PollIcon,
@@ -20,6 +21,9 @@ import CustomAppBarMenuItem from "./CustomAppBarMenuItem";
 import VersionView from "../../view/atoms/VersionView";
 
 export default function CustomAppBarMenu({ onSelectPage, Page }) {
+  const theme = useTheme();
+  const color = theme.palette.success.main;
+
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const onClick = function (e) {
@@ -53,7 +57,7 @@ export default function CustomAppBarMenu({ onSelectPage, Page }) {
         onClick={onClick}
         aria-label="CustomAppBarMenu.button"
       >
-        <SettingsIcon sx={{ color: "gray" }} />
+        <SettingsIcon sx={{ color }} />
       </IconButton>
       <Menu anchorEl={anchorEl} open={open} onClose={onClose}>
         <CustomAppBarMenuItem
