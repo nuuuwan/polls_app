@@ -47,10 +47,17 @@ export default class PollsAppServer {
   }
 
   static async getPollExtended(pollID, userID) {
-    return await Cache.get(
+    const d = await Cache.get(
       PollsAppServer.getPollExtendedCacheKey(pollID, userID),
-      async () => PollsAppServer.getPollExtendedNoCache(pollID, userID)
+      async function () {
+        const pollExtended = await PollsAppServer.getPollExtendedNoCache(
+          pollID,
+          userID
+        );
+        return PollExtended.toDict(pollExtended);
+      }
     );
+    return PollExtended.fromDict(d);
   }
 
   static async addPoll(poll) {
