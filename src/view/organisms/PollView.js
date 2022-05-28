@@ -11,6 +11,7 @@ import PollResult from "../../nonview/core/PollResult";
 import PollsAppServer from "../../nonview/core/PollsAppServer";
 
 import PollViewMolecule from "../../view/molecules/PollViewMolecule";
+import PollPage from "../../view/pages/PollPage";
 
 export default class PollView extends Component {
   constructor(props) {
@@ -24,6 +25,8 @@ export default class PollView extends Component {
   async refresh(pollID, hasSubmittedVote) {
     const userID = await GhostUser.getUserID();
     const pollExtended = await PollsAppServer.getPollExtended(pollID, userID);
+
+    URLContext.setContext({ Page: PollPage, pollID });
     this.setState({
       pollExtended,
       selectedAnswer: pollExtended.userAnswer,
