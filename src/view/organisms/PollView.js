@@ -6,6 +6,7 @@ import { TimeX } from "@nuuuwan/utils-js-dev";
 
 import GhostUser from "../../nonview/base/GhostUser";
 import AudioX from "../../nonview/core/AudioX";
+import URLContext from "../../nonview/core/URLContext";
 import PollResult from "../../nonview/core/PollResult";
 import PollsAppServer from "../../nonview/core/PollsAppServer";
 
@@ -20,31 +21,40 @@ export default class PollView extends Component {
     };
   }
 
-  async componentDidMount() {
-    const { pollID } = this.props;
-    const geoInfo = await GhostUser.getInfo();
-    const userID = geoInfo.userID;
+  async refresh(pollID, hasSubmittedVote) {
+    const userID = await GhostUser.getUserID();
     const pollExtended = await PollsAppServer.getPollExtended(pollID, userID);
-    this.setState({ pollExtended, selectedAnswer: pollExtended.userAnswer });
+    this.setState({
+      pollExtended,
+      selectedAnswer: pollExtended.userAnswer,
+      hasSubmittedVote,
+    });
+  }
+
+  async componentDidMount() {
+    let { pollID } = URLContext.getContext();
+    if (!pollID) {
+      const pollIDs = await PollsAppServer.getPollIDs();
+      pollID = pollIDs[0];
+    }
+    await this.refresh(pollID, false);
   }
 
   async onClickVote() {
-    const { onSelectPoll } = this.props;
     const { pollExtended, selectedAnswer } = this.state;
 
     const geoInfo = await GhostUser.getInfo();
-    const userID = geoInfo.infoHash;
 
     const pollResult = new PollResult(
       pollExtended.pollID,
-      userID,
+      geoInfo.userID,
       selectedAnswer,
       TimeX.getUnixTime(),
       geoInfo
     );
     await PollsAppServer.addPollResult(pollResult);
     await AudioX.playVote();
-    onSelectPoll(pollExtended.pollID);
+    await this.refresh(pollExtended.pollID, true);
   }
 
   async setSelectedAnswer(selectedAnswer) {
@@ -57,12 +67,18 @@ export default class PollView extends Component {
     if (!pollExtended) {
       return <CircularProgress />;
     }
+    const key =
+      "poll-view-molecule-" +
+      pollExtended.userID +
+      "-" +
+      pollExtended.answerToCount;
     return (
       <PollViewMolecule
+        key={key}
         pollExtended={pollExtended}
         selectedAnswer={selectedAnswer}
-        setSelectedAnswer={this.setSelectedAnswer.bind(this)}
         hasSubmittedVote={hasSubmittedVote}
+        setSelectedAnswer={this.setSelectedAnswer.bind(this)}
         onClickVote={this.onClickVote.bind(this)}
       />
     );
