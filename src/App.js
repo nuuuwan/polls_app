@@ -11,9 +11,9 @@ import URLContext from "./nonview/core/URLContext";
 import CustomAppBar from "./view/molecules/CustomAppBar";
 
 const STYLE = {
-  maxWidth: 600,
-  marginLeft: 5,
-  marginRight: 5,
+  width: "70%",
+  maxWidth: 500,
+  margin: "auto",
   marginTop: 5,
   marginBottom: 10,
 };
