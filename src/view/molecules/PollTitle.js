@@ -21,7 +21,6 @@ export default function PollTitle({ pollExtended, small }) {
     ? theme.palette.secondary.main
     : theme.palette.primary.main;
 
-  const totalCount = pollExtended.totalCount;
   const fontSize = small ? "small" : "normal";
   const fontSizeSmall = small ? "x-small" : "small";
 
@@ -32,12 +31,7 @@ export default function PollTitle({ pollExtended, small }) {
       </Typography>
 
       <AlignCenter>
-        <PollStatistics
-          answerList={pollExtended.answerList}
-          totalCount={totalCount}
-          answerToCount={pollExtended.answerToCount}
-          small={small}
-        />
+        <PollStatistics pollExtended={pollExtended} small={small} />
 
         <Divider orientation="vertical" variant="middle" flexItem />
 
