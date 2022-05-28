@@ -20,5 +20,9 @@ Elements should"
 
 # LOW
 
+* #BUG "O Votes"
+* #BUG Black on Scroll Down
+
 * My polls
 * Exclude current poll from PollDirectory
+
