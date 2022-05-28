@@ -36,6 +36,7 @@ export default class AddNewPollDrawer extends Component {
         isOpen={this.props.isOpen}
         onChangePoll={this.onChangePoll.bind(this)}
         onClickAdd={this.onClickAdd.bind(this)}
+        onClose={this.props.onClose}
       />
     );
   }
