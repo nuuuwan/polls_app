@@ -5,25 +5,22 @@ import Statistics from "../../nonview/base/Statistics";
 
 import Condition from "../../view/atoms/Condition";
 
-export default function PollStatistics({
-  answerList,
-  totalCount,
-  answerToCount,
-  small,
-}) {
+export default function PollStatistics({ pollExtended, small }) {
+  console.debug(pollExtended, pollExtended.totalCount);
   const fontSize = small ? "x-small" : "small";
-  totalCount = totalCount ? totalCount : 0;
   const renderedTotalVotes = (
-    <Typography style={{ fontSize }}>{totalCount + " votes"}</Typography>
+    <Typography style={{ fontSize }}>
+      {pollExtended.totalCount + " votes"}
+    </Typography>
   );
 
   let significanceStr = "";
-  if (totalCount > Statistics.MIN_STATISTICAL_N) {
-    const sortedAnswerStats = answerList
+  if (pollExtended.totalCount > Statistics.MIN_STATISTICAL_N) {
+    const sortedAnswerStats = pollExtended.answerList
       .map(function (answer) {
-        const answerVotes = answerToCount[answer] ? answerToCount[answer] : 0;
+        const answerVotes = pollExtended.answerToCount[answer];
         const { lower, upper, p } = Statistics.getErrorBounds(
-          totalCount,
+          pollExtended.totalCount,
           answerVotes
         );
         return { answer, lower, upper, p };
