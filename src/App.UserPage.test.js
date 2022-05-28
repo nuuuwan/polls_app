@@ -1,11 +1,5 @@
-import { screen } from "@testing-library/react";
 import { init } from "./view/_tests/MockExternals";
-import {
-  screenFindByText,
-  click,
-  defaultAppLoad,
-  clickOnMenu,
-} from "./view/_tests/Tests";
+import { screenFindByText, clickOnMenu } from "./view/_tests/Tests";
 
 init();
 
