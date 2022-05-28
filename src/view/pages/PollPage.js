@@ -56,7 +56,7 @@ export default class PollPage extends Component {
       <div>
         <Box sx={{ marginBotton: 1, maxWidth: "100%" }}>
           <PollView
-            key={"poll-view-" + pollID + "-" + timeLastUpdated}
+            key={"poll-view-" + pollID}
             pollID={pollID}
             onSelectPoll={this.onSelectPoll.bind(this)}
           />
@@ -67,7 +67,7 @@ export default class PollPage extends Component {
         </Box>
 
         <PollBottomNavigation
-          key={"poll-bottom-navigation-" + timeLastUpdated}
+          key={"poll-bottom-navigation"}
           pollID={pollID}
           onSelectPoll={this.onSelectPoll.bind(this)}
         />
