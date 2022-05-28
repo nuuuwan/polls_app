@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
 import AutorenewIcon from "@mui/icons-material/Autorenew";
+import SettingsIcon from "@mui/icons-material/Settings";
 
 import {
   PollIcon,
@@ -53,7 +53,7 @@ export default function CustomAppBarMenu({ onSelectPage, Page }) {
         onClick={onClick}
         aria-label="CustomAppBarMenu.button"
       >
-        <MenuIcon />
+        <SettingsIcon sx={{ color: "gray" }} />
       </IconButton>
       <Menu anchorEl={anchorEl} open={open} onClose={onClose}>
         <CustomAppBarMenuItem
