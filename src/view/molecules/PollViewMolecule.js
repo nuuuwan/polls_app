@@ -6,11 +6,6 @@ import PollAnswerGroup from "../../view/molecules/PollAnswerGroup";
 import PollTitle from "../../view/molecules/PollTitle";
 import ValidationBox from "../../view/molecules/ValidationBox";
 
-const STYLE = {
-  margin: 0,
-  padding: 2,
-};
-
 const ANSWER_NONE = "";
 
 export default function PollViewMolecule({
@@ -37,7 +32,6 @@ export default function PollViewMolecule({
   return (
     <Stack
       key={"poll-" + pollExtended.pollID + pollExtended.answerToCount}
-      sx={STYLE}
       spacing={2}
     >
       <PollTitle pollExtended={pollExtended} />
