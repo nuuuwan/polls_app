@@ -37,6 +37,12 @@ export default function IDAvatar({ size, id }) {
       <svg width={width} height={height}>
         {colorMatrix.map(function (colorRow, iRow) {
           return colorRow.map(function (idSubstring, iCol) {
+
+            const keyID = iRow + "-" + iCol;
+            if (!['0-0', '0-2', '1-1', '2-0', '2-1','2-2'].includes(keyID)) {
+              return null;
+            }
+
             const n = (parseInt(idSubstring, 16) % 3) + 3;
             const [cx, cy] = [(iCol + 0.5) * cellSize, (iRow + 0.5) * cellSize];
             const r = (P_RADIUS * cellSize) / 2;
@@ -44,7 +50,7 @@ export default function IDAvatar({ size, id }) {
 
             return (
               <EquilateralPolygon
-                key={"cell-shape-" + iRow + "-" + iCol}
+                key={"cell-shape-" + keyID}
                 n={n}
                 cx={cx}
                 cy={cy}
