@@ -5,7 +5,9 @@ export default function TitledBody({ title, body }) {
   return (
     <Paper elevation={0} sx={{ marginBottom: 1, marginTop: 1 }}>
       <Typography sx={{ fontSize: "small", color: "gray" }}>{title}</Typography>
-      <Typography variant="body1">{body}</Typography>
+      <Typography variant="body1" style={{ wordBreak: "break-all" }}>
+        {body}
+      </Typography>
     </Paper>
   );
 }
