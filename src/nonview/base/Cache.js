@@ -1,16 +1,16 @@
 export default class Cache {
+  static isValidHotItem(hotItem) {
+    return hotItem && hotItem !== "" && hotItem !== null && hotItem !== "null";
+  }
+
   static async get(cacheKey, asyncFallback) {
     const hotItem = localStorage.getItem(cacheKey);
-    if (hotItem && hotItem !== "" && hotItem !== null && hotItem !== "null") {
+    if (Cache.isValidHotItem(hotItem)) {
       return JSON.parse(hotItem);
     }
 
     const coldItem = await asyncFallback();
-    try {
-      Cache.set(cacheKey, coldItem);
-    } catch (QuotaExceededError) {
-      localStorage.clear();
-    }
+    Cache.set(cacheKey, coldItem);
     return coldItem;
   }
 
