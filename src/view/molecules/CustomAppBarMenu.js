@@ -21,9 +21,6 @@ import CustomAppBarMenuItem from "./CustomAppBarMenuItem";
 import VersionView from "../../view/atoms/VersionView";
 
 export default function CustomAppBarMenu({ onSelectPage, Page }) {
-  const theme = useTheme();
-  const color = theme.palette.success.main;
-
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const onClick = function (e) {
@@ -49,6 +46,9 @@ export default function CustomAppBarMenu({ onSelectPage, Page }) {
   const onClickRefresh = function () {
     window.location.reload();
   };
+
+  const theme = useTheme();
+  const color = theme.palette.success.main;
 
   return (
     <div>
