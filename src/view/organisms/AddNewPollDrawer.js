@@ -11,8 +11,7 @@ import PollPage from "../../view/pages/PollPage";
 export default class AddNewPollDrawer extends Component {
   constructor(props) {
     super(props);
-    const poll = Poll.constructEmptyPoll();
-    this.state = { poll };
+    this.state = { poll: Poll.constructEmptyPoll() };
   }
 
   onChangePoll(poll) {
