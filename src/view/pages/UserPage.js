@@ -2,8 +2,8 @@ import { Component } from "react";
 import ReactCountryFlag from "react-country-flag";
 
 import Alert from "@mui/material/Alert";
+import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-import Paper from "@mui/material/Paper";
 
 import GoogleMapsLink from "../../view/atoms/GoogleMapsLink";
 import SimpleLink from "../../view/atoms/SimpleLink";
@@ -25,7 +25,7 @@ export default class UserPage extends Component {
     const locationStr = `${lat}°, ${lng}°`;
 
     return (
-      <Paper sx={{ m: 2, p: 3 }}>
+      <Box sx={{ m: 1, p: 1 }}>
         <Grid container justifyContent="center">
           <IDAvatar id={geoInfo.infoHash} size={120} />
         </Grid>
@@ -55,7 +55,7 @@ export default class UserPage extends Component {
           This is a auto-generated user account, based on your location, country
           and IP address.
         </Alert>
-      </Paper>
+      </Box>
     );
   }
 }
