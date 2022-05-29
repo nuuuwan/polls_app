@@ -31,20 +31,10 @@ export default function CustomAppBarMenu({ onSelectPage, Page }) {
     setAnchorEl(null);
   };
 
-  const onClickCode = async function () {
-    window.open(URL_GITHUB_REPO_POLLS_APP, "_blank");
-    onClose();
-    await AudioX.playVote();
-  };
-
   const onSelectPageInner = async function (Page) {
     onSelectPage(Page);
     onClose();
     await AudioX.playClick();
-  };
-
-  const onClickRefresh = function () {
-    window.location.reload();
   };
 
   const theme = useTheme();
@@ -81,12 +71,16 @@ export default function CustomAppBarMenu({ onSelectPage, Page }) {
         <CustomAppBarMenuItem
           label="Code"
           Icon={CodeIcon}
-          onClick={onClickCode}
+          onClick={async () => {
+            window.open(URL_GITHUB_REPO_POLLS_APP, "_blank");
+            onClose();
+            await AudioX.playVote();
+          }}
         />
         <CustomAppBarMenuItem
           label="Refresh App"
           Icon={AutorenewIcon}
-          onClick={onClickRefresh}
+          onClick={() => { window.location.reload() ; }}
         />
         <VersionView />
       </Menu>
