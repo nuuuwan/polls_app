@@ -23,7 +23,7 @@ export default function IDAvatar({ size, id }) {
     }
     return id.substring(iStart, iStart + BITS_PER_COLOR);
   });
-  
+
   const colorMatrix = [
     [colorList[0], null, colorList[1]],
     [null, colorList[2], null],
