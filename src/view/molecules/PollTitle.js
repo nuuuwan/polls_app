@@ -5,8 +5,8 @@ import { useTheme } from "@mui/material/styles";
 
 import AlignCenter from "../../view/atoms/AlignCenter";
 import PollStatistics from "../../view/molecules/PollStatistics";
-import PollVisibility from "../../view/molecules/PollVisibility";
 import PollUserAnswer from "../../view/molecules/PollUserAnswer";
+import PollVisibility from "../../view/molecules/PollVisibility";
 
 export default function PollTitle({ pollExtended, small }) {
   const isUserAnswer =
