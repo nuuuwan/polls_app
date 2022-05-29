@@ -18,11 +18,14 @@ export default class Poll {
   }
 
   get isQuestionValid() {
-    return Poll.isQuestionValid(this.question);
+    return (
+      this.question.length >= MIN_QUESTION_LENGTH &&
+      this.question.trim().slice(-1) === "?"
+    );
   }
 
   get isAnswerListValid() {
-    return Poll.isAnswerListValid(this.answerList);
+    return this.answerList.length >= MIN_ANSWER_LIST_LENGTH;
   }
 
   static toDict(poll) {
@@ -41,17 +44,6 @@ export default class Poll {
       JSON.parse(d.answerListJSON),
       d.visibility
     );
-  }
-
-  static isQuestionValid(question) {
-    return (
-      question.length >= MIN_QUESTION_LENGTH &&
-      question.trim().slice(-1) === "?"
-    );
-  }
-
-  static isAnswerListValid(answerList) {
-    return answerList.length >= MIN_ANSWER_LIST_LENGTH;
   }
 
   static constructEmptyPoll() {
