@@ -1,5 +1,6 @@
-import Poll from "./Poll";
 import { MathX } from "@nuuuwan/utils-js-dev";
+
+import Poll from "./Poll";
 
 export default class PollExtended extends Poll {
   constructor(

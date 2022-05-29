@@ -1,10 +1,11 @@
-import AlignCenter from "../../view/atoms/AlignCenter";
-import Condition from "../../view/atoms/Condition";
 import Typography from "@mui/material/Typography";
 import { useTheme } from "@mui/material/styles";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
-export default function PollUserAnswer({pollExtended, small}) {
+import AlignCenter from "../../view/atoms/AlignCenter";
+import Condition from "../../view/atoms/Condition";
+
+export default function PollUserAnswer({ pollExtended, small }) {
   const fontSizeSmall = small ? "x-small" : "small";
   const isUserAnswer =
     pollExtended.userAnswer && pollExtended.userAnswer !== "";

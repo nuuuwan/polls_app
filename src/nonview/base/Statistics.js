@@ -8,7 +8,6 @@ const Q = 100;
 export default class Statistics {
   static MIN_STATISTICAL_N = 30;
 
-
   static getErrorBounds(nObserved, npObserved) {
     const pObserved = npObserved / nObserved;
     let [lower, upper] = [1, 1];

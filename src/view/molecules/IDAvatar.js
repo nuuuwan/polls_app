@@ -37,9 +37,8 @@ export default function IDAvatar({ size, id }) {
       <svg width={width} height={height}>
         {colorMatrix.map(function (colorRow, iRow) {
           return colorRow.map(function (idSubstring, iCol) {
-
             const keyID = iRow + "-" + iCol;
-            if (!['0-0', '0-2', '1-1', '2-0', '2-1','2-2'].includes(keyID)) {
+            if (!["0-0", "0-2", "1-1", "2-0", "2-1", "2-2"].includes(keyID)) {
               return null;
             }
 
