@@ -1,4 +1,5 @@
 import Poll from "./Poll";
+import { MathX } from "@nuuuwan/utils-js-dev";
 
 export default class PollExtended extends Poll {
   constructor(
@@ -17,13 +18,7 @@ export default class PollExtended extends Poll {
   }
 
   get totalCount() {
-    return Object.values(this.answerToCount).reduce(function (
-      totalCount,
-      count
-    ) {
-      return totalCount + count;
-    },
-    0);
+    return MathX.sum(Object.values(this.answerToCount));
   }
 
   static toDict(pollExtended) {
