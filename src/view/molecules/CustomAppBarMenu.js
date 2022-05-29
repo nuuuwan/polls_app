@@ -80,7 +80,9 @@ export default function CustomAppBarMenu({ onSelectPage, Page }) {
         <CustomAppBarMenuItem
           label="Refresh App"
           Icon={AutorenewIcon}
-          onClick={() => { window.location.reload() ; }}
+          onClick={() => {
+            window.location.reload();
+          }}
         />
         <VersionView />
       </Menu>
