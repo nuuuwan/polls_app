@@ -4,15 +4,12 @@ import Typography from "@mui/material/Typography";
 import { useTheme } from "@mui/material/styles";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
-import { PublicIcon, UnlistedIcon } from "../../view/_constants/CommonIcons";
 import AlignCenter from "../../view/atoms/AlignCenter";
 import Condition from "../../view/atoms/Condition";
 import PollStatistics from "../../view/molecules/PollStatistics";
+import PollVisibility from "../../view/molecules/PollVisibility";
 
 export default function PollTitle({ pollExtended, small }) {
-  const VisibilityIcon =
-    pollExtended.visibility === "public" ? PublicIcon : UnlistedIcon;
-
   const isUserAnswer =
     pollExtended.userAnswer && pollExtended.userAnswer !== "";
 
@@ -35,10 +32,7 @@ export default function PollTitle({ pollExtended, small }) {
 
         <Divider orientation="vertical" variant="middle" flexItem />
 
-        <VisibilityIcon sx={{ fontSize: fontSizeSmall, color: "gray" }} />
-        <Typography sx={{ fontSize: fontSizeSmall, color: "gray" }}>
-          {pollExtended.visibility}
-        </Typography>
+        <PollVisibility pollExtended={pollExtended} small={small} />
       </AlignCenter>
 
       <Condition condition={isUserAnswer}>
