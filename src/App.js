@@ -11,6 +11,27 @@ import URLContext from "./nonview/core/URLContext";
 import SriLankaColors from "./view/_constants/SriLankaColors";
 import CustomAppBar from "./view/molecules/CustomAppBar";
 
+const THEME = createTheme({
+  palette: {
+    primary: {
+      main: SriLankaColors.Sinhala,
+    },
+    secondary: {
+      main: SriLankaColors.Tamil,
+    },
+    success: {
+      main: SriLankaColors.Muslim,
+    },
+    info: {
+      main: SriLankaColors.Buddhist,
+    },
+  },
+  typography: {
+    fontFamily: ["Nunito Sans", "sans-serif"].join(","),
+    fontSize: 15,
+  },
+});
+
 const STYLE = {
   width: "70%",
   maxWidth: 500,
@@ -56,29 +77,8 @@ export default class App extends Component {
   }
 
   render() {
-    const theme = createTheme({
-      palette: {
-        primary: {
-          main: SriLankaColors.Sinhala,
-        },
-        secondary: {
-          main: SriLankaColors.Tamil,
-        },
-        success: {
-          main: SriLankaColors.Muslim,
-        },
-        info: {
-          main: SriLankaColors.Buddhist,
-        },
-      },
-      typography: {
-        fontFamily: ["Nunito Sans", "sans-serif"].join(","),
-        fontSize: 15,
-      },
-    });
-
     return (
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={THEME}>
         <Box sx={STYLE}>{this.renderInner()}</Box>
       </ThemeProvider>
     );
