@@ -5,8 +5,8 @@ export const testGeoLocationInfo = {
   countryName: "Sri Lanka",
   latLng: [1, 1],
   ipV4: "1.1.1.1",
-  infoHash: "11111111111111111111111111111111",
-  userID: "11111111111111111111111111111111",
+  infoHash: "1234567890abcdef1234567890abcdef",
+  userID: "1234567890abcdef1234567890abcdef",
 };
 
 export const testPollExtended = PollExtended.fromDict({
